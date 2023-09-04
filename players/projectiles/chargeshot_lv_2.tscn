@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://gry1wgnl5o88"]
+
+[ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_2.gd" id="1_bkydj"]
+[ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_ski7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmvw6"]
+atlas = ExtResource("1_ski7p")
+region = Rect2(2, 13, 11, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sckaf"]
+atlas = ExtResource("1_ski7p")
+region = Rect2(13, 13, 11, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y8vj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmvw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sckaf")
+}],
+"loop": true,
+"name": &"chargeshot_lv2",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlhgy"]
+size = Vector2(11, 9)
+
+[node name="chargeshot_lv2" type="CharacterBody2D"]
+scale = Vector2(6, 6)
+script = ExtResource("1_bkydj")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4y8vj")
+animation = &"chargeshot_lv2"
+
+[node name="collision_monitor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
+shape = SubResource("RectangleShape2D_xlhgy")
+
+[connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
+[connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]
