@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb41ichv1nq4b"]
+
+[ext_resource type="Script" path="res://enemy/met_bullet.gd" id="1_bo6py"]
+[ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="1_boqop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb2rn"]
+size = Vector2(6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bqjh"]
+atlas = ExtResource("1_boqop")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27be4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bqjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="met_bullet" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_bo6py")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_pb2rn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_27be4")

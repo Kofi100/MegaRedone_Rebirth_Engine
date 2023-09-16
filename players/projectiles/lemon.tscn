@@ -30,6 +30,7 @@ sprite_frames = SubResource("SpriteFrames_lwm67")
 animation = &"lemon"
 
 [node name="collision_monitor" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
 shape = SubResource("RectangleShape2D_paodp")

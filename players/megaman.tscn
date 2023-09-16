@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=25 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
+[ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymsc"]
 atlas = ExtResource("1_si1fv")
@@ -15,6 +16,10 @@ region = Rect2(248, 0, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ia50b"]
 atlas = ExtResource("1_si1fv")
 region = Rect2(279, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxfjx"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(248, 30, 31, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0ckd"]
 atlas = ExtResource("1_si1fv")
@@ -87,6 +92,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uxfjx")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f0ckd")
 }, {
 "duration": 1.0,
@@ -144,10 +157,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b13sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvc2g")
 }],
 "loop": true,
 "name": &"run",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -177,10 +193,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_neyi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt11m")
 }],
 "loop": false,
 "name": &"shoot_run",
-"speed": 7.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk5kj"]
@@ -189,12 +208,19 @@ size = Vector2(12, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tm2b"]
 size = Vector2(20.3333, 6.16667)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8yvw"]
+size = Vector2(9.66667, 20.3333)
+
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 11
 script = ExtResource("1_acsaa")
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
+
+[node name="HUD" parent="." instance=ExtResource("3_ov4w5")]
 
 [node name="player_camera" type="Camera2D" parent="."]
 editor_draw_limits = true
@@ -203,13 +229,15 @@ editor_draw_limits = true
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
 animation = &"shoot_in_air"
+offset = Vector2(2, 0)
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.333333, 3.66667)
 shape = SubResource("RectangleShape2D_mk5kj")
 
 [node name="marker_checker" type="Marker2D" parent="."]
-position = Vector2(12.3333, 13.6667)
+position = Vector2(0.666667, 13.6667)
 
 [node name="all_proj_spawn_points" type="Node2D" parent="."]
 
@@ -219,6 +247,12 @@ position = Vector2(-20.4302, 0.725945)
 [node name="ground_right" type="Marker2D" parent="all_proj_spawn_points"]
 position = Vector2(22.4403, 0.535286)
 
+[node name="air_left" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(-15.6667, -6.33333)
+
+[node name="air_right" type="Marker2D" parent="all_proj_spawn_points"]
+position = Vector2(17.7238, -6.42757)
+
 [node name="charge_timer" type="Label" parent="."]
 offset_left = -21.6667
 offset_top = -21.6667
@@ -227,11 +261,12 @@ offset_bottom = 4.33333
 scale = Vector2(0.5, 0.5)
 text = "charge_time"
 
-[node name="ray_cats" type="RayCast2D" parent="."]
-rotation = 3.14159
-target_position = Vector2(0, 7)
-collide_with_areas = true
-collide_with_bodies = false
+[node name="speed" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -39.6667
+offset_right = 25.0
+offset_bottom = -13.6667
+text = "speed"
 
 [node name="change_climb_detector" type="Area2D" parent="."]
 
@@ -239,6 +274,16 @@ collide_with_bodies = false
 position = Vector2(0, -3.25)
 shape = SubResource("RectangleShape2D_8tm2b")
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(2.5, 2.16667)
+shape = SubResource("RectangleShape2D_d8yvw")
+
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
 [connection signal="area_exited" from="change_climb_detector" to="." method="_on_change_climb_detector_area_exited"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]

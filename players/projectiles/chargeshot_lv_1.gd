@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 50000.0
 @export var direction="left"
-
+var state="active"
 func _ready():
 	match direction:
 		"left":

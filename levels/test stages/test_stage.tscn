@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=8 format=3 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_iewdy"]
 [ext_resource type="Script" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_mabb1"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
+[ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="5_d7wbp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0e7h"]
 resource_name = "debug_tileset"
@@ -17,19 +18,12 @@ texture = ExtResource("1_iewdy")
 1:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_qvxqa"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 15
+physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_q0e7h")
 
 [node name="test_stage" type="Node2D"]
 script = ExtResource("1_vfap4")
-
-[node name="stage_camera" type="Camera2D" parent="."]
-position = Vector2(623.282, 323.457)
-scale = Vector2(3, 3)
-limit_left = -16
-limit_right = 1199
-limit_bottom = 672
-editor_draw_limits = true
 
 [node name="tilemap" type="TileMap" parent="." groups=["tilemaps"]]
 scale = Vector2(3, 3)
@@ -38,11 +32,21 @@ format = 2
 layer_0/name = "level"
 layer_0/tile_data = PackedInt32Array(851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 786432, 0, 0, 720896, 0, 0, 655360, 0, 0, 589824, 0, 0, 524288, 0, 0, 196608, 0, 0, 131072, 0, 0, 65536, 0, 0, 0, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 65560, 0, 0, 131096, 0, 0, 196632, 0, 0, 262168, 0, 0, 327704, 0, 0, 393240, 0, 0, 458776, 0, 0, 524312, 0, 0, 589848, 0, 0, 655384, 0, 0, 720920, 0, 0, 786456, 0, 0)
 
+[node name="stage_camera" type="Camera2D" parent="."]
+position = Vector2(598, 324)
+limit_left = -40
+limit_right = 1199
+limit_bottom = 672
+editor_draw_limits = true
+
 [node name="megaman" parent="." instance=ExtResource("2_mabb1")]
-position = Vector2(491, 580)
+position = Vector2(263, 573)
 
 [node name="reserve_marker1" type="Marker2D" parent="."]
-position = Vector2(0, 502)
+position = Vector2(475, 662)
 
 [node name="ladder" parent="." instance=ExtResource("4_p7my6")]
 position = Vector2(352, 285)
+
+[node name="met" parent="." instance=ExtResource("5_d7wbp")]
+position = Vector2(815, 600)

@@ -12,11 +12,9 @@ func _process(delta):
 	if in_zone==true:
 		pass
 	if on_top==true:
-		if Input.is_action_pressed("move_down"):
-			collision_shape.position=$Marker2D.position
-		else:
-			collision_shape.position=$Marker2D2.position
-
+		if Input.is_action_just_pressed("move_down"):
+			set_collision_layer_value(4,false)
+	print(get_collision_layer_value(4))
 
 func _on_area_entered(area):
 	pass
@@ -25,18 +23,20 @@ var in_zone:bool=false
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		#collision_shape.disabled=true
-		collision_shape.position=$Marker2D.position
-		if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down") and not body.is_on_floor():
+		set_collision_layer_value(4,false)
+		#collision_shape.position=$Marker2D.position
+		if Input.is_action_pressed("move_up")and not body.is_on_floor():
 			print("input up pressed near ladder")
-			body.global_position.x=$Marker2D2.global_position.x
+			#body.global_position.x=$Marker2D2.global_position.x
 			body.climb=true
 			
 
-
+##Sets the position of the top platform back to its original position originally
 func _on_body_exited(body):
 	if body.is_in_group("player"):
-			collision_shape.position=$Marker2D2.position
+			#collision_shape.position=$Marker2D2.position
 			body.climb=false
+			set_collision_layer_value(4,true)
 			#collision_shape.disabled=false
 
 var on_top=false

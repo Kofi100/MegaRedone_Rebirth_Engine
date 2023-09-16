@@ -1,6 +1,5 @@
-extends Node2D
-@onready var stage_camera = $stage_camera
-@onready var player_camera= $megaman/player_camera
+extends Node
+var health =1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	StageFunctions.switch_camera(player_camera,stage_camera)
+	pass

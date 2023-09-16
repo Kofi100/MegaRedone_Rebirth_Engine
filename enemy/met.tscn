@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvsnh1g0ygwje"]
+
+[ext_resource type="Script" path="res://enemy/met.gd" id="1_4t8t2"]
+[ext_resource type="Texture2D" uid="uid://gck1ia7x1pdu" path="res://assets/sprites/enemies/met.png" id="2_bi5yp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awhqq"]
+atlas = ExtResource("2_bi5yp")
+region = Rect2(0, 0, 18, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkc0h"]
+atlas = ExtResource("2_bi5yp")
+region = Rect2(25, 0, 18, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vdhf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awhqq")
+}],
+"loop": true,
+"name": &"defend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_gkc0h")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_mjpx1"]
+length = 7.33333
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr00u"]
+size = Vector2(92.3333, 36.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lprpo"]
+size = Vector2(18, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx6qn"]
+size = Vector2(19.6667, 16)
+
+[node name="met" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_4t8t2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vdhf")
+animation = &"shoot"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Timer2" type="Timer" parent="."]
+editor_description = "TThis timer was for testing if I uunderstood timers.It upon timing out,if a player is on the RIGHT side of met,causes it to shoot"
+wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SeparationRayShape2D_mjpx1")
+
+[node name="detect_area" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="left" type="Area2D" parent="detect_area"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area/left"]
+position = Vector2(-51.8333, 0.833333)
+shape = SubResource("RectangleShape2D_pr00u")
+
+[node name="right" type="Area2D" parent="detect_area"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area/right"]
+position = Vector2(50.6667, 0.666667)
+shape = SubResource("RectangleShape2D_pr00u")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 0.166667)
+shape = SubResource("RectangleShape2D_lprpo")
+
+[node name="hitbox_blocked" type="Area2D" parent="." groups=["blockables"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_blocked"]
+position = Vector2(0.166667, -0.333333)
+shape = SubResource("RectangleShape2D_tx6qn")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="detect_area/left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="detect_area/left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="detect_area/right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="detect_area/right" to="." method="_on_right_body_exited"]
