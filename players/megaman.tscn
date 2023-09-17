@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=26 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -56,6 +56,10 @@ region = Rect2(62, 30, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsieb"]
 atlas = ExtResource("1_si1fv")
 region = Rect2(186, 30, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qshy5"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(217, 30, 31, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkwlt"]
 atlas = ExtResource("1_si1fv")
@@ -186,6 +190,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qshy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qshy5")
+}],
+"loop": false,
+"name": &"shoot_on_ladder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hkwlt")
 }, {
 "duration": 1.0,
@@ -203,13 +218,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk5kj"]
-size = Vector2(12, 20)
+size = Vector2(8.33333, 20.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tm2b"]
-size = Vector2(20.3333, 6.16667)
+size = Vector2(9.66667, 6.16667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8yvw"]
-size = Vector2(9.66667, 20.3333)
+size = Vector2(9.66667, 20.1666)
 
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -223,18 +238,20 @@ script = ExtResource("1_acsaa")
 [node name="HUD" parent="." instance=ExtResource("3_ov4w5")]
 
 [node name="player_camera" type="Camera2D" parent="."]
+limit_smoothed = true
 editor_draw_limits = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_in_air"
+animation = &"shoot_on_ladder"
 offset = Vector2(2, 0)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.333333, 3.66667)
+position = Vector2(3.16667, 3.33334)
 shape = SubResource("RectangleShape2D_mk5kj")
+debug_color = Color(0.639216, 0.678431, 0, 0.568627)
 
 [node name="marker_checker" type="Marker2D" parent="."]
 position = Vector2(0.666667, 13.6667)
@@ -271,19 +288,22 @@ text = "speed"
 [node name="change_climb_detector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="change_climb_detector"]
-position = Vector2(0, -3.25)
+position = Vector2(2.5, -3.25)
 shape = SubResource("RectangleShape2D_8tm2b")
+debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(2.5, 2.16667)
+position = Vector2(2.33333, 3.25001)
 shape = SubResource("RectangleShape2D_d8yvw")
+debug_color = Color(0.988235, 0.109804, 0, 0.32549)
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
 [connection signal="area_exited" from="change_climb_detector" to="." method="_on_change_climb_detector_area_exited"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]

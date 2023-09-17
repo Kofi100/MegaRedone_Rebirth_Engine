@@ -30,8 +30,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_mjpx1"]
-length = 7.33333
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxkwf"]
+size = Vector2(12.6667, 2.33333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr00u"]
 size = Vector2(92.3333, 36.3333)
@@ -44,11 +44,17 @@ size = Vector2(19.6667, 16)
 
 [node name="met" type="CharacterBody2D"]
 scale = Vector2(3, 3)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_4t8t2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3vdhf")
 animation = &"shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333333, 6.16667)
+shape = SubResource("RectangleShape2D_cxkwf")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -56,9 +62,6 @@ wait_time = 3.0
 [node name="Timer2" type="Timer" parent="."]
 editor_description = "TThis timer was for testing if I uunderstood timers.It upon timing out,if a player is on the RIGHT side of met,causes it to shoot"
 wait_time = 3.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("SeparationRayShape2D_mjpx1")
 
 [node name="detect_area" type="Area2D" parent="." groups=["enemy"]]
 
@@ -91,6 +94,13 @@ shape = SubResource("RectangleShape2D_lprpo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_blocked"]
 position = Vector2(0.166667, -0.333333)
 shape = SubResource("RectangleShape2D_tx6qn")
+
+[node name="health" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -27.0
+offset_right = 10.0
+offset_bottom = -1.0
+text = "..."
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

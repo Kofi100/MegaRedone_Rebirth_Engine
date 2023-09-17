@@ -11,12 +11,19 @@ func _ready():
 	enemyreceivedamagevalue=1
 	animated_sprite_2d.play("defend")
 
+func _process(delta):
+	if not is_on_floor():
+		velocity.y+=gravity*delta
+
 func _physics_process(delta):
-	print(health)
-	spawn_collectables()
+	#print(health)
+	$health.text=str(health)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		velocity.y=0
+		
 	if player_on_left:
 		animated_sprite_2d.flip_h=false
 	if player_on_right:
@@ -28,7 +35,8 @@ func _physics_process(delta):
 		"defend":
 			$hitbox_blocked/CollisionShape2D.disabled=false
 			$hitbox/CollisionShape2D.disabled=true
-
+	spawn_collectables()
+	move_and_slide()
 var player_on_left=false;var player_on_right=false
 
 func _on_left_body_entered(body):
