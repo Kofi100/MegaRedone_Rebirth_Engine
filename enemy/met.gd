@@ -30,10 +30,12 @@ func _physics_process(delta):
 		animated_sprite_2d.flip_h=true
 	match animated_sprite_2d.animation:
 		"shoot":
-			$hitbox_blocked/CollisionShape2D.disabled=true
+			#$hitbox_blocked/CollisionShape2D.disabled=true
+			$hitbox_blocked.set_collision_layer_value(1,false)
 			$hitbox/CollisionShape2D.disabled=false
 		"defend":
-			$hitbox_blocked/CollisionShape2D.disabled=false
+			#$hitbox_blocked/CollisionShape2D.disabled=false
+			$hitbox_blocked.set_collision_layer_value(1,true)
 			$hitbox/CollisionShape2D.disabled=true
 	spawn_collectables()
 	move_and_slide()

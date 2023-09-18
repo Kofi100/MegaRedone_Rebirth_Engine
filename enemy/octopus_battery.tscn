@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://drywjq3yk7svp"]
+
+[ext_resource type="Texture2D" uid="uid://bwxfv7rhdh12n" path="res://assets/sprites/enemies/octopus_battery.png" id="1_a8mcn"]
+[ext_resource type="Script" path="res://enemy/octopus_battery.gd" id="1_neord"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjjcl"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6re7"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c8kx"]
+atlas = ExtResource("1_a8mcn")
+region = Rect2(34, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmx28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjjcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6re7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c8kx")
+}],
+"loop": true,
+"name": &"red",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qjda"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp5io"]
+size = Vector2(14.6667, 15.3333)
+
+[node name="octopus_battery" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_neord")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vmx28")
+animation = &"red"
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+position = Vector2(-1.58946e-07, 2.38419e-07)
+shape = SubResource("RectangleShape2D_1qjda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dp5io")
+
+[node name="health" type="Label" parent="."]
+offset_left = -24.3333
+offset_top = -29.6667
+offset_right = 25.6667
+offset_bottom = -3.66667
+text = "health"
+
+[node name="RayCast2D_right" type="RayCast2D" parent="."]
+target_position = Vector2(8, 0)
+
+[node name="RayCast2D_left" type="RayCast2D" parent="."]
+target_position = Vector2(-8, 0)

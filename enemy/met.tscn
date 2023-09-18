@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvsnh1g0ygwje"]
+[gd_scene load_steps=9 format=3 uid="uid://bvsnh1g0ygwje"]
 
 [ext_resource type="Script" path="res://enemy/met.gd" id="1_4t8t2"]
 [ext_resource type="Texture2D" uid="uid://gck1ia7x1pdu" path="res://assets/sprites/enemies/met.png" id="2_bi5yp"]
@@ -37,10 +37,7 @@ size = Vector2(12.6667, 2.33333)
 size = Vector2(92.3333, 36.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lprpo"]
-size = Vector2(18, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx6qn"]
-size = Vector2(19.6667, 16)
+size = Vector2(12.3333, 7.66667)
 
 [node name="met" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -86,14 +83,14 @@ collision_layer = 6
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 0.166667)
+position = Vector2(0.166667, 3.83333)
 shape = SubResource("RectangleShape2D_lprpo")
 
 [node name="hitbox_blocked" type="Area2D" parent="." groups=["blockables"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_blocked"]
-position = Vector2(0.166667, -0.333333)
-shape = SubResource("RectangleShape2D_tx6qn")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hitbox_blocked"]
+position = Vector2(0.5, 1.83333)
+polygon = PackedVector2Array(-8.83333, 3.83333, -7.5, -0.5, -5.5, -6.5, -0.5, -9.16667, 5.5, -6.16667, 7.83333, -0.166667, 8.16667, 5.83333, -9.16667, 5.83333)
 
 [node name="health" type="Label" parent="."]
 offset_left = -9.0

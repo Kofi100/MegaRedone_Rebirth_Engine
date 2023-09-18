@@ -22,13 +22,13 @@ func _physics_process(delta):
 					velocity.x=-SPEED*delta
 				"right":
 					velocity.x= SPEED*delta
-		"bounced":
+		"blocked":
 			match direction:
 				"left":
 					rotation_degrees=180
-					velocity=Vector2(SPEED,-SPEED)
+					velocity=Vector2(SPEED,-SPEED)*delta
 				"right":
-					velocity=Vector2(-SPEED,-SPEED)
+					velocity=Vector2(-SPEED,-SPEED)*delta
 	move_and_slide()
 
 

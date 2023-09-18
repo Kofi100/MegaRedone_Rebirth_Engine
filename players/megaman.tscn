@@ -1,9 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=31 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
 [ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
+[ext_resource type="Shader" path="res://players/megaman.gdshader" id="4_rtyrl"]
+[ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="6_qyqol"]
+[ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
+shader = ExtResource("4_rtyrl")
+shader_parameter/originalbodycolor = Color(1, 0, 0, 1)
+shader_parameter/originalbodycolorii = Color(0, 0, 1, 1)
+shader_parameter/originaloutlinecolor = null
+shader_parameter/bodycolori = Color(0, 0.709804, 0.74902, 1)
+shader_parameter/bodycolorii = Color(0.172549, 0.180392, 0.788235, 1)
+shader_parameter/outlinecolor = Color(0, 0, 0.34902, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymsc"]
 atlas = ExtResource("1_si1fv")
@@ -72,6 +84,10 @@ region = Rect2(124, 30, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_neyi8"]
 atlas = ExtResource("1_si1fv")
 region = Rect2(93, 30, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xafw3"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(31, 30, 31, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pfkfs"]
 animations = [{
@@ -215,6 +231,14 @@ animations = [{
 "loop": false,
 "name": &"shoot_run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xafw3")
+}],
+"loop": true,
+"name": &"stun",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk5kj"]
@@ -242,9 +266,10 @@ limit_smoothed = true
 editor_draw_limits = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_bag23")
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_on_ladder"
+animation = &"stun"
 offset = Vector2(2, 0)
 flip_h = true
 
@@ -300,6 +325,16 @@ collision_mask = 2
 position = Vector2(2.33333, 3.25001)
 shape = SubResource("RectangleShape2D_d8yvw")
 debug_color = Color(0.988235, 0.109804, 0, 0.32549)
+
+[node name="all_sounds" type="Node2D" parent="."]
+
+[node name="stun" type="AudioStreamPlayer2D" parent="all_sounds"]
+
+[node name="land" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("6_qyqol")
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("7_im07x")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]

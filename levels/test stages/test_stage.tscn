@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=13 format=3 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_iewdy"]
 [ext_resource type="Script" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_mabb1"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
 [ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="5_d7wbp"]
+[ext_resource type="AudioStream" uid="uid://3hdu3cvqvx5s" path="res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3" id="6_i4xyi"]
+[ext_resource type="PackedScene" uid="uid://drywjq3yk7svp" path="res://enemy/octopus_battery.tscn" id="7_xya70"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0e7h"]
 resource_name = "debug_tileset"
@@ -80,5 +82,13 @@ shape = SubResource("RectangleShape2D_1e4c0")
 
 [node name="met" parent="." instance=ExtResource("5_d7wbp")]
 position = Vector2(810, 314)
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_i4xyi")
+autoplay = true
+max_distance = 1e+14
+
+[node name="octopus_battery" parent="." instance=ExtResource("7_xya70")]
+position = Vector2(513, 595)
 
 [editable path="ladder"]

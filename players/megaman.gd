@@ -1,17 +1,24 @@
 extends CharacterBody2D
+##This value keeps the path of the AnimatedSprite2D used for Megaman.
 @onready var anim = $anim
+##This value keeps the path of the dash node used for Megaman to deterimine his speed.
 @onready var dash = $dash
 
-
+##This is the default speed which can be adjusted by dashing.
 var SPEED = 0
+##This value deterimines how high a person can jump.
 const JUMP_VELOCITY = -600.0
+##This value defines how much gravity is applied by the engine to the player.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var dashspeed=600;var dashduration=0.3
-var normalspeed=300.0
+var dashspeed=30000;var dashduration=0.3
+var normalspeed=17500.0
 var climb=false
 var move_an_inch_checker=0
 var charge_timer=0
-
+var jump_play_effect_timer=0
+##This boolean checks if a player has been stunned or not
+##and triggers the stun effect
+var stun_effect:bool=false
 
 var lemon=preload("res://players/projectiles/lemon.tscn")
 var lemon_ins
@@ -28,7 +35,14 @@ func _physics_process(delta):
 	$speed.text=str(SPEED)
 	SPEED=dashspeed if dash.is_dashing() else normalspeed
 	# Add the gravity.
+	if is_on_floor():
 	
+		if jump_play_effect_timer<5:
+			jump_play_effect_timer+=1
+			if jump_play_effect_timer==1:
+				$all_sounds/land.play()
+	elif not is_on_floor():
+		jump_play_effect_timer=0
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -37,35 +51,47 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if climb==false:
-		if near_ladder:
-			if Input.is_action_pressed("move_up"):
-				climb=true
-		if not is_on_floor():
-			velocity.y += gravity * delta
-		var direction = Input.get_axis("move_left", "move_right")
-		if direction:
-			move_an_inch_checker+=1
+		if not stun_effect:
+			if near_ladder:
+				if Input.is_action_pressed("move_up"):
+					climb=true
 			if not is_on_floor():
-				velocity.x = direction * SPEED
-			else:
-				if move_an_inch_checker<10:
-					velocity.x=direction *20
+				velocity.y += gravity * delta
+			var direction = Input.get_axis("move_left", "move_right")
+			if direction:
+				move_an_inch_checker+=1
+				if not is_on_floor():
+					velocity.x = direction * SPEED *delta
 				else:
-					velocity.x=direction*SPEED
+					if move_an_inch_checker<10:
+						velocity.x=direction *200 *delta
+					else:
+						velocity.x=direction*SPEED *delta
+			else:
+				move_an_inch_checker=0
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+			play_animations()
+			dash_function()
+			#if anim.animation!="idle":
+			shoot_and_charge()
+			if $anim.animation=="shoot_idle":
+				if $anim.flip_h==false:
+					$anim.offset.x=-6
+				elif $anim.flip_h==true:
+					$anim.offset.x=6
+			else:
+				$anim.offset.x=0
 		else:
-			move_an_inch_checker=0
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-		play_animations()
-		dash_function()
-		#if anim.animation!="idle":
-		shoot_and_charge()
-		if $anim.animation=="shoot_idle":
-			if $anim.flip_h==false:
-				$anim.offset.x=-6
-			elif $anim.flip_h==true:
-				$anim.offset.x=6
-		else:
-			$anim.offset.x=0
+			stun(delta)
+			stun_timer+=1
+			if stun_timer==20:
+				stun_timer=0
+				stun_effect=false
+		#This code uses a modulus of 5 to produce a blinking effect
+			if stun_timer%5==1:
+				anim.visible=false
+			elif stun_timer%5==3:
+				anim.visible=true
 	elif climb==true:
 		if Input.is_action_pressed("jump"):
 			climb=false
@@ -85,6 +111,15 @@ func _physics_process(delta):
 			velocity.y=0
 	
 	move_and_slide()
+
+var stun_timer=0;var stun_speed=2000
+func stun(delta):
+	if is_on_floor():
+		anim.play("stun")
+		if anim.flip_h==false:
+			velocity=Vector2(stun_speed,0)*delta
+		elif anim.flip_h==true:
+			velocity=Vector2(-stun_speed,0)*delta
 
 func play_animations():
 	if velocity.x<0:
@@ -127,6 +162,7 @@ func shoot_and_charge():
 	if Input.is_action_pressed("shoot"):
 		charge_timer+=1
 	elif Input.is_action_just_released("shoot"):
+		$all_sounds/shoot.play()
 		if charge_timer<30:
 			if is_on_floor():
 				charge_timer=0
@@ -216,7 +252,7 @@ func shoot_and_charge_ladder():
 	if Input.is_action_just_released("shoot"):
 		pass
 		if charge_timer<30:
-			print("chrge over")
+			#print("chrge over")
 			if $anim.flip_h==false:
 				lemon_ins=lemon.instantiate()
 				get_parent().add_child(lemon_ins)
@@ -317,7 +353,9 @@ func _on_change_climb_detector_area_exited(area):
 var near_ladder=false
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("enemy"):
-		GlobalScript.health-=area.get_parent().playerdamagevalue
+		if GlobalScript.playerhasbeenhit==false:
+			GlobalScript.health-=area.get_parent().playerdamagevalue#this transfers a value of damage from the enemy to the player
+			stun_effect=true
 	if area.is_in_group("ladders"):
 		near_ladder=true
 func _on_hitbox_area_exited(area):
