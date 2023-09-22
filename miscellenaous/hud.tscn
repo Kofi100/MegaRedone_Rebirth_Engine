@@ -1,8 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=15 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
+[ext_resource type="Texture2D" uid="uid://dmj7a4sq12n0c" path="res://assets/sprites/miscelleaneous/pause_screen_setup.png" id="2_g070n"]
+[ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
+[ext_resource type="Texture2D" uid="uid://ckiorwijfvv0x" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_kk.png" id="3_yjobx"]
+[ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
+[ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
+atlas = ExtResource("2_jftja")
+region = Rect2(0, 0, 32, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wdu"]
+atlas = ExtResource("2_jftja")
+region = Rect2(32, 0, 32, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j6gx"]
+atlas = ExtResource("2_jftja")
+region = Rect2(0, 38, 32, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g8a33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g37a2")
+}],
+"loop": true,
+"name": &"not_selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j6gx")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjj81"]
+atlas = ExtResource("3_yjobx")
+region = Rect2(0, 0, 32, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4x1p"]
+atlas = ExtResource("3_yjobx")
+region = Rect2(32, 0, 32, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iyfp"]
+atlas = ExtResource("3_yjobx")
+region = Rect2(0, 38, 32, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twexw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjj81")
+}],
+"loop": true,
+"name": &"not_selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4x1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iyfp")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
 script = ExtResource("1_32714")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -18,3 +94,62 @@ offset_bottom = 120.0
 max_value = 20.0
 value = 20.0
 fill_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 700.0
+offset_bottom = 699.0
+color = Color(0.164063, 0.425781, 0.996094, 1)
+
+[node name="pause_screen_setup" type="Sprite2D" parent="."]
+texture = ExtResource("2_g070n")
+centered = false
+
+[node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
+position = Vector2(337, 541)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_g8a33")
+animation = &"not_selected"
+frame_progress = 0.600425
+
+[node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
+position = Vector2(551, 541)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_twexw")
+animation = &"not_selected"
+
+[node name="e_tank_left" type="Label" parent="pause_screen_setup"]
+offset_left = 420.0
+offset_top = 501.0
+offset_right = 499.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 68
+text = "x"
+
+[node name="text" type="Label" parent="pause_screen_setup/e_tank_left"]
+layout_mode = 0
+offset_left = -42.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 68
+text = "X"
+
+[node name="w_tank_left" type="Label" parent="pause_screen_setup"]
+offset_left = 635.0
+offset_top = 501.0
+offset_right = 714.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 68
+text = "x"
+
+[node name="text" type="Label" parent="pause_screen_setup/w_tank_left"]
+layout_mode = 0
+offset_left = -42.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 68
+text = "X"
+
+[node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vp1wl")
+
+[node name="switch_menu_option_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ja50w")

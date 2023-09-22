@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsrq7ljrj02jw"]
+
+[ext_resource type="Script" path="res://enemy/sniper_joe.gd" id="1_byx3m"]
+[ext_resource type="Texture2D" uid="uid://cqendwopryrew" path="res://assets/sprites/enemies/sniper_joe.png" id="1_n2k6j"]
+[ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="3_tp48x"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="4_resla"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj8oo"]
+atlas = ExtResource("1_n2k6j")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pk6n"]
+atlas = ExtResource("1_n2k6j")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7gli"]
+atlas = ExtResource("1_n2k6j")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0tev"]
+atlas = ExtResource("1_n2k6j")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8hlf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj8oo")
+}],
+"loop": true,
+"name": &"defend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pk6n")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7gli")
+}, {
+"duration": 12.0,
+"texture": SubResource("AtlasTexture_y0tev")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vnen"]
+size = Vector2(9.66667, 20.8333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4n0au"]
+size = Vector2(185, 57.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkpk7"]
+size = Vector2(10.3333, 22.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xruxf"]
+size = Vector2(8, 17)
+
+[node name="sniper_joe" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_byx3m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m8hlf")
+animation = &"shoot"
+frame = 1
+frame_progress = 1.0
+offset = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.833334, 5.41667)
+shape = SubResource("RectangleShape2D_0vnen")
+debug_color = Color(1, 0, 0.109804, 0.419608)
+
+[node name="detect_player" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="left" type="Area2D" parent="detect_player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player"]
+position = Vector2(0.166669, -12.8333)
+shape = SubResource("RectangleShape2D_4n0au")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 5.33333)
+shape = SubResource("RectangleShape2D_mkpk7")
+
+[node name="shield_hitbox" type="Area2D" parent="." groups=["blockables"]]
+
+[node name="right" type="CollisionShape2D" parent="shield_hitbox"]
+position = Vector2(8, 3.33333)
+shape = SubResource("RectangleShape2D_xruxf")
+
+[node name="left" type="CollisionShape2D" parent="shield_hitbox"]
+position = Vector2(-8, 3.5)
+shape = SubResource("RectangleShape2D_xruxf")
+
+[node name="bullet" type="CharacterBody2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet"]
+position = Vector2(17, 3)
+texture = ExtResource("3_tp48x")
+
+[node name="all_shoot_positions" type="Node2D" parent="."]
+
+[node name="left" type="Marker2D" parent="all_shoot_positions"]
+position = Vector2(-12.3934, 5.66893)
+
+[node name="right" type="Marker2D" parent="all_shoot_positions"]
+position = Vector2(12.4901, 5.58229)
+
+[node name="all_sounds" type="Node2D" parent="."]
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("4_resla")
+
+[connection signal="body_entered" from="detect_player" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="detect_player" to="." method="_on_detect_player_body_exited"]

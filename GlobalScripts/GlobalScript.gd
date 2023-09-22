@@ -5,6 +5,7 @@ var playerhasbeenhit:bool=false
 ##This integer indicates how long the cooldown should be.
 var playerhitcooldowntimer:int=0
 # Called when the node enters the scene tree for the first time.
+var playerposx=0
 func _ready():
 	pass # Replace with function body.
 
@@ -12,6 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if playerhasbeenhit:
+		#print('Globalscript:playerhasbeenhit:works')
 		playerhitcooldowntimer+=1
 		if playerhitcooldowntimer==100:
 			playerhitcooldowntimer=0
