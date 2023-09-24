@@ -1,0 +1,24 @@
+extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	ResourceLoader.load_threaded_request("res://levels/test stages/stage_1.tscn")
+	var tween=create_tween()
+	tween.tween_property($ColorRect,"color",Color(255,255,255,0),2)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_stage_1_pressed():
+	#ResourceLoader.load_threaded_get("res://levels/test stages/stage_1.tscn")
+	get_tree().change_scene_to_file("res://levels/loading_screen.tscn")
+	GlobalScript.scene_to_be_loaded_index=1
+
+
+func _on_test_stage_pressed():
+	get_tree().change_scene_to_file("res://levels/loading_screen.tscn")
+	GlobalScript.scene_to_be_loaded_index=0

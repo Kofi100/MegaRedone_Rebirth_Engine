@@ -51,5 +51,27 @@ func _physics_process(delta):
 					if abouttomove_left>=100:
 						move="left"
 						abouttomove_left=0
-
+	if direction=="up":
+		if velocity.y==0:
+			play_anim2=0
+			play_anim+=1
+			if play_anim==1:
+				$AnimatedSprite2D.play_backwards("red")
+		elif velocity.y!=0:
+			play_anim=0
+			play_anim2+=1
+			if play_anim2==1:
+				$AnimatedSprite2D.play("red")
+	elif direction=="left":
+		if velocity.x==0:
+			play_anim2=0
+			play_anim+=1
+			if play_anim==1:
+				$AnimatedSprite2D.play_backwards("red")
+		elif velocity.x!=0:
+			play_anim=0
+			play_anim2+=1
+			if play_anim2==1:
+				$AnimatedSprite2D.play("red")
 	move_and_slide()
+var play_anim=0;var play_anim2=0

@@ -28,7 +28,7 @@ var chargeshot_lv1=preload("res://players/projectiles/chargeshot_lv_1.tscn");var
 var chargeshot_lv2=preload("res://players/projectiles/chargeshot_lv_2.tscn");var chargeshot_lv2_ins
 var stop=false;var timer=0
 func _ready():
-	GlobalScript.health=20
+	GlobalScript.health=GlobalScript.max_health
 
 
 
@@ -50,7 +50,7 @@ func _physics_process(delta):
 	if trans_right:
 		#timer+=1
 		stop=true
-		velocity=Vector2(200,0)
+		velocity=Vector2(7000,0)*delta
 		#tween.tween_property(self,"velocity",Vector2(400,0),1)
 #		if tween.finished:print('dig')
 #		if !tween.is_running():

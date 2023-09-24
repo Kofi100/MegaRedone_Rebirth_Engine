@@ -6,6 +6,9 @@ var playerhasbeenhit:bool=false
 var playerhitcooldowntimer:int=0
 # Called when the node enters the scene tree for the first time.
 var playerposx=0
+var energy_tank_no=10
+var max_health=30
+var scene_to_be_loaded_index:int
 func _ready():
 	pass # Replace with function body.
 

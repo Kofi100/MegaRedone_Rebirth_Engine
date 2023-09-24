@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
-[ext_resource type="Texture2D" uid="uid://dmj7a4sq12n0c" path="res://assets/sprites/miscelleaneous/pause_screen_setup.png" id="2_g070n"]
+[ext_resource type="Texture2D" uid="uid://bt1vhotapw8xx" path="res://assets/sprites/miscelleaneous/pause_screen_setup2.png" id="2_50wlr"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
 [ext_resource type="Texture2D" uid="uid://ckiorwijfvv0x" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_kk.png" id="3_yjobx"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
@@ -86,7 +86,7 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 1, 1, 1)
 offset_left = 15.0
 offset_right = 27.0
@@ -102,21 +102,23 @@ offset_bottom = 699.0
 color = Color(0.164063, 0.425781, 0.996094, 1)
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
-texture = ExtResource("2_g070n")
+texture = ExtResource("2_50wlr")
 centered = false
 
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(337, 541)
+position = Vector2(327, 533)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_g8a33")
-animation = &"not_selected"
-frame_progress = 0.600425
+animation = &"selected"
+frame = 1
+frame_progress = 0.77691
 
 [node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(551, 541)
+position = Vector2(542, 533)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_twexw")
-animation = &"not_selected"
+animation = &"selected"
+frame_progress = 0.23713
 
 [node name="e_tank_left" type="Label" parent="pause_screen_setup"]
 offset_left = 420.0
@@ -148,8 +150,17 @@ offset_bottom = 96.0
 theme_override_font_sizes/font_size = 68
 text = "X"
 
+[node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup"]
+offset_left = 110.0
+offset_top = 637.0
+offset_right = 587.0
+offset_bottom = 664.0
+value = 25.0
+
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")
+max_distance = 1e+16
 
 [node name="switch_menu_option_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ja50w")
+max_distance = 1e+15

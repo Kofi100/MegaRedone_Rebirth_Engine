@@ -2,6 +2,7 @@ extends Node2D
 @onready var player_cam=$megaman/player_camera
 @onready var camera_1 = $all_cameras/camera1
 @onready var camera_2 = $all_cameras/camera2
+@onready var camera_3 = $all_cameras/camera3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,3 +40,8 @@ func _on_area_2d_body_exited(body):
 		#if body.trans_right==false:
 		if body.velocity.x>0:
 			body.trans_right=false
+
+
+func _on_z_3_body_entered(body):
+	if body.is_in_group("player"):
+		StageFunctions.switch_camera(player_cam,camera_3)

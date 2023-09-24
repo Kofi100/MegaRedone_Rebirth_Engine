@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx7s7c62f7ufp"]
+
+[ext_resource type="Script" path="res://levels/main_menu.gd" id="1_vv0bd"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_vv0bd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 698.0
+offset_bottom = 701.0
+
+[node name="stage_buttons" type="Node2D" parent="."]
+
+[node name="stage1" type="Button" parent="stage_buttons"]
+offset_left = 257.0
+offset_top = 407.0
+offset_right = 323.0
+offset_bottom = 438.0
+scale = Vector2(3, 3)
+text = "stage_1"
+
+[node name="test_stage" type="Button" parent="stage_buttons"]
+offset_left = 229.0
+offset_top = 298.0
+offset_right = 315.0
+offset_bottom = 329.0
+scale = Vector2(3, 3)
+text = "test_stage"
+
+[connection signal="pressed" from="stage_buttons/stage1" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="stage_buttons/test_stage" to="." method="_on_test_stage_pressed"]

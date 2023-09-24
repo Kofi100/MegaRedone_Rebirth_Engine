@@ -82,7 +82,7 @@ position = Vector2(54, 37)
 shape = SubResource("RectangleShape2D_1e4c0")
 
 [node name="met" parent="." instance=ExtResource("5_d7wbp")]
-position = Vector2(345, 164)
+position = Vector2(442, 237)
 
 [node name="bgm" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_i4xyi")
@@ -90,7 +90,8 @@ autoplay = true
 max_distance = 1e+14
 
 [node name="octopus_battery" parent="." instance=ExtResource("7_xya70")]
-position = Vector2(468, 170)
+position = Vector2(481, 169)
+direction = "up"
 
 [node name="sniper_joe" parent="." instance=ExtResource("8_60iu1")]
 position = Vector2(755, 574)
