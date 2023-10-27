@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://bh0igfh3wr8uf"]
+
+[ext_resource type="Script" path="res://enemy/walking_bomb.gd" id="1_60goj"]
+[ext_resource type="Texture2D" uid="uid://brb834rh55occ" path="res://assets/sprites/enemies/walking bomb.png" id="1_auwyg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yybr"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du7xu"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i22ya"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8al3"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay1gx"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bljst"]
+atlas = ExtResource("1_auwyg")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0d1m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yybr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du7xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i22ya")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8al3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay1gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bljst")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugmuu"]
+size = Vector2(18.6667, 20.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67w4b"]
+size = Vector2(17.6667, 18.6667)
+
+[node name="walking_bomb" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_60goj")
+SPEED = 12000.0
+JUMP_VELOCITY = -500.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j0d1m")
+animation = &"walk"
+frame_progress = 0.655468
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(1, 1.33333)
+shape = SubResource("RectangleShape2D_ugmuu")
+debug_color = Color(0.988235, 0, 0.301961, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.833333, 1.66667)
+shape = SubResource("RectangleShape2D_67w4b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.333344, 5.33333)
+scale = Vector2(11.3, 6.53333)
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

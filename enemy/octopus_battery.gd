@@ -1,7 +1,7 @@
 extends enemy
 
 @export var direction:String="left"
-const SPEED = 3000.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

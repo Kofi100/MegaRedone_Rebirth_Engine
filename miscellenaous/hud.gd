@@ -1,12 +1,13 @@
 extends CanvasLayer
 @onready var health_bar = $healthbar
-var selection_index=1;
+var selection_index=1;#var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 ##This boolean pauses all inputs to the HUD for some effects.
-var pause_input=false
+var pause_input=false;var color
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
+	color=$ColorRect.color
+	print(color)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -25,12 +26,18 @@ func _process(_delta):
 			if get_tree().paused==false:#if the tree is paused/not,set it to the opposite state
 				get_tree().paused=true
 				$pause_menu_sound.play()
+				var fade_in_tween=create_tween()#this creates a tween which creates a dim effect for the pause screen
+				fade_in_tween.tween_property($ColorRect,"color",Color(0,0,0,0),.2)
 			elif get_tree().paused==true:
 				get_tree().paused=false
 	if get_tree().paused:
 		$pause_screen_setup.visible=true
+		
+		$ColorRect.visible=true
 	else:
 		$pause_screen_setup.visible=false
+		$ColorRect.visible=false
+		$ColorRect.color=color
 	if get_tree().paused:
 		
 		if Input.is_action_just_pressed("move_left"):
@@ -50,9 +57,9 @@ func _process(_delta):
 					
 					var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 					tween.connect("finished",tween_finished)
-					if GlobalScript.health<=GlobalScript.max_health/2:
+					if float(GlobalScript.health<=GlobalScript.max_health/2):
 						tween.tween_property($pause_screen_setup/ProgressBar,"value",GlobalScript.max_health,2)
-					elif GlobalScript.health>GlobalScript.max_health/2:
+					elif float(GlobalScript.health>GlobalScript.max_health/2):
 						tween.tween_property($pause_screen_setup/ProgressBar,"value",GlobalScript.max_health,0.5)
 					pause_input=true
 					#if tween.
@@ -62,9 +69,19 @@ func _process(_delta):
 			$pause_screen_setup/w_tank.play("selected")
 		else:
 			$pause_screen_setup/w_tank.play("not_selected")
-
+	#print($pause_screen_setup/ProgressBar.value,previous_value)
 func tween_finished():
 	GlobalScript.health=GlobalScript.max_health
 	pause_input=false
 	print('tween finished')
 	
+
+#var previous_value=0
+func _on_progress_bar_value_changed(value):#if the value of the bar changes
+	#previous_value=value
+#	if value<GlobalScript.previous_health:
+	if GlobalScript.previous_health<value:# and it's value>prev.health,
+		if not $increase_health.playing:#if the sound is not playing
+			$increase_health.play(0)#play it
+#		#if tween.is_running():
+#			$increase_health.play(0)

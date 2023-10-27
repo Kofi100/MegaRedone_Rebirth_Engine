@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://drywjq3yk7svp"]
+[gd_scene load_steps=10 format=3 uid="uid://drywjq3yk7svp"]
 
 [ext_resource type="Texture2D" uid="uid://bwxfv7rhdh12n" path="res://assets/sprites/enemies/octopus_battery.png" id="1_a8mcn"]
 [ext_resource type="Script" path="res://enemy/octopus_battery.gd" id="1_neord"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_dfrp8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjjcl"]
 atlas = ExtResource("1_a8mcn")
@@ -64,6 +65,8 @@ offset_left = -24.3333
 offset_top = -29.6667
 offset_right = 25.6667
 offset_bottom = -3.66667
+theme_override_colors/font_color = Color(0, 0, 0.972549, 1)
+theme_override_fonts/font = ExtResource("3_dfrp8")
 text = "health"
 
 [node name="RayCast2D_right" type="RayCast2D" parent="."]

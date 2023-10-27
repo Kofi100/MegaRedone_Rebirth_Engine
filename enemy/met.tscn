@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvsnh1g0ygwje"]
+[gd_scene load_steps=10 format=3 uid="uid://bvsnh1g0ygwje"]
 
 [ext_resource type="Script" path="res://enemy/met.gd" id="1_4t8t2"]
 [ext_resource type="Texture2D" uid="uid://gck1ia7x1pdu" path="res://assets/sprites/enemies/met.png" id="2_bi5yp"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_2ppc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awhqq"]
 atlas = ExtResource("2_bi5yp")
@@ -86,7 +87,9 @@ collision_mask = 2
 position = Vector2(0.166667, 3.83333)
 shape = SubResource("RectangleShape2D_lprpo")
 
-[node name="hitbox_blocked" type="Area2D" parent="." groups=["blockables"]]
+[node name="hitbox_blocked" type="Area2D" parent="." groups=["blockables", "enemy"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="hitbox_blocked"]
 position = Vector2(0.5, 1.83333)
@@ -97,6 +100,8 @@ offset_left = -9.0
 offset_top = -27.0
 offset_right = 10.0
 offset_bottom = -1.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("3_2ppc0")
 text = "..."
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

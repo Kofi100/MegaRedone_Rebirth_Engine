@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func switch_camera(main_camera:Camera2D,camera_to_switch:Camera2D):
@@ -28,3 +28,10 @@ func pause_music(music_to_be_paused:AudioStreamPlayer2D):
 	music_to_be_paused.set_stream_paused(true)
 func resume_music(music_to_be_resumed:AudioStreamPlayer2D):
 	music_to_be_resumed.set_stream_paused(false)
+func play_music_audioplayer(audioplayer2d:AudioStreamPlayer,music_to_be_played_stream:AudioStream,position_to_play_from:float):
+	audioplayer2d.stream=music_to_be_played_stream
+	audioplayer2d.play(position_to_play_from)
+
+func create_new_stuff(scene:PackedScene,variable:Object):
+	variable=scene.instantiate()
+	get_parent().add_child(variable)

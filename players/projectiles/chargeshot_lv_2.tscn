@@ -36,5 +36,8 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
 shape = SubResource("RectangleShape2D_xlhgy")
 
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]
+[connection signal="screen_exited" from="onscreen" to="." method="_on_onscreen_screen_exited"]

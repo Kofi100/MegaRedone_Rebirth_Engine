@@ -1,32 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx7s7c62f7ufp"]
+[gd_scene load_steps=4 format=3 uid="uid://cx7s7c62f7ufp"]
 
 [ext_resource type="Script" path="res://levels/main_menu.gd" id="1_vv0bd"]
+[ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_esjeo"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="2_ns6ek"]
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_vv0bd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 698.0
 offset_bottom = 701.0
+color = Color(0, 0, 0, 1)
 
 [node name="stage_buttons" type="Node2D" parent="."]
 
 [node name="stage1" type="Button" parent="stage_buttons"]
-offset_left = 257.0
+offset_left = 181.0
 offset_top = 407.0
-offset_right = 323.0
+offset_right = 293.0
 offset_bottom = 438.0
 scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "stage_1"
 
 [node name="test_stage" type="Button" parent="stage_buttons"]
-offset_left = 229.0
+offset_left = 111.0
 offset_top = 298.0
-offset_right = 315.0
+offset_right = 271.0
 offset_bottom = 329.0
 scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "test_stage"
+
+[node name="shadow_man_stage" type="Button" parent="stage_buttons"]
+offset_left = 37.0
+offset_top = 508.0
+offset_right = 243.0
+offset_bottom = 548.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_ns6ek")
+text = "shadow_man
+_stage_test"
+
+[node name="PauseScreenSetup3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1137, 395)
+texture = ExtResource("2_esjeo")
 
 [connection signal="pressed" from="stage_buttons/stage1" to="." method="_on_stage_1_pressed"]
 [connection signal="pressed" from="stage_buttons/test_stage" to="." method="_on_test_stage_pressed"]
+[connection signal="pressed" from="stage_buttons/shadow_man_stage" to="." method="_on_shadow_man_stage_pressed"]

@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=18 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
-[ext_resource type="Texture2D" uid="uid://bt1vhotapw8xx" path="res://assets/sprites/miscelleaneous/pause_screen_setup2.png" id="2_50wlr"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
+[ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
 [ext_resource type="Texture2D" uid="uid://ckiorwijfvv0x" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_kk.png" id="3_yjobx"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_g1yve"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
+[ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -75,6 +77,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Theme" id="Theme_q5jc1"]
+
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
 process_priority = 1
@@ -88,25 +92,28 @@ offset_bottom = 40.0
 
 [node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 1, 1, 1)
-offset_left = 15.0
-offset_right = 27.0
+offset_left = 24.0
+offset_right = 36.0
 offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("5_g1yve")
 max_value = 20.0
 value = 20.0
 fill_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
+z_index = 1
 offset_right = 700.0
 offset_bottom = 699.0
-color = Color(0.164063, 0.425781, 0.996094, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
-texture = ExtResource("2_50wlr")
+visible = false
+texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(327, 533)
+position = Vector2(299, 533)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_g8a33")
 animation = &"selected"
@@ -114,39 +121,46 @@ frame = 1
 frame_progress = 0.77691
 
 [node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(542, 533)
+position = Vector2(517, 533)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_twexw")
 animation = &"selected"
-frame_progress = 0.23713
+frame_progress = 0.557678
 
 [node name="e_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 420.0
+offset_left = 406.0
 offset_top = 501.0
-offset_right = 499.0
+offset_right = 485.0
 offset_bottom = 597.0
+theme = SubResource("Theme_q5jc1")
+theme_override_fonts/font = ExtResource("5_g1yve")
 theme_override_font_sizes/font_size = 68
-text = "x"
+text = "9"
 
 [node name="text" type="Label" parent="pause_screen_setup/e_tank_left"]
 layout_mode = 0
-offset_left = -42.0
+offset_left = -59.0
+offset_right = 1.0
 offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("5_g1yve")
 theme_override_font_sizes/font_size = 68
 text = "X"
 
 [node name="w_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 635.0
+offset_left = 626.0
 offset_top = 501.0
-offset_right = 714.0
+offset_right = 705.0
 offset_bottom = 597.0
+theme_override_fonts/font = ExtResource("5_g1yve")
 theme_override_font_sizes/font_size = 68
 text = "x"
 
 [node name="text" type="Label" parent="pause_screen_setup/w_tank_left"]
 layout_mode = 0
-offset_left = -42.0
+offset_left = -58.0
+offset_right = 2.0
 offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("5_g1yve")
 theme_override_font_sizes/font_size = 68
 text = "X"
 
@@ -155,6 +169,7 @@ offset_left = 110.0
 offset_top = 637.0
 offset_right = 587.0
 offset_bottom = 664.0
+theme_override_fonts/font = ExtResource("5_g1yve")
 value = 25.0
 
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
@@ -164,3 +179,8 @@ max_distance = 1e+16
 [node name="switch_menu_option_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ja50w")
 max_distance = 1e+15
+
+[node name="increase_health" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_80bcg")
+
+[connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]

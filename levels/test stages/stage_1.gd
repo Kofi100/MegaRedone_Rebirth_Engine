@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#$ParallaxLayer.motion_offset.x-=100*delta
 	pass
 
@@ -38,10 +38,14 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("player"):
 		#if body.trans_right==false:
-		if body.velocity.x>0:
+		if body.trans_right==true:
 			body.trans_right=false
 
 
 func _on_z_3_body_entered(body):
 	if body.is_in_group("player"):
 		StageFunctions.switch_camera(player_cam,camera_3)
+
+
+func _on_bgm_stage_1_finished():
+	$bgm_stage1.play(0)

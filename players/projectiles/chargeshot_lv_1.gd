@@ -38,10 +38,14 @@ func _on_collision_monitor_body_entered(body):
 
 
 func _on_collision_monitor_area_entered(area):
-	if area.is_in_group("enemy"):
+	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('works!')
 		if state=="active":
 			area.get_parent().health-=3
 			queue_free()
 	if area.is_in_group("blockables"):
 		state="blocked"
+
+
+func _on_onscreen_screen_exited():
+	queue_free()

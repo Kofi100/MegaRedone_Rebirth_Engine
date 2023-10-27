@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dn3yiy0stfnly"]
+
+[ext_resource type="Script" path="res://enemy/new_shotman.gd" id="1_q50xe"]
+[ext_resource type="Texture2D" uid="uid://bd6cqcq3duuu0" path="res://assets/sprites/enemies/new-shotman.png" id="1_r77uo"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_n6xx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dwwe"]
+atlas = ExtResource("1_r77uo")
+region = Rect2(0, 0, 25, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdb51"]
+atlas = ExtResource("1_r77uo")
+region = Rect2(25, 0, 25, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkrfu"]
+atlas = ExtResource("1_r77uo")
+region = Rect2(50, 0, 25, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_07uar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dwwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdb51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkrfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdb51")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_fhs81"]
+length = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6i8j"]
+size = Vector2(18.6667, 19.6667)
+
+[node name="new-shotman" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_q50xe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_07uar")
+frame_progress = 0.574108
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("SeparationRayShape2D_fhs81")
+
+[node name="shoot_pos" type="Node2D" parent="."]
+
+[node name="left" type="Marker2D" parent="shoot_pos"]
+position = Vector2(-11, -2.66667)
+
+[node name="right" type="Marker2D" parent="shoot_pos"]
+position = Vector2(9.66667, -2.66667)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.666667, 1.83333)
+shape = SubResource("RectangleShape2D_e6i8j")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.333332, 0.333334)
+scale = Vector2(9.55, 7.38333)
+
+[node name="index" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -23.6667
+offset_right = 53.0
+offset_bottom = -0.666668
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_n6xx4")
+text = "index"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

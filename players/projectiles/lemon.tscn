@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7ertpcm3wt14"]
+[gd_scene load_steps=7 format=3 uid="uid://b7ertpcm3wt14"]
 
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_2v0fm"]
 [ext_resource type="Script" path="res://players/projectiles/lemon.gd" id="1_s36o1"]
+[ext_resource type="Texture2D" uid="uid://b0v6m28t07gmt" path="res://assets/sprites/player/projectiles/lemon_mm4.png" id="3_nncff"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqjpr"]
 atlas = ExtResource("1_2v0fm")
@@ -35,5 +36,14 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
 shape = SubResource("RectangleShape2D_paodp")
 
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.4, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_nncff")
+
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]
+[connection signal="screen_exited" from="onscreen" to="." method="_on_onscreen_screen_exited"]

@@ -1,23 +1,27 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=43 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
 [ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="4_rtyrl"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
 [ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="6_qyqol"]
 [ext_resource type="AudioStream" uid="uid://d1n3khoiibs67" path="res://assets/sounds/shoot.wav" id="7_im07x"]
 [ext_resource type="AudioStream" uid="uid://cmg87ibsgq5t0" path="res://assets/sounds/chargeeffect.wav" id="9_pqlrj"]
 [ext_resource type="AudioStream" uid="uid://p80uexe8652b" path="res://assets/sounds/dead.wav" id="10_qghej"]
+[ext_resource type="AudioStream" uid="uid://cnqebubvm8bvy" path="res://assets/sounds/mm5_halfchargeshot.wav" id="12_8ofs0"]
+[ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
+[ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="14_dxwv6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
 shader_parameter/originalbodycolor = Color(1, 0, 0, 1)
 shader_parameter/originalbodycolorii = Color(0, 0, 1, 1)
 shader_parameter/originaloutlinecolor = null
-shader_parameter/bodycolori = Color(0, 0.709804, 0.74902, 1)
-shader_parameter/bodycolorii = Color(0.172549, 0.180392, 0.788235, 1)
+shader_parameter/bodycolori = Color(1, 1, 1, 1)
+shader_parameter/bodycolorii = Color(1, 0, 0, 1)
 shader_parameter/outlinecolor = Color(0, 0, 0.34902, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymsc"]
@@ -91,6 +95,10 @@ region = Rect2(93, 30, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xafw3"]
 atlas = ExtResource("1_si1fv")
 region = Rect2(31, 30, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1csi"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(0, 30, 31, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pfkfs"]
 animations = [{
@@ -236,11 +244,19 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_xafw3")
 }],
 "loop": true,
 "name": &"stun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_s1csi")
+}],
+"loop": true,
+"name": &"stun_air",
 "speed": 5.0
 }]
 
@@ -253,12 +269,43 @@ size = Vector2(9.66667, 6.16667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8yvw"]
 size = Vector2(10.5, 20.1666)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8d2s"]
+atlas = ExtResource("14_dxwv6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jddd"]
+atlas = ExtResource("14_dxwv6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djh73"]
+atlas = ExtResource("14_dxwv6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y632c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8d2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jddd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djh73")
+}],
+"loop": false,
+"name": &"display",
+"speed": 1.0
+}]
+
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 scale = Vector2(3, 3)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
+JUMP_VELOCITY = -800.0
+normalspeed = 13500.0
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
 
@@ -273,12 +320,11 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_on_ladder"
-offset = Vector2(2, 0)
-flip_h = true
+animation = &"idle"
+offset = Vector2(-2, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.16667, 3.33334)
+position = Vector2(2.66667, 3.33333)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
 
@@ -300,19 +346,41 @@ position = Vector2(-15.6667, -6.33333)
 position = Vector2(17.7238, -6.42757)
 
 [node name="charge_timer" type="Label" parent="."]
+visible = false
 offset_left = -21.6667
 offset_top = -21.6667
 offset_right = 73.3333
 offset_bottom = 4.33333
 scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "charge_time"
 
+[node name="text" type="Label" parent="charge_timer"]
+layout_mode = 0
+offset_left = -189.333
+offset_top = 0.666733
+offset_right = -3.33327
+offset_bottom = 23.6667
+theme_override_fonts/font = ExtResource("6_hjfwy")
+text = "Charge Timer:"
+
 [node name="speed" type="Label" parent="."]
-offset_left = -22.0
-offset_top = -39.6667
-offset_right = 25.0
-offset_bottom = -13.6667
+visible = false
+offset_left = -2.66667
+offset_top = -31.3333
+offset_right = 77.3333
+offset_bottom = -12.3333
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "speed"
+
+[node name="speed_text" type="Label" parent="speed"]
+layout_mode = 0
+offset_left = -94.0
+offset_right = -2.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("6_hjfwy")
+text = "Speed:"
 
 [node name="change_climb_detector" type="Area2D" parent="."]
 
@@ -347,7 +415,22 @@ stream = ExtResource("9_pqlrj")
 [node name="dead" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("10_qghej")
 
+[node name="halfcharge" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("12_8ofs0")
+
+[node name="fullcharge" type="AudioStreamPlayer2D" parent="all_sounds"]
+stream = ExtResource("13_ljqus")
+
 [node name="restart_timer" type="Timer" parent="."]
+
+[node name="weapon_display" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.33333, -26)
+sprite_frames = SubResource("SpriteFrames_y632c")
+animation = &"display"
+
+[node name="display_timer" type="Timer" parent="weapon_display"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
@@ -356,3 +439,4 @@ stream = ExtResource("10_qghej")
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
+[connection signal="timeout" from="weapon_display/display_timer" to="." method="_on_display_timer_timeout"]

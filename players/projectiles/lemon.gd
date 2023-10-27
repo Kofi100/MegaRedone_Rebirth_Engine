@@ -33,8 +33,8 @@ func _physics_process(delta):
 
 
 func _on_collision_monitor_area_entered(area):
-	if area.is_in_group("enemy"):
-		print('works!')
+	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
+		#print('lemons:works!')
 		if state=="active":
 			area.get_parent().health-=area.get_parent().enemyreceivedamagevalue
 			queue_free()
@@ -45,3 +45,7 @@ func _on_collision_monitor_area_entered(area):
 func _on_collision_monitor_body_entered(body):
 	if body.is_in_group("tilemaps"):
 		queue_free()
+
+
+func _on_onscreen_screen_exited():
+	queue_free()

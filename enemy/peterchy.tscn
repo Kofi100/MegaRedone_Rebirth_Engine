@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://da5bprtjoqr63"]
+
+[ext_resource type="Texture2D" uid="uid://c5wpbx7lils5k" path="res://assets/sprites/enemies/peterchy.png" id="1_50ri1"]
+[ext_resource type="Script" path="res://enemy/peterchy.gd" id="1_tcfcs"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_ldx57"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agvco"]
+atlas = ExtResource("1_50ri1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dku1s"]
+atlas = ExtResource("1_50ri1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8segr"]
+atlas = ExtResource("1_50ri1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48jdm"]
+atlas = ExtResource("1_50ri1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abim2"]
+atlas = ExtResource("1_50ri1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm1n0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agvco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dku1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8segr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48jdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abim2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dku1s")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u48f"]
+size = Vector2(20, 3.33333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wagah"]
+size = Vector2(13.6667, 13)
+
+[node name="peterchy" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_tcfcs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.333333, -8)
+sprite_frames = SubResource("SpriteFrames_hm1n0")
+animation = &"moving"
+frame_progress = 0.668228
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.333333, 6.33333)
+shape = SubResource("RectangleShape2D_8u48f")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_wagah")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1.16667, -21.9167)
+scale = Vector2(10.05, 3.10833)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.3333
+offset_top = -32.3333
+offset_right = 24.6667
+offset_bottom = -6.33334
+text = "speed"
+
+[node name="index" type="Label" parent="."]
+offset_left = -19.3333
+offset_top = -35.3333
+offset_right = 52.6667
+offset_bottom = -12.3333
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_ldx57")
+text = "index"
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

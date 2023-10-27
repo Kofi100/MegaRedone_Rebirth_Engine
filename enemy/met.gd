@@ -6,7 +6,7 @@ extends enemy
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	health=5
+	health=3
 	playerdamagevalue=5
 	enemyreceivedamagevalue=1
 	animated_sprite_2d.play("defend")

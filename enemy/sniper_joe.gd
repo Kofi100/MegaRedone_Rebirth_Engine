@@ -1,5 +1,5 @@
 extends enemy
-var state:String=""
+#var state:String=""
 var timer:int=0
 var player_in_zone=false
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -14,7 +14,7 @@ var timer1:int=0
 var proj_spawn_timer:int=0
 
 func _ready():
-	health=5
+	health=8
 	playerdamagevalue=3
 	state="defend"
 	animated_sprite_2d.flip_h=false

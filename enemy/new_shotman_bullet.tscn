@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnhshqt1nnqur"]
+
+[ext_resource type="Script" path="res://enemy/new_shotman_bullet.gd" id="1_f2lr7"]
+[ext_resource type="Texture2D" uid="uid://rtuvv38dxg1u" path="res://assets/sprites/enemies/new-shotman-pellet.png" id="2_m5qen"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ecl8"]
+size = Vector2(8, 8)
+
+[node name="new-shotman-bullet" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_f2lr7")
+
+[node name="New-shotman-pellet" type="Sprite2D" parent="."]
+texture = ExtResource("2_m5qen")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_2ecl8")

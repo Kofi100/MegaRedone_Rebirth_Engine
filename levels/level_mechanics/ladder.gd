@@ -8,7 +8,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#print(on_top)
 	#print(topplatforms.get_collision_layer_value(4))
 	if in_zone==true:
