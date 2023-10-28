@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqa7drqgttu7p"]
+
+[ext_resource type="Script" path="res://miscellenaous/small_weapon_capsule.gd" id="1_frawo"]
+[ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_vsryd"]
+
+[sub_resource type="Animation" id="Animation_5xbk3"]
+resource_name = "active"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_op4l5"]
+_data = {
+"active": SubResource("Animation_5xbk3")
+}
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_jiwau"]
+length = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq1rd"]
+size = Vector2(8, 8)
+
+[node name="small_weapon_capsule" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_frawo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vsryd")
+hframes = 13
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "active"
+libraries = {
+"": SubResource("AnimationLibrary_op4l5")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SeparationRayShape2D_jiwau")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_sq1rd")

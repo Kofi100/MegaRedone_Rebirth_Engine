@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=19 format=3 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_iewdy"]
 [ext_resource type="Script" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="9_uepbj"]
 [ext_resource type="PackedScene" uid="uid://bh0igfh3wr8uf" path="res://enemy/walking_bomb.tscn" id="10_n7pff"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
+[ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="12_2bvdr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0e7h"]
 resource_name = "debug_tileset"
@@ -135,6 +136,11 @@ position = Vector2(1105, 635)
 [node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(778.544, 579.545)
 enemy_to_spawn = "peterchy"
+
+[node name="all_collectables" type="Node2D" parent="."]
+
+[node name="large_health_capsule" parent="all_collectables" instance=ExtResource("12_2bvdr")]
+position = Vector2(177.881, 620.917)
 
 [connection signal="body_entered" from="enter_player" to="." method="_on_enter_player_body_entered"]
 

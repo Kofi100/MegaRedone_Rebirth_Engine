@@ -15,7 +15,7 @@ func _process(_delta):
 	health_bar.value=GlobalScript.health;health_bar.max_value=GlobalScript.max_health
 	$pause_screen_setup/ProgressBar.max_value=GlobalScript.max_health
 	$pause_screen_setup/e_tank_left.text=str(GlobalScript.energy_tank_no)
-	
+	weapon_energy_update()
 	
 	if selection_index<1:
 		selection_index=2
@@ -85,3 +85,14 @@ func _on_progress_bar_value_changed(value):#if the value of the bar changes
 			$increase_health.play(0)#play it
 #		#if tween.is_running():
 #			$increase_health.play(0)
+
+func weapon_energy_update():
+	if GlobalScript.weapon_number!=0:
+		$weapon_energy.visible=true
+	else:
+		$weapon_energy.visible=false
+	
+	match GlobalScript.weapon_number:
+		1:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon1energy
+		2:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon2energy
+		

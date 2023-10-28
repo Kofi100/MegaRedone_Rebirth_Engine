@@ -11,7 +11,7 @@ func _process(_delta):
 	pass
 	if playerindeathzone:
 		#print("deathzones:working")
-		if GlobalScript.playerhasbeenhit==false:
+		#if GlobalScript.playerhasbeenhit==false:
 			GlobalScript.health=0
 #	if !playerindeathzone:
 #		print('duh2')

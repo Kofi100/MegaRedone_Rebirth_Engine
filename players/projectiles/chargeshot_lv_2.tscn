@@ -1,11 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://gry1wgnl5o88"]
+[gd_scene load_steps=13 format=3 uid="uid://gry1wgnl5o88"]
 
 [ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_2.gd" id="1_bkydj"]
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_ski7p"]
+[ext_resource type="Texture2D" uid="uid://bgjjfqwcabpyy" path="res://assets/sprites/player/projectiles/chargeshot_idea-sheet v1.png" id="3_mf20s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmvw6"]
 atlas = ExtResource("1_ski7p")
 region = Rect2(2, 13, 11, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgj5w"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev5tb"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4amb7"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyccr"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad3fu"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0mmn"]
+atlas = ExtResource("3_mf20s")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4y8vj"]
 animations = [{
@@ -16,10 +41,33 @@ animations = [{
 "loop": true,
 "name": &"chargeshot_lv2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgj5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev5tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4amb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyccr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad3fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0mmn")
+}],
+"loop": true,
+"name": &"chargeshot_lv2_new",
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlhgy"]
-size = Vector2(11, 9)
+size = Vector2(11.1667, 11.8333)
 
 [node name="chargeshot_lv2" type="CharacterBody2D"]
 scale = Vector2(6, 6)
@@ -27,16 +75,19 @@ script = ExtResource("1_bkydj")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4y8vj")
-animation = &"chargeshot_lv2"
-frame_progress = 0.896985
+animation = &"chargeshot_lv2_new"
+frame_progress = 0.130249
 
 [node name="collision_monitor" type="Area2D" parent="."]
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision_monitor"]
+position = Vector2(0.416667, 0.0833333)
 shape = SubResource("RectangleShape2D_xlhgy")
 
 [node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.25, -5.96046e-07)
+scale = Vector2(0.608333, 0.633333)
 
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejk0u2e8pqpm"]
+
+[ext_resource type="Script" path="res://miscellenaous/small_health_capsule.gd" id="1_f34yw"]
+[ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_nroca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nakms"]
+size = Vector2(8, 8)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_evg4h"]
+length = 4.0
+
+[node name="small_health_capsule" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_f34yw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nroca")
+hframes = 13
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_nakms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SeparationRayShape2D_evg4h")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

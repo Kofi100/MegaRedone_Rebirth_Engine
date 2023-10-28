@@ -9,7 +9,7 @@ func _ready():
 			pass
 		"right":
 			pass
-	$anim.play("chargeshot_lv2")
+	$anim.play("chargeshot_lv2_new")
 	
 
 

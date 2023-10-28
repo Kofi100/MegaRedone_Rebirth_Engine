@@ -1,15 +1,19 @@
 extends Node2D
 var charge_timer=0
 var bodycolor1dictionary:Dictionary={
+	0:Vector4.ZERO,
 	1: Vector4(255,255,255,255),
 	2: Vector4(255,255,255,255),
 	3:Vector4(255,0,0,255),
 }
 var bodycolor2dictionary:Dictionary={
+	0:Vector4.ZERO,
 	1: Vector4(216,40,0,255,),
 	2: Vector4(216,40,0,255),
 	3:Vector4(255,0,0,255),
 }
+var weapon1energy=30
+var weapon2energy=30
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

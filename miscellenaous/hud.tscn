@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=20 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
+[ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -78,6 +79,15 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_q5jc1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
+shader = ExtResource("9_1ufh6")
+shader_parameter/originalbodycolor = null
+shader_parameter/originalbodycolorii = null
+shader_parameter/originaloutlinecolor = Color(0.545098, 0.545098, 0.545098, 1)
+shader_parameter/bodycolori = null
+shader_parameter/bodycolorii = null
+shader_parameter/outlinecolor = Color(0, 0, 0.996078, 1)
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -182,5 +192,16 @@ max_distance = 1e+15
 
 [node name="increase_health" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_80bcg")
+
+[node name="weapon_energy" type="ProgressBar" parent="."]
+modulate = Color(1, 0.0156863, 0.109804, 1)
+material = SubResource("ShaderMaterial_be7r0")
+offset_left = 51.0
+offset_top = 1.0
+offset_right = 198.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("5_g1yve")
+max_value = 30.0
+value = 30.0
 
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]

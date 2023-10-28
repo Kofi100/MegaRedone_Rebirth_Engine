@@ -304,7 +304,7 @@ scale = Vector2(3, 3)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
-JUMP_VELOCITY = -800.0
+JUMP_VELOCITY = -1000.0
 normalspeed = 13500.0
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]

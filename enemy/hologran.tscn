@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1me2bdf4ckac"]
+[gd_scene load_steps=8 format=3 uid="uid://c1me2bdf4ckac"]
 
 [ext_resource type="Script" path="res://enemy/hologran.gd" id="1_wvurm"]
 [ext_resource type="Texture2D" uid="uid://cu27we2mdatp6" path="res://assets/sprites/enemies/hologran.png" id="2_m10xw"]
 
 [sub_resource type="Animation" id="Animation_3pad2"]
 resource_name = "activate"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,6 +17,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [2, 0, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../hologram:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_0erp1"]
@@ -35,17 +47,63 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../hologram:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_asq2x"]
+resource_name = "hologramed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hologran:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hygn4"]
+resource_name = "about_to_leave"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../hologram:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkmkl"]
 _data = {
+"about_to_leave": SubResource("Animation_hygn4"),
 "activate": SubResource("Animation_3pad2"),
-"active": SubResource("Animation_0erp1")
+"active": SubResource("Animation_0erp1"),
+"hologramed": SubResource("Animation_asq2x")
 }
 
 [node name="hologran" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1_wvurm")
+speed = 2000
 
 [node name="hologram" type="ColorRect" parent="."]
 z_index = -2
@@ -53,7 +111,7 @@ offset_left = -513.0
 offset_top = -145.0
 offset_right = 551.0
 offset_bottom = 362.0
-color = Color(0, 0, 0, 1)
+color = Color(1, 1, 1, 0)
 
 [node name="bulb" type="CharacterBody2D" parent="."]
 position = Vector2(0, 0.333333)
@@ -77,9 +135,16 @@ libraries = {
 [node name="hologran" type="Sprite2D" parent="bulb"]
 texture = ExtResource("2_m10xw")
 hframes = 3
+frame = 2
+
+[node name="timer" type="Timer" parent="bulb"]
+wait_time = 0.2
+one_shot = true
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [connection signal="screen_exited" from="bulb/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="bulb/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="bulb/timer" to="." method="_on_timer_timeout"]

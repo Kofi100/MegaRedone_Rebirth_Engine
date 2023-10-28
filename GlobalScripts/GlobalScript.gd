@@ -11,6 +11,7 @@ var energy_tank_no=2
 var max_health=30
 var scene_to_be_loaded_index:int
 var weapon_number=0
+var spawn_collectable_no:int=0
 func _ready():
 	pass # Replace with function body.
 

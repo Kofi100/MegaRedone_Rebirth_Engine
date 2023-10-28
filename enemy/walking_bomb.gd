@@ -45,7 +45,8 @@ func _physics_process(delta):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group('player'):
-		health-=1
+#		health-=1
+		pass
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

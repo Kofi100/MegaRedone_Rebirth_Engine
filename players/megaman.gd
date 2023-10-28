@@ -489,19 +489,23 @@ func create_weapons():
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
 			1:
-				rush_coil_instance=rush_coil.instantiate()
-				get_parent().add_child(rush_coil_instance)
-				if anim.flip_h==true:
-					rush_coil_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
-				elif anim.flip_h==false:
-					rush_coil_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
+				if MegamanAndItems.weapon1energy>0:
+					MegamanAndItems.weapon1energy-=3
+					rush_coil_instance=rush_coil.instantiate()
+					get_parent().add_child(rush_coil_instance)
+					if anim.flip_h==true:
+						rush_coil_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
+					elif anim.flip_h==false:
+						rush_coil_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
 			2:
-				rush_jet_instance=rush_jet.instantiate()
-				get_parent().add_child(rush_jet_instance)
-				if anim.flip_h==true:
-					rush_jet_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
-				elif anim.flip_h==false:
-					rush_jet_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
+				if MegamanAndItems.weapon2energy>0:
+					MegamanAndItems.weapon2energy-=3
+					rush_jet_instance=rush_jet.instantiate()
+					get_parent().add_child(rush_jet_instance)
+					if anim.flip_h==true:
+						rush_jet_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
+					elif anim.flip_h==false:
+						rush_jet_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
 
 func _on_anim_animation_finished():
 	if $anim.animation=="shoot_run":
@@ -544,6 +548,8 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("rushjet"):
 		#$anim.play("idle")
 		onrush=true
+	if area.is_in_group('deathzone'):
+		GlobalScript.health=0
 func _on_hitbox_area_exited(area):
 	if area.is_in_group("ladders"):
 		near_ladder=false

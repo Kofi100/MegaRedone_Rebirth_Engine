@@ -7,6 +7,7 @@ extends Node2D
 @onready var camera_4 = $all_cameras/camera4
 @onready var camera_5 = $all_cameras/camera5
 @onready var camera_6 = $all_cameras/camera6
+@onready var camera_7 = $all_cameras/camera7
 
 var audio_streams={"shadow_man":preload("res://assets/music/Mega Man 3 (NES) Music - Shadow Man Stage.mp3")}
 # Called when the node enters the scene tree for the first time.
@@ -68,3 +69,10 @@ func _on_timer_switch_cameras_timeout():
 func _on_bgm_finished():
 	if background_music.stream==audio_streams.get('shadow_man'):
 		background_music.play()
+
+
+func _on_zone_7_body_entered(body):
+	if body.is_in_group("player"):
+		StageFunctions.switch_camera(player_camera,camera_7)
+		timer_switch_cameras.start()
+		player_camera.position_smoothing_enabled=true
