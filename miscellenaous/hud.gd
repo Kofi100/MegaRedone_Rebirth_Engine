@@ -11,11 +11,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#print($map.get_size())
 	$pause_screen_setup/ProgressBar.value=GlobalScript.health
 	health_bar.value=GlobalScript.health;health_bar.max_value=GlobalScript.max_health
 	$pause_screen_setup/ProgressBar.max_value=GlobalScript.max_health
 	$pause_screen_setup/e_tank_left.text=str(GlobalScript.energy_tank_no)
 	weapon_energy_update()
+	if get_tree().paused:
+		$map.visible=false
+	else:
+		$map.visible=true
 	
 	if selection_index<1:
 		selection_index=2

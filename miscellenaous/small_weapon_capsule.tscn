@@ -25,8 +25,8 @@ _data = {
 "active": SubResource("Animation_5xbk3")
 }
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_jiwau"]
-length = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffucx"]
+size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq1rd"]
 size = Vector2(8, 8)
@@ -39,7 +39,7 @@ script = ExtResource("1_frawo")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vsryd")
 hframes = 13
-frame = 4
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"
@@ -48,11 +48,13 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("SeparationRayShape2D_jiwau")
+shape = SubResource("RectangleShape2D_ffucx")
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_sq1rd")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

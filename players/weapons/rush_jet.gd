@@ -2,13 +2,13 @@ extends CharacterBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 
-@export var SPEED = 100000.0
+@export var SPEED = 13500#100000.0
 const JUMP_VELOCITY = -400.0
 var state:String="spawn_in"
 
 func _ready():
 	state="spawn_in"
-
+	$CollisionShape2D.disabled=true
 func _physics_process(delta):
 	# Add the gravity.
 	var megaman=get_parent().get_node("megaman")
@@ -19,7 +19,7 @@ func _physics_process(delta):
 			#print('spawn in')
 			animated_sprite_2d.play("spawn")
 			velocity.y=10000*delta
-			if is_on_floor():
+			if GlobalScript.playerposx>=global_position.x:
 				state="ready"
 				$AnimatedSprite2D.play("wait")
 			move_and_slide()
@@ -28,8 +28,9 @@ func _physics_process(delta):
 			velocity.y=-90000*delta
 			move_and_slide()
 		"ready":
+			$CollisionShape2D.disabled=false
 			if player_on_top:
-				megaman.position=Vector2(global_position.x,global_position.y-35)
+				megaman.position=Vector2(global_position.x,global_position.y-40)
 				
 				#global_position.x=GlobalScript.playerposx
 				#velocity.x=4000*delta

@@ -2,7 +2,7 @@ extends enemy
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 
-@export var SPEED = 30000.0
+@export var SPEED = 30000.0 #6750
 @export var JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -39,9 +39,17 @@ func _physics_process(delta):
 				animated_sprite_2d.play('jump')
 			if is_on_floor() and velocity.y>=0:
 				state='walk'
-	spawn_collectables()
+	
+	if health<=0:
+		countdown_delete+=1
+		$explosion.set_emitting(true)#emit_particle()
+		$explosion_container/explosion_hitbox/CollisionShape2D2.disabled=false
+		$AnimatedSprite2D.visible=false
+		$hitbox/CollisionShape2D.disabled=true
+		if countdown_delete==20:
+			spawn_collectables()
 	move_and_slide()
-
+var countdown_delete=0
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group('player'):

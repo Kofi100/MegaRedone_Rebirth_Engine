@@ -60,6 +60,7 @@ size = Vector2(13.6667, 13)
 scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_tcfcs")
+SPEED = 3000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.333333, -8)

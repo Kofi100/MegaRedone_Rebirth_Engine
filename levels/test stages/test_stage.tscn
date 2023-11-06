@@ -1,15 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=15 format=3 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Texture2D" uid="uid://b6ottyj6jtygc" path="res://assets/sprites/tilesets/debug_tileset_basic.png" id="1_iewdy"]
 [ext_resource type="Script" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_mabb1"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
-[ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="5_d7wbp"]
 [ext_resource type="AudioStream" uid="uid://3hdu3cvqvx5s" path="res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3" id="6_i4xyi"]
-[ext_resource type="PackedScene" uid="uid://drywjq3yk7svp" path="res://enemy/octopus_battery.tscn" id="7_xya70"]
 [ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="8_60iu1"]
-[ext_resource type="PackedScene" uid="uid://canmfhqjc5ro1" path="res://enemy/mechakkero.tscn" id="9_uepbj"]
-[ext_resource type="PackedScene" uid="uid://bh0igfh3wr8uf" path="res://enemy/walking_bomb.tscn" id="10_n7pff"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="12_2bvdr"]
 
@@ -91,18 +87,11 @@ shape = SubResource("RectangleShape2D_1oxe6")
 position = Vector2(55.5, 79)
 shape = SubResource("RectangleShape2D_1e4c0")
 
-[node name="met" parent="." instance=ExtResource("5_d7wbp")]
-position = Vector2(1116, 115)
-
 [node name="bgm" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_i4xyi")
 volume_db = -3.0
 autoplay = true
 max_distance = 1e+14
-
-[node name="octopus_battery" parent="." instance=ExtResource("7_xya70")]
-position = Vector2(481, 169)
-direction = "up"
 
 [node name="sniper_joe" parent="." instance=ExtResource("8_60iu1")]
 position = Vector2(1275, 570)
@@ -125,17 +114,12 @@ limit_right = 1393
 limit_bottom = 720
 editor_draw_limits = true
 
-[node name="mechakkero" parent="." instance=ExtResource("9_uepbj")]
-position = Vector2(683, 625)
-
 [node name="all_enemies" type="Node2D" parent="."]
 
-[node name="walking_bomb" parent="all_enemies" instance=ExtResource("10_n7pff")]
-position = Vector2(1105, 635)
-
 [node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
-position = Vector2(778.544, 579.545)
-enemy_to_spawn = "peterchy"
+position = Vector2(826, 361)
+enemy_to_spawn = "paraysu"
+visibility = true
 
 [node name="all_collectables" type="Node2D" parent="."]
 

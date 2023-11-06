@@ -53,6 +53,7 @@ func charge_effect(animated_sprite:AnimatedSprite2D):
 
 func change_palette(animated_sprite:AnimatedSprite2D):
 		print('active')
-		animated_sprite.material.set_shader_parameter("outlinecolor",(Vector4(0.0,0.0,0.0,255.0))/255)
-		animated_sprite.material.set_shader_parameter("bodycolori",(bodycolor1dictionary.get(GlobalScript.weapon_number))/255)
-		animated_sprite.material.set_shader_parameter("bodycolorii",(bodycolor2dictionary.get(GlobalScript.weapon_number))/255)
+		if bodycolor1dictionary.has(GlobalScript.weapon_number):
+			animated_sprite.material.set_shader_parameter("outlinecolor",(Vector4(0.0,0.0,0.0,255.0))/255)
+			animated_sprite.material.set_shader_parameter("bodycolori",(bodycolor1dictionary.get(GlobalScript.weapon_number))/255)
+			animated_sprite.material.set_shader_parameter("bodycolorii",(bodycolor2dictionary.get(GlobalScript.weapon_number))/255)

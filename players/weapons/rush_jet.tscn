@@ -65,7 +65,6 @@ size = Vector2(20, 8.66667)
 [node name="rush_jet" type="CharacterBody2D" groups=["rush_jet"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_qavoq")
-SPEED = 20000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.666667, -5.33333)

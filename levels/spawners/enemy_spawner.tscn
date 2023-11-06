@@ -7,8 +7,11 @@
 [node name="enemy_spawner" type="Node2D" groups=["enemy_spawner"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_ck4dl")
+visibility = false
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -50,6 +53,16 @@ walking_bomb
 met
 sniper_joe
 octopus_battery
-hologran"
+hologran
+paraysu"
+
+[node name="spawn_homer_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="spawn_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="spawn_homer_timer" to="." method="_on_spawn_homer_timer_timeout"]

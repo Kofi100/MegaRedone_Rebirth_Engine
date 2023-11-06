@@ -28,8 +28,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfljm"]
 size = Vector2(16, 16)
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_rfu87"]
-length = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_m562j"]
+radius = 8.02773
 
 [node name="large_health_capsule" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -45,9 +45,9 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q0ufw")
 hframes = 13
-frame = 3
+frame = 2
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
 collision_layer = 2
 collision_mask = 2
 
@@ -55,6 +55,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_pfljm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("SeparationRayShape2D_rfu87")
+shape = SubResource("CircleShape2D_m562j")
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

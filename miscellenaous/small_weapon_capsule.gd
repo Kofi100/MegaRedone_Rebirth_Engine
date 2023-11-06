@@ -14,3 +14,13 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	move_and_slide()
+
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group('player'):
+		match GlobalScript.weapon_number:
+			1:
+				MegamanAndItems.weapon1energy+=3
+			2:
+				MegamanAndItems.weapon2energy+=3
+		queue_free()

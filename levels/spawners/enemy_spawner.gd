@@ -5,7 +5,7 @@ extends Node2D
 #var peterchy=preload("res://enemy/peterchy.tscn")
 #var mechakkero=preload()
 #var walking_bomb=preload('res://enemy/walking_bomb.tscn')
-
+@export var visibility=true
 var enemy_dictionary:Dictionary={
 	'new_shotman':preload('res://enemy/new_shotman.tscn'),
 	'mechakkero':preload("res://enemy/mechakkero.tscn"),
@@ -14,37 +14,86 @@ var enemy_dictionary:Dictionary={
 	'met':preload('res://enemy/met.tscn'),
 	'sniper_joe':preload('res://enemy/sniper_joe.tscn'),
 	'octopus_battery':preload('res://enemy/octopus_battery.tscn'),
-	'hologran':preload('res://enemy/hologran.tscn')
+	'hologran':preload('res://enemy/hologran.tscn'),
+	'homer':preload('res://enemy/original/homer.tscn'),
+	'paraysu':preload('res://enemy/paraysu.tscn')
+}
+var disappear_nodes={
+	1:'Sprite2D',
+	2:'index',
+	3:'enemy',
+	4:'enemy_spawn_list',
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-
+var spawn_homer=false
 var has_enemy_spawned=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if visibility:
+		for i in disappear_nodes:
+			if disappear_nodes.has(i):
+				var node=get_node(disappear_nodes[i])
+				node.visible=true
+			
+			if i==5:
+				i=1
+	elif not visibility:
+		for i in disappear_nodes:
+			if disappear_nodes.has(i):
+				var node=get_node(disappear_nodes[i])
+				node.visible=false
+			if i==5:
+				i=1
+#	for i in disappear_nodes:
+#		if disappear_nodes.has(i):
+	var node
+	#print('enemy spawner:get node(Sprite2d):',get_node(disappear_nodes[1]))
+	#print(entered)
+	#print( 'is_connected',$VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered),',has_enemy_spawned:',has_enemy_spawned)
+	#set_physics_process(false)
+#	if GlobalScript.spawn_enemy:
+#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==false:
+#			$VisibleOnScreenNotifier2D.connect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
+#	elif not GlobalScript.spawn_enemy:
+#		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==true:
+#			$VisibleOnScreenNotifier2D.disconnect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
 	#displays enemies to be spawned
 	#print('new'+enemy_to_spawn)
 	#testing if new variables can be made..kinda
 #	var new='new_'+enemy_to_spawn
 #	print(new)
 	##
+#	if not has_enemy_spawned:
+#		if enemy_to_spawn=='homer' and  $spawn_homer_timer.time_left>0:
+#			spawn_homer=false
 	$index.text=str(spawn_index)
 	$enemy.text=enemy_to_spawn
+	if entered==true and GlobalScript.spawn_enemy:
+		timer+=1
+		if timer==1:
+			if not has_enemy_spawned:
+				if enemy_dictionary.has(enemy_to_spawn):
+					has_enemy_spawned=true
+					var enemy=enemy_dictionary.get(enemy_to_spawn)
+					var new_enemy=enemy.instantiate()
+					new_enemy.index=spawn_index
+					new_enemy.position=position
+					get_parent().add_child(new_enemy)
+	elif entered==false:
+		timer=0
 	
 func check_for_dead_enemy(index):
 	if index==spawn_index:
 		has_enemy_spawned=false
+	if enemy_to_spawn=='homer':
+		$spawn_homer_timer.start()
 
-
+var entered=false;var timer=1
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	if not has_enemy_spawned:
-		has_enemy_spawned=true
-		var enemy=enemy_dictionary.get(enemy_to_spawn)
-		var new_enemy=enemy.instantiate()
-		new_enemy.index=spawn_index
-		new_enemy.position=position
-		get_parent().add_child(new_enemy)
+	entered=true
+
 		
 #		match enemy_to_spawn:
 #			pass
@@ -65,3 +114,17 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 #				get_parent().add_child(new_mechakkero_enemy)
 #			'walking_bomb':
 #				var new_waling_bomb=walking_bomb.instantiate()
+
+
+func _on_spawn_homer_timer_timeout():
+	if not has_enemy_spawned and enemy_to_spawn=='homer' and $VisibleOnScreenNotifier2D.is_on_screen()==true:
+		has_enemy_spawned=true
+		var enemy=enemy_dictionary.get(enemy_to_spawn)
+		var new_enemy=enemy.instantiate()
+		new_enemy.index=spawn_index
+		new_enemy.position=position
+		get_parent().add_child(new_enemy)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	entered=false

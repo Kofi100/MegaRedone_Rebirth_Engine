@@ -204,4 +204,18 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 max_value = 30.0
 value = 30.0
 
+[node name="map" type="ColorRect" parent="."]
+offset_left = 474.0
+offset_top = 4.0
+offset_right = 674.0
+offset_bottom = 104.0
+
+[node name="player" type="ColorRect" parent="map"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 25.0
+offset_bottom = 26.0
+color = Color(1, 0.054902, 0, 1)
+
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]

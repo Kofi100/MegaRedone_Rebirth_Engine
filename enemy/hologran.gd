@@ -9,10 +9,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	
 	if animation_player.current_animation!='activate':
 		$bulb.velocity.x=-speed*delta
 	else: $bulb.velocity.x=0
 	$bulb.move_and_slide()
+	$bulb/ColorRect.global_position=Vector2(GlobalScript.playerposx,GlobalScript.playerposy)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

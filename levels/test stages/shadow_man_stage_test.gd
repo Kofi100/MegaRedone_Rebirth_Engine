@@ -16,12 +16,33 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var new_pos=move_toward($missile.global_position.x,GlobalScript.playerposx,100*delta)
+	var new_pos2=move_toward($missile.global_position.y,GlobalScript.playerposy,100*delta)
+	$missile.global_position.x=new_pos;$missile.global_position.y=new_pos2
+	#print($TileMap.get_used_rect())
+	#var tilesize=$TileMap.get_used_rect()
+	#var tsize=tilesize.size
+	#print($TileMap.get_used_rect().size/Vector2i($megaman/HUD/map.get_size()))
+	$megaman/HUD/map/player.position=Vector2(GlobalScript.playerposx/200,GlobalScript.playerposy/100)
+	#var mega=get_parent().get_node("megaman")
+#	if mega:
+	if $timer_switch_cameras.time_left>0:
+#		$TileMap.paused=true
+		if $megaman.velocity.y>0:
+			$megaman.trans_down=true
+	if GlobalScript.health<=0:
+		background_music.stop()
+	
 	$bg/ParallaxLayer/ParallaxLayer2.motion_offset.y+=50*delta
 	if background_music.playing:
 		if background_music.stream==audio_streams.get("shadow_man"):\
 #		if background_music.get_playback_position()>=65:
 #			background_music.play(0)
 			pass
+	if timer_switch_cameras.time_left>0:
+		GlobalScript.spawn_enemy=false
+	elif timer_switch_cameras.time_left==0:
+		GlobalScript.spawn_enemy=true
 	#print(get_tree().has_group('player'))
 @onready var timer_switch_cameras = $timer_switch_cameras
 
@@ -64,6 +85,8 @@ func _on_zone_6_body_entered(body):
 
 func _on_timer_switch_cameras_timeout():
 	player_camera.position_smoothing_enabled=false
+	$megaman.trans_down=false
+	$megaman.stop=false
 
 
 func _on_bgm_finished():

@@ -24,6 +24,7 @@ func _physics_process(delta):
 	shoot_sides_timer+=1
 #	if shoot_sides_timer==60:
 #		shoot_sides_timer=0
+#codes for shooting side bullets
 	if shoot_sides_timer%120==1 or shoot_sides_timer%120==30 or shoot_sides_timer%120==60 :
 		var new_proj_lr:Object;var new_proj_right
 		#StageFunctions.create_new_stuff(proj,new_proj_lr)
@@ -31,15 +32,28 @@ func _physics_process(delta):
 		get_parent().add_child(new_proj_lr)
 		new_proj_lr.direction='left'
 		new_proj_lr.global_position=$shoot_pos/left.global_position
-		
+
 		#StageFunctions.create_new_stuff(proj,new_proj_right)
 		new_proj_right=proj.instantiate()
 		get_parent().add_child(new_proj_right)
 		new_proj_right.direction='right'
 		new_proj_right.global_position=$shoot_pos/right.global_position
+	
+	if shoot_sides_timer%120==30 or shoot_sides_timer%120==60:
+		var projectile_throw=preload('res://enemy/new_shotman_bullet.tscn')
+		proj_throw_new=projectile_throw.instantiate()
+		proj_throw_new.direction='gravity'
+		proj_throw_new.velocity.y=JUMP_VELOCITY
+		proj_throw_new.position=position
+		get_parent().add_child(proj_throw_new)
+
+	if proj_throw_new!=null:
+		var newposx=move_toward(proj_throw_new.global_position.x,GlobalScript.playerposx,300*delta)
+		var newposy=move_toward(proj_throw_new.global_position.y,GlobalScript.playerposy,300*delta)
+		proj_throw_new.global_position.x=newposx
 	move_and_slide()
 
-
+var proj_throw_new
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)

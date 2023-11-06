@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://7sfehmaj5wp3"]
+
+[ext_resource type="Script" path="res://enemy/original/homer.gd" id="1_bcwbf"]
+[ext_resource type="Texture2D" uid="uid://5m7sreduekxg" path="res://assets/sprites/enemies/original/homer.png" id="1_ljslv"]
+
+[sub_resource type="Animation" id="Animation_cdgjw"]
+resource_name = "coming"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 5, 6, 7, 8, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1mogb"]
+_data = {
+"coming": SubResource("Animation_cdgjw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3kds"]
+size = Vector2(12, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvgky"]
+size = Vector2(9, 25)
+
+[node name="homer" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_bcwbf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "coming"
+libraries = {
+"": SubResource("AnimationLibrary_1mogb")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ljslv")
+hframes = 9
+frame = 2
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_o3kds")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-6.74999, 8.75)
+scale = Vector2(13.775, 8.89167)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.166667, 0.5)
+shape = SubResource("RectangleShape2D_jvgky")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

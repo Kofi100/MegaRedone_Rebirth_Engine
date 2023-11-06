@@ -74,7 +74,10 @@ func _physics_process(delta):
 		#print('trans_right state:off')
 		if switch_state==1:
 			stop=false
-		
+	if trans_down:
+		velocity=Vector2(0,1000)*delta
+		stop=true
+		move_and_slide()
 		#tween.stop()
 		
 	if GlobalScript.weapon_number<0:
@@ -87,6 +90,11 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if !is_dead:
+		if MegamanAndItems.charge_timer==1:
+			$all_sounds/charge.play()
+		if $all_sounds/charge.get_playback_position()>2.04:
+		#print("seek")
+			$all_sounds/charge.seek(1.90)
 		if GlobalScript.playerhasbeenhit:
 			$hitbox/CollisionShape2D.disabled=true
 		elif not GlobalScript.playerhasbeenhit:
@@ -152,12 +160,12 @@ func _physics_process(delta):
 						else:
 							$anim.offset.x=0
 					else:
-						if stun_timer>1 and stun_timer<5:
+						if stun_timer>1 and stun_timer<7:
 							#print(stun_timer)
 							stun(delta)
 							
 						stun_timer+=1;#print(stun_timer,' ',GlobalScript.playerhitcooldowntimer)
-						if stun_timer==5:
+						if stun_timer==7:
 							stun_timer=0
 							stun_effect=false
 					#This code uses a modulus of 5 to produce a blinking effect
@@ -167,7 +175,7 @@ func _physics_process(delta):
 						climb=false
 					velocity.x=0
 					global_position.x=ladder_collider.global_position.x
-					#print("clim:true")
+					#print("megaman:climb:true")
 					play_animation_ladder()
 					shoot_and_charge_ladder()
 					chargeeffect()
@@ -274,8 +282,7 @@ func shoot_and_charge():
 	if Input.is_action_pressed("shoot"):
 		
 		MegamanAndItems.charge_timer+=1
-		if MegamanAndItems.charge_timer==1:
-			$all_sounds/charge.play()
+
 	elif Input.is_action_just_released("shoot"):
 		
 		$all_sounds/charge.stop()
@@ -486,6 +493,7 @@ func chargeeffect():
 
 var rush_jet=preload("res://players/weapons/rush_jet.tscn");var rush_jet_instance
 func create_weapons():
+	MegamanAndItems.charge_timer=0
 	if Input.is_action_just_pressed("shoot"):
 		match GlobalScript.weapon_number:
 			1:
@@ -550,6 +558,8 @@ func _on_hitbox_area_entered(area):
 		onrush=true
 	if area.is_in_group('deathzone'):
 		GlobalScript.health=0
+	if area.is_in_group('capsules'):
+		$all_sounds/energyup.play()
 func _on_hitbox_area_exited(area):
 	if area.is_in_group("ladders"):
 		near_ladder=false
@@ -559,7 +569,7 @@ func _on_hitbox_area_exited(area):
 #var 
 var ladder_collider:Object
 func _on_hitbox_area_shape_entered(_area_rid, area, area_shape_index, _local_shape_index):
-	#if area.is_in_group("ladders"):
+	if area.is_in_group("ladders"):
 		ladder_collider=area.shape_owner_get_owner(area_shape_index)
 		#print(ladder_collider,'of Area:',area)
 

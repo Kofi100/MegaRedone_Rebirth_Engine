@@ -58,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ad3fu")
 }, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_c0mmn")
 }],
 "loop": true,
@@ -70,13 +70,14 @@ animations = [{
 size = Vector2(11.1667, 11.8333)
 
 [node name="chargeshot_lv2" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(6, 6)
 script = ExtResource("1_bkydj")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4y8vj")
 animation = &"chargeshot_lv2_new"
-frame_progress = 0.130249
+frame_progress = 0.467547
 
 [node name="collision_monitor" type="Area2D" parent="."]
 collision_mask = 5

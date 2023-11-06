@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dejk0u2e8pqpm"]
+[gd_scene load_steps=7 format=3 uid="uid://dejk0u2e8pqpm"]
 
 [ext_resource type="Script" path="res://miscellenaous/small_health_capsule.gd" id="1_f34yw"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_nroca"]
 
+[sub_resource type="Animation" id="Animation_bgrr7"]
+resource_name = "active"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_os77c"]
+_data = {
+"active": SubResource("Animation_bgrr7")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nakms"]
 size = Vector2(8, 8)
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_evg4h"]
-length = 4.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_8epf5"]
+radius = 4.05517
 
 [node name="small_health_capsule" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -15,12 +37,17 @@ collision_layer = 0
 script = ExtResource("1_f34yw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "active"
+libraries = {
+"": SubResource("AnimationLibrary_os77c")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nroca")
 hframes = 13
+frame = 1
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
 collision_layer = 2
 collision_mask = 2
 
@@ -28,6 +55,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_nakms")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("SeparationRayShape2D_evg4h")
+shape = SubResource("CircleShape2D_8epf5")
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

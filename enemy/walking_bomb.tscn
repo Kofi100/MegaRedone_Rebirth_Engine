@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bh0igfh3wr8uf"]
+[gd_scene load_steps=17 format=3 uid="uid://bh0igfh3wr8uf"]
 
 [ext_resource type="Script" path="res://enemy/walking_bomb.gd" id="1_60goj"]
 [ext_resource type="Texture2D" uid="uid://brb834rh55occ" path="res://assets/sprites/enemies/walking bomb.png" id="1_auwyg"]
+[ext_resource type="Texture2D" uid="uid://c3pajt1rftd0w" path="res://assets/sprites/miscelleaneous/mm6_death_animations.png" id="3_oqdro"]
+[ext_resource type="Script" path="res://enemy/walking_bomb_explosion_container.gd" id="4_5jrmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yybr"]
 atlas = ExtResource("1_auwyg")
@@ -64,11 +66,32 @@ size = Vector2(18.6667, 20.6667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67w4b"]
 size = Vector2(17.6667, 18.6667)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a72r4"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e27e5"]
+emission_shape = 1
+emission_sphere_radius = 23.4
+particle_flag_disable_z = true
+gravity = Vector3(0, -100, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 3.0
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ln8f8"]
+radius = 29.1986
+
 [node name="walking_bomb" type="CharacterBody2D"]
 scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_60goj")
-SPEED = 12000.0
+SPEED = 8000.0
 JUMP_VELOCITY = -500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -92,6 +115,26 @@ shape = SubResource("RectangleShape2D_67w4b")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.333344, 5.33333)
 scale = Vector2(11.3, 6.53333)
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_a72r4")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_e27e5")
+texture = ExtResource("3_oqdro")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.25
+
+[node name="explosion_container" type="CharacterBody2D" parent="."]
+script = ExtResource("4_5jrmp")
+
+[node name="explosion_hitbox" type="Area2D" parent="explosion_container" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="explosion_container/explosion_hitbox"]
+shape = SubResource("CircleShape2D_ln8f8")
+disabled = true
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

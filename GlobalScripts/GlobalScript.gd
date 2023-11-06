@@ -12,6 +12,7 @@ var max_health=30
 var scene_to_be_loaded_index:int
 var weapon_number=0
 var spawn_collectable_no:int=0
+var spawn_enemy=true
 func _ready():
 	pass # Replace with function body.
 
@@ -25,4 +26,6 @@ func _process(_delta):
 		if playerhitcooldowntimer==100:
 			playerhitcooldowntimer=0
 			playerhasbeenhit=false
+	if health>=max_health:
+		health=max_health
 	#print('GlobalScript:prev.health,current health:',GlobalScript.previous_health,',,, ',GlobalScript.health)
