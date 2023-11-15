@@ -62,6 +62,9 @@ position = Vector2(-11, -2.66667)
 [node name="right" type="Marker2D" parent="shoot_pos"]
 position = Vector2(9.66667, -2.66667)
 
+[node name="up" type="Marker2D" parent="shoot_pos"]
+position = Vector2(-0.333333, -12)
+
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 6
 collision_mask = 6

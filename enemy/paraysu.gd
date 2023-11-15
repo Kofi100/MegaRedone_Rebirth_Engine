@@ -27,10 +27,12 @@ func _physics_process(delta):
 			if animation_player.current_animation!='parcheute _open':
 				animation_player.play("parcheute _open")
 				velocity.y=0
+				gravity=0
 		'fall_slow':
+			gravity=10
 			velocity.x=SPEED*delta
 			animation_player.play("slow_fall")
-			velocity.y=1000*delta
+			#velocity.y=-10*delta
 	move_and_slide()
 
 

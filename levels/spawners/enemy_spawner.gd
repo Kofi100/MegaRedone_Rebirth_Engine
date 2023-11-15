@@ -33,17 +33,17 @@ var has_enemy_spawned=false
 func _process(delta):
 	if visibility:
 		for i in disappear_nodes:
-			if disappear_nodes.has(i):
+			if disappear_nodes.has(i) and i<=4:
 				var node=get_node(disappear_nodes[i])
-				node.visible=true
+				node.visible=true;#print(i)
 			
-			if i==5:
-				i=1
+#			if i==5:
+#				i=1
 	elif not visibility:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i):
 				var node=get_node(disappear_nodes[i])
-				node.visible=false
+				node.visible=false;print(i)
 			if i==5:
 				i=1
 #	for i in disappear_nodes:

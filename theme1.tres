@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://deia2cj2p3mch"]
+
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="1_203gc"]
+
+[resource]
+default_font = ExtResource("1_203gc")
+Label/fonts/font = ExtResource("1_203gc")

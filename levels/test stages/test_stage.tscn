@@ -117,8 +117,8 @@ editor_draw_limits = true
 [node name="all_enemies" type="Node2D" parent="."]
 
 [node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
-position = Vector2(826, 361)
-enemy_to_spawn = "paraysu"
+position = Vector2(770, 641)
+enemy_to_spawn = "new_shotman"
 visibility = true
 
 [node name="all_collectables" type="Node2D" parent="."]

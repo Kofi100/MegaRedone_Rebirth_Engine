@@ -6,17 +6,23 @@ var pause_input=false;var color
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	color=$ColorRect.color
+	color=$fade_out_rectangle.color
 	print(color)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)
 	#print($map.get_size())
 	$pause_screen_setup/ProgressBar.value=GlobalScript.health
 	health_bar.value=GlobalScript.health;health_bar.max_value=GlobalScript.max_health
 	$pause_screen_setup/ProgressBar.max_value=GlobalScript.max_health
 	$pause_screen_setup/e_tank_left.text=str(GlobalScript.energy_tank_no)
 	weapon_energy_update()
+	if GlobalScript.health<=0:
+		
+		if $fade_out_effect/AnimationPlayer.current_animation!='fade_out':
+			#$fade_out_effect.visible=true
+			$fade_out_effect/AnimationPlayer.play("fade_out")
 	if get_tree().paused:
 		$map.visible=false
 	else:
@@ -32,17 +38,17 @@ func _process(_delta):
 				get_tree().paused=true
 				$pause_menu_sound.play()
 				var fade_in_tween=create_tween()#this creates a tween which creates a dim effect for the pause screen
-				fade_in_tween.tween_property($ColorRect,"color",Color(0,0,0,0),.2)
+				fade_in_tween.tween_property($fade_out_rectangle,"color",Color(0,0,0,0),.2)
 			elif get_tree().paused==true:
 				get_tree().paused=false
 	if get_tree().paused:
 		$pause_screen_setup.visible=true
 		
-		$ColorRect.visible=true
+		$fade_out_rectangle.visible=true
 	else:
 		$pause_screen_setup.visible=false
-		$ColorRect.visible=false
-		$ColorRect.color=color
+		$fade_out_rectangle.visible=false
+		$fade_out_rectangle.color=color
 	if get_tree().paused:
 		
 		if Input.is_action_just_pressed("move_left"):
@@ -100,4 +106,27 @@ func weapon_energy_update():
 	match GlobalScript.weapon_number:
 		1:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon1energy
 		2:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon2energy
-		
+	
+	update_energy_pause_menu()
+
+func update_energy_pause_menu():
+	$pause_screen_setup/weapons/mm_buster/ProgressBar.ratio=1
+	$pause_screen_setup/weapons/rush_coil/ProgressBar.value=MegamanAndItems.weapon1energy;$pause_screen_setup/weapons/rush_coil/ProgressBar.max_value=30
+	$pause_screen_setup/weapons/rush_jet/ProgressBar.value=MegamanAndItems.weapon2energy;$pause_screen_setup/weapons/rush_jet/ProgressBar.max_value=30
+
+
+func _on_quit_button_pressed():
+	get_tree().quit(0)
+
+
+func _on_go_to_menu_btn_pressed():
+	$pause_screen_setup/ConfirmationDialog.show()
+
+
+func _on_confirmation_dialog_confirmed():
+	get_tree().change_scene_to_file('res://levels/main_menu.tscn')
+	get_tree().paused=false
+
+
+func _on_confirmation_dialog_canceled():
+	$pause_screen_setup/ConfirmationDialog.hide()

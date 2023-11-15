@@ -101,7 +101,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qj2ij"]
-size = Vector2(20, 24)
+size = Vector2(20, 23)
 
 [node name="hologran" type="CharacterBody2D"]
 z_index = 1
@@ -129,8 +129,8 @@ offset_right = 19.0
 offset_bottom = 21.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="bulb"]
-position = Vector2(-35.5, -4.76837e-07)
-scale = Vector2(5.75, 2.1)
+position = Vector2(-40.6667, -4.76837e-07)
+scale = Vector2(5.23333, 2.1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="bulb"]
 libraries = {
@@ -152,7 +152,7 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bulb/hitbox"]
-position = Vector2(0, -1)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_qj2ij")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

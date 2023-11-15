@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=24 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -7,8 +7,19 @@
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_g1yve"]
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
+[ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="6_vmhtx"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
+shader = ExtResource("9_1ufh6")
+shader_parameter/originalbodycolor = null
+shader_parameter/originalbodycolorii = null
+shader_parameter/originaloutlinecolor = Color(0.545098, 0.545098, 0.545098, 1)
+shader_parameter/bodycolori = null
+shader_parameter/bodycolorii = null
+shader_parameter/outlinecolor = Color(0, 0, 0.996078, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -80,20 +91,55 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_q5jc1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
-shader = ExtResource("9_1ufh6")
-shader_parameter/originalbodycolor = null
-shader_parameter/originalbodycolorii = null
-shader_parameter/originaloutlinecolor = Color(0.545098, 0.545098, 0.545098, 1)
-shader_parameter/bodycolori = null
-shader_parameter/bodycolorii = null
-shader_parameter/outlinecolor = Color(0, 0, 0.996078, 1)
+[sub_resource type="Animation" id="Animation_nxwht"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phch0"]
+_data = {
+"fade_out": SubResource("Animation_nxwht")
+}
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
 script = ExtResource("1_32714")
+
+[node name="weapon_energy" type="ProgressBar" parent="."]
+modulate = Color(1, 0.0156863, 0.109804, 1)
+material = SubResource("ShaderMaterial_be7r0")
+offset_left = 51.0
+offset_top = 1.0
+offset_right = 198.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("5_g1yve")
+max_value = 30.0
+value = 30.0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 visible = false
@@ -110,7 +156,7 @@ max_value = 20.0
 value = 20.0
 fill_mode = 3
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="fade_out_rectangle" type="ColorRect" parent="."]
 visible = false
 z_index = 1
 offset_right = 700.0
@@ -118,7 +164,6 @@ offset_bottom = 699.0
 color = Color(0, 0, 0, 1)
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_jxh0c")
 centered = false
 
@@ -182,6 +227,111 @@ offset_bottom = 664.0
 theme_override_fonts/font = ExtResource("5_g1yve")
 value = 25.0
 
+[node name="weapons" type="Node2D" parent="pause_screen_setup"]
+
+[node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(63, 184)
+scale = Vector2(3, 3)
+texture = ExtResource("6_vmhtx")
+hframes = 4
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/mm_buster"]
+offset_left = -11.25
+offset_top = 8.5
+offset_right = 82.75
+offset_bottom = 31.5
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "Buster"
+
+[node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup/weapons/mm_buster"]
+offset_left = 10.25
+offset_top = -6.5
+offset_right = 141.25
+offset_bottom = 20.5
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+value = 40.0
+
+[node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(63, 254)
+scale = Vector2(3, 3)
+texture = ExtResource("6_vmhtx")
+hframes = 4
+frame = 1
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_coil"]
+offset_left = -9.75
+offset_top = 8.5
+offset_right = 84.25
+offset_bottom = 31.5
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "R.coil"
+
+[node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
+offset_left = 10.25
+offset_top = -6.5
+offset_right = 141.25
+offset_bottom = 20.5
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+value = 40.0
+
+[node name="rush_jet" type="Sprite2D" parent="pause_screen_setup/weapons"]
+position = Vector2(65, 326)
+scale = Vector2(3, 3)
+texture = ExtResource("6_vmhtx")
+hframes = 4
+frame = 2
+
+[node name="Label" type="Label" parent="pause_screen_setup/weapons/rush_jet"]
+offset_left = -8.0
+offset_top = 8.5
+offset_right = 86.0
+offset_bottom = 31.5
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("7_ixl55")
+theme_override_fonts/font = ExtResource("5_g1yve")
+text = "R.jet"
+
+[node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
+offset_left = 10.25
+offset_top = -6.5
+offset_right = 141.25
+offset_bottom = 20.5
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+value = 40.0
+
+[node name="quit_button" type="Button" parent="pause_screen_setup"]
+offset_left = 583.0
+offset_top = 417.0
+offset_right = 647.0
+offset_bottom = 441.0
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("7_ixl55")
+text = "quit"
+
+[node name="go_to_menu_btn" type="Button" parent="pause_screen_setup"]
+offset_left = 463.0
+offset_top = 385.0
+offset_right = 609.0
+offset_bottom = 409.0
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("7_ixl55")
+text = "go to menu"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
+title = "Leaving..."
+size = Vector2i(420, 100)
+theme = ExtResource("7_ixl55")
+ok_button_text = "Yes"
+dialog_text = "Are You Sure You Want To Quit?"
+cancel_button_text = "No"
+
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")
 max_distance = 1e+16
@@ -193,18 +343,8 @@ max_distance = 1e+15
 [node name="increase_health" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_80bcg")
 
-[node name="weapon_energy" type="ProgressBar" parent="."]
-modulate = Color(1, 0.0156863, 0.109804, 1)
-material = SubResource("ShaderMaterial_be7r0")
-offset_left = 51.0
-offset_top = 1.0
-offset_right = 198.0
-offset_bottom = 28.0
-theme_override_fonts/font = ExtResource("5_g1yve")
-max_value = 30.0
-value = 30.0
-
 [node name="map" type="ColorRect" parent="."]
+visible = false
 offset_left = 474.0
 offset_top = 4.0
 offset_right = 674.0
@@ -218,4 +358,19 @@ offset_right = 25.0
 offset_bottom = 26.0
 color = Color(1, 0.054902, 0, 1)
 
+[node name="fade_out_effect" type="ColorRect" parent="."]
+visible = false
+offset_right = 695.0
+offset_bottom = 710.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
+libraries = {
+"": SubResource("AnimationLibrary_phch0")
+}
+
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="pressed" from="pause_screen_setup/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="pause_screen_setup/go_to_menu_btn" to="." method="_on_go_to_menu_btn_pressed"]
+[connection signal="canceled" from="pause_screen_setup/ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="pause_screen_setup/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

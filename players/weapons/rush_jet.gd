@@ -8,6 +8,9 @@ var state:String="spawn_in"
 
 func _ready():
 	state="spawn_in"
+	var tween=create_tween()
+	tween.tween_property(self,'position',Vector2(GlobalScript.playerposx,GlobalScript.playerposy),1)
+	tween.connect('finished',tween_end)
 	$CollisionShape2D.disabled=true
 func _physics_process(delta):
 	# Add the gravity.
@@ -18,10 +21,10 @@ func _physics_process(delta):
 		"spawn_in":
 			#print('spawn in')
 			animated_sprite_2d.play("spawn")
-			velocity.y=10000*delta
-			if GlobalScript.playerposx>=global_position.x:
-				state="ready"
-				$AnimatedSprite2D.play("wait")
+			#velocity.y=10000*delta
+			#if GlobalScript.playerposx>=global_position.x:
+				#state="ready"
+				#$AnimatedSprite2D.play("wait")
 			move_and_slide()
 		"spawn_out":
 			animated_sprite_2d.play("spawn")
@@ -29,9 +32,9 @@ func _physics_process(delta):
 			move_and_slide()
 		"ready":
 			$CollisionShape2D.disabled=false
-			if player_on_top:
+			if player_on_top and megaman:
 				megaman.position=Vector2(global_position.x,global_position.y-40)
-				
+				#megaman.velocity.x=0
 				#global_position.x=GlobalScript.playerposx
 				#velocity.x=4000*delta
 				var direction = Input.get_axis("move_left", "move_right")
@@ -71,3 +74,7 @@ func play_animations():
 	animated_sprite_2d.play("jet")
 
 func delete():queue_free()
+
+func tween_end():
+	state="ready"
+	$AnimatedSprite2D.play("wait")

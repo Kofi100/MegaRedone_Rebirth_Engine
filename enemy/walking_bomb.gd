@@ -39,8 +39,12 @@ func _physics_process(delta):
 				animated_sprite_2d.play('jump')
 			if is_on_floor() and velocity.y>=0:
 				state='walk'
+		'stop':
+			velocity.x=0
 	
 	if health<=0:
+		state='stop'
+		#velocity.x=0
 		countdown_delete+=1
 		$explosion.set_emitting(true)#emit_particle()
 		$explosion_container/explosion_hitbox/CollisionShape2D2.disabled=false

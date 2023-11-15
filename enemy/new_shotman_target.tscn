@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d13wql1y5gyqh"]
+
+[ext_resource type="Script" path="res://enemy/new_shotman_target.gd" id="1_h4tfj"]
+
+[node name="target" type="ColorRect"]
+visible = false
+offset_right = 5.0
+offset_bottom = 5.0
+script = ExtResource("1_h4tfj")

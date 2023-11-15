@@ -31,11 +31,28 @@ var rush_coil=preload("res://players/weapons/rush_coil.tscn");var rush_coil_inst
 var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
 func _ready():
+	MegamanAndItems.charge_timer=0
+	GlobalScript.weapon_number=0
 	GlobalScript.health=GlobalScript.max_health
 	$weapon_display.visible=false
+	$player_camera.position_smoothing_enabled=false
 var onrush=false
 var switch_state=0
 func _physics_process(delta):
+	if $timer_switch_cameras.time_left>0:
+		$player_camera.position_smoothing_enabled=true
+		stop=true
+		if velocity.x>0:
+			trans_right=true
+		elif velocity.x<0:
+			trans_left=true
+		elif velocity.y>0:
+			trans_down=true
+		elif velocity.y<0:
+			trans_up=true
+
+	if Input.is_action_just_pressed("die_debug"):
+		GlobalScript.health=0
 	GlobalScript.playerposx=global_position.x
 	$charge_timer.text=str(MegamanAndItems.charge_timer)
 	$speed.text=str(SPEED)
@@ -99,7 +116,7 @@ func _physics_process(delta):
 			$hitbox/CollisionShape2D.disabled=true
 		elif not GlobalScript.playerhasbeenhit:
 			$hitbox/CollisionShape2D.disabled=false
-		#change_collisions()
+		change_collisions()
 		if Input.is_action_just_pressed("switch_weapon_left"):
 			GlobalScript.weapon_number-=1
 			$weapon_display.visible=true
@@ -195,10 +212,12 @@ func _physics_process(delta):
 						velocity.y=0
 				move_and_slide()
 				if GlobalScript.health<=0:
-					$restart_timer.start(5)
+					$restart_timer.start(2)
 					is_dead=true
 					$all_sounds/dead.play()
 			elif onrush==true:
+				velocity.x=0
+				MegamanAndItems.charge_timer=clampi(MegamanAndItems.charge_timer,0,5)
 				shoot_and_charge()
 				chargeeffect()
 				if $anim.animation=="shoot_idle":
@@ -511,9 +530,10 @@ func create_weapons():
 					rush_jet_instance=rush_jet.instantiate()
 					get_parent().add_child(rush_jet_instance)
 					if anim.flip_h==true:
-						rush_jet_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
+						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)#+50
 					elif anim.flip_h==false:
-						rush_jet_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
+						rush_jet_instance.global_position=Vector2(global_position.x
+						,global_position.y-100)
 
 func _on_anim_animation_finished():
 	if $anim.animation=="shoot_run":
@@ -587,7 +607,7 @@ func _on_restart_timer_timeout():
 
 func _on_zone_body_entered(body):
 	pass
-func change_collisions():
+func change_collisions_old():
 	if anim.animation==("jump"):
 		if anim.flip_h==true:
 			$CollisionShape2D.position=Vector2(10.333,-2.667)
@@ -604,3 +624,14 @@ func delete_weapons():
 		get_tree().call_group('rush_coil','delete')
 	elif GlobalScript.weapon_number!=2:
 		get_tree().call_group('rush_jet','delete')
+
+
+func _on_timer_switch_cameras_timeout():
+	$player_camera.position_smoothing_enabled=false
+	stop=false
+	trans_left=false;trans_right=false;trans_up=false;trans_down=false
+func change_collisions():
+	if anim.animation=='dash':
+		$AnimationPlayer.play("dash")
+	else:
+		$AnimationPlayer.play("others")

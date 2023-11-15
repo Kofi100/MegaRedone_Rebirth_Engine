@@ -24,6 +24,7 @@ func _on_z_2_body_entered(body):
 	if body.is_in_group("player"):
 		pass
 		StageFunctions.switch_camera(player_cam,camera_2)
+		$megaman/timer_switch_cameras.start()
 
 
 func _on_area_2d_body_entered(body):
@@ -45,6 +46,7 @@ func _on_area_2d_body_exited(body):
 func _on_z_3_body_entered(body):
 	if body.is_in_group("player"):
 		StageFunctions.switch_camera(player_cam,camera_3)
+		$megaman/timer_switch_cameras.start()
 
 
 func _on_bgm_stage_1_finished():

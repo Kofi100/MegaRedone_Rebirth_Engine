@@ -12,7 +12,7 @@ func _ready():
 	playerdamagevalue=4
 	#enemyreceivedamagevalue=3
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	spawn_collectables()
 	if health<=0:
 		get_parent().queue_free()

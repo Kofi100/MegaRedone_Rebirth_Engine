@@ -64,6 +64,7 @@ size = Vector2(20, 8.66667)
 
 [node name="rush_jet" type="CharacterBody2D" groups=["rush_jet"]]
 scale = Vector2(3, 3)
+collision_layer = 0
 script = ExtResource("1_qavoq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -75,7 +76,7 @@ animation = &"spawn"
 position = Vector2(-3.16667, 5.16667)
 shape = SubResource("RectangleShape2D_sdbox")
 
-[node name="detect_megaman" type="Area2D" parent="." groups=["rushjet_"]]
+[node name="detect_megaman" type="Area2D" parent="." groups=["rushjet"]]
 collision_layer = 2
 collision_mask = 2
 

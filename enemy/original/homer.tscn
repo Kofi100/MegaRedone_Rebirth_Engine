@@ -32,6 +32,7 @@ size = Vector2(12, 25)
 size = Vector2(9, 25)
 
 [node name="homer" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_bcwbf")

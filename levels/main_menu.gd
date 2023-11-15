@@ -27,3 +27,11 @@ func _on_test_stage_pressed():
 func _on_shadow_man_stage_pressed():
 	get_tree().change_scene_to_file("res://levels/loading_screen.tscn")
 	GlobalScript.scene_to_be_loaded_index=2
+
+
+func _on_test_stage_mouse_entered():
+	$AudioStreamPlayer.play()
+func _on_stage_1_mouse_entered():
+	$AudioStreamPlayer.play()
+func _on_shadow_man_stage_mouse_entered():
+	$AudioStreamPlayer.play()

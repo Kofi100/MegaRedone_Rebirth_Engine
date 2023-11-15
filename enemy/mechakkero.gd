@@ -54,6 +54,21 @@ func _physics_process(delta):
 					velocity.x=-SPEED*delta
 				elif distance>0:
 					velocity.x=SPEED*delta
+		'jump_away':
+			if animated_sprite_2d.animation!='jump':
+				animated_sprite_2d.play("jump")
+			if is_on_floor():
+				animated_sprite_2d.frame=0
+			else:
+				animated_sprite_2d.frame=1
+			if is_on_floor() and velocity.y>=0:
+				state='on_ground'
+			if not is_on_floor()  and not jumped:
+				jumped=true
+				if distance<=0:
+					velocity.x=SPEED*delta
+				elif distance>0:
+					velocity.x=-SPEED*delta
 	spawn_collectables()
 	move_and_slide()
 
@@ -65,15 +80,12 @@ func _on_animated_sprite_2d_animation_finished():
 			timer_to_jump.start()
 
 
-func _on_timer_to_jump_timeout():
-	velocity.y=JUMP_VELOCITY
-	state='jump'
-	print('mechakkero:its time!')
-
-func _on_visible_on_screen_notifier_2d_screen_entered():
-	pass
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+
+
+func _on_timer_to_jump_timeout():
+	state='jump'
+	velocity.y=JUMP_VELOCITY
