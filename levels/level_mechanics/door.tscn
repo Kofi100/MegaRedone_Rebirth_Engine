@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://bg1ncj10ftjy5"]
+
+[ext_resource type="Script" path="res://levels/level_mechanics/door.gd" id="1_5oyk0"]
+[ext_resource type="Texture2D" uid="uid://d0pu7hfmivucq" path="res://assets/sprites/miscelleaneous/door_spritesheet.png" id="1_uf0xv"]
+[ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
+shader = ExtResource("2_k24ax")
+shader_parameter/whitecolor = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/greycolor = Color(0.737255, 0.737255, 0.737255, 1)
+shader_parameter/whiterep = null
+shader_parameter/greyrep = Color(0, 0.768627, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
+atlas = ExtResource("1_uf0xv")
+region = Rect2(0, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxwam"]
+atlas = ExtResource("1_uf0xv")
+region = Rect2(16, 0, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vthrf"]
+atlas = ExtResource("1_uf0xv")
+region = Rect2(0, 65, 16, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5tg4"]
+atlas = ExtResource("1_uf0xv")
+region = Rect2(16, 65, 16, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3o1kk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxwam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vthrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5tg4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"open_close",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtws"]
+shader = ExtResource("2_k24ax")
+shader_parameter/whitecolor = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/greycolor = Color(0.737255, 0.737255, 0.737255, 1)
+shader_parameter/whiterep = null
+shader_parameter/greyrep = Color(0, 0.74902, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt0ex"]
+size = Vector2(32, 64.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1aof"]
+size = Vector2(7.66667, 35.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hyw5"]
+size = Vector2(7.66667, 64.3333)
+
+[node name="door" type="StaticBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_5oyk0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ssvhf")
+sprite_frames = SubResource("SpriteFrames_3o1kk")
+animation = &"open_close"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ydtws")
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_3o1kk")
+animation = &"open_close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, 1.90735e-06)
+shape = SubResource("RectangleShape2D_wt0ex")
+
+[node name="detect_left" type="Area2D" parent="."]
+position = Vector2(-18.3333, -0.666667)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_left"]
+position = Vector2(6.16667, 15.1667)
+shape = SubResource("RectangleShape2D_k1aof")
+
+[node name="detect_right" type="Area2D" parent="."]
+position = Vector2(31, -0.666667)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detect_right"]
+position = Vector2(12.3333, 0.333333)
+shape = SubResource("RectangleShape2D_1hyw5")
+
+[connection signal="body_entered" from="detect_left" to="." method="_on_detect_left_body_entered"]
+[connection signal="body_entered" from="detect_right" to="." method="_on_detect_right_body_entered"]
+[connection signal="body_exited" from="detect_right" to="." method="_on_detect_right_body_exited"]

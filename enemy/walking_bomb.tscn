@@ -43,7 +43,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -57,7 +57,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugmuu"]
@@ -96,8 +96,9 @@ JUMP_VELOCITY = -500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j0d1m")
-animation = &"walk"
-frame_progress = 0.655468
+animation = &"jump"
+frame = 2
+frame_progress = 1.0
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 6

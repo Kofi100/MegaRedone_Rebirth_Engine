@@ -9,9 +9,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
+	$hologram.global_position=Vector2(GlobalScript.playerposx-700,GlobalScript.playerposy-700)
 	if animation_player.current_animation!='activate':
-		$bulb.velocity.x=-speed*delta
+		$hologram/ParallaxBackground/ParallaxLayer/Sprite2D.visible=true
+		$bulb.velocity.x=-speed*delta;$hologram/ParallaxBackground/ParallaxLayer.motion_offset.x-=100*delta
 	else: $bulb.velocity.x=0
 	$bulb.move_and_slide()
 	$bulb/ColorRect.global_position=Vector2(GlobalScript.playerposx,GlobalScript.playerposy)
@@ -19,6 +20,8 @@ func _physics_process(delta):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	animation_player.play("about_to_leave")
+	$hologram/ParallaxBackground/ParallaxLayer/Sprite2D.visible=false
+	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 
 
 @warning_ignore("unused_parameter")

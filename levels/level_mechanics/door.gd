@@ -1,0 +1,45 @@
+extends StaticBody2D
+
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d_2 = $AnimatedSprite2D2
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	grepl=Vector4i(255,255,0,255)/255;wrepl=Vector4i(255,0,0,255)/255
+	change_color(animated_sprite_2d,grepl,wrepl)
+	if animated_sprite_2d.animation=='open_close':
+		if animated_sprite_2d.frame==4:
+			$CollisionShape2D.disabled=true
+		else:
+			$CollisionShape2D.disabled=false
+
+
+
+
+func _on_detect_left_body_entered(body):
+	if body.is_in_group('player'):
+		body.trans_right=true
+		animated_sprite_2d.play("open_close")
+		animated_sprite_2d_2.play("open_close")
+
+
+func _on_detect_right_body_entered(body):
+	if body.is_in_group('player'):
+		animated_sprite_2d.play_backwards("open_close")
+		animated_sprite_2d_2.play_backwards("open_close")
+
+func _on_detect_right_body_exited(body):
+	if body.is_in_group('player'):
+		body.trans_right=false
+var grepl:Vector4;var wrepl:Vector4;#var animated_sprite:AnimatedSprite2D
+func change_color(sprite:AnimatedSprite2D,grepl,wrepl):
+	pass
+	sprite.material.set_shader_parameter('greyrep',grepl)
+	sprite.material.set_shader_parameter('whiterep',wrepl)
+	print('Gray new:',grepl,'...,White new:',wrepl)

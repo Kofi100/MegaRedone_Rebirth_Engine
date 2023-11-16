@@ -54,7 +54,7 @@ met
 sniper_joe
 octopus_battery
 hologran
-paraysu"
+paraysu ; pickelman_bull"
 
 [node name="spawn_homer_timer" type="Timer" parent="."]
 one_shot = true

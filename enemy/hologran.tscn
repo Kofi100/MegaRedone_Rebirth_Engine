@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1me2bdf4ckac"]
+[gd_scene load_steps=11 format=3 uid="uid://c1me2bdf4ckac"]
 
 [ext_resource type="Script" path="res://enemy/hologran.gd" id="1_wvurm"]
 [ext_resource type="Script" path="res://enemy/hologran_bulb.gd" id="2_f3cic"]
+[ext_resource type="Texture2D" uid="uid://dx60lyjtlwgsr" path="res://assets/sprites/enemies/hologran_hologram_stars_big.png" id="2_htfhn"]
 [ext_resource type="Texture2D" uid="uid://cu27we2mdatp6" path="res://assets/sprites/enemies/hologran.png" id="2_m10xw"]
 
 [sub_resource type="Animation" id="Animation_hygn4"]
@@ -115,7 +116,18 @@ offset_left = -513.0
 offset_top = -145.0
 offset_right = 551.0
 offset_bottom = 362.0
-color = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 0)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="hologram"]
+layer = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="hologram/ParallaxBackground"]
+motion_mirroring = Vector2(600, 563)
+
+[node name="Sprite2D" type="Sprite2D" parent="hologram/ParallaxBackground/ParallaxLayer"]
+position = Vector2(164, 277)
+scale = Vector2(3, 3)
+texture = ExtResource("2_htfhn")
 
 [node name="bulb" type="CharacterBody2D" parent="."]
 position = Vector2(0, 0.333333)
@@ -140,7 +152,6 @@ libraries = {
 [node name="hologran" type="Sprite2D" parent="bulb"]
 texture = ExtResource("2_m10xw")
 hframes = 3
-frame = 2
 
 [node name="timer" type="Timer" parent="bulb"]
 wait_time = 0.2

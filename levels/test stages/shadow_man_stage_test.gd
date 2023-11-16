@@ -8,14 +8,22 @@ extends Node2D
 @onready var camera_5 = $all_cameras/camera5
 @onready var camera_6 = $all_cameras/camera6
 @onready var camera_7 = $all_cameras/camera7
+@onready var camera_8 = $all_cameras/camera8
+@onready var camera_9 = $all_cameras/camera9
 
+var greyrep=Vector4(240,188,60,255)/255
+var whiterep=Vector4(252,252,252,255)/255
 var audio_streams={"shadow_man":preload("res://assets/music/Mega Man 3 (NES) Music - Shadow Man Stage.mp3")}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	StageFunctions.play_music_audioplayer(background_music,audio_streams.get("shadow_man"),0)
-
+	print(greyrep,'....',whiterep)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#Door.
+	#Door.change_color($all_doors/door/AnimatedSprite2D,greyrep,whiterep);
+	#Door.
+	#Door.change_color($all_doors/door/AnimatedSprite2D2,greyrep,whiterep)
 	var new_pos=move_toward($missile.global_position.x,GlobalScript.playerposx,100*delta)
 	var new_pos2=move_toward($missile.global_position.y,GlobalScript.playerposy,100*delta)
 	$missile.global_position.x=new_pos;$missile.global_position.y=new_pos2
@@ -99,3 +107,18 @@ func _on_zone_7_body_entered(body):
 		StageFunctions.switch_camera(player_camera,camera_7)
 		timer_switch_cameras.start()
 		player_camera.position_smoothing_enabled=true
+
+
+func _on_zone_8_body_entered(body):
+	if body.is_in_group("player"):
+		StageFunctions.switch_camera(player_camera,camera_8)
+		timer_switch_cameras.start()
+		player_camera.position_smoothing_enabled=true
+
+
+func _on_zone_9_body_entered(body):
+	if body.is_in_group("player"):
+		StageFunctions.switch_camera(player_camera,camera_9)
+		timer_switch_cameras.start()
+		player_camera.position_smoothing_enabled=true
+

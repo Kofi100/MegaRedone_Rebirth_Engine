@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5ic628g6wkd0"]
+
+[ext_resource type="Texture2D" uid="uid://duvtgahp3oxfo" path="res://assets/sprites/enemies/pickelman bull.png" id="1_8vffw"]
+[ext_resource type="Script" path="res://enemy/pickelman_bull.gd" id="1_cq74m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pola7"]
+atlas = ExtResource("1_8vffw")
+region = Rect2(0, 0, 41, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxggu"]
+atlas = ExtResource("1_8vffw")
+region = Rect2(41, 0, 41, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rg046"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pola7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxggu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj2qi"]
+size = Vector2(29.6667, 41.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3r3q"]
+size = Vector2(16, 21.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30vif"]
+size = Vector2(28.6667, 41.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euf1g"]
+size = Vector2(16, 21.3333)
+
+[node name="pickelman_bull" type="CharacterBody2D"]
+position = Vector2(545, 186)
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_cq74m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rg046")
+frame_progress = 0.390876
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 10.8333)
+shape = SubResource("RectangleShape2D_yj2qi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(5.66667, -20.3333)
+shape = SubResource("RectangleShape2D_h3r3q")
+
+[node name="speed_change_timer" type="Timer" parent="."]
+
+[node name="move_front_back_timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.333328, 10.8333)
+shape = SubResource("RectangleShape2D_30vif")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(5.66667, -20.6667)
+shape = SubResource("RectangleShape2D_euf1g")
+
+[connection signal="timeout" from="move_front_back_timer" to="." method="_on_move_front_back_timer_timeout"]

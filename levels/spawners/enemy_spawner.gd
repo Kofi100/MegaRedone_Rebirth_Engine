@@ -16,7 +16,8 @@ var enemy_dictionary:Dictionary={
 	'octopus_battery':preload('res://enemy/octopus_battery.tscn'),
 	'hologran':preload('res://enemy/hologran.tscn'),
 	'homer':preload('res://enemy/original/homer.tscn'),
-	'paraysu':preload('res://enemy/paraysu.tscn')
+	'paraysu':preload('res://enemy/paraysu.tscn'),
+	'pickelman_bull':preload('res://enemy/pickelman_bull.tscn')
 }
 var disappear_nodes={
 	1:'Sprite2D',
@@ -43,7 +44,7 @@ func _process(delta):
 		for i in disappear_nodes:
 			if disappear_nodes.has(i):
 				var node=get_node(disappear_nodes[i])
-				node.visible=false;print(i)
+				node.visible=false;#print(i)
 			if i==5:
 				i=1
 #	for i in disappear_nodes:

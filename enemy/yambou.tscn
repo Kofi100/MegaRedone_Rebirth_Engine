@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk8wlxx8w3w40"]
+
+[ext_resource type="Texture2D" uid="uid://83uvsffcabfi" path="res://assets/sprites/enemies/yambou.png" id="1_314ff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii10i"]
+atlas = ExtResource("1_314ff")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yydeq"]
+atlas = ExtResource("1_314ff")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kgsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii10i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yydeq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="yambou" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6kgsv")
