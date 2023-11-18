@@ -30,7 +30,13 @@ var chargeshot_lv2=preload("res://players/projectiles/chargeshot_lv_2.tscn");var
 var rush_coil=preload("res://players/weapons/rush_coil.tscn");var rush_coil_instance
 var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
+
 func _ready():
+	if ! GlobalScript.restarted_level:
+		GlobalScript.reset_level_timer()
+		GlobalScript.start_level_timer()
+	else:
+		GlobalScript.start_level_timer()
 	MegamanAndItems.charge_timer=0
 	GlobalScript.weapon_number=0
 	GlobalScript.health=GlobalScript.max_health
@@ -190,8 +196,10 @@ func _physics_process(delta):
 				elif climb==true:
 					if Input.is_action_pressed("jump"):
 						climb=false
-					velocity.x=0
-					global_position.x=ladder_collider.global_position.x
+					
+					if ladder_collider!=null:
+						velocity.x=0
+						global_position.x=ladder_collider.global_position.x
 					#print("megaman:climb:true")
 					play_animation_ladder()
 					shoot_and_charge_ladder()
@@ -212,8 +220,11 @@ func _physics_process(delta):
 						velocity.y=0
 				move_and_slide()
 				if GlobalScript.health<=0:
-					$restart_timer.start(2)
+					$restart_timer.start(3)
 					is_dead=true
+					var explosion_scene=preload('res://miscellenaous/effects/explosion_scene.tscn')
+					var explosion_scene_instance_or_node=explosion_scene.instantiate()
+					get_parent().add_child(explosion_scene_instance_or_node);explosion_scene_instance_or_node.global_position=global_position
 					$all_sounds/dead.play()
 			elif onrush==true:
 				velocity.x=0
@@ -245,12 +256,16 @@ func _physics_process(delta):
 			velocity=Vector2.ZERO
 	elif is_dead:
 		anim.visible=false
+		GlobalScript.restarted_level=true
+		GlobalScript.pause_level_timer()
 		$hitbox/CollisionShape2D.disabled=true
 		$CollisionShape2D.disabled=true
 
 var dead_effect_timer=0
 var stun_timer=0;var stun_speed=30000
 func stun(delta):
+	if velocity.y>0:
+		velocity.y=0
 	if is_on_floor():
 		anim.play("stun")
 	elif not is_on_floor():

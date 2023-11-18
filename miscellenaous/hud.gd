@@ -1,5 +1,10 @@
 extends CanvasLayer
 @onready var health_bar = $healthbar
+@export_category('timer')
+@onready  var minutes = $timer/minutes
+@onready var seconds = $timer/seconds
+@onready var millsecs = $timer/millsecs
+
 var selection_index=1;#var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 ##This boolean pauses all inputs to the HUD for some effects.
 var pause_input=false;var color
@@ -11,6 +16,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#round()
+	minutes.text=str(GlobalScript.minute_level)
+	seconds.text=str(float(GlobalScript.second_level))
+	millsecs.text=str(int(GlobalScript.milliseconds))
+	#millsecs=int()
 	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)
 	#print($map.get_size())
 	$pause_screen_setup/ProgressBar.value=GlobalScript.health
@@ -25,8 +35,12 @@ func _process(_delta):
 			$fade_out_effect/AnimationPlayer.play("fade_out")
 	if get_tree().paused:
 		$map.visible=false
+		GlobalScript.pause_level_timer()
+		$timer/seconds_timer.set_timer_process_callback(false)
 	else:
 		$map.visible=true
+		GlobalScript.start_level_timer()
+		$timer/seconds_timer.set_timer_process_callback(true)
 	
 	if selection_index<1:
 		selection_index=2
@@ -130,3 +144,8 @@ func _on_confirmation_dialog_confirmed():
 
 func _on_confirmation_dialog_canceled():
 	$pause_screen_setup/ConfirmationDialog.hide()
+
+
+func _on_seconds_timer_timeout():
+	#GlobalScript.second_level+=1
+	pass

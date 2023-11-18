@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1me2bdf4ckac"]
+[gd_scene load_steps=12 format=3 uid="uid://c1me2bdf4ckac"]
 
 [ext_resource type="Script" path="res://enemy/hologran.gd" id="1_wvurm"]
 [ext_resource type="Script" path="res://enemy/hologran_bulb.gd" id="2_f3cic"]
 [ext_resource type="Texture2D" uid="uid://dx60lyjtlwgsr" path="res://assets/sprites/enemies/hologran_hologram_stars_big.png" id="2_htfhn"]
 [ext_resource type="Texture2D" uid="uid://cu27we2mdatp6" path="res://assets/sprites/enemies/hologran.png" id="2_m10xw"]
+[ext_resource type="Texture2D" uid="uid://dgfrbg5u0vqxe" path="res://assets/sprites/enemies/hologran_hologram_stars_small.png" id="3_m5267"]
 
 [sub_resource type="Animation" id="Animation_hygn4"]
 resource_name = "about_to_leave"
@@ -128,6 +129,14 @@ motion_mirroring = Vector2(600, 563)
 position = Vector2(164, 277)
 scale = Vector2(3, 3)
 texture = ExtResource("2_htfhn")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="hologram/ParallaxBackground"]
+motion_mirroring = Vector2(601, 377)
+
+[node name="small_stars" type="Sprite2D" parent="hologram/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(288, 382)
+scale = Vector2(3, 3)
+texture = ExtResource("3_m5267")
 
 [node name="bulb" type="CharacterBody2D" parent="."]
 position = Vector2(0, 0.333333)

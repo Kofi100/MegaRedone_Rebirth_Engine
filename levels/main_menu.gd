@@ -4,6 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ResourceLoader.load_threaded_request("res://levels/test stages/stage_1.tscn")
+	GlobalScript.restarted_level=false
 #	var tween=create_tween()
 #	tween.tween_property($ColorRect,"color",Color(255,255,255,0),2)
 

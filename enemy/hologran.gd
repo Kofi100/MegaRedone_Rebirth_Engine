@@ -1,18 +1,25 @@
 extends enemy
 @onready var animation_player = $bulb/AnimationPlayer
+@onready var parallax_layer = $hologram/ParallaxBackground/ParallaxLayer
+@onready var parallax_layer_2 = $hologram/ParallaxBackground/ParallaxLayer2
 
 @export var speed=4000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_player.play("active")
+	parallax_layer.visible=false
+	parallax_layer_2.visible=false
 	#$bulb/ColorRect.visible=false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	$hologram.global_position=Vector2(GlobalScript.playerposx-700,GlobalScript.playerposy-700)
 	if animation_player.current_animation!='activate':
-		$hologram/ParallaxBackground/ParallaxLayer/Sprite2D.visible=true
-		$bulb.velocity.x=-speed*delta;$hologram/ParallaxBackground/ParallaxLayer.motion_offset.x-=100*delta
+		parallax_layer.visible=true
+		parallax_layer_2.visible=true
+		$bulb.velocity.x=-speed*delta;
+		$hologram/ParallaxBackground/ParallaxLayer.motion_offset.x-=100*delta
+		parallax_layer_2.motion_offset.x-=200*delta
 	else: $bulb.velocity.x=0
 	$bulb.move_and_slide()
 	$bulb/ColorRect.global_position=Vector2(GlobalScript.playerposx,GlobalScript.playerposy)

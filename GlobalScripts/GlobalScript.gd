@@ -13,12 +13,18 @@ var scene_to_be_loaded_index:int
 var weapon_number=0
 var spawn_collectable_no:int=0
 var spawn_enemy=true
+var level_timer_start=false
+var restarted_level=false
+var minute_level=0
+var second_level=0
+var milliseconds=0
+var total_time_seconds=0 #would be used to record how long you spent on a level
 func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if playerhasbeenhit:
 		#print('Globalscript:playerhasbeenhit:works')
 		
@@ -28,4 +34,26 @@ func _process(_delta):
 			playerhasbeenhit=false
 	if health>=max_health:
 		health=max_health
+	if level_timer_start:
+		second_level+=1*delta
+		total_time_seconds+=1*delta
+#		if milliseconds==100:
+#			second_level+=1
+		if second_level>=60:
+			minute_level+=1
+			second_level=0
+	
 	#print('GlobalScript:prev.health,current health:',GlobalScript.previous_health,',,, ',GlobalScript.health)
+
+func start_level_timer():
+	level_timer_start=true
+
+func reset_level_timer():
+	level_timer_start=false
+	total_time_seconds=0
+	second_level=0
+	minute_level=0
+	milliseconds=0
+	
+func pause_level_timer():
+	level_timer_start=false

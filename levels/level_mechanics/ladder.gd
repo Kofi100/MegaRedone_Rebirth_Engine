@@ -15,6 +15,7 @@ func _process(_delta):
 		pass
 	if on_top==true:
 		if Input.is_action_just_pressed("move_down"):
+			object.climb=true
 			topplatforms.set_collision_layer_value(4,false)
 	#print(get_collision_layer_value(4))
 
@@ -42,10 +43,11 @@ func _on_body_exited(body):
 			topplatforms.set_collision_layer_value(4,true)
 			#collision_shape.disabled=false
 
-var on_top=false
+var on_top=false;var object
 func _on_ontop_body_entered(body):
 	if body.is_in_group("player"):
 		on_top=true
+		object=body
 
 
 

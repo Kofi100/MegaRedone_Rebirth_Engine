@@ -33,3 +33,9 @@ func _on_move_front_back_timer_timeout():
 		SPEED=-abs(10000)
 	elif SPEED<0:
 		SPEED=abs(SPEED)
+
+
+func _on_hitbox_block_area_entered(area):
+	if area.is_in_group('player_projectiles'):
+		area.get_parent().state='blocked'
+		print('yh')

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk8wlxx8w3w40"]
+[gd_scene load_steps=7 format=3 uid="uid://dk8wlxx8w3w40"]
 
 [ext_resource type="Texture2D" uid="uid://83uvsffcabfi" path="res://assets/sprites/enemies/yambou.png" id="1_314ff"]
+[ext_resource type="Script" path="res://enemy/yambou.gd" id="1_enew8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii10i"]
 atlas = ExtResource("1_314ff")
@@ -21,11 +22,32 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pldad"]
+size = Vector2(28, 12.3333)
 
 [node name="yambou" type="CharacterBody2D"]
 scale = Vector2(3, 3)
+script = ExtResource("1_enew8")
+SPEED = 30000.0
+gravity = 10000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6kgsv")
+frame_progress = 0.31993
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(1.33333, 1.5)
+shape = SubResource("RectangleShape2D_pldad")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.166672, 0.499992)
+scale = Vector2(11.05, 7.18333)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

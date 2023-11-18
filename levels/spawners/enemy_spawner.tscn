@@ -53,7 +53,7 @@ walking_bomb
 met
 sniper_joe
 octopus_battery
-hologran
+hologran;yambou
 paraysu ; pickelman_bull"
 
 [node name="spawn_homer_timer" type="Timer" parent="."]

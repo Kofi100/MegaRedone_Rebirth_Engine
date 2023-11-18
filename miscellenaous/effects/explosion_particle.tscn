@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckck6sjdk5kv6"]
+
+[ext_resource type="Texture2D" uid="uid://c3pajt1rftd0w" path="res://assets/sprites/miscelleaneous/mm6_death_animations.png" id="1_kpgev"]
+[ext_resource type="Script" path="res://miscellenaous/effects/explosion_particle.gd" id="1_r48di"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veh6c"]
+atlas = ExtResource("1_kpgev")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxmrb"]
+atlas = ExtResource("1_kpgev")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tqp5"]
+atlas = ExtResource("1_kpgev")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iii2"]
+atlas = ExtResource("1_kpgev")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3phu"]
+atlas = ExtResource("1_kpgev")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppqlc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veh6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxmrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tqp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iii2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3phu")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[node name="explosion_particle" type="CharacterBody2D"]
+position = Vector2(345, 300)
+scale = Vector2(3, 3)
+script = ExtResource("1_r48di")
+SPEED = 5500.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-115, -100)
+sprite_frames = SubResource("SpriteFrames_ppqlc")
+animation = &"explosion"
+frame_progress = 0.443961

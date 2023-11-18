@@ -16,22 +16,27 @@ var whiterep=Vector4(252,252,252,255)/255
 var audio_streams={"shadow_man":preload("res://assets/music/Mega Man 3 (NES) Music - Shadow Man Stage.mp3")}
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	StageFunctions.play_music_audioplayer(background_music,audio_streams.get("shadow_man"),0)
 	print(greyrep,'....',whiterep)
+	$megaman.global_position=$Marker2D2.global_position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#Door.
 	#Door.change_color($all_doors/door/AnimatedSprite2D,greyrep,whiterep);
 	#Door.
 	#Door.change_color($all_doors/door/AnimatedSprite2D2,greyrep,whiterep)
-	var new_pos=move_toward($missile.global_position.x,GlobalScript.playerposx,100*delta)
-	var new_pos2=move_toward($missile.global_position.y,GlobalScript.playerposy,100*delta)
-	$missile.global_position.x=new_pos;$missile.global_position.y=new_pos2
+	######## moving missile codes #########
+	#var new_pos=move_toward($missile.global_position.x,GlobalScript.playerposx,100*delta)
+	#var new_pos2=move_toward($missile.global_position.y,GlobalScript.playerposy,100*delta)
+	#$missile.global_position.x=new_pos;$missile.global_position.y=new_pos2
+	##################
+	# code to find size of map and map it accordingly
 	#print($TileMap.get_used_rect())
 	#var tilesize=$TileMap.get_used_rect()
 	#var tsize=tilesize.size
 	#print($TileMap.get_used_rect().size/Vector2i($megaman/HUD/map.get_size()))
-	$megaman/HUD/map/player.position=Vector2(GlobalScript.playerposx/200,GlobalScript.playerposy/100)
+	$megaman/HUD/map/player.position=Vector2(GlobalScript.playerposx/(13440/200),GlobalScript.playerposy/(5527/100))
 	#var mega=get_parent().get_node("megaman")
 #	if mega:
 	if $timer_switch_cameras.time_left>0:
