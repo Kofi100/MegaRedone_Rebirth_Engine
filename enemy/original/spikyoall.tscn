@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvio6n4hx5rbd"]
+
+[ext_resource type="Texture2D" uid="uid://d2rv8j1k6d6y" path="res://assets/sprites/enemies/original/spikoall_mine.png" id="1_c117h"]
+[ext_resource type="Script" path="res://enemy/original/spikyoall.gd" id="1_ha4ij"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbwxb"]
+atlas = ExtResource("1_c117h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynntm"]
+atlas = ExtResource("1_c117h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlkrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbwxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynntm")
+}],
+"loop": true,
+"name": &"spikyoall",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vn81"]
+size = Vector2(16, 1.33333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olbuk"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_in6sc"]
+size = Vector2(128, 31.3333)
+
+[node name="spikyoall" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_ha4ij")
+speed_up = 12000
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_hlkrf")
+animation = &"spikyoall"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.666667)
+shape = SubResource("RectangleShape2D_8vn81")
+
+[node name="hitbox" type="Area2D" parent="." groups=["blockables", "enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_olbuk")
+
+[node name="check_for_hole_left" type="RayCast2D" parent="."]
+position = Vector2(-11, -12.6667)
+target_position = Vector2(0, 14.3333)
+
+[node name="check_for_hole_right" type="RayCast2D" parent="."]
+position = Vector2(11, -12.6667)
+target_position = Vector2(0, 14.3333)
+
+[node name="detect_player" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player"]
+position = Vector2(0, -15.6667)
+shape = SubResource("RectangleShape2D_in6sc")
+
+[node name="detect_player_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="detect_player" to="." method="_on_detect_player_body_entered"]
+[connection signal="timeout" from="detect_player_timer" to="." method="_on_detect_player_timer_timeout"]

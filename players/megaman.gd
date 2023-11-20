@@ -42,7 +42,7 @@ func _ready():
 	GlobalScript.health=GlobalScript.max_health
 	$weapon_display.visible=false
 	$player_camera.position_smoothing_enabled=false
-var onrush=false
+var onrush=false;var disable_input=false
 var switch_state=0
 func _physics_process(delta):
 	if $timer_switch_cameras.time_left>0:
@@ -154,7 +154,7 @@ func _physics_process(delta):
 						if not is_on_floor():
 							velocity.y += gravity * delta
 						var direction = Input.get_axis("move_left", "move_right")
-						if direction:
+						if direction and not disable_input:
 							move_an_inch_checker+=1
 							if not is_on_floor():
 								velocity.x = direction * SPEED *delta
@@ -186,11 +186,13 @@ func _physics_process(delta):
 						if stun_timer>1 and stun_timer<7:
 							#print(stun_timer)
 							stun(delta)
+							disable_input=true
 							
 						stun_timer+=1;#print(stun_timer,' ',GlobalScript.playerhitcooldowntimer)
 						if stun_timer==7:
 							stun_timer=0
 							stun_effect=false
+							disable_input=false
 					#This code uses a modulus of 5 to produce a blinking effect
 					
 				elif climb==true:
@@ -207,7 +209,7 @@ func _physics_process(delta):
 
 				#these codes are for playing animations
 					var direction=Input.get_axis("move_up","move_down")
-					if direction and anim.animation!="shoot_on_ladder":
+					if direction and anim.animation!="shoot_on_ladder" and not disable_input:
 						velocity.y=direction*7000*delta
 			#			if Input.is_action_pressed("move_up"):
 			#				velocity.y=-100
@@ -620,7 +622,7 @@ func _on_restart_timer_timeout():
 	get_tree().reload_current_scene()
 
 
-func _on_zone_body_entered(body):
+func _on_zone_body_entered(_body):
 	pass
 func change_collisions_old():
 	if anim.animation==("jump"):

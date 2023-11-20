@@ -10,9 +10,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	grepl=Vector4i(255,255,0,255)/255;wrepl=Vector4i(255,0,0,255)/255
-	change_color(animated_sprite_2d,grepl,wrepl)
+func _process(_delta):
+	#grepl=Vector4i(255,255,0,255)/255;wrepl=Vector4i(255,0,0,255)/255
+	#change_color(animated_sprite_2d,grepl,wrepl)
 	if animated_sprite_2d.animation=='open_close':
 		if animated_sprite_2d.frame==4:
 			$CollisionShape2D.disabled=true
@@ -37,8 +37,8 @@ func _on_detect_right_body_entered(body):
 func _on_detect_right_body_exited(body):
 	if body.is_in_group('player'):
 		body.trans_right=false
-var grepl:Vector4;var wrepl:Vector4;#var animated_sprite:AnimatedSprite2D
-func change_color(sprite:AnimatedSprite2D,grepl,wrepl):
+#var grepl:Vector4;var wrepl:Vector4;#var animated_sprite:AnimatedSprite2D
+func change_color(sprite:AnimatedSprite2D,grepl:Vector4,wrepl:Vector4):
 	pass
 	sprite.material.set_shader_parameter('greyrep',grepl)
 	sprite.material.set_shader_parameter('whiterep',wrepl)

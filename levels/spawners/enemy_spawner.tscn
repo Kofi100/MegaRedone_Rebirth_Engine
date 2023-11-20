@@ -52,9 +52,10 @@ peterchy
 walking_bomb
 met
 sniper_joe
-octopus_battery
+octopus_battery;
 hologran;yambou
-paraysu ; pickelman_bull"
+paraysu ; pickelman_bull
+spikyoall"
 
 [node name="spawn_homer_timer" type="Timer" parent="."]
 one_shot = true

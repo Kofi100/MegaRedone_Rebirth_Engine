@@ -18,7 +18,8 @@ var enemy_dictionary:Dictionary={
 	'homer':preload('res://enemy/original/homer.tscn'),
 	'paraysu':preload('res://enemy/paraysu.tscn'),
 	'pickelman_bull':preload('res://enemy/pickelman_bull.tscn'),
-	'yambou':preload('res://enemy/yambou.tscn')
+	'yambou':preload('res://enemy/yambou.tscn'),
+	'spikyoall':preload('res://enemy/original/spikyoall.tscn')
 }
 var disappear_nodes={
 	1:'Sprite2D',

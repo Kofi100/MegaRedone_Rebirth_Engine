@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://gry1wgnl5o88"]
+[gd_scene load_steps=14 format=3 uid="uid://gry1wgnl5o88"]
 
 [ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_2.gd" id="1_bkydj"]
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_ski7p"]
 [ext_resource type="Texture2D" uid="uid://bgjjfqwcabpyy" path="res://assets/sprites/player/projectiles/chargeshot_idea-sheet v1.png" id="3_mf20s"]
+[ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="4_hcxnq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmvw6"]
 atlas = ExtResource("1_ski7p")
@@ -90,6 +91,10 @@ shape = SubResource("RectangleShape2D_xlhgy")
 position = Vector2(0.25, -5.96046e-07)
 scale = Vector2(0.608333, 0.633333)
 
+[node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hcxnq")
+
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]
 [connection signal="screen_exited" from="onscreen" to="." method="_on_onscreen_screen_exited"]
+[connection signal="finished" from="hurt_enemy_effect" to="." method="_on_hurt_enemy_effect_finished"]

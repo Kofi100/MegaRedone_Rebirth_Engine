@@ -18,7 +18,7 @@ func _ready():
 func _process(_delta):
 	#round()
 	minutes.text=str(GlobalScript.minute_level)
-	seconds.text=str(float(GlobalScript.second_level))
+	seconds.text=str(int(GlobalScript.second_level))
 	millsecs.text=str(int(GlobalScript.milliseconds))
 	#millsecs=int()
 	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)

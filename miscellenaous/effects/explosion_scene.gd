@@ -1,6 +1,6 @@
 extends Node2D
 var explosion=preload('res://miscellenaous/effects/explosion_particle.tscn')
-var limit=9;var new;var i=1
+var limit=9;var new;#var i=1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var explosion_instance=explosion.instantiate()
@@ -21,5 +21,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

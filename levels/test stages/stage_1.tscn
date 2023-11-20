@@ -531,8 +531,10 @@ enemy_to_spawn = "homer"
 spawn_index = 2
 
 [node name="enemy_spawner8" parent="all_enemies" instance=ExtResource("11_4nf6x")]
-position = Vector2(2548, 297)
-enemy_to_spawn = "sniper_joe"
+position = Vector2(2546, 334)
+enemy_to_spawn = "spikyoall"
+spawn_index = 1
+visibility = true
 
 [node name="enemy_spawner9" parent="all_enemies" instance=ExtResource("11_4nf6x")]
 position = Vector2(3119, 308)
@@ -558,6 +560,11 @@ spawn_index = 3
 position = Vector2(8970.9, -1694.93)
 enemy_to_spawn = "homer"
 spawn_index = 4
+
+[node name="enemy_spawner14" parent="all_enemies" instance=ExtResource("11_4nf6x")]
+position = Vector2(1712, 329)
+enemy_to_spawn = "spikyoall"
+visibility = true
 
 [node name="all_cameras" type="Node2D" parent="."]
 
@@ -588,6 +595,7 @@ editor_draw_limits = true
 position = Vector2(6572, -51)
 
 [node name="zones" type="Area2D" parent="."]
+visible = false
 
 [node name="z1" type="Area2D" parent="zones"]
 collision_layer = 2

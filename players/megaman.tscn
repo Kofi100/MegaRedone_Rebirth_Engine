@@ -267,8 +267,8 @@ size = Vector2(8.33333, 20.6667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tm2b"]
 size = Vector2(9.66667, 18.6667)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjnc2"]
-size = Vector2(24.3333, 11.6666)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thm8m"]
+size = Vector2(13.5, 20.167)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8d2s"]
 atlas = ExtResource("14_dxwv6")
@@ -314,6 +314,9 @@ tracks/0/keys = {
 "values": [Vector2(-1.66667, 3.66667)]
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjnc2"]
+size = Vector2(24.3333, 11.6666)
+
 [sub_resource type="Animation" id="Animation_3e2f3"]
 resource_name = "dash"
 tracks/0/type = "value"
@@ -341,9 +344,6 @@ tracks/1/keys = {
 "values": [Vector2(-1.667, 4.667)]
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_078xx"]
-size = Vector2(10.5, 20.1666)
-
 [sub_resource type="Animation" id="Animation_y47pe"]
 resource_name = "others"
 tracks/0/type = "value"
@@ -356,7 +356,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("RectangleShape2D_078xx")]
+"values": [SubResource("RectangleShape2D_thm8m")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -368,7 +368,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1.66667, 3.66667)]
+"values": [Vector2(-1, 3.667)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hedug"]
@@ -401,10 +401,11 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"dash"
+animation = &"idle"
 offset = Vector2(-2, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2.66667, 3.33333)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
@@ -464,6 +465,7 @@ theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "Speed:"
 
 [node name="change_climb_detector" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="change_climb_detector"]
 position = Vector2(2.5, 3)
@@ -476,7 +478,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-1.66667, 3.66667)
-shape = SubResource("RectangleShape2D_wjnc2")
+shape = SubResource("RectangleShape2D_thm8m")
 debug_color = Color(0.988235, 0.109804, 0, 0.32549)
 
 [node name="all_sounds" type="Node2D" parent="."]
