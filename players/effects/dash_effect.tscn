@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://df87o721nwp2g"]
+
+[ext_resource type="Texture2D" uid="uid://bsu7yb447082q" path="res://assets/sprites/miscelleaneous/dash_effects.png" id="1_xokrj"]
+[ext_resource type="Script" path="res://players/effects/dash_effect.gd" id="2_i08rw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l6ou"]
+atlas = ExtResource("1_xokrj")
+region = Rect2(0, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b0ed"]
+atlas = ExtResource("1_xokrj")
+region = Rect2(6, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttpf6"]
+atlas = ExtResource("1_xokrj")
+region = Rect2(12, 0, 6, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poeax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l6ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b0ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttpf6")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dash",
+"speed": 10.0
+}]
+
+[node name="dash_effect" type="AnimatedSprite2D"]
+z_index = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_poeax")
+animation = &"dash"
+offset = Vector2(0, -2)
+script = ExtResource("2_i08rw")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

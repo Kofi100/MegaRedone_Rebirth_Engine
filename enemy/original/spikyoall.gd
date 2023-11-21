@@ -25,7 +25,7 @@ func _physics_process(delta):
 		SPEED=abs(SPEED)
 	if not $check_for_hole_right.is_colliding() and not is_on_wall():
 		SPEED=-abs(SPEED)
-	print(timer)
+	#print(timer)
 	#check if you're on the wall,and move away from it
 	if is_on_wall():
 		timer+=1*delta

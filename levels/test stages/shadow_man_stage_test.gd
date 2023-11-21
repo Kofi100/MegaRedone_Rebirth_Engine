@@ -40,9 +40,11 @@ func _process(delta):
 	#var mega=get_parent().get_node("megaman")
 #	if mega:
 	if $timer_switch_cameras.time_left>0:
-#		$TileMap.paused=true
+		$TileMap.set_process(true)
 		if $megaman.velocity.y>0:
 			$megaman.trans_down=true
+	elif $timer_switch_cameras.time_left==0:
+		$TileMap.set_process(false)
 	if GlobalScript.health<=0:
 		background_music.stop()
 	

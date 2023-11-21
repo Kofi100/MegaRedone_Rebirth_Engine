@@ -92,11 +92,11 @@ func _physics_process(delta):
 #			timer=0
 #			trans_right=false
 #			stop=false
-	elif trans_right==false:
-		switch_state+=1
-		#print('trans_right state:off')
-		if switch_state==1:
-			stop=false
+#	elif trans_right==false:
+#		switch_state+=1
+#		#print('trans_right state:off')
+#		if switch_state==1:
+#			stop=false
 	if trans_down:
 		velocity=Vector2(0,1000)*delta
 		stop=true
@@ -484,11 +484,18 @@ func dash_function(delta):
 	if is_on_floor():
 		if Input.is_action_just_pressed("dash"):
 			dash.start_dash(dashduration)
+			var dash_effect=preload('res://players/effects/dash_effect.tscn')
+			var dash_effect_instance=dash_effect.instantiate()
 			if anim.flip_h==false:
+				dash_effect_instance.global_position=$dash_positions/left.global_position
+				get_parent().add_child(dash_effect_instance)
 				var direction=-1
 				velocity.x=-30000*delta
 				move_and_slide()
 			elif anim.flip_h==true:
+
+				dash_effect_instance.global_position=$dash_positions/right.global_position
+				get_parent().add_child(dash_effect_instance)
 				var direction=1
 				velocity.x=30000*delta
 				move_and_slide()

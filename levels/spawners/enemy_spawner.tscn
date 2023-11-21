@@ -55,7 +55,7 @@ sniper_joe
 octopus_battery;
 hologran;yambou
 paraysu ; pickelman_bull
-spikyoall"
+spikyoall;homer"
 
 [node name="spawn_homer_timer" type="Timer" parent="."]
 one_shot = true

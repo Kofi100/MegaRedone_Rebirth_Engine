@@ -38,3 +38,7 @@ func spawn_collectables():
 			print('its a null case of the collectanles')
 			print('spawn_collectable_no:',GlobalScript.spawn_collectable_no)
 		queue_free()
+		var explosion=preload('res://enemy/effects/explosion_enemy.tscn')
+		var explsion_new=explosion.instantiate()
+		get_parent().add_child(explsion_new)
+		explsion_new.position=position

@@ -933,13 +933,13 @@ editor_draw_limits = true
 position = Vector2(6114.84, 4914.38)
 limit_left = 5664
 limit_top = 4608
-limit_right = 11952
+limit_right = 11904
 limit_bottom = 5328
 editor_draw_limits = true
 
 [node name="camera8" type="Camera2D" parent="all_cameras"]
 position = Vector2(12291, 4863)
-limit_left = 11952
+limit_left = 11904
 limit_top = 4608
 limit_right = 12719
 limit_bottom = 5328
@@ -1234,7 +1234,7 @@ color = Color(0, 1, 1, 1)
 [node name="all_doors" type="Node2D" parent="."]
 
 [node name="door" parent="all_doors" instance=ExtResource("33_mcorx")]
-position = Vector2(11929, 4801)
+position = Vector2(11883, 4801)
 
 [node name="door2" parent="all_doors" instance=ExtResource("33_mcorx")]
 position = Vector2(12696, 4801)

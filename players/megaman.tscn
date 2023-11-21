@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=50 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
 [ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="14_dxwv6"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
+[ext_resource type="PackedScene" uid="uid://df87o721nwp2g" path="res://players/effects/dash_effect.tscn" id="16_u0cy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
@@ -401,8 +402,7 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(1, -1.33333)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"idle"
-offset = Vector2(-2, 0)
+animation = &"dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -525,6 +525,19 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_hedug")
 }
+
+[node name="dash_positions" type="Node2D" parent="."]
+
+[node name="left" type="Marker2D" parent="dash_positions"]
+position = Vector2(-3.53095, 11.3037)
+
+[node name="right" type="Marker2D" parent="dash_positions"]
+position = Vector2(5.43555, 11.4275)
+
+[node name="dash_effect" parent="dash_positions" instance=ExtResource("16_u0cy6")]
+visible = false
+position = Vector2(-2.33333, 11.6667)
+scale = Vector2(1, 1)
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
