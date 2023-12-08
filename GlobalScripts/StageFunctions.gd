@@ -32,6 +32,6 @@ func play_music_audioplayer(audioplayer2d:AudioStreamPlayer,music_to_be_played_s
 	audioplayer2d.stream=music_to_be_played_stream
 	audioplayer2d.play(position_to_play_from)
 
-func create_new_stuff(scene:PackedScene,variable:Object):
+func create_new_stuff(scene:PackedScene,variable:Node):
 	variable=scene.instantiate()
 	get_parent().add_child(variable)

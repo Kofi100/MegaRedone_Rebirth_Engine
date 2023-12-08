@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d3b53suy3bfug"
+path="res://.godot/imported/waterfall2_part1_shadow_man.aseprite-50dfb5ec50aa08b2bb46b0068a64db61.res"
+
+[deps]
+
+source_file="res://assets/sprites/tilesets/waterfall2_part1_shadow_man.aseprite"
+dest_files=["res://.godot/imported/waterfall2_part1_shadow_man.aseprite-50dfb5ec50aa08b2bb46b0068a64db61.res"]
+
+[params]
+

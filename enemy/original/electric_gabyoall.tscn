@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctdj2q3rpw4o1"]
+
+[ext_resource type="Texture2D" uid="uid://d2s0mxejo4hh7" path="res://assets/sprites/enemies/original/electric gabyoall.png" id="1_1fepo"]
+[ext_resource type="Script" path="res://enemy/original/electric_gabyoall.gd" id="1_8lrbb"]
+
+[sub_resource type="Animation" id="Animation_jwl5w"]
+resource_name = "electric_gabyoall"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../hitbox_electricity/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sshah"]
+_data = {
+"electric_gabyoall": SubResource("Animation_jwl5w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lbem"]
+size = Vector2(12, 73.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_is85b"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gw15"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edg0s"]
+size = Vector2(16, 11.3333)
+
+[node name="electric_gabyoall" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_8lrbb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1fepo")
+hframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_sshah")
+}
+
+[node name="hitbox_electricity" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_electricity"]
+position = Vector2(2.38419e-07, -9.53674e-07)
+shape = SubResource("RectangleShape2D_0lbem")
+
+[node name="RayCast_Left" type="RayCast2D" parent="."]
+position = Vector2(-11.3333, 9.68575e-07)
+
+[node name="RayCast_Right" type="RayCast2D" parent="."]
+position = Vector2(11, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.17891e-07, 45)
+shape = SubResource("RectangleShape2D_is85b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_0gw15")
+disabled = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(3.17891e-07, 42.3333)
+shape = SubResource("RectangleShape2D_edg0s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -42.3333)
+shape = SubResource("RectangleShape2D_edg0s")

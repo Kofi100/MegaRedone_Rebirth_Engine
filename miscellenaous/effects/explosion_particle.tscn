@@ -50,7 +50,7 @@ animations = [{
 position = Vector2(345, 300)
 scale = Vector2(3, 3)
 script = ExtResource("1_r48di")
-SPEED = 5500.0
+SPEED = 20000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-115, -100)

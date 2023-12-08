@@ -13,4 +13,4 @@ func _process(delta):
 
 func _on_animation_finished():
 	queue_free()
-	print('dash_effect:ended')
+	#print('dash_effect:ended')

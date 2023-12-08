@@ -297,10 +297,11 @@ func play_animations():
 		
 		elif Input.is_action_just_released("shoot"):
 			if move_an_inch_checker>=10:
-				if $anim.animation!="shoot_run":
-						$anim.play("shoot_run")
+				if anim.animation!="shoot_run":
+					anim.play("shoot_run")
 			if move_an_inch_checker<10:
-				anim.play("shoot_idle")
+				if anim.animation!='shoot_idle':
+					anim.play("shoot_idle")
 				#MegamanAndItems.charge_timer=0
 
 	
@@ -556,8 +557,7 @@ func create_weapons():
 					if anim.flip_h==true:
 						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)#+50
 					elif anim.flip_h==false:
-						rush_jet_instance.global_position=Vector2(global_position.x
-						,global_position.y-100)
+						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)
 
 func _on_anim_animation_finished():
 	if $anim.animation=="shoot_run":

@@ -19,3 +19,5 @@ func _on_loading_progress_finished():
 			get_tree().change_scene_to_file("res://levels/test stages/stage_1.tscn")
 		2:
 			get_tree().change_scene_to_file('res://levels/test stages/shadow_man_stage_test.tscn')
+		3:
+			get_tree().change_scene_to_file('res://levels/test stages/test_boss_room.tscn')

@@ -1,0 +1,442 @@
+[gd_scene load_steps=15 format=3 uid="uid://bsrhpqbjecu3t"]
+
+[ext_resource type="Script" path="res://enemy/boss/weapon_archive_boss.gd" id="1_cvxgj"]
+[ext_resource type="Texture2D" uid="uid://cg6mfge4wm4en" path="res://enemy/boss/Sprite Sheet.png" id="2_bs4rj"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_6yff6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj5dx"]
+size = Vector2(20, 28)
+
+[sub_resource type="Animation" id="Animation_elk0w"]
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bs4rj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 9]
+}
+
+[sub_resource type="Animation" id="Animation_wk8dv"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bs4rj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_my0xc"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bs4rj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_qnh7g"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_bs4rj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hs6r"]
+_data = {
+"idle": SubResource("Animation_elk0w"),
+"retract": SubResource("Animation_wk8dv"),
+"shoot": SubResource("Animation_my0xc"),
+"spin": SubResource("Animation_qnh7g")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_au5nw"]
+radius = 9.02466
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knou7"]
+size = Vector2(68, 20)
+
+[sub_resource type="Animation" id="Animation_6m4m2"]
+resource_name = "hurt_blink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wtvk8"]
+resource_name = "not_hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nefa"]
+_data = {
+"hurt_blink": SubResource("Animation_6m4m2"),
+"not_hurt": SubResource("Animation_wtvk8")
+}
+
+[node name="weapon_archive_boss" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_cvxgj")
+SPEED = 3000.0
+speedx_robot_masters = {
+"crash_man": 10000,
+"ice_man": 5000,
+"shadow_man": 10000.0
+}
+JUMP_VELOCITY = -700.0
+state_to_start = "shadow_man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rj5dx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_bs4rj")
+hframes = 4
+vframes = 3
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "Sprite Sheet",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "Sprite2D/AnimationPlayer",
+"source": "res://assets/sprites/enemies/bosses/weapon_Archive_Spritesheet.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_1hs6r")
+}
+
+[node name="timers" type="Node2D" parent="."]
+
+[node name="ice_man" type="Node2D" parent="timers"]
+
+[node name="go_up_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 3.0
+one_shot = true
+
+[node name="go_down_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 3.0
+one_shot = true
+
+[node name="shoot_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 0.8
+
+[node name="ice_man_wait_for_movement_cooldown_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 0.3
+one_shot = true
+
+[node name="ice_man_move_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 3.0
+one_shot = true
+
+[node name="crash_man" type="Node2D" parent="timers"]
+
+[node name="crash_man_move_timer" type="Timer" parent="timers/crash_man"]
+wait_time = 7.0
+one_shot = true
+
+[node name="shadow_man" type="Node2D" parent="timers"]
+
+[node name="jump_state_timer" type="Timer" parent="timers/shadow_man"]
+wait_time = 3.0
+autostart = true
+
+[node name="hurt_cooldown_timer" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 17.6667)
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_au5nw")
+
+[node name="hurtbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hurtbox"]
+position = Vector2(0, 3.17891e-07)
+polygon = PackedVector2Array(0, -17.3333, -4.33333, -9.66667, -9, -9.66667, -9, 9.66667, -4.66667, 9.66667, 0, 17.3333, 4.66667, 9.66667, 9.33333, 9.66667, 9.33333, -9.66667, 4.66667, -9.66667)
+
+[node name="text" type="Label" parent="."]
+offset_left = -44.6667
+offset_top = -36.0
+offset_right = 49.3333
+offset_bottom = -13.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_6yff6")
+text = "health"
+
+[node name="detection_areas" type="Node2D" parent="."]
+
+[node name="crash_man" type="Node2D" parent="detection_areas"]
+
+[node name="crash_man_detect_player_projectile" type="Area2D" parent="detection_areas/crash_man"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_areas/crash_man/crash_man_detect_player_projectile"]
+shape = SubResource("RectangleShape2D_knou7")
+
+[node name="hurt_animation" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hurt_animation"]
+libraries = {
+"": SubResource("AnimationLibrary_5nefa")
+}
+
+[connection signal="timeout" from="timers/ice_man/go_up_timer" to="." method="_on_go_up_timer_timeout"]
+[connection signal="timeout" from="timers/ice_man/go_down_timer" to="." method="_on_go_down_timer_timeout"]
+[connection signal="timeout" from="timers/ice_man/shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="timers/ice_man/ice_man_wait_for_movement_cooldown_timer" to="." method="_on_ice_man_wait_for_movement_cooldown_timer_timeout"]
+[connection signal="timeout" from="timers/ice_man/ice_man_move_timer" to="." method="_on_ice_man_move_timer_timeout"]
+[connection signal="timeout" from="timers/crash_man/crash_man_move_timer" to="." method="_on_crash_man_move_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="detection_areas/crash_man/crash_man_detect_player_projectile" to="." method="_on_crash_man_detect_player_projectile_area_entered"]

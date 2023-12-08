@@ -37,6 +37,8 @@ func _on_detect_right_body_entered(body):
 func _on_detect_right_body_exited(body):
 	if body.is_in_group('player'):
 		body.trans_right=false
+		$detect_right/CollisionShape2D2.set_deferred('is_disabled',true)
+		#$detect_right/CollisionShape2D2.disabled=true
 #var grepl:Vector4;var wrepl:Vector4;#var animated_sprite:AnimatedSprite2D
 func change_color(sprite:AnimatedSprite2D,grepl:Vector4,wrepl:Vector4):
 	pass

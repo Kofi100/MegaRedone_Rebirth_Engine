@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=25 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://buhh2i3t245jp" path="res://assets/sounds/pause_menu_MM1.ogg" id="5_vp1wl"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="6_ja50w"]
 [ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="6_vmhtx"]
+[ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="7_65oho"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
@@ -221,12 +222,19 @@ theme_override_font_sizes/font_size = 68
 text = "X"
 
 [node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup"]
-offset_left = 110.0
-offset_top = 637.0
-offset_right = 587.0
-offset_bottom = 664.0
+offset_left = 68.0
+offset_top = 636.0
+offset_right = 256.0
+offset_bottom = 663.0
 theme_override_fonts/font = ExtResource("5_g1yve")
 value = 25.0
+
+[node name="life_icon" type="Sprite2D" parent="pause_screen_setup/ProgressBar"]
+position = Vector2(-25, 5)
+scale = Vector2(3, 3)
+texture = ExtResource("7_65oho")
+hframes = 13
+frame = 10
 
 [node name="weapons" type="Node2D" parent="pause_screen_setup"]
 
@@ -332,6 +340,26 @@ theme = ExtResource("7_ixl55")
 ok_button_text = "Yes"
 dialog_text = "Are You Sure You Want To Quit?"
 cancel_button_text = "No"
+
+[node name="settings" type="Node2D" parent="pause_screen_setup"]
+
+[node name="volume" type="Node2D" parent="pause_screen_setup/settings"]
+
+[node name="volume_music" type="HSlider" parent="pause_screen_setup/settings/volume"]
+offset_left = 443.0
+offset_top = 618.0
+offset_right = 653.0
+offset_bottom = 634.0
+min_value = -60.0
+max_value = 0.0
+
+[node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music"]
+layout_mode = 0
+offset_left = -130.0
+offset_right = -6.0
+offset_bottom = 23.0
+theme = ExtResource("7_ixl55")
+text = "BG MUSIC:"
 
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")

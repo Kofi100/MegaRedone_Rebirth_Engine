@@ -400,9 +400,10 @@ editor_draw_limits = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_bag23")
-position = Vector2(1, -1.33333)
+position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"dash"
+animation = &"run"
+frame_progress = 0.629081
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

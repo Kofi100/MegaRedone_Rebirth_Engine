@@ -16,6 +16,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	for i in get_tree().current_scene.get_children():
+		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
+			i.volume_db=$pause_screen_setup/settings/volume/volume_music.value
+			#print('i.volume_db',i.volume_db,',volume_music_slider_value:',$pause_screen_setup/settings/volume/volume_music.value)
+	#print()
 	#round()
 	minutes.text=str(GlobalScript.minute_level)
 	seconds.text=str(int(GlobalScript.second_level))

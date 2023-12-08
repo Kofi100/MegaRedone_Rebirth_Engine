@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://ckdom28eyeva7"]
+
+[ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/crash_bomb.gd" id="1_7mixq"]
+[ext_resource type="Texture2D" uid="uid://ddx5uukb71qbx" path="res://assets/sprites/weapons/mm1/first set_MM2(16x16).png" id="2_awpbd"]
+[ext_resource type="Texture2D" uid="uid://nc4em8ct6ceg" path="res://assets/sprites/weapons/mm1/crash_bomb_explosions(16x16).png" id="3_hewch"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btg8q"]
+atlas = ExtResource("2_awpbd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msj7w"]
+atlas = ExtResource("2_awpbd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ciqs"]
+atlas = ExtResource("2_awpbd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr86q"]
+atlas = ExtResource("2_awpbd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2j25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btg8q")
+}],
+"loop": true,
+"name": &"in_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msj7w")
+}],
+"loop": false,
+"name": &"landed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ciqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr86q")
+}],
+"loop": true,
+"name": &"planted",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y88n"]
+size = Vector2(10, 12)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h6qpw"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jks88"]
+emission_shape = 1
+emission_sphere_radius = 8.9
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 3.0
+anim_speed_min = 5.0
+anim_speed_max = 10.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8n7b"]
+size = Vector2(10, 12)
+
+[node name="crash_bomb" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 0
+script = ExtResource("1_7mixq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i2j25")
+animation = &"in_air"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.94729e-08, -1)
+shape = SubResource("RectangleShape2D_0y88n")
+
+[node name="self_destruct_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="explosion_effect" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_h6qpw")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jks88")
+texture = ExtResource("3_hewch")
+one_shot = true
+
+[node name="destroy_node_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="in_air" type="CollisionPolygon2D" parent="hitbox"]
+polygon = PackedVector2Array(-5, 5, 5, 5, 5, -7.66667, -5, -7.66667)
+
+[node name="landed_right" type="CollisionPolygon2D" parent="hitbox"]
+polygon = PackedVector2Array(2.33333, -1, -0.666667, 2, -0.666667, 6.66667, 0.333333, 8, 6.33333, 8, 8, 6.33333, 8, 0, 7, -1)
+disabled = true
+
+[node name="landed_left" type="CollisionPolygon2D" parent="hitbox"]
+modulate = Color(0.0705882, 0.890196, 0.713726, 1)
+polygon = PackedVector2Array(-8, 0, -8, 5, -5, 8, 0, 8, 2, 6, 2, 1, -1, -2, -6, -2)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(7.94729e-08, -1)
+shape = SubResource("RectangleShape2D_a8n7b")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="self_destruct_timer" to="." method="_on_self_destruct_timer_timeout"]
+[connection signal="timeout" from="destroy_node_timer" to="." method="_on_destroy_node_timer_timeout"]

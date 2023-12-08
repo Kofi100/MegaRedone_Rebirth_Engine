@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cju6hrw6xsta7"]
+[gd_scene load_steps=17 format=3 uid="uid://cju6hrw6xsta7"]
 
 [ext_resource type="Script" path="res://levels/test stages/test_stage.gd" id="1_vfap4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_7t3qb"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="4_p7my6"]
 [ext_resource type="AudioStream" uid="uid://3hdu3cvqvx5s" path="res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3" id="6_i4xyi"]
 [ext_resource type="PackedScene" uid="uid://dsrq7ljrj02jw" path="res://enemy/sniper_joe.tscn" id="8_60iu1"]
+[ext_resource type="PackedScene" uid="uid://ctdj2q3rpw4o1" path="res://enemy/original/electric_gabyoall.tscn" id="8_ycmm6"]
+[ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="10_l07ml"]
 [ext_resource type="PackedScene" uid="uid://dy5155ckq0051" path="res://levels/spawners/enemy_spawner.tscn" id="11_06gft"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="12_2bvdr"]
 
@@ -118,13 +120,21 @@ editor_draw_limits = true
 
 [node name="enemy_spawner" parent="all_enemies" instance=ExtResource("11_06gft")]
 position = Vector2(789, 369)
-enemy_to_spawn = "spikyoall"
+enemy_to_spawn = "spikyoall_"
 visibility = true
+
+[node name="electric_gabyoall" parent="all_enemies" instance=ExtResource("8_ycmm6")]
+position = Vector2(839, 150)
 
 [node name="all_collectables" type="Node2D" parent="."]
 
 [node name="large_health_capsule" parent="all_collectables" instance=ExtResource("12_2bvdr")]
 position = Vector2(177.881, 620.917)
+
+[node name="test_bosses" type="Node2D" parent="."]
+
+[node name="weapon_archive_boss" parent="test_bosses" instance=ExtResource("10_l07ml")]
+position = Vector2(747.437, 603.856)
 
 [connection signal="body_entered" from="enter_player" to="." method="_on_enter_player_body_entered"]
 

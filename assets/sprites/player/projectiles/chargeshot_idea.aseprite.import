@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b4dorkpldmcls"
+path="res://.godot/imported/chargeshot_idea.aseprite-93b5dc5a5b5300ed845240866c97d088.res"
+
+[deps]
+
+source_file="res://assets/sprites/player/projectiles/chargeshot_idea.aseprite"
+dest_files=["res://.godot/imported/chargeshot_idea.aseprite-93b5dc5a5b5300ed845240866c97d088.res"]
+
+[params]
+

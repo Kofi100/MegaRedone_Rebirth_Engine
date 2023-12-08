@@ -15,6 +15,10 @@ run/main_scene="res://levels/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[aseprite]
+
+import/import_plugin/default_automatic_importer="SpriteFrames"
+
 [autoload]
 
 StageFunctions="*res://GlobalScripts/StageFunctions.gd"
@@ -26,6 +30,10 @@ MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
 window/size/viewport_width=700
 window/size/viewport_height=700
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 [input]
 

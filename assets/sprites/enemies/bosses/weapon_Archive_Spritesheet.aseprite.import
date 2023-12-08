@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bdd42oki01e3i"
+path="res://.godot/imported/weapon_Archive_Spritesheet.aseprite-7f98554e37630b0e8f516a2eb599a708.res"
+
+[deps]
+
+source_file="res://assets/sprites/enemies/bosses/weapon_Archive_Spritesheet.aseprite"
+dest_files=["res://.godot/imported/weapon_Archive_Spritesheet.aseprite-7f98554e37630b0e8f516a2eb599a708.res"]
+
+[params]
+
