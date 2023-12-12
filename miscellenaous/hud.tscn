@@ -14,13 +14,8 @@
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
+render_priority = 0
 shader = ExtResource("9_1ufh6")
-shader_parameter/originalbodycolor = null
-shader_parameter/originalbodycolorii = null
-shader_parameter/originaloutlinecolor = Color(0.545098, 0.545098, 0.545098, 1)
-shader_parameter/bodycolori = null
-shader_parameter/bodycolorii = null
-shader_parameter/outlinecolor = Color(0, 0, 0.996078, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")

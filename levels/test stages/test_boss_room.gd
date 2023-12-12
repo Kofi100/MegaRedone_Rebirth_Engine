@@ -15,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$megaman/HUD/map.visible=false
 
 
 func _on_background_boss_music_finished():

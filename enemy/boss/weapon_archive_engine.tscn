@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://f1pqedunt4ro"]
+
+[ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="1_vv8bd"]
+[ext_resource type="Script" path="res://enemy/boss/weapon_archive_engine.gd" id="1_xh0ut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk7h2"]
+size = Vector2(739, 107)
+
+[node name="weapon_archive_engine" type="Node2D" node_paths=PackedStringArray("node_to_go_to")]
+script = ExtResource("1_xh0ut")
+weapon_capsules = {
+0: NodePath("all_capsules/weapon_archive_boss"),
+1: NodePath("all_capsules/weapon_archive_boss2"),
+2: NodePath("all_capsules/weapon_archive_boss3")
+}
+node_to_go_to = NodePath("all_positions/Marker2D")
+
+[node name="all_capsules" type="Node2D" parent="."]
+
+[node name="weapon_archive_boss" parent="all_capsules" instance=ExtResource("1_vv8bd")]
+state_to_start = "ice_man"
+
+[node name="weapon_archive_boss2" parent="all_capsules" instance=ExtResource("1_vv8bd")]
+position = Vector2(240, 0)
+state_to_start = "crash_man"
+
+[node name="weapon_archive_boss3" parent="all_capsules" instance=ExtResource("1_vv8bd")]
+position = Vector2(485, 1)
+
+[node name="all_start_points" type="Node2D" parent="."]
+
+[node name="all_timers" type="Node2D" parent="."]
+
+[node name="active_timer" type="Timer" parent="all_timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="all_positions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="all_positions"]
+position = Vector2(358, 688)
+gizmo_extents = 116.9
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(353, 747)
+shape = SubResource("RectangleShape2D_jk7h2")

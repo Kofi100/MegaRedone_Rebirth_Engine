@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm48yokieyqwr"]
+
+[ext_resource type="Texture2D" uid="uid://bqmkmlrmxd3h5" path="res://assets/sprites/weapons/shadow_blade_MM3(23x23).png" id="1_dtlws"]
+[ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/shadow_blade_weapon_archive.gd" id="1_i42s5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwrgl"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(46, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0pms"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(69, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5e53"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(92, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slhdc"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(115, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76d84"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(0, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0owu"]
+atlas = ExtResource("1_dtlws")
+region = Rect2(23, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_trbiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwrgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0pms")
+}],
+"loop": true,
+"name": &"blade_ready",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5e53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slhdc")
+}],
+"loop": false,
+"name": &"spawn_sideways",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76d84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0owu")
+}],
+"loop": false,
+"name": &"spawn_upright",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgkhj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxlu"]
+
+[node name="shadow_blade_weapon_archive" type="CharacterBody2D"]
+position = Vector2(370, 332)
+scale = Vector2(3, 3)
+script = ExtResource("1_i42s5")
+SPEED = 20000.0
+direction = "diagonal_left"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_trbiq")
+animation = &"blade_ready"
+frame_progress = 0.974841
+
+[node name="timers" type="Node2D" parent="."]
+
+[node name="go_one_way_timer" type="Timer" parent="timers"]
+one_shot = true
+autostart = true
+
+[node name="detect_thrower" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_thrower"]
+shape = SubResource("RectangleShape2D_mgkhj")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_yhxlu")
+debug_color = Color(0.972549, 0.156863, 0.113725, 0.419608)
+
+[connection signal="body_entered" from="detect_thrower" to="." method="_on_detect_thrower_body_entered"]

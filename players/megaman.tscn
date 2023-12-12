@@ -18,13 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://df87o721nwp2g" path="res://players/effects/dash_effect.tscn" id="16_u0cy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
+render_priority = 0
 shader = ExtResource("4_rtyrl")
-shader_parameter/originalbodycolor = Color(1, 0, 0, 1)
-shader_parameter/originalbodycolorii = Color(0, 0, 1, 1)
-shader_parameter/originaloutlinecolor = null
-shader_parameter/bodycolori = Color(1, 1, 1, 1)
-shader_parameter/bodycolorii = Color(1, 0, 0, 1)
-shader_parameter/outlinecolor = Color(0, 0, 0.34902, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymsc"]
 atlas = ExtResource("1_si1fv")

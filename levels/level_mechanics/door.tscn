@@ -5,11 +5,8 @@
 [ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
+render_priority = 0
 shader = ExtResource("2_k24ax")
-shader_parameter/whitecolor = Color(0.988235, 0.988235, 0.988235, 1)
-shader_parameter/greycolor = Color(0.737255, 0.737255, 0.737255, 1)
-shader_parameter/whiterep = null
-shader_parameter/greyrep = Color(0, 0.768627, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
 atlas = ExtResource("1_uf0xv")
@@ -51,11 +48,8 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtws"]
+render_priority = 0
 shader = ExtResource("2_k24ax")
-shader_parameter/whitecolor = Color(0.988235, 0.988235, 0.988235, 1)
-shader_parameter/greycolor = Color(0.737255, 0.737255, 0.737255, 1)
-shader_parameter/whiterep = null
-shader_parameter/greyrep = Color(0, 0.74902, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt0ex"]
 size = Vector2(32, 64.6667)
