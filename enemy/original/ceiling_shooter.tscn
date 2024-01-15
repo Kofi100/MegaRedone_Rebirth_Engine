@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhuc4lcl5clpc"]
+[gd_scene load_steps=8 format=3 uid="uid://dhuc4lcl5clpc"]
 
 [ext_resource type="Texture2D" uid="uid://c2pqrpkiqjoos" path="res://assets/sprites/enemies/original/ceiling shooter.png" id="1_a08p8"]
 [ext_resource type="Script" path="res://enemy/original/ceiling_shooter.gd" id="1_dhti3"]
+[ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_wtnc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d82ua"]
 atlas = ExtResource("1_a08p8")
@@ -44,5 +45,8 @@ shape = SubResource("RectangleShape2D_34k2t")
 [node name="player_detect" type="Area2D" parent="."]
 
 [node name="shoot_timer" type="Timer" parent="."]
+
+[node name="shoot_audio_effect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wtnc1")
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

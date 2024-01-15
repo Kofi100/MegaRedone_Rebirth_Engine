@@ -28,3 +28,4 @@ func _on_shoot_timer_timeout():
 	projectile_ins.angle_to_go=angle
 	get_parent().add_child(projectile_ins)
 	projectile_ins.global_position=global_position
+	$shoot_audio_effect.play()
