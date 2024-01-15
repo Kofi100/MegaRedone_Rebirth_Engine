@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=26 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -14,8 +14,16 @@
 [ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
-render_priority = 0
 shader = ExtResource("9_1ufh6")
+shader_parameter/outline_color_original = null
+shader_parameter/bodycolororiginal1 = null
+shader_parameter/bodycolororiginal2 = null
+shader_parameter/outlinecolor = null
+shader_parameter/bodycolori = null
+shader_parameter/bodycolorii = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
+bg_color = Color(0.247059, 0.713726, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -129,25 +137,26 @@ script = ExtResource("1_32714")
 [node name="weapon_energy" type="ProgressBar" parent="."]
 modulate = Color(1, 0.0156863, 0.109804, 1)
 material = SubResource("ShaderMaterial_be7r0")
-offset_left = 51.0
-offset_top = 1.0
-offset_right = 198.0
-offset_bottom = 28.0
+offset_left = 38.0
+offset_right = 185.0
+offset_bottom = 27.0
+scale = Vector2(0.3, 0.3)
 theme_override_fonts/font = ExtResource("5_g1yve")
 max_value = 30.0
 value = 30.0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="healthbar" type="ProgressBar" parent="."]
-modulate = Color(0, 1, 1, 1)
 offset_left = 24.0
 offset_right = 36.0
 offset_bottom = 120.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
+theme_override_styles/fill = SubResource("StyleBoxFlat_atsqi")
 max_value = 20.0
 value = 20.0
 fill_mode = 3
@@ -155,12 +164,13 @@ fill_mode = 3
 [node name="fade_out_rectangle" type="ColorRect" parent="."]
 visible = false
 z_index = 1
-offset_right = 700.0
-offset_bottom = 699.0
+offset_right = 258.0
+offset_bottom = 245.0
 color = Color(0, 0, 0, 1)
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(0.365714, 0.344286)
 texture = ExtResource("2_jxh0c")
 centered = false
 
@@ -329,8 +339,10 @@ theme = ExtResource("7_ixl55")
 text = "go to menu"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
-title = "Leaving..."
+title = "Leaving?"
 size = Vector2i(420, 100)
+min_size = Vector2i(256, 70)
+content_scale_size = Vector2i(1, 0)
 theme = ExtResource("7_ixl55")
 ok_button_text = "Yes"
 dialog_text = "Are You Sure You Want To Quit?"
@@ -396,20 +408,21 @@ libraries = {
 }
 
 [node name="timer" type="Node2D" parent="."]
+scale = Vector2(0.3, 0.3)
 
 [node name="minutes" type="Label" parent="timer"]
-offset_left = 533.0
-offset_top = 5.0
-offset_right = 573.0
-offset_bottom = 28.0
+offset_left = 700.0
+offset_top = 23.3333
+offset_right = 740.0
+offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "xx"
 
 [node name="seconds" type="Label" parent="timer"]
-offset_left = 571.0
-offset_top = 5.0
-offset_right = 611.0
-offset_bottom = 28.0
+offset_left = 738.0
+offset_top = 23.3333
+offset_right = 778.0
+offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "xx"
 
@@ -426,10 +439,10 @@ theme = ExtResource("7_ixl55")
 text = "aaa"
 
 [node name="label" type="Label" parent="timer"]
-offset_left = 443.0
-offset_top = 5.0
-offset_right = 569.0
-offset_bottom = 28.0
+offset_left = 610.0
+offset_top = 23.3333
+offset_right = 736.0
+offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "Timer:     :"
 

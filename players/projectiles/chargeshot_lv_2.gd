@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var state="active"
-const SPEED = 50000.0
+@export var SPEED = 50000.0
 @export var direction="left"
 
 func _ready():

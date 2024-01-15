@@ -31,8 +31,7 @@ size = Vector2(8, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8epf5"]
 radius = 4.05517
 
-[node name="small_health_capsule" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+[node name="small_health_capsule" type="RigidBody2D"]
 collision_layer = 0
 script = ExtResource("1_f34yw")
 
@@ -45,7 +44,6 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nroca")
 hframes = 13
-frame = 1
 
 [node name="hitbox" type="Area2D" parent="." groups=["capsules"]]
 collision_layer = 2

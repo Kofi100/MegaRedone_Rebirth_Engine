@@ -31,15 +31,14 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq1rd"]
 size = Vector2(8, 8)
 
-[node name="small_weapon_capsule" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+[node name="small_weapon_capsule" type="RigidBody2D"]
 collision_layer = 0
 script = ExtResource("1_frawo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vsryd")
 hframes = 13
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"

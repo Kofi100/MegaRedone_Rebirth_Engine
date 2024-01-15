@@ -41,10 +41,9 @@ size = Vector2(28.6667, 41.6667)
 size = Vector2(34.3333, 41.6667)
 
 [node name="pickelman_bull" type="CharacterBody2D"]
-position = Vector2(545, 186)
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_cq74m")
+SPEED = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rg046")

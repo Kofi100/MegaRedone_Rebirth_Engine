@@ -83,7 +83,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+	#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 
 
 func _on_timer_to_jump_timeout():

@@ -13,22 +13,22 @@ offset_bottom = 703.0
 color = Color(0, 0, 0, 1)
 
 [node name="mm_custom" type="Sprite2D" parent="."]
-position = Vector2(351, 351)
-scale = Vector2(21, 21)
+position = Vector2(130, 117)
+scale = Vector2(8, 8)
 texture = ExtResource("2_6g4no")
 
 [node name="loading_progress" type="ProgressBar" parent="."]
-offset_left = 47.0
-offset_top = 390.0
-offset_right = 649.0
-offset_bottom = 491.0
+offset_left = 27.0
+offset_top = 144.0
+offset_right = 236.0
+offset_bottom = 172.0
 theme_override_fonts/font = ExtResource("2_4gekt")
 
 [node name="loading" type="Label" parent="."]
-offset_left = 65.0
-offset_top = 281.0
-offset_right = 634.0
-offset_bottom = 380.0
+offset_left = 37.0
+offset_top = 116.0
+offset_right = 167.0
+offset_bottom = 135.0
+scale = Vector2(1.5, 1.5)
 theme_override_fonts/font = ExtResource("2_4gekt")
-theme_override_font_sizes/font_size = 70
 text = "Loading..."

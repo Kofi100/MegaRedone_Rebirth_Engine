@@ -1,10 +1,15 @@
 extends enemy
-var SPEED = 7000.0
-var direction=''
+@export_category('Variables')
+@export var SPEED = 7000.0
+@export var direction=''
 var gravity=980
 var index_bullet=0
+var dis_x;var dis_y;var angle_to_shoot
 func _ready():
 	playerdamagevalue=1
+	dis_x=GlobalScript.playerposx-global_position.x
+	dis_y=GlobalScript.playerposy-global_position.y
+	angle_to_shoot=atan2(dis_y,dis_x)
 
 func _physics_process(delta):
 	match direction:
@@ -16,8 +21,10 @@ func _physics_process(delta):
 			velocity.x=-SPEED*delta
 			velocity.y=SPEED*delta
 		'gravity':
-			if not is_on_floor():
-				velocity.y+=gravity*delta
+#			if not is_on_floor():
+#				velocity.y+=gravity*delta
+			velocity.y=sin(angle_to_shoot)*SPEED*delta
+			velocity.x=cos(angle_to_shoot)*gravity*delta
 	move_and_slide()
 
 

@@ -56,16 +56,17 @@ size = Vector2(20, 5.66667)
 size = Vector2(7.66667, 8)
 
 [node name="rush_coil" type="CharacterBody2D" groups=["rush_coil"]]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_edrj1")
+spawn_in_speed = 10000
+spawn_back_speed = 40000
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -3.66667)
 sprite_frames = SubResource("SpriteFrames_emuap")
-animation = &"spawn"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.666667, 8.5)

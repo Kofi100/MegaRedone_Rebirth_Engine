@@ -43,7 +43,6 @@ length = 11.0
 size = Vector2(18.6667, 19.6667)
 
 [node name="new-shotman" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_q50xe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

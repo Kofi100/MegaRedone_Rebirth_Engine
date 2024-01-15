@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 50000.0
+@export var SPEED = 50000.0
 const JUMP_VELOCITY = -400.0
 @export var direction="left"
 var state="active"
@@ -10,7 +10,7 @@ var state="active"
 func _ready():
 	match direction:
 		"left":
-			scale.x=-3
+			scale.x=-1
 		"right":
 			pass
 

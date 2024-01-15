@@ -20,7 +20,7 @@ var second_level=0
 var milliseconds=0
 var total_time_seconds=0 #would be used to record how long you spent on a level
 func _ready():
-	pass # Replace with function body.
+	DisplayServer.window_set_size(DisplayServer.window_get_size()*3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

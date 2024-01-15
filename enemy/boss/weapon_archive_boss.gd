@@ -12,17 +12,18 @@ var distance:int
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var state_to_start=''
 func _ready():
+	active=false
 	health=30
 	playerdamagevalue=4
 	state=state_to_start
 	match state:
-		'ice_man':
-			$timers/ice_man/go_up_timer.start()
-			$timers/ice_man/shoot_timer.start()
+#		'ice_man':
+#			$timers/ice_man/go_up_timer.start()
+#			$timers/ice_man/shoot_timer.start()
 		'crash_man':
 			$timers/crash_man/crash_man_move_timer.start()
 var hit_by_projectile=false;var hit_cooldown=0
-var active=true
+var active=true;var active_iceman=false;var play_anim_once=false
 func _physics_process(delta):
 	#debug
 	#print(state,',,',velocity.y,'...',$timers/crash_man/crash_man_move_timer.time_left)
@@ -46,11 +47,16 @@ func _physics_process(delta):
 		$hurtbox/CollisionShape2D.disabled=false
 	match active:
 		true:
+			if play_anim_once==false:
+				$Sprite2D/AnimationPlayer.play("shoot")
+				play_anim_once=true
 			match state:
 				
 				'ice_man':
-					if state!='ice_man':
+					if active_iceman==false:
 						$timers/ice_man/go_up_timer.start()
+						$timers/ice_man/shoot_timer.start()
+						active_iceman=true
 					if $timers/ice_man/go_up_timer.time_left>0.5:
 						velocity.y=-SPEED*delta
 						$timers/ice_man/shoot_timer.set_one_shot(false)
@@ -164,7 +170,10 @@ func _physics_process(delta):
 							shadow_blade_instance.global_position=global_position
 							shadow_blade_instance2.global_position=global_position
 			move_and_slide()
-
+		false:
+			play_anim_once=true
+			if $Sprite2D/AnimationPlayer.current_animation=='retract':
+				$Sprite2D/AnimationPlayer.play("retract")
 
 var shadow_attack=false
 var has_jumped=false;var jump_value_randomizer=0
@@ -243,3 +252,8 @@ func _on_state_active_timer_timeout():
 
 func tween_done():
 	animation_player.play("idle")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name=='retract':
+		$Sprite2D/AnimationPlayer.play("idle")

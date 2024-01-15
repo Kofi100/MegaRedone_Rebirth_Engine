@@ -107,9 +107,8 @@ size = Vector2(20, 23)
 
 [node name="hologran" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(3, 3)
 script = ExtResource("1_wvurm")
-speed = 2000
+speed = 500
 
 [node name="hologram" type="ColorRect" parent="."]
 z_index = -2
@@ -123,19 +122,17 @@ color = Color(0, 0, 0, 0)
 layer = 1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="hologram/ParallaxBackground"]
-motion_mirroring = Vector2(600, 563)
+motion_mirroring = Vector2(240, 30)
 
 [node name="Sprite2D" type="Sprite2D" parent="hologram/ParallaxBackground/ParallaxLayer"]
-position = Vector2(164, 277)
-scale = Vector2(3, 3)
+position = Vector2(124, 113)
 texture = ExtResource("2_htfhn")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="hologram/ParallaxBackground"]
-motion_mirroring = Vector2(601, 377)
+motion_mirroring = Vector2(230, 20)
 
 [node name="small_stars" type="Sprite2D" parent="hologram/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(288, 382)
-scale = Vector2(3, 3)
+position = Vector2(177, 121)
 texture = ExtResource("3_m5267")
 
 [node name="bulb" type="CharacterBody2D" parent="."]
@@ -161,9 +158,10 @@ libraries = {
 [node name="hologran" type="Sprite2D" parent="bulb"]
 texture = ExtResource("2_m10xw")
 hframes = 3
+frame = 1
 
 [node name="timer" type="Timer" parent="bulb"]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 autostart = true
 

@@ -49,7 +49,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+	#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 
 
 func _on_change_x_direction_start_timeout():

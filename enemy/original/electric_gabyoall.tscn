@@ -50,9 +50,9 @@ size = Vector2(16, 6)
 size = Vector2(16, 11.3333)
 
 [node name="electric_gabyoall" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_8lrbb")
+SPEED = 1000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_1fepo")

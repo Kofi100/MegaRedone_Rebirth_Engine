@@ -1,9 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://deia2cj2p3mch"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://deia2cj2p3mch"]
 
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="1_203gc"]
+[ext_resource type="Texture2D" uid="uid://u3mv2w8vxt0a" path="res://assets/sprites/miscelleaneous/health_bg_texture_test.png" id="2_hrvy8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5q4o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijtur"]
+texture = ExtResource("2_hrvy8")
 
 [resource]
 default_font = ExtResource("1_203gc")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 8
 Label/fonts/font = ExtResource("1_203gc")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_l5q4o")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_ijtur")

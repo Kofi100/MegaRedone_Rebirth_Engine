@@ -29,10 +29,9 @@ animations = [{
 size = Vector2(28, 12.3333)
 
 [node name="yambou" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_enew8")
-SPEED = 30000.0
-gravity = 10000
+SPEED = 10000.0
+gravity = 3400
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6kgsv")

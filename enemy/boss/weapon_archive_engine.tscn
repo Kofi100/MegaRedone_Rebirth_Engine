@@ -7,6 +7,7 @@
 size = Vector2(739, 107)
 
 [node name="weapon_archive_engine" type="Node2D" node_paths=PackedStringArray("node_to_go_to")]
+position = Vector2(91, 64)
 script = ExtResource("1_xh0ut")
 weapon_capsules = {
 0: NodePath("all_capsules/weapon_archive_boss"),
@@ -14,6 +15,43 @@ weapon_capsules = {
 2: NodePath("all_capsules/weapon_archive_boss3")
 }
 node_to_go_to = NodePath("all_positions/Marker2D")
+return_points = {
+0: NodePath("all_positions/return_position1"),
+1: NodePath("all_positions/return_position2"),
+2: NodePath("all_positions/return_position3")
+}
+
+[node name="all_positions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="all_positions"]
+position = Vector2(257.9, 525.9)
+gizmo_extents = 116.9
+
+[node name="return_position1" type="Marker2D" parent="all_positions"]
+
+[node name="return_position2" type="Marker2D" parent="all_positions"]
+position = Vector2(240, 1)
+
+[node name="return_position3" type="Marker2D" parent="all_positions"]
+position = Vector2(484, 1)
+
+[node name="return_pos_ref_1" type="ColorRect" parent="all_positions"]
+offset_left = -19.0
+offset_top = -18.0
+offset_right = 21.0
+offset_bottom = 22.0
+
+[node name="return_pos_ref_2" type="ColorRect" parent="all_positions"]
+offset_left = 222.0
+offset_top = -19.0
+offset_right = 262.0
+offset_bottom = 21.0
+
+[node name="return_pos_ref_3" type="ColorRect" parent="all_positions"]
+offset_left = 466.0
+offset_top = -21.0
+offset_right = 506.0
+offset_bottom = 19.0
 
 [node name="all_capsules" type="Node2D" parent="."]
 
@@ -32,17 +70,14 @@ position = Vector2(485, 1)
 [node name="all_timers" type="Node2D" parent="."]
 
 [node name="active_timer" type="Timer" parent="all_timers"]
-wait_time = 3.0
+wait_time = 6.0
 one_shot = true
-
-[node name="all_positions" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="all_positions"]
-position = Vector2(358, 688)
-gizmo_extents = 116.9
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(353, 747)
+position = Vector2(252.9, 584.9)
 shape = SubResource("RectangleShape2D_jk7h2")
+disabled = true
+
+[connection signal="timeout" from="all_timers/active_timer" to="." method="_on_active_timer_timeout"]

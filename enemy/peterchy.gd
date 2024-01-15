@@ -41,4 +41,4 @@ func _on_visible_on_screen_enabler_2d_screen_entered():
 
 func _on_visible_on_screen_enabler_2d_screen_exited():
 	queue_free()
-	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+	#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)

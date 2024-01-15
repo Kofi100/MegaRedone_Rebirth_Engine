@@ -63,4 +63,4 @@ func _on_hitbox_body_entered(body):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+	#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)

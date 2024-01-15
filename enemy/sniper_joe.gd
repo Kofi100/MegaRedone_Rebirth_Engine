@@ -80,7 +80,7 @@ func _physics_process(delta):
 			if animated_sprite_2d.frame==1:
 				
 				proj_spawn_timer+=1
-				if proj_spawn_timer==1 or proj_spawn_timer==40 or proj_spawn_timer==80:
+				if proj_spawn_timer==10 or proj_spawn_timer==30 or proj_spawn_timer==50:
 					$all_sounds/shoot.play()
 					if animated_sprite_2d.flip_h==false:
 						bullet_ins=bullet.instantiate()
@@ -110,3 +110,7 @@ func _on_detect_player_body_entered(body):
 func _on_detect_player_body_exited(body):
 	if body.is_in_group("player"):
 		player_in_zone=false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()

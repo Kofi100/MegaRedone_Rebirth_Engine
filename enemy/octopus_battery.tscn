@@ -40,7 +40,6 @@ size = Vector2(16, 16)
 size = Vector2(14.6667, 15.3333)
 
 [node name="octopus_battery" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_neord")
 

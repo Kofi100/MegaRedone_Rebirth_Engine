@@ -50,7 +50,6 @@ animations = [{
 }]
 
 [node name="explosion_enemy" type="AnimatedSprite2D"]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_0vpvt")
 animation = &"explosion"
 script = ExtResource("2_06ul1")

@@ -1,7 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://7sfehmaj5wp3"]
+[gd_scene load_steps=17 format=3 uid="uid://7sfehmaj5wp3"]
 
 [ext_resource type="Script" path="res://enemy/original/homer.gd" id="1_bcwbf"]
 [ext_resource type="Texture2D" uid="uid://5m7sreduekxg" path="res://assets/sprites/enemies/original/homer.png" id="1_ljslv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4pae"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvdvh"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52jun"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7q7w"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e7hc"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eldsq"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukmlh"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qawn"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47tvh"]
+atlas = ExtResource("1_ljslv")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3bnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4pae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvdvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52jun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7q7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e7hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eldsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukmlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qawn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47tvh")
+}],
+"loop": true,
+"name": &"homer",
+"speed": 10.0
+}]
 
 [sub_resource type="Animation" id="Animation_cdgjw"]
 resource_name = "coming"
@@ -33,20 +104,23 @@ size = Vector2(9, 25)
 
 [node name="homer" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_bcwbf")
+speed = 16.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r3bnb")
+animation = &"homer"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "coming"
 libraries = {
 "": SubResource("AnimationLibrary_1mogb")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ljslv")
 hframes = 9
-frame = 2
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 6
@@ -64,4 +138,19 @@ scale = Vector2(13.775, 8.89167)
 position = Vector2(0.166667, 0.5)
 shape = SubResource("RectangleShape2D_jvgky")
 
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="shoot_positions" type="Node2D" parent="."]
+
+[node name="down" type="Node2D" parent="shoot_positions"]
+
+[node name="Marker2D" type="Marker2D" parent="shoot_positions/down"]
+position = Vector2(-8, 14)
+
+[node name="Marker2D2" type="Marker2D" parent="shoot_positions/down"]
+position = Vector2(8, 14)
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

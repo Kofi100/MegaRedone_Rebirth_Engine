@@ -24,11 +24,13 @@ import/import_plugin/default_automatic_importer="SpriteFrames"
 StageFunctions="*res://GlobalScripts/StageFunctions.gd"
 GlobalScript="*res://GlobalScripts/GlobalScript.gd"
 MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
+GlobalScreenTransitionTimer="*res://GlobalScripts/global_screen_transition_timer.tscn"
 
 [display]
 
-window/size/viewport_width=700
-window/size/viewport_height=700
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/size/initial_position=Vector2i(0, -800)
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

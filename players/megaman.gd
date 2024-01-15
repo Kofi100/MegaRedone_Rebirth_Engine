@@ -7,12 +7,13 @@ extends CharacterBody2D
 ##This is the default speed which can be adjusted by dashing.
 @export var SPEED = 0
 ##This value deterimines how high a person can jump.
-@export var JUMP_VELOCITY = -600.0
+@export var JUMP_VELOCITY = -340#orig: -333*3 almost=1000
 ##This value defines how much gravity is applied by the engine to the player.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var gravity=3000
-var dashspeed=30000;var dashduration=0.3
-@export var normalspeed=17500.0
+@export var dashspeed=10000#3000/3;
+var dashduration=0.3
+@export var normalspeed=5800 #17500.0=5800/3
 var climb=false
 var move_an_inch_checker=0
 var charge_timer=0
@@ -32,6 +33,7 @@ var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
 
 func _ready():
+	GlobalScreenTransitionTimer.stop()
 	if ! GlobalScript.restarted_level:
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
@@ -45,7 +47,7 @@ func _ready():
 var onrush=false;var disable_input=false
 var switch_state=0
 func _physics_process(delta):
-	if $timer_switch_cameras.time_left>0:
+	if GlobalScreenTransitionTimer.time_left>0:
 		$player_camera.position_smoothing_enabled=true
 		stop=true
 		if velocity.x>0:
@@ -56,6 +58,12 @@ func _physics_process(delta):
 			trans_down=true
 		elif velocity.y<0:
 			trans_up=true
+	elif GlobalScreenTransitionTimer.time_left<=0:
+		$player_camera.position_smoothing_enabled=false
+		stop=false
+		trans_down=false;trans_up=false;
+		trans_left=false;trans_right=false;
+		
 
 	if Input.is_action_just_pressed("die_debug"):
 		GlobalScript.health=0
@@ -351,7 +359,7 @@ func shoot_and_charge():
 					lemon_ins.global_position=$all_proj_spawn_points/air_right.global_position
 
 
-		elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<45:
+		elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<75:
 			$all_sounds/halfcharge.play()
 			if is_on_floor():
 				MegamanAndItems.charge_timer=0
@@ -379,7 +387,7 @@ func shoot_and_charge():
 					chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_right.global_position
 
 
-		elif MegamanAndItems.charge_timer>=45:
+		elif MegamanAndItems.charge_timer>=75:
 			$all_sounds/fullcharge.play()
 			if is_on_floor():
 				MegamanAndItems.charge_timer=0
@@ -519,12 +527,12 @@ func chargeeffect():
 		elif MegamanAndItems.charge_timer%10==5:
 			#print('mega chargeeffect:active1:2')
 			$anim.material.set_shader_parameter("outlinecolor",(Vector4(135.0,0.0,142.0,255.0))/255)
-	elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<45:
+	elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<75:
 		if MegamanAndItems.charge_timer%10==1:
 			$anim.material.set_shader_parameter("outlinecolor",(Vector4(0.0,0.0,0.0,255.0))/255)
 		elif MegamanAndItems.charge_timer%10==5:
 			$anim.material.set_shader_parameter("outlinecolor",(Vector4(135.0,0.0,142.0,255.0))/255)
-	elif MegamanAndItems.charge_timer>=45:
+	elif MegamanAndItems.charge_timer>=75:
 		#$animated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if MegamanAndItems.charge_timer%10==1:
 			$anim.material.set_shader_parameter("outlinecolor",(Vector4(0.0,0.0,0.0,255.0))/255)
@@ -546,9 +554,9 @@ func create_weapons():
 					rush_coil_instance=rush_coil.instantiate()
 					get_parent().add_child(rush_coil_instance)
 					if anim.flip_h==true:
-						rush_coil_instance.global_position=Vector2(global_position.x+50,global_position.y-100)
+						rush_coil_instance.global_position=Vector2(global_position.x+20,global_position.y-100)
 					elif anim.flip_h==false:
-						rush_coil_instance.global_position=Vector2(global_position.x-50,global_position.y-100)
+						rush_coil_instance.global_position=Vector2(global_position.x-20,global_position.y-100)
 			2:
 				if MegamanAndItems.weapon2energy>0:
 					MegamanAndItems.weapon2energy-=3

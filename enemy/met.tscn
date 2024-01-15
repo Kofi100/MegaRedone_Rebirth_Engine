@@ -41,25 +41,23 @@ size = Vector2(92.3333, 36.3333)
 size = Vector2(12.3333, 7.66667)
 
 [node name="met" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_4t8t2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3vdhf")
-animation = &"shoot"
+animation = &"defend"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.333333, 6.16667)
 shape = SubResource("RectangleShape2D_cxkwf")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
 
 [node name="Timer2" type="Timer" parent="."]
 editor_description = "TThis timer was for testing if I uunderstood timers.It upon timing out,if a player is on the RIGHT side of met,causes it to shoot"
-wait_time = 3.0
+wait_time = 2.0
 
 [node name="detect_area" type="Area2D" parent="." groups=["enemy"]]
 
@@ -104,6 +102,10 @@ theme_override_colors/font_color = Color(0, 0, 1, 1)
 theme_override_fonts/font = ExtResource("3_2ppc0")
 text = "..."
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, 0.333334)
+scale = Vector2(9.76667, 6.4)
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
@@ -111,3 +113,4 @@ text = "..."
 [connection signal="body_exited" from="detect_area/left" to="." method="_on_left_body_exited"]
 [connection signal="body_entered" from="detect_area/right" to="." method="_on_right_body_entered"]
 [connection signal="body_exited" from="detect_area/right" to="." method="_on_right_body_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

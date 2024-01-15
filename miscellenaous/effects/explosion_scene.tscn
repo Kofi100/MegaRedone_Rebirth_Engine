@@ -3,5 +3,4 @@
 [ext_resource type="Script" path="res://miscellenaous/effects/explosion_scene.gd" id="1_200c4"]
 
 [node name="explosion_scene" type="Node2D"]
-position = Vector2(356, 265)
 script = ExtResource("1_200c4")

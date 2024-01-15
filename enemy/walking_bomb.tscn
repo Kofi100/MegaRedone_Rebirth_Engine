@@ -79,8 +79,7 @@ particle_flag_disable_z = true
 gravity = Vector3(0, -100, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_min = 3.0
-scale_max = 3.0
+scale_max = 1.5
 anim_speed_min = 5.0
 anim_speed_max = 5.0
 
@@ -88,11 +87,10 @@ anim_speed_max = 5.0
 radius = 29.1986
 
 [node name="walking_bomb" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_60goj")
-SPEED = 8000.0
-JUMP_VELOCITY = -500.0
+SPEED = 2700.0
+JUMP_VELOCITY = -170.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j0d1m")

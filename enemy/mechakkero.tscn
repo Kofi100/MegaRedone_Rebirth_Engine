@@ -52,11 +52,11 @@ size = Vector2(18, 1.66667)
 size = Vector2(16.3333, 6.66666)
 
 [node name="mechakkero" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_8mege")
-SPEED = 30000.0
-gravity = 1200
+SPEED = 10000.0
+JUMP_VELOCITY = -133.0
+gravity = 400
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dbrya")

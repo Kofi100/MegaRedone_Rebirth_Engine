@@ -15,11 +15,15 @@
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
 [ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="14_dxwv6"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
-[ext_resource type="PackedScene" uid="uid://df87o721nwp2g" path="res://players/effects/dash_effect.tscn" id="16_u0cy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
-render_priority = 0
 shader = ExtResource("4_rtyrl")
+shader_parameter/outline_color_original = Color(0, 0, 0, 1)
+shader_parameter/bodycolororiginal1 = Color(1, 0, 0, 1)
+shader_parameter/bodycolororiginal2 = Color(0, 0, 1, 1)
+shader_parameter/outlinecolor = Color(0, 0.0235294, 0, 1)
+shader_parameter/bodycolori = Color(0.976471, 0.545098, 0, 1)
+shader_parameter/bodycolorii = Color(0.290196, 0, 0.278431, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymsc"]
 atlas = ExtResource("1_si1fv")
@@ -374,14 +378,16 @@ _data = {
 "others": SubResource("Animation_y47pe")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjlgr"]
+size = Vector2(14, 21)
+
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
-scale = Vector2(3, 3)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
-JUMP_VELOCITY = -1000.0
-normalspeed = 13500.0
+gravity = 1000
+normalspeed = 4500
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
 
@@ -530,10 +536,11 @@ position = Vector2(-3.53095, 11.3037)
 [node name="right" type="Marker2D" parent="dash_positions"]
 position = Vector2(5.43555, 11.4275)
 
-[node name="dash_effect" parent="dash_positions" instance=ExtResource("16_u0cy6")]
-visible = false
-position = Vector2(-2.33333, 11.6667)
-scale = Vector2(1, 1)
+[node name="player_constants_checker_area2d" type="Area2D" parent="." groups=["player_constants_checker_area2d"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_constants_checker_area2d"]
+position = Vector2(-1, 3.5)
+shape = SubResource("RectangleShape2D_qjlgr")
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]

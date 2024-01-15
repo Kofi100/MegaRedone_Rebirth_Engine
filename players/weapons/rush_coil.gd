@@ -1,7 +1,8 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-
+@export var spawn_in_speed=30000
+@export var spawn_back_speed=120000
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var stop_normal_movements:bool=false
@@ -13,15 +14,18 @@ var play=0
 func _ready():
 	animated_sprite_2d.play("idle")
 	spawn_rush=true
-var spawn_play=0
+var spawn_play=0;var just_landed:bool=false
 func _physics_process(delta):
+	if is_on_floor() and not just_landed:#reutnr to u later
+		$move_back_timer.start()
+		just_landed=true
 	# Add the gravity.
 	if spawn_rush==true:
 		stop_normal_movements=true
 		spawn_play+=1
 		if spawn_play==1:
 			$AnimatedSprite2D.play("spawn")
-		velocity.y=30000*delta
+		velocity.y=spawn_in_speed*delta
 		#$CollisionShape2D.disabled=true
 		$jump_zone/CollisionShape2D.disabled=true
 		#if GlobalScript.playerposy==global_position.y:
@@ -51,7 +55,7 @@ func _physics_process(delta):
 		spawn_play+=1
 		if spawn_play==1:
 			animated_sprite_2d.play("spawn")
-		velocity.y=-120000*delta
+		velocity.y=-spawn_back_speed*delta
 		$CollisionShape2D.disabled=true
 		$jump_zone/CollisionShape2D.disabled=true
 		move_and_slide()
@@ -64,7 +68,7 @@ func offset():
 		animated_sprite_2d.offset=Vector2.ZERO
 func _on_jump_zone_body_entered(body):
 	if body.is_in_group("player"):
-		body.velocity.y=-1200
+		body.velocity.y=(-1200/3)
 		animated_sprite_2d.play("spring")
 		$move_back_timer.start()
 

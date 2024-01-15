@@ -1,7 +1,7 @@
 extends Node2D
 @onready var player_camera=$megaman/player_camera
 #all stage cameras
-@onready var camera=$all_cameras/camera
+#@onready var camera=$all_cameras/camera
 @onready var camera2=$all_cameras/camera2
 @onready var camera_3 = $all_cameras/camera3;@onready var background_music = $bgm
 @onready var camera_4 = $all_cameras/camera4
@@ -19,7 +19,7 @@ func _ready():
 
 	StageFunctions.play_music_audioplayer(background_music,audio_streams.get("shadow_man"),0)
 	print(greyrep,'....',whiterep)
-	$megaman.global_position=$Marker2D2.global_position
+	#$megaman.global_position=$Marker2D2.global_position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#Door.
@@ -47,6 +47,7 @@ func _process(delta):
 		$TileMap.set_process(false)
 	if GlobalScript.health<=0:
 		background_music.stop()
+	#if GlobalScreenTransitionTimer
 	
 	$bg/ParallaxLayer/ParallaxLayer2.motion_offset.y+=50*delta
 	if background_music.playing:
@@ -54,17 +55,17 @@ func _process(delta):
 #		if background_music.get_playback_position()>=65:
 #			background_music.play(0)
 			pass
-	if timer_switch_cameras.time_left>0:
-		GlobalScript.spawn_enemy=false
-	elif timer_switch_cameras.time_left==0:
-		GlobalScript.spawn_enemy=true
+#	if timer_switch_cameras.time_left>0:
+#		GlobalScript.spawn_enemy=false
+#	elif timer_switch_cameras.time_left==0:
+#		GlobalScript.spawn_enemy=true
 	#print(get_tree().has_group('player'))
 @onready var timer_switch_cameras = $timer_switch_cameras
 
-func _on_zone_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera)
-		timer_switch_cameras.start()
+#func _on_zone_body_entered(body):
+#	if body.is_in_group("player"):
+#		StageFunctions.switch_camera(player_camera,camera)
+#		timer_switch_cameras.start()
 
 
 func _on_zone_2_body_entered(body):

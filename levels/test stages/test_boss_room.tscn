@@ -5,8 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://dknbhwxjxtehv" path="res://assets/music/Megaman 10 - Wily Stage Boss(MM7 Remake).mp3" id="2_hd8dr"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_5et6o"]
 [ext_resource type="Texture2D" uid="uid://byvwhefci347g" path="res://assets/sprites/tilesets/test_stages/bg_mmworld2.png" id="4_ef6n3"]
-[ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="4_feps4"]
 [ext_resource type="Texture2D" uid="uid://ctp033u6eo055" path="res://assets/sprites/tilesets/test_stages/bg_mmworld2_new_plain.png" id="5_lf7gj"]
+[ext_resource type="PackedScene" uid="uid://f1pqedunt4ro" path="res://enemy/boss/weapon_archive_engine.tscn" id="7_u72nk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2dah"]
 texture = ExtResource("1_v5jq7")
@@ -1500,10 +1500,8 @@ layer_1/tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 131072, 2, 2, 196608,
 
 [node name="megaman" parent="." instance=ExtResource("3_5et6o")]
 position = Vector2(121, 627)
-
-[node name="weapon_archive_boss" parent="." instance=ExtResource("4_feps4")]
-position = Vector2(618, 618)
-state_to_start = "crash_man"
+JUMP_VELOCITY = -340
+normalspeed = 5800
 
 [node name="background_boss_music" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
@@ -1528,5 +1526,13 @@ limit_right = 700
 limit_bottom = 700
 editor_draw_limits = true
 
+[node name="weapon_archive_engine" parent="." instance=ExtResource("7_u72nk")]
+position = Vector2(122, 158)
+
+[node name="Marker2D" parent="weapon_archive_engine/all_positions" index="0"]
+position = Vector2(253, 492)
+
 [connection signal="finished" from="background_boss_music" to="." method="_on_background_boss_music_finished"]
 [connection signal="body_entered" from="camera_detection_areas/area" to="." method="_on_area_body_entered"]
+
+[editable path="weapon_archive_engine"]

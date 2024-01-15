@@ -47,13 +47,12 @@ animations = [{
 }]
 
 [node name="explosion_particle" type="CharacterBody2D"]
-position = Vector2(345, 300)
-scale = Vector2(3, 3)
+position = Vector2(0, -1)
 script = ExtResource("1_r48di")
-SPEED = 20000.0
+SPEED = 5000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-115, -100)
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ppqlc")
 animation = &"explosion"
 frame_progress = 0.443961

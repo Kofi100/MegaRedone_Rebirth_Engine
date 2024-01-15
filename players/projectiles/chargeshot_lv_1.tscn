@@ -25,8 +25,8 @@ size = Vector2(10, 10)
 [node name="chargeshot_lv1" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(1.90735e-06, 0)
-scale = Vector2(3, 3)
 script = ExtResource("1_kmh8a")
+SPEED = 15000.0
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ibpir")

@@ -31,8 +31,7 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_m562j"]
 radius = 8.02773
 
-[node name="large_health_capsule" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+[node name="large_health_capsule" type="RigidBody2D"]
 collision_layer = 0
 script = ExtResource("1_nawmn")
 
