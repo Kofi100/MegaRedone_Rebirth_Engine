@@ -2,7 +2,8 @@ extends enemy
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var target_index=0
 var angle_to_go_in=0
-@export var SPEED = 3000.0
+@export var speed_of_crash_bomb = 3000.0
+#@export var speed_of_crash_bomb=
 const JUMP_VELOCITY = -400.0
 var dis
 func _ready():
@@ -21,8 +22,8 @@ func _physics_process(delta):
 		velocity.y=0
 		velocity.x=0
 	if not is_on_floor() and not is_on_wall():
-		velocity.y=sin(angle_to_go_in)*80000*delta
-		velocity.x=cos(angle_to_go_in)*80000*delta
+		velocity.y=sin(angle_to_go_in)*speed_of_crash_bomb*delta
+		velocity.x=cos(angle_to_go_in)*speed_of_crash_bomb*delta
 #		if not direction_bool:
 #			direction_bool=true
 #			if dis<0:

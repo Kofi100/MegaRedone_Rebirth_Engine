@@ -977,7 +977,6 @@ limit_bottom = 1068
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_cameras/new_camera_system/new_camera_system4"]
 position = Vector2(20862.1, 420.302)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ix2op")
 
 [node name="new_camera_system5" parent="all_cameras/new_camera_system" instance=ExtResource("29_wft22")]

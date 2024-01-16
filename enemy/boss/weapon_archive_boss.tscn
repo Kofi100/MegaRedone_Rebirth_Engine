@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsrhpqbjecu3t"]
+[gd_scene load_steps=19 format=3 uid="uid://bsrhpqbjecu3t"]
 
 [ext_resource type="Script" path="res://enemy/boss/weapon_archive_boss.gd" id="1_cvxgj"]
 [ext_resource type="Texture2D" uid="uid://cg6mfge4wm4en" path="res://enemy/boss/Sprite Sheet.png" id="2_bs4rj"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_6yff6"]
+[ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="4_w5t66"]
+[ext_resource type="AudioStream" uid="uid://cscjl67ym8o6x" path="res://assets/sounds/explosion_effect(mm5).mp3" id="5_cal3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj5dx"]
 size = Vector2(20, 28)
@@ -312,18 +314,30 @@ _data = {
 "not_hurt": SubResource("Animation_wtvk8")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1rp2j"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u1xl2"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
 [node name="weapon_archive_boss" type="CharacterBody2D" groups=["weapon_archive"]]
-scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_cvxgj")
-SPEED = 3000.0
+SPEED = 1000.0
 speedx_robot_masters = {
-"crash_man": 10000,
-"ice_man": 5000,
-"shadow_man": 5000.0
+"crash_man": 3500,
+"ice_man": 1500,
+"shadow_man": 1500.0
 }
-JUMP_VELOCITY = -700.0
 state_to_start = "shadow_man"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -364,7 +378,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="shoot_timer" type="Timer" parent="timers/ice_man"]
-wait_time = 0.8
+wait_time = 1.5
 
 [node name="ice_man_wait_for_movement_cooldown_timer" type="Timer" parent="timers/ice_man"]
 wait_time = 0.3
@@ -394,7 +408,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="hurt_cooldown_timer" type="Timer" parent="timers"]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="Node2D" type="Node2D" parent="timers"]
@@ -446,6 +460,17 @@ shape = SubResource("RectangleShape2D_knou7")
 libraries = {
 "": SubResource("AnimationLibrary_5nefa")
 }
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_1rp2j")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_u1xl2")
+texture = ExtResource("4_w5t66")
+one_shot = true
+
+[node name="explosion_audio_effect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cal3n")
 
 [connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="timers/ice_man/go_up_timer" to="." method="_on_go_up_timer_timeout"]

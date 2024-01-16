@@ -31,8 +31,9 @@ var chargeshot_lv2=preload("res://players/projectiles/chargeshot_lv_2.tscn");var
 var rush_coil=preload("res://players/weapons/rush_coil.tscn");var rush_coil_instance
 var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
-
+var screen_transition_finished=false
 func _ready():
+	
 	GlobalScreenTransitionTimer.stop()
 	if ! GlobalScript.restarted_level:
 		GlobalScript.reset_level_timer()
@@ -50,6 +51,7 @@ func _physics_process(delta):
 	if GlobalScreenTransitionTimer.time_left>0:
 		$player_camera.position_smoothing_enabled=true
 		stop=true
+		screen_transition_finished=false
 		if velocity.x>0:
 			trans_right=true
 		elif velocity.x<0:
@@ -59,10 +61,13 @@ func _physics_process(delta):
 		elif velocity.y<0:
 			trans_up=true
 	elif GlobalScreenTransitionTimer.time_left<=0:
-		$player_camera.position_smoothing_enabled=false
-		stop=false
-		trans_down=false;trans_up=false;
-		trans_left=false;trans_right=false;
+		if  not screen_transition_finished:
+			$player_camera.position_smoothing_enabled=false
+			stop=false
+			trans_down=false;trans_up=false;
+			trans_left=false;trans_right=false;
+			
+			screen_transition_finished=true
 		
 
 	if Input.is_action_just_pressed("die_debug"):
@@ -314,12 +319,13 @@ func play_animations():
 
 	
 	elif not is_on_floor():
-		if not Input.is_action_pressed("shoot"):
-			if $anim.animation!="shoot_in_air" or anim.animation!="stun_air":
+		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
+			if $anim.animation!="shoot_in_air" and anim.animation!="stun_air":
 				$anim.play("jump")
 				#print("jump!")
-		elif Input.is_action_pressed("shoot"):
-			$anim.play("shoot_in_air")
+		elif Input.is_action_just_released("shoot"):
+			if anim.animation!='shoot_in_air':
+				$anim.play("shoot_in_air")
 			#print("shoot")
 	
 
@@ -499,14 +505,14 @@ func dash_function(delta):
 				dash_effect_instance.global_position=$dash_positions/left.global_position
 				get_parent().add_child(dash_effect_instance)
 				var direction=-1
-				velocity.x=-30000*delta
+				velocity.x=-10000*delta
 				move_and_slide()
 			elif anim.flip_h==true:
 
 				dash_effect_instance.global_position=$dash_positions/right.global_position
 				get_parent().add_child(dash_effect_instance)
 				var direction=1
-				velocity.x=30000*delta
+				velocity.x=10000*delta
 				move_and_slide()
 		if Input.is_action_pressed("dash"):
 			if $dash/Timer.time_left>0:

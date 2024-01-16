@@ -18,26 +18,35 @@ func _process(_delta):
 			$CollisionShape2D.disabled=true
 		else:
 			$CollisionShape2D.disabled=false
+	if GlobalScript.playerposx>$detect_right/CollisionShape2D2.global_position.x:
+		if not exited_door:
+			animated_sprite_2d.frame=0
+			animated_sprite_2d_2.frame=0
 
 
 
 
 func _on_detect_left_body_entered(body):
 	if body.is_in_group('player'):
+		body.stop=true
 		body.trans_right=true
 		animated_sprite_2d.play("open_close")
 		animated_sprite_2d_2.play("open_close")
 
-
+var exited_door=false
 func _on_detect_right_body_entered(body):
 	if body.is_in_group('player'):
+		exited_door=true
 		animated_sprite_2d.play_backwards("open_close")
 		animated_sprite_2d_2.play_backwards("open_close")
 
 func _on_detect_right_body_exited(body):
 	if body.is_in_group('player'):
+		body.stop=false
 		body.trans_right=false
-		$detect_right/CollisionShape2D2.set_deferred('is_disabled',true)
+		$detect_right.set_collision_mask_value(2,false)
+		#$detect_right/CollisionShape2D2.disabled=true
+#		$detect_right/CollisionShape2D2.call_deferred('is_disabled',true)#'is_disabled',true)
 		#$detect_right/CollisionShape2D2.disabled=true
 #var grepl:Vector4;var wrepl:Vector4;#var animated_sprite:AnimatedSprite2D
 func change_color(sprite:AnimatedSprite2D,grepl:Vector4,wrepl:Vector4):

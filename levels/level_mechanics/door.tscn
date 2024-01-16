@@ -5,7 +5,6 @@
 [ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
-render_priority = 0
 shader = ExtResource("2_k24ax")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
@@ -48,7 +47,6 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtws"]
-render_priority = 0
 shader = ExtResource("2_k24ax")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt0ex"]
@@ -61,7 +59,6 @@ size = Vector2(7.66667, 35.6667)
 size = Vector2(7.66667, 64.3333)
 
 [node name="door" type="StaticBody2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_5oyk0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

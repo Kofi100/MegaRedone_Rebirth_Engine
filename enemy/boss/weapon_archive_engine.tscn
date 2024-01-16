@@ -1,10 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://f1pqedunt4ro"]
+[gd_scene load_steps=12 format=3 uid="uid://f1pqedunt4ro"]
 
 [ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="1_vv8bd"]
 [ext_resource type="Script" path="res://enemy/boss/weapon_archive_engine.gd" id="1_xh0ut"]
+[ext_resource type="Shader" path="res://enemy/boss/sprite_display_flicker.gdshader" id="3_ccoxa"]
+[ext_resource type="Texture2D" uid="uid://qrbbh8d51r2m" path="res://assets/sprites/enemies/bosses/bosses_display_spritesheet_warchive.png" id="4_k2ha8"]
+[ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="5_eh41v"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_jonrk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk7h2"]
 size = Vector2(739, 107)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7676"]
+shader = ExtResource("3_ccoxa")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b4fol"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vduqy"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 50.0
+emission_ring_radius = 50.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 10.0
+anim_speed_max = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3jy5"]
+bg_color = Color(0.827451, 0, 0.219608, 1)
 
 [node name="weapon_archive_engine" type="Node2D" node_paths=PackedStringArray("node_to_go_to")]
 position = Vector2(91, 64)
@@ -73,6 +102,9 @@ position = Vector2(485, 1)
 wait_time = 6.0
 one_shot = true
 
+[node name="engine_start_timer" type="Timer" parent="all_timers"]
+one_shot = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -80,4 +112,31 @@ position = Vector2(252.9, 584.9)
 shape = SubResource("RectangleShape2D_jk7h2")
 disabled = true
 
+[node name="bosses_display" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l7676")
+position = Vector2(78, -5)
+texture = ExtResource("4_k2ha8")
+hframes = 3
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_b4fol")
+position = Vector2(37, 55)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_vduqy")
+texture = ExtResource("5_eh41v")
+lifetime = 3.0
+one_shot = true
+
+[node name="health_of_all_bosses" type="ProgressBar" parent="."]
+offset_left = 149.0
+offset_top = -63.0
+offset_right = 159.0
+offset_bottom = 13.0
+theme = ExtResource("6_jonrk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t3jy5")
+max_value = 45.0
+fill_mode = 3
+
 [connection signal="timeout" from="all_timers/active_timer" to="." method="_on_active_timer_timeout"]
+[connection signal="timeout" from="all_timers/engine_start_timer" to="." method="_on_engine_start_timer_timeout"]

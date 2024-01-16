@@ -25,6 +25,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	energy_tank_no=5
 	if playerhasbeenhit:
 		#print('Globalscript:playerhasbeenhit:works')
 		

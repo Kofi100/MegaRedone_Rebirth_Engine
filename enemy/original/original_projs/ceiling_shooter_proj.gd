@@ -13,5 +13,10 @@ func _physics_process(delta):
 	velocity.y=sin(angle_to_go)*SPEED*delta
 	velocity.x=cos(angle_to_go)*SPEED*delta
 	move_and_slide()
-	if $VisibleOnScreenNotifier2D.is_on_screen()==false:
-		queue_free()
+#	if $VisibleOnScreenNotifier2D.is_on_screen()==false:
+#		pass
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	pass # Replace with function body.
+	queue_free()

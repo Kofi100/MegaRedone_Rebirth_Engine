@@ -66,17 +66,16 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_max = 3.0
 anim_speed_min = 5.0
-anim_speed_max = 10.0
+anim_speed_max = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8n7b"]
 size = Vector2(10, 12)
 
 [node name="crash_bomb" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_7mixq")
+speed_of_crash_bomb = 9000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i2j25")
@@ -91,6 +90,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="explosion_effect" type="GPUParticles2D" parent="."]
+z_index = 1
+z_as_relative = false
 material = SubResource("CanvasItemMaterial_h6qpw")
 emitting = false
 amount = 16

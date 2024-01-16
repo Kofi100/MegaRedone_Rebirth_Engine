@@ -209,10 +209,10 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_wsieb")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot_in_air",
 "speed": 5.0
 }, {
@@ -403,8 +403,7 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"run"
-frame_progress = 0.629081
+animation = &"shoot_in_air"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

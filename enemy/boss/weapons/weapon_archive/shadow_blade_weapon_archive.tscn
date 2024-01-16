@@ -68,10 +68,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxlu"]
 
 [node name="shadow_blade_weapon_archive" type="CharacterBody2D"]
-position = Vector2(370, 332)
-scale = Vector2(3, 3)
+position = Vector2(47, 28)
 script = ExtResource("1_i42s5")
-SPEED = 20000.0
+SPEED = 5000.0
 direction = "diagonal_left"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

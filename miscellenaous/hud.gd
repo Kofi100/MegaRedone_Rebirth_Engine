@@ -13,15 +13,27 @@ func _ready():
 	pass
 	color=$fade_out_rectangle.color
 	print(color)
-
+var gotten_bgm_value=false
+var original_background_volume_db:int
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	for i in get_tree().current_scene.get_children():
-		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
-			i.volume_db=$pause_screen_setup/settings/volume/volume_music.value
+#	for i in get_tree().current_scene.get_children():
+#		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
+#			if i.is_in_group('bgm'):
+#			i.volume_db=$pause_screen_setup/settings/volume/volume_music.value
 			#print('i.volume_db',i.volume_db,',volume_music_slider_value:',$pause_screen_setup/settings/volume/volume_music.value)
 	#print()
 	#round()
+	for i in get_tree().current_scene.get_children():
+		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
+			if i.is_in_group('bgm'):
+				if get_tree().paused==true and not gotten_bgm_value:
+					original_background_volume_db=i.volume_db
+					i.volume_db=i.volume_db-5
+					gotten_bgm_value=true
+				elif get_tree().paused==false:
+					i.volume_db=original_background_volume_db
+					gotten_bgm_value=false
 	minutes.text=str(GlobalScript.minute_level)
 	seconds.text=str(int(GlobalScript.second_level))
 	millsecs.text=str(int(GlobalScript.milliseconds))
@@ -53,7 +65,7 @@ func _process(_delta):
 		selection_index=1
 	if !pause_input:#if input is not paused yet,
 		if Input.is_action_just_pressed("pause"):#and i pressed the pause button,
-			if get_tree().paused==false:#if the tree is paused/not,set it to the opposite state
+			if get_tree().paused==false and GlobalScript.health>0:#if the tree is paused/not,set it to the opposite state
 				get_tree().paused=true
 				$pause_menu_sound.play()
 				var fade_in_tween=create_tween()#this creates a tween which creates a dim effect for the pause screen

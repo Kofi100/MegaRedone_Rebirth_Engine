@@ -8,12 +8,14 @@ extends enemy
 }
 @export var JUMP_VELOCITY = -400.0
 var distance:int
+var disabled_hitbox=false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var state_to_start=''
 func _ready():
 	active=false
-	health=30
+	#match state:
+	health=15
 	playerdamagevalue=4
 	state=state_to_start
 	match state:
@@ -31,6 +33,10 @@ func _physics_process(delta):
 	#essential codes
 	distance=GlobalScript.playerposx-global_position.x
 	if health<=0:
+		$explosion.set_emitting(true)
+		$explosion_audio_effect.play()
+		$explosion.reparent(get_tree().current_scene)
+		$explosion_audio_effect.reparent(get_tree().current_scene)
 		queue_free()
 	if hit_by_projectile:
 		hit_cooldown+=1*delta
@@ -45,11 +51,16 @@ func _physics_process(delta):
 	elif  not hit_by_projectile:
 		$hitbox/CollisionShape2D.disabled=false
 		$hurtbox/CollisionShape2D.disabled=false
+
 	match active:
 		true:
 			if play_anim_once==false:
 				$Sprite2D/AnimationPlayer.play("shoot")
 				play_anim_once=true
+				if disabled_hitbox:
+					$hitbox/CollisionShape2D.disabled=false
+					disabled_hitbox=false
+					
 			match state:
 				
 				'ice_man':
@@ -137,10 +148,10 @@ func _physics_process(delta):
 				'shadow_man':
 					#print('jump_value:',jump_value_randomizer,'is_on_floor:',is_on_floor(),'has_jumped:',has_jumped)
 					if not is_on_floor():
-						velocity.y+=3000*delta
+						velocity.y+=1000*delta
 						has_jumped=false
-					var jump_low=-950
-					var jump_high=-1200#-700
+					var jump_low=(-950/3)
+					var jump_high=(-1200/3)#-700
 					if  $timers/shadow_man/shadow_man_jump_state_timer.time_left>0:
 						$Sprite2D.frame=0
 						if is_on_floor() and not has_jumped :
@@ -171,7 +182,13 @@ func _physics_process(delta):
 							shadow_blade_instance2.global_position=global_position
 			move_and_slide()
 		false:
+			$hitbox/CollisionShape2D.disabled=true
+			disabled_hitbox=true
 			play_anim_once=true
+#			for i in get_children():
+#				if i.is_class('Timer'):
+#					i.stop()
+			$timers/ice_man/shoot_timer.stop()
 			if $Sprite2D/AnimationPlayer.current_animation=='retract':
 				$Sprite2D/AnimationPlayer.play("retract")
 

@@ -18,5 +18,5 @@ func _on_area_entered(area):
 		if player_camera!=null:
 			StageFunctions.switch_camera(player_camera,zone_camera_2d)
 			GlobalScreenTransitionTimer.start()
-	elif player_camera==null:
-		push_error('player camera:cannot be found/no trans. therefore')
+		elif player_camera==null:
+			push_error('player camera:cannot be found/no trans. therefore')
