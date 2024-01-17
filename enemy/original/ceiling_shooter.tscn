@@ -36,7 +36,7 @@ script = ExtResource("1_dhti3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_o6evi")
-frame_progress = 0.952793
+frame_progress = 0.261611
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2)
@@ -49,5 +49,8 @@ wait_time = 0.5
 
 [node name="shoot_audio_effect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_wtnc1")
+
+[node name="shoot_position" type="Marker2D" parent="."]
+position = Vector2(0, 6)
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

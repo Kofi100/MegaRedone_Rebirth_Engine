@@ -21,6 +21,8 @@ func _process(delta):
 			health_tween.tween_property($health_of_all_bosses,'value',$health_of_all_bosses.max_value,1)
 			health_tween_create=true
 		$bosses_display.visible=true
+		$screen_flicker.visible=true
+		$screen_flicker.play("flicker")
 		if not picked_capsule and node_to_go_to!=null:
 			randomize_boss_picker=randi_range(0,2)
 			picked_node_capsule=get_node(weapon_capsules[randomize_boss_picker])
@@ -60,6 +62,8 @@ func _process(delta):
 	
 	elif not engine_start:
 		$bosses_display.visible=false
+		$screen_flicker.visible=false
+		$screen_flicker.stop()
 	if get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
 		$explosion.set_emitting(true)
 		$explosion.reparent(get_tree().current_scene)

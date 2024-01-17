@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgoltky2vj7c7"
+path="res://.godot/imported/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6).mp3-a469fbf818c5acf712328a649c6455ee.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6).mp3"
+dest_files=["res://.godot/imported/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6).mp3-a469fbf818c5acf712328a649c6455ee.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

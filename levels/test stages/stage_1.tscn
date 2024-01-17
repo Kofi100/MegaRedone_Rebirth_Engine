@@ -737,7 +737,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -131061, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -196590, 0, 0, -196589, 0, 0, -196588, 0, 0, -196587, 0, 0, -196586, 0, 0, -196585, 0, 0, -196584, 0, 0, -196583, 0, 0, -196582, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0)
 
 [node name="megaman" parent="." instance=ExtResource("2_a2wa6")]
-position = Vector2(-828.046, 150.357)
+position = Vector2(-797.032, 134.456)
 
 [node name="ladder" parent="." instance=ExtResource("3_fq0y5")]
 visible = false
@@ -890,11 +890,11 @@ position = Vector2(10720, -1763)
 enemy_to_spawn = "met"
 
 [node name="enemy_spawner3" parent="all_enemies" instance=ExtResource("11_4nf6x")]
-position = Vector2(12016, -1943)
+position = Vector2(4449, -602)
 enemy_to_spawn = "sniper_joe"
 
 [node name="enemy_spawner4" parent="all_enemies" instance=ExtResource("11_4nf6x")]
-position = Vector2(12427, -1993)
+position = Vector2(4554, -602)
 enemy_to_spawn = "sniper_joe"
 
 [node name="enemy_spawner5" parent="all_enemies" instance=ExtResource("11_4nf6x")]
@@ -1109,10 +1109,10 @@ debug_color = Color(0.145098, 0.631373, 0.372549, 0.419608)
 [node name="all_doors" type="Node2D" parent="."]
 
 [node name="door" parent="all_doors" instance=ExtResource("14_d1nac")]
-position = Vector2(11643, -2016)
+position = Vector2(3864, -672)
 
 [node name="door2" parent="all_doors" instance=ExtResource("14_d1nac")]
-position = Vector2(15987, -1777)
+position = Vector2(5329, -592)
 
 [node name="new_camera_system" type="Node2D" parent="."]
 

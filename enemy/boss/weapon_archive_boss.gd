@@ -16,7 +16,7 @@ func _ready():
 	active=false
 	#match state:
 	health=15
-	playerdamagevalue=4
+	playerdamagevalue=5
 	state=state_to_start
 	match state:
 #		'ice_man':

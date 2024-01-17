@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://f1pqedunt4ro"]
+[gd_scene load_steps=16 format=3 uid="uid://f1pqedunt4ro"]
 
 [ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="1_vv8bd"]
 [ext_resource type="Script" path="res://enemy/boss/weapon_archive_engine.gd" id="1_xh0ut"]
@@ -6,12 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://qrbbh8d51r2m" path="res://assets/sprites/enemies/bosses/bosses_display_spritesheet_warchive.png" id="4_k2ha8"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="5_eh41v"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_jonrk"]
+[ext_resource type="Texture2D" uid="uid://cvvxxep2qai5t" path="res://assets/sprites/miscelleaneous/screen_flicker_Spritesheet.png" id="7_h1h0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk7h2"]
 size = Vector2(739, 107)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l7676"]
 shader = ExtResource("3_ccoxa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltio0"]
+atlas = ExtResource("7_h1h0p")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7duv"]
+atlas = ExtResource("7_h1h0p")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvg71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltio0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7duv")
+}],
+"loop": true,
+"name": &"flicker",
+"speed": 20.0
+}]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b4fol"]
 particles_animation = true
@@ -117,6 +140,12 @@ material = SubResource("ShaderMaterial_l7676")
 position = Vector2(78, -5)
 texture = ExtResource("4_k2ha8")
 hframes = 3
+
+[node name="screen_flicker" type="AnimatedSprite2D" parent="."]
+position = Vector2(78, -4)
+sprite_frames = SubResource("SpriteFrames_mvg71")
+animation = &"flicker"
+frame_progress = 0.111801
 
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_b4fol")

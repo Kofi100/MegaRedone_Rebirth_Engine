@@ -321,10 +321,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u1xl2"]
-particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 anim_speed_min = 2.0
 anim_speed_max = 2.0
 
@@ -378,7 +375,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="shoot_timer" type="Timer" parent="timers/ice_man"]
-wait_time = 1.5
 
 [node name="ice_man_wait_for_movement_cooldown_timer" type="Timer" parent="timers/ice_man"]
 wait_time = 0.3
@@ -435,10 +431,11 @@ position = Vector2(0, 3.17891e-07)
 polygon = PackedVector2Array(0, -17.3333, -4.33333, -9.66667, -9, -9.66667, -9, 9.66667, -4.66667, 9.66667, 0, 17.3333, 4.66667, 9.66667, 9.33333, 9.66667, 9.33333, -9.66667, 4.66667, -9.66667)
 
 [node name="text" type="Label" parent="."]
-offset_left = -44.6667
-offset_top = -36.0
-offset_right = 49.3333
-offset_bottom = -13.0
+visible = false
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 69.0
+offset_bottom = -7.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("3_6yff6")
 text = "health"

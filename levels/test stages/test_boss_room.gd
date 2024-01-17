@@ -38,3 +38,4 @@ func _on_area_body_entered(body):
 func _on_new_camera_system_2_area_entered(area):
 	if area.is_in_group('player_constants_checker_area2d'):
 		animation_player.play("start_boss_engine")
+		$bgmusib4bossfight.stop()

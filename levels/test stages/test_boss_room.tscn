@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://blempj6txufhc"]
+[gd_scene load_steps=29 format=3 uid="uid://blempj6txufhc"]
 
 [ext_resource type="Script" path="res://levels/test stages/test_boss_room.gd" id="1_uib38"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_v5jq7"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://f1pqedunt4ro" path="res://enemy/boss/weapon_archive_engine.tscn" id="7_u72nk"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="8_dhhgo"]
 [ext_resource type="PackedScene" uid="uid://v3cirfwgjkwo" path="res://levels/level_mechanics/new_camera_system.tscn" id="9_spkpb"]
+[ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="10_n20f6"]
 [ext_resource type="Texture2D" uid="uid://cyjdvobomffd5" path="res://assets/sprites/miscelleaneous/warning_boss_spritesheet.png" id="10_ywneq"]
+[ext_resource type="AudioStream" uid="uid://ctbsmv5q15mig" path="res://assets/music/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3" id="13_f4hip"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2dah"]
 texture = ExtResource("1_v5jq7")
@@ -1602,6 +1604,20 @@ sources/3 = SubResource("TileSetAtlasSource_0cdvl")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q46al"]
 size = Vector2(732, 735)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jumtd"]
+shader = ExtResource("10_n20f6")
+shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/new_color1 = Color(0.0941176, 0.223529, 0.352941, 1)
+shader_parameter/original_color2 = Color(0, 0, 0.658824, 1)
+shader_parameter/new_color2 = Color(0.0352941, 0.113725, 0.6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjedi"]
+shader = ExtResource("10_n20f6")
+shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/new_color1 = Color(0.0941176, 0.223529, 0.352941, 1)
+shader_parameter/original_color2 = Color(0, 0, 0.658824, 1)
+shader_parameter/new_color2 = Color(0.0352941, 0.113725, 0.6, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6tpw"]
 size = Vector2(255, 237)
 
@@ -1785,12 +1801,17 @@ position = Vector2(55, -91)
 position = Vector2(95, 141)
 
 [node name="bosses_display" parent="weapon_archive_engine" index="5"]
-position = Vector2(5, -97)
+position = Vector2(5, -99)
 
-[node name="explosion" parent="weapon_archive_engine" index="6"]
+[node name="screen_flicker" parent="weapon_archive_engine" index="6"]
+modulate = Color(0.0941176, 0.223529, 0.352941, 1)
+position = Vector2(6.00001, -102)
+scale = Vector2(0.8125, 0.75)
+
+[node name="explosion" parent="weapon_archive_engine" index="7"]
 position = Vector2(4, -41)
 
-[node name="health_of_all_bosses" parent="weapon_archive_engine" index="7"]
+[node name="health_of_all_bosses" parent="weapon_archive_engine" index="8"]
 offset_left = 105.0
 offset_top = -157.0
 offset_right = 111.0
@@ -1801,7 +1822,14 @@ offset_bottom = -80.0
 [node name="door" parent="all_doors" instance=ExtResource("8_dhhgo")]
 position = Vector2(-8, 191)
 
+[node name="AnimatedSprite2D" parent="all_doors/door" index="0"]
+material = SubResource("ShaderMaterial_jumtd")
+
+[node name="AnimatedSprite2D2" parent="all_doors/door" index="1"]
+material = SubResource("ShaderMaterial_kjedi")
+
 [node name="all_new_camera_systems" type="Node2D" parent="."]
+visible = false
 
 [node name="new_camera_system" parent="all_new_camera_systems" instance=ExtResource("9_spkpb")]
 position = Vector2(-262.664, 24.6428)
@@ -1840,10 +1868,16 @@ sprite_frames = SubResource("SpriteFrames_sepd2")
 animation = &"warning"
 frame_progress = 0.464464
 
+[node name="bgmusib4bossfight" type="AudioStreamPlayer" parent="." groups=["bgm"]]
+process_mode = 3
+stream = ExtResource("13_f4hip")
+autoplay = true
+
 [connection signal="finished" from="background_boss_music" to="." method="_on_background_boss_music_finished"]
 [connection signal="body_entered" from="camera_detection_areas/area" to="." method="_on_area_body_entered"]
 [connection signal="area_entered" from="all_new_camera_systems/new_camera_system2" to="." method="_on_new_camera_system_2_area_entered"]
 
 [editable path="weapon_archive_engine"]
+[editable path="all_doors/door"]
 [editable path="all_new_camera_systems/new_camera_system"]
 [editable path="all_new_camera_systems/new_camera_system2"]

@@ -60,14 +60,14 @@ particles_anim_v_frames = 1
 particles_anim_loop = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jks88"]
-emission_shape = 1
-emission_sphere_radius = 8.9
-particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 10.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 0.0
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-anim_speed_min = 5.0
-anim_speed_max = 5.0
+anim_speed_min = 2.0
+anim_speed_max = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8n7b"]
 size = Vector2(10, 12)

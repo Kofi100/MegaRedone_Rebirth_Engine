@@ -12,7 +12,7 @@ func _ready():
 		animated_sprite_2d.flip_h=true
 	elif dis>=0:
 		animated_sprite_2d.flip_h=false
-	playerdamagevalue=3
+	playerdamagevalue=5
 
 func _physics_process(delta):
 	# Add the gravity.

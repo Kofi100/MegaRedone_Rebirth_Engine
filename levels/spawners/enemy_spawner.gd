@@ -90,6 +90,7 @@ func _process(delta):
 				#new_enemy.index=spawn_index
 				new_enemy.position=position
 				get_parent().add_child(new_enemy)
+				entered=false
 		
 	elif entered==false:
 		#timer=0

@@ -49,6 +49,9 @@ layout_mode = 2
 theme = ExtResource("4_eie37")
 text = "test_boss_stage"
 
+[node name="stage2" type="Button" parent="stage_buttons/VBoxContainer"]
+layout_mode = 2
+
 [node name="PauseScreenSetup3" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1137, 395)
@@ -64,3 +67,5 @@ stream = ExtResource("5_yyqio")
 [connection signal="mouse_entered" from="stage_buttons/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_mouse_entered"]
 [connection signal="pressed" from="stage_buttons/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_pressed"]
 [connection signal="pressed" from="stage_buttons/VBoxContainer/test_boss_stage" to="." method="_on_test_boss_stage_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/VBoxContainer/stage2" to="." method="_on_stage_2_mouse_entered"]
+[connection signal="pressed" from="stage_buttons/VBoxContainer/stage2" to="." method="_on_stage_2_pressed"]

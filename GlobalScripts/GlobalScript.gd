@@ -7,7 +7,7 @@ var playerhasbeenhit:bool=false
 var playerhitcooldowntimer:int=0
 # Called when the node enters the scene tree for the first time.
 var playerposx=0;var playerposy=0
-var energy_tank_no=2
+var energy_tank_no=3
 var max_health=30
 var scene_to_be_loaded_index:int
 var weapon_number=0
@@ -21,11 +21,12 @@ var milliseconds=0
 var total_time_seconds=0 #would be used to record how long you spent on a level
 func _ready():
 	DisplayServer.window_set_size(DisplayServer.window_get_size()*3)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	energy_tank_no=5
+	#energy_tank_no=5
 	if playerhasbeenhit:
 		#print('Globalscript:playerhasbeenhit:works')
 		

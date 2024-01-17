@@ -26,7 +26,7 @@ func _process(_delta):
 	#round()
 	for i in get_tree().current_scene.get_children():
 		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
-			if i.is_in_group('bgm'):
+			if i.is_in_group('bgm') and i.playing==true:
 				if get_tree().paused==true and not gotten_bgm_value:
 					original_background_volume_db=i.volume_db
 					i.volume_db=i.volume_db-5

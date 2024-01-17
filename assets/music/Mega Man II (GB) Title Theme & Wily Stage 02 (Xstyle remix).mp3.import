@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctbsmv5q15mig"
+path="res://.godot/imported/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3-1c6639e9d8b7466df50a9056abf12fdf.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3"
+dest_files=["res://.godot/imported/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3-1c6639e9d8b7466df50a9056abf12fdf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -6,6 +6,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
 shader = ExtResource("2_k24ax")
+shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/new_color1 = Color(1, 0.537255, 0, 1)
+shader_parameter/original_color2 = null
+shader_parameter/new_color2 = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
 atlas = ExtResource("1_uf0xv")
@@ -48,6 +52,10 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydtws"]
 shader = ExtResource("2_k24ax")
+shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/new_color1 = Color(1, 0.537255, 0, 1)
+shader_parameter/original_color2 = null
+shader_parameter/new_color2 = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt0ex"]
 size = Vector2(32, 64.6667)
