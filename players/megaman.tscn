@@ -396,7 +396,7 @@ normalspeed = 4500
 [node name="player_camera" type="Camera2D" parent="."]
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 4.0
 editor_draw_limits = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]

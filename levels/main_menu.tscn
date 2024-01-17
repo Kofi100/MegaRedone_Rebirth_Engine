@@ -51,6 +51,8 @@ text = "test_boss_stage"
 
 [node name="stage2" type="Button" parent="stage_buttons/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_eie37")
+text = "stage_2"
 
 [node name="PauseScreenSetup3" type="Sprite2D" parent="."]
 visible = false

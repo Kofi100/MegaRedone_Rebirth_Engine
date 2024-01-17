@@ -89,9 +89,9 @@ func _physics_process(delta):
 	#var tween=create_tween()
 	if trans_right:
 		#timer+=1
-		switch_state=0
-		stop=true
-		velocity=Vector2(7000,0)*delta
+#		switch_state=0
+#		stop=true
+		velocity=Vector2(1000,0)*delta
 		#tween.tween_property(self,"velocity",Vector2(400,0),1)
 #		if tween.finished:print('dig')
 #		if !tween.is_running():
@@ -112,9 +112,14 @@ func _physics_process(delta):
 #			stop=false
 	if trans_down:
 		velocity=Vector2(0,1000)*delta
-		stop=true
 		move_and_slide()
 		#tween.stop()
+	if trans_up:
+		velocity=Vector2(0,-1000)*delta
+		move_and_slide()
+	if trans_left:
+		velocity=Vector2(-1000,0)*delta
+		move_and_slide()
 		
 	if GlobalScript.weapon_number<0:
 		GlobalScript.weapon_number=max_weapon_number

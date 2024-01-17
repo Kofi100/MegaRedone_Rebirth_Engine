@@ -1,4 +1,6 @@
 extends Node2D
+@export var node_to_add_to_enemy:Node2D;
+var new_node
 @export var enemy_to_spawn:String=''
 #@export var spawn_index:int
 #var new_shotman=preload("")
@@ -51,9 +53,14 @@ func _process(delta):
 				node.visible=false;#print(i)
 			if i==5:
 				i=1
+	
+	if new_node==null and new_enemy!=null:
+##		if int(delta)%1==1:
+			print(name,':[var]new node:empty/null')
+	#print(delta)
 #	for i in disappear_nodes:
 #		if disappear_nodes.has(i):
-	var node
+
 	#print('enemy spawner:get node(Sprite2d):',get_node(disappear_nodes[1]))
 	#print(entered)
 	#print( 'is_connected',$VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered),',has_enemy_spawned:',has_enemy_spawned)
@@ -74,6 +81,7 @@ func _process(delta):
 #		if enemy_to_spawn=='homer' and  $spawn_homer_timer.time_left>0:
 #			spawn_homer=false
 	#$index.text=str(spawn_index)
+	
 	$enemy.text=enemy_to_spawn
 	if entered==true and GlobalScreenTransitionTimer.time_left<=0:
 		#timer+=1
@@ -87,11 +95,17 @@ func _process(delta):
 				has_enemy_spawned=true
 				var enemy=enemy_dictionary.get(enemy_to_spawn)
 				new_enemy=enemy.instantiate()
+				if node_to_add_to_enemy!=null:
+					new_node=node_to_add_to_enemy.duplicate()
+				if node_to_add_to_enemy!=null and new_node!=null:
+					new_node.reparent(new_enemy)
+					#new_enemy.add_child(new_node)
+					
 				#new_enemy.index=spawn_index
 				new_enemy.position=position
 				get_parent().add_child(new_enemy)
 				entered=false
-		
+				print(new_node)
 	elif entered==false:
 		#timer=0
 		has_enemy_spawned=false

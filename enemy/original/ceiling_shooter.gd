@@ -10,11 +10,11 @@ var distancex;var distancey;var shooting_activated=false
 func _process(delta):
 	distancex=GlobalScript.playerposx-global_position.x
 	distancey=GlobalScript.playerposy-global_position.y
-	if abs(distancex)<=200:
+	if abs(distancex)<=150:
 		$AnimatedSprite2D.play("default")
 		if not shooting_activated:
 			$shoot_timer.start();shooting_activated=true
-	elif abs(distancex)>200:
+	elif abs(distancex)>150:
 		$shoot_timer.stop()
 		$AnimatedSprite2D.stop()
 		shooting_activated=false

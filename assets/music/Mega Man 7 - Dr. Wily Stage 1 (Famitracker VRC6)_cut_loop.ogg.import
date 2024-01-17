@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d24gas6tl5glo"
+path="res://.godot/imported/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6)_cut_loop.ogg-f07b6b6005c5d97a97b523fa42c1dc7b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6)_cut_loop.ogg"
+dest_files=["res://.godot/imported/Mega Man 7 - Dr. Wily Stage 1 (Famitracker VRC6)_cut_loop.ogg-f07b6b6005c5d97a97b523fa42c1dc7b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
