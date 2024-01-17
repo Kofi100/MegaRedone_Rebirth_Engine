@@ -8,7 +8,7 @@ var randomize_boss_picker:int=-1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
+var pick_cooldown_up=true
 var picked_capsule=false;var picked_node_capsule;var not_picked_weapons
 @export var engine_start:bool=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +23,7 @@ func _process(delta):
 		$bosses_display.visible=true
 		$screen_flicker.visible=true
 		$screen_flicker.play("flicker")
-		if not picked_capsule and node_to_go_to!=null:
+		if pick_cooldown_up==true and not picked_capsule and node_to_go_to!=null:
 			randomize_boss_picker=randi_range(0,2)
 			picked_node_capsule=get_node(weapon_capsules[randomize_boss_picker])
 			if picked_node_capsule!=null:
@@ -73,17 +73,22 @@ var health_capsule1;var health_capsule2;var health_capsule3
 func activate_capsule():
 	picked_node_capsule.animation_player.play("retract",-1,-1)
 	picked_node_capsule.active=true
+	pick_cooldown_up=true
 	$all_timers/active_timer.start()
 
 var return_node
 func _on_active_timer_timeout():
+	
 	return_node=get_node(return_points[randomize_boss_picker])
 	if picked_node_capsule!=null:
+		#picked_capsule=true
 		picked_node_capsule.active=false
 		picked_node_capsule.active_iceman=false
 		var tween2=create_tween()
 		tween2.tween_property(picked_node_capsule,'global_position',return_node.global_position,.5)
 		tween2.connect('finished',reactivate_capsule)
+		$all_timers/select_boss_cooldown_timer.start()
+		pick_cooldown_up=false
 
 func reactivate_capsule():
 	picked_capsule=false
@@ -95,3 +100,7 @@ var healthbar_ready=false
 func fix_health():
 	$health_of_all_bosses.value=get_node(weapon_capsules[0]).health+ get_node(weapon_capsules[1]).health+get_node(weapon_capsules[2]).health
 	healthbar_ready=true
+
+
+func _on_select_boss_cooldown_timer_timeout():
+	pick_cooldown_up=true

@@ -54,6 +54,7 @@ var door_transition=false
 func _physics_process(delta):
 	if door_transition:
 		velocity.x=3000*delta
+		velocity.y=0
 		move_and_slide()
 		stop=true
 	if GlobalScreenTransitionTimer.time_left>0:
@@ -64,7 +65,7 @@ func _physics_process(delta):
 			trans_right=true
 		elif velocity.x<0:
 			trans_left=true
-		elif velocity.y>0:
+		if velocity.y>0:
 			trans_down=true
 		elif velocity.y<0:
 			trans_up=true

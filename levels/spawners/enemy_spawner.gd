@@ -98,7 +98,7 @@ func _process(delta):
 				if node_to_add_to_enemy!=null:
 					new_node=node_to_add_to_enemy.duplicate()
 				if node_to_add_to_enemy!=null and new_node!=null:
-					new_node.parent
+					#new_node.parent
 					new_node.reparent(new_enemy)
 					#new_enemy.add_child(new_node)
 					

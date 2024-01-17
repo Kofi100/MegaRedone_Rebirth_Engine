@@ -340,12 +340,14 @@ text = "go to menu"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
 title = "Leaving?"
-size = Vector2i(420, 100)
-min_size = Vector2i(256, 70)
-content_scale_size = Vector2i(1, 0)
+position = Vector2i(5, 81)
+size = Vector2i(244, 88)
+visible = true
+min_size = Vector2i(100, 70)
 theme = ExtResource("7_ixl55")
 ok_button_text = "Yes"
-dialog_text = "Are You Sure You Want To Quit?"
+dialog_text = "Are You Sure
+You Want To Quit?"
 cancel_button_text = "No"
 
 [node name="settings" type="Node2D" parent="pause_screen_setup"]
@@ -395,7 +397,6 @@ offset_bottom = 26.0
 color = Color(1, 0.054902, 0, 1)
 
 [node name="fade_out_effect" type="ColorRect" parent="."]
-visible = false
 offset_left = -22.0
 offset_top = -10.0
 offset_right = 735.0

@@ -128,6 +128,9 @@ one_shot = true
 [node name="engine_start_timer" type="Timer" parent="all_timers"]
 one_shot = true
 
+[node name="select_boss_cooldown_timer" type="Timer" parent="all_timers"]
+one_shot = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -169,3 +172,4 @@ fill_mode = 3
 
 [connection signal="timeout" from="all_timers/active_timer" to="." method="_on_active_timer_timeout"]
 [connection signal="timeout" from="all_timers/engine_start_timer" to="." method="_on_engine_start_timer_timeout"]
+[connection signal="timeout" from="all_timers/select_boss_cooldown_timer" to="." method="_on_select_boss_cooldown_timer_timeout"]
