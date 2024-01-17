@@ -53,10 +53,10 @@ func _process(delta):
 				node.visible=false;#print(i)
 			if i==5:
 				i=1
-	
-	if new_node==null and new_enemy!=null:
-##		if int(delta)%1==1:
-			print(name,':[var]new node:empty/null')
+	#to be used later
+#	if new_node==null and new_enemy!=null:
+###		if int(delta)%1==1:
+#			print(name,':[var]new node:empty/null')
 	#print(delta)
 #	for i in disappear_nodes:
 #		if disappear_nodes.has(i):
@@ -98,13 +98,14 @@ func _process(delta):
 				if node_to_add_to_enemy!=null:
 					new_node=node_to_add_to_enemy.duplicate()
 				if node_to_add_to_enemy!=null and new_node!=null:
+					new_node.parent
 					new_node.reparent(new_enemy)
 					#new_enemy.add_child(new_node)
 					
 				#new_enemy.index=spawn_index
 				new_enemy.position=position
 				get_parent().add_child(new_enemy)
-				entered=false
+				#entered=false
 				print(new_node)
 	elif entered==false:
 		#timer=0

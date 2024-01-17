@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm48yokieyqwr"]
+[gd_scene load_steps=13 format=3 uid="uid://dm48yokieyqwr"]
 
 [ext_resource type="Texture2D" uid="uid://bqmkmlrmxd3h5" path="res://assets/sprites/weapons/shadow_blade_MM3(23x23).png" id="1_dtlws"]
 [ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/shadow_blade_weapon_archive.gd" id="1_i42s5"]
+[ext_resource type="AudioStream" uid="uid://4v0su6t8pguj" path="res://assets/sounds/shadow_blade.wav" id="3_vqs68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwrgl"]
 atlas = ExtResource("1_dtlws")
@@ -38,7 +39,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"blade_ready",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,9 +77,14 @@ direction = "diagonal_left"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_trbiq")
 animation = &"blade_ready"
-frame_progress = 0.974841
+frame_progress = 0.960143
 
 [node name="timers" type="Node2D" parent="."]
+
+[node name="stay_timer" type="Timer" parent="timers"]
+wait_time = 4.0
+one_shot = true
+autostart = true
 
 [node name="go_one_way_timer" type="Timer" parent="timers"]
 one_shot = true
@@ -99,4 +105,12 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_yhxlu")
 debug_color = Color(0.972549, 0.156863, 0.113725, 0.419608)
 
+[node name="shadow_blade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vqs68")
+autoplay = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="timers/stay_timer" to="." method="_on_stay_timer_timeout"]
 [connection signal="body_entered" from="detect_thrower" to="." method="_on_detect_thrower_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

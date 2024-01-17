@@ -71,7 +71,7 @@ func _process(delta):
 		queue_free()
 var health_capsule1;var health_capsule2;var health_capsule3
 func activate_capsule():
-	
+	picked_node_capsule.animation_player.play("retract",-1,-1)
 	picked_node_capsule.active=true
 	$all_timers/active_timer.start()
 

@@ -54,8 +54,10 @@ func _physics_process(delta):
 
 	match active:
 		true:
+
+			play_retract_once=false
 			if play_anim_once==false:
-				$Sprite2D/AnimationPlayer.play("shoot")
+				#$Sprite2D.frame=0
 				play_anim_once=true
 				if disabled_hitbox:
 					$hitbox/CollisionShape2D.disabled=false
@@ -64,6 +66,9 @@ func _physics_process(delta):
 			match state:
 				
 				'ice_man':
+					if not $RayCast2D.is_colliding():
+						velocity.x=0
+						position.x+=0
 					if active_iceman==false:
 						$timers/ice_man/go_up_timer.start()
 						$timers/ice_man/shoot_timer.start()
@@ -84,7 +89,7 @@ func _physics_process(delta):
 						$timers/ice_man/go_down_timer.stop()
 						$timers/ice_man/shoot_timer.set_one_shot(true)
 						$timers/ice_man/ice_man_wait_for_movement_cooldown_timer.start()
-					if $timers/ice_man/ice_man_move_timer.time_left>0:
+					if $timers/ice_man/ice_man_move_timer.time_left>0 and is_on_floor():
 						animation_player.stop();$Sprite2D.frame=0
 						if distance<0:
 							velocity.x=-speedx_robot_masters['ice_man']*delta
@@ -97,15 +102,17 @@ func _physics_process(delta):
 					#print(velocity.y)
 					if not is_on_floor():
 						velocity.y+=gravity*delta
+						
 					if $timers/crash_man/crash_man_move_timer.time_left>0:
 						check_megaman_cooldown+=1
 						if check_megaman_cooldown%40==1:
-							if distance<0:
-								velocity.x=-speedx_robot_masters['crash_man']*delta
-							elif distance>=0:
-								velocity.x=speedx_robot_masters['crash_man']*delta
-					else:
-						velocity.x=0 
+							if is_on_floor():
+								if distance<0:
+									velocity.x=-speedx_robot_masters['crash_man']*delta
+								elif distance>=0:
+									velocity.x=speedx_robot_masters['crash_man']*delta
+#					else:
+#						velocity.x=0 
 					
 					if not is_on_floor() and velocity.y>0 and not crash_bomb_released:#and abs(distance)>=50 
 						animation_player.play("shoot")
@@ -167,19 +174,20 @@ func _physics_process(delta):
 						velocity.x=0
 					if $timers/shadow_man/shadow_man_attack_timer.time_left>0 and is_on_floor():
 						if not shadow_attack:
+							animation_player.play("shoot")
 							shadow_attack=true
 							var shadow_blade=preload('res://enemy/boss/weapons/weapon_archive/shadow_blade_weapon_archive.tscn')
 							var shadow_blade_instance=shadow_blade.instantiate()
-							var shadow_blade_instance2=shadow_blade.instantiate()
+							#var shadow_blade_instance2=shadow_blade.instantiate()
 							if distance<0:
 								shadow_blade_instance.direction='move_left'
-								shadow_blade_instance2.direction='diagonal_left'
+								#shadow_blade_instance2.direction='diagonal_left'
 							elif distance>=0:
 								shadow_blade_instance.direction='move_right'
-								shadow_blade_instance2.direction='diagonal_right'
-							get_parent().add_child(shadow_blade_instance);get_parent().add_child(shadow_blade_instance2)
+								#shadow_blade_instance2.direction='diagonal_right'
+							get_parent().add_child(shadow_blade_instance);#get_parent().add_child(shadow_blade_instance2)
 							shadow_blade_instance.global_position=global_position
-							shadow_blade_instance2.global_position=global_position
+							#shadow_blade_instance2.global_position=global_position
 			move_and_slide()
 		false:
 			$hitbox/CollisionShape2D.disabled=true
@@ -189,9 +197,11 @@ func _physics_process(delta):
 #				if i.is_class('Timer'):
 #					i.stop()
 			$timers/ice_man/shoot_timer.stop()
-			if $Sprite2D/AnimationPlayer.current_animation=='retract':
-				$Sprite2D/AnimationPlayer.play("retract")
-
+			if $Sprite2D/AnimationPlayer.current_animation!='retract':
+				if play_retract_once==false:
+					$Sprite2D/AnimationPlayer.play("retract")
+					play_retract_once=true
+var play_retract_once=false
 var shadow_attack=false
 var has_jumped=false;var jump_value_randomizer=0
 var check_megaman_cooldown=1
@@ -274,3 +284,5 @@ func tween_done():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name=='retract':
 		$Sprite2D/AnimationPlayer.play("idle")
+		if active==true:
+			$Sprite2D.frame=0

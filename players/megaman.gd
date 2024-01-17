@@ -32,8 +32,11 @@ var rush_coil=preload("res://players/weapons/rush_coil.tscn");var rush_coil_inst
 var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
 var screen_transition_finished=false
+var restart_scene=false
 func _ready():
-	
+#	if restart_scene==true:
+#		get_tree().reload_current_scene()
+#		restart_scene=false
 	GlobalScreenTransitionTimer.stop()
 	if ! GlobalScript.restarted_level:
 		GlobalScript.reset_level_timer()
@@ -47,7 +50,12 @@ func _ready():
 	$player_camera.position_smoothing_enabled=false
 var onrush=false;var disable_input=false
 var switch_state=0
+var door_transition=false
 func _physics_process(delta):
+	if door_transition:
+		velocity.x=3000*delta
+		move_and_slide()
+		stop=true
 	if GlobalScreenTransitionTimer.time_left>0:
 		$player_camera.position_smoothing_enabled=true
 		stop=true
@@ -240,7 +248,7 @@ func _physics_process(delta):
 						velocity.y=0
 				move_and_slide()
 				if GlobalScript.health<=0:
-					$restart_timer.start(3)
+					$restart_timer.start(3.5)
 					is_dead=true
 					var explosion_scene=preload('res://miscellenaous/effects/explosion_scene.tscn')
 					var explosion_scene_instance_or_node=explosion_scene.instantiate()

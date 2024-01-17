@@ -34,6 +34,8 @@ func _process(_delta):
 				elif get_tree().paused==false:
 					i.volume_db=original_background_volume_db
 					gotten_bgm_value=false
+				if GlobalScript.health<=0:
+					i.stop()
 	minutes.text=str(GlobalScript.minute_level)
 	seconds.text=str(int(GlobalScript.second_level))
 	millsecs.text=str(int(GlobalScript.milliseconds))
@@ -64,7 +66,7 @@ func _process(_delta):
 	elif selection_index>2:
 		selection_index=1
 	if !pause_input:#if input is not paused yet,
-		if Input.is_action_just_pressed("pause"):#and i pressed the pause button,
+		if Input.is_action_just_pressed("pause") and GlobalScript.health>0:#and i pressed the pause button,
 			if get_tree().paused==false and GlobalScript.health>0:#if the tree is paused/not,set it to the opposite state
 				get_tree().paused=true
 				$pause_menu_sound.play()

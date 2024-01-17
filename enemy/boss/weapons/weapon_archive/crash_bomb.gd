@@ -1,5 +1,7 @@
 extends enemy
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var crash_bomb_landed = $crash_bomb_landed
+
 var target_index=0
 var angle_to_go_in=0
 @export var speed_of_crash_bomb = 3000.0
@@ -40,6 +42,7 @@ func _physics_process(delta):
 	#if velocity.y>0:
 	if is_on_floor() or is_on_wall():
 		if not on_surface:
+			crash_bomb_landed.play()
 			$hitbox/in_air.disabled=true;
 			if animated_sprite_2d.flip_h==false:
 				$hitbox/landed_right.disabled=false;$hitbox/landed_left.disabled=true
@@ -59,6 +62,7 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_self_destruct_timer_timeout():
 	animated_sprite_2d.visible=false
 	$explosion_effect.set_emitting(true)
+	$hurt_for_explosion.play()
 	$destroy_node_timer.start()
 	$hitbox/in_air.disabled=true;
 	if animated_sprite_2d.flip_h==false:

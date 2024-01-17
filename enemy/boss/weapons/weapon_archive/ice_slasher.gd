@@ -4,9 +4,11 @@ extends enemy
 @export var SPEED = 300.0
 @export var direction=''
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var ice_slasher = $ice_slasher
 
 func _ready():
 	playerdamagevalue=3
+	ice_slasher.play()
 
 func _physics_process(delta):
 	animated_sprite_2d.play("ice_slasher")

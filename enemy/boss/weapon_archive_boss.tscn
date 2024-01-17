@@ -345,6 +345,7 @@ texture_filter = 1
 texture = ExtResource("2_bs4rj")
 hframes = 4
 vframes = 3
+frame = 2
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "Sprite Sheet",
@@ -375,6 +376,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="shoot_timer" type="Timer" parent="timers/ice_man"]
+wait_time = 0.8
 
 [node name="ice_man_wait_for_movement_cooldown_timer" type="Timer" parent="timers/ice_man"]
 wait_time = 0.3

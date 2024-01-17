@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2mp7w70vk0bx"]
+[gd_scene load_steps=8 format=3 uid="uid://c2mp7w70vk0bx"]
 
 [ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/ice_slasher.gd" id="1_j5qcr"]
 [ext_resource type="Texture2D" uid="uid://dasbdql8pq40y" path="res://icon.svg" id="2_s3wy5"]
 [ext_resource type="Texture2D" uid="uid://d0h575uxvofqx" path="res://assets/sprites/weapons/mm1/first set_MM1(16x16).png" id="3_3sg7y"]
+[ext_resource type="AudioStream" uid="uid://btgnbrpo8hy6e" path="res://assets/sounds/ice_slasher.wav" id="4_f05m7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v1kt"]
 atlas = ExtResource("3_3sg7y")
@@ -52,5 +53,8 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="ice_slasher" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_f05m7")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

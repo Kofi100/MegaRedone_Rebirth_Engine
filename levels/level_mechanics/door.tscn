@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg1ncj10ftjy5"]
+[gd_scene load_steps=15 format=3 uid="uid://bg1ncj10ftjy5"]
 
 [ext_resource type="Script" path="res://levels/level_mechanics/door.gd" id="1_5oyk0"]
 [ext_resource type="Texture2D" uid="uid://d0pu7hfmivucq" path="res://assets/sprites/miscelleaneous/door_spritesheet.png" id="1_uf0xv"]
 [ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
+[ext_resource type="AudioStream" uid="uid://dmsvw482gbu6f" path="res://assets/sounds/door.wav" id="4_bnbxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
 shader = ExtResource("2_k24ax")
@@ -63,8 +64,9 @@ size = Vector2(32, 64.6667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1aof"]
 size = Vector2(7.66667, 35.6667)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hyw5"]
-size = Vector2(7.66667, 64.3333)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7s8it"]
+a = Vector2(-0.249981, -32.6667)
+b = Vector2(-0.249981, 34.3333)
 
 [node name="door" type="StaticBody2D"]
 script = ExtResource("1_5oyk0")
@@ -100,8 +102,11 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="detect_right"]
-position = Vector2(12.3333, 0.333333)
-shape = SubResource("RectangleShape2D_1hyw5")
+position = Vector2(9.24998, 0.333333)
+shape = SubResource("SegmentShape2D_7s8it")
+
+[node name="door_enter_close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bnbxy")
 
 [connection signal="body_entered" from="detect_left" to="." method="_on_detect_left_body_entered"]
 [connection signal="body_entered" from="detect_right" to="." method="_on_detect_right_body_entered"]

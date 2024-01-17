@@ -19,6 +19,7 @@ var minute_level=0
 var second_level=0
 var milliseconds=0
 var total_time_seconds=0 #would be used to record how long you spent on a level
+var restart_scene=false
 func _ready():
 	DisplayServer.window_set_size(DisplayServer.window_get_size()*3)
 	pass

@@ -21,6 +21,8 @@ func _process(delta):
 	else:
 		$warning_text.stop()
 	$megaman/HUD/map.visible=false
+#	if GlobalScript.health<=0:
+#		background_boss_music.stop()
 #	if $weapon_archive_boss!=null:
 #		$weapon_archive_boss.active=true
 

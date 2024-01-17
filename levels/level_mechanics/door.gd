@@ -29,9 +29,10 @@ func _process(_delta):
 func _on_detect_left_body_entered(body):
 	if body.is_in_group('player'):
 		body.stop=true
-		body.trans_right=true
+		body.door_transition=true
 		animated_sprite_2d.play("open_close")
 		animated_sprite_2d_2.play("open_close")
+		$door_enter_close.play()
 
 var exited_door=false
 func _on_detect_right_body_entered(body):
@@ -39,12 +40,14 @@ func _on_detect_right_body_entered(body):
 		exited_door=true
 		animated_sprite_2d.play_backwards("open_close")
 		animated_sprite_2d_2.play_backwards("open_close")
+		$door_enter_close.play()
 
 func _on_detect_right_body_exited(body):
 	if body.is_in_group('player'):
 		body.stop=false
-		body.trans_right=false
+		body.door_transition=false
 		$detect_right.set_collision_mask_value(2,false)
+		body.velocity.x=0
 		#$detect_right/CollisionShape2D2.disabled=true
 #		$detect_right/CollisionShape2D2.call_deferred('is_disabled',true)#'is_disabled',true)
 		#$detect_right/CollisionShape2D2.disabled=true
