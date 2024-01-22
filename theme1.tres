@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://u3mv2w8vxt0a" path="res://assets/sprites/miscelleaneous/health_bg_texture_test.png" id="2_hrvy8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5q4o"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijtur"]
 texture = ExtResource("2_hrvy8")

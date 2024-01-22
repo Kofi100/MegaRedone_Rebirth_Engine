@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://enemy/sniper_joe_bullet.gd" id="1_r0sgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dc6n1"]
-size = Vector2(6, 6)
+size = Vector2(7, 6)
 
 [node name="sniper_joe_bullet" type="CharacterBody2D"]
 script = ExtResource("1_r0sgj")
@@ -18,7 +18,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 7.94729e-08)
+position = Vector2(-0.5, 7.94729e-08)
 shape = SubResource("RectangleShape2D_dc6n1")
 debug_color = Color(0.803922, 0.419608, 0, 0.419608)
 

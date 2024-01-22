@@ -36,10 +36,10 @@ collision_layer = 0
 script = ExtResource("1_f34yw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "active"
 libraries = {
 "": SubResource("AnimationLibrary_os77c")
 }
+autoplay = "active"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nroca")

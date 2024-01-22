@@ -108,6 +108,7 @@ func _process(delta):
 				#entered=false
 				print(new_node)
 	elif entered==false:
+		
 		#timer=0
 		has_enemy_spawned=false
 	if GlobalScreenTransitionTimer.time_left>0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=28 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -24,6 +24,39 @@ shader_parameter/bodycolorii = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)
+
+[sub_resource type="Animation" id="Animation_nxwht"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.4, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phch0"]
+_data = {
+"fade_out": SubResource("Animation_nxwht")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -95,38 +128,12 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_q5jc1"]
 
-[sub_resource type="Animation" id="Animation_nxwht"]
-resource_name = "fade_out"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.4, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[sub_resource type="InputEventKey" id="InputEventKey_pfy3o"]
+device = -1
+keycode = 4194305
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_phch0"]
-_data = {
-"fade_out": SubResource("Animation_nxwht")
-}
+[sub_resource type="Shortcut" id="Shortcut_rlxve"]
+events = [SubResource("InputEventKey_pfy3o")]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -167,6 +174,18 @@ z_index = 1
 offset_right = 258.0
 offset_bottom = 245.0
 color = Color(0, 0, 0, 1)
+
+[node name="fade_out_effect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -52.0
+offset_right = 639.0
+offset_bottom = 545.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
+libraries = {
+"": SubResource("AnimationLibrary_phch0")
+}
 
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
 visible = false
@@ -258,6 +277,7 @@ scale = Vector2(0.25, 0.25)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "Buster"
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup/weapons/mm_buster"]
 offset_left = 10.25
@@ -267,6 +287,7 @@ offset_bottom = 20.5
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 value = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons"]
 position = Vector2(63, 254)
@@ -321,15 +342,24 @@ theme = ExtResource("7_ixl55")
 value = 40.0
 
 [node name="quit_button" type="Button" parent="pause_screen_setup"]
+process_mode = 3
+process_priority = 1
 offset_left = 583.0
 offset_top = 417.0
 offset_right = 647.0
 offset_bottom = 441.0
 scale = Vector2(1.5, 1.5)
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 5
 theme = ExtResource("7_ixl55")
+button_mask = 7
+shortcut = SubResource("Shortcut_rlxve")
 text = "quit"
 
 [node name="go_to_menu_btn" type="Button" parent="pause_screen_setup"]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
 offset_left = 463.0
 offset_top = 385.0
 offset_right = 609.0
@@ -337,18 +367,6 @@ offset_bottom = 409.0
 scale = Vector2(1.5, 1.5)
 theme = ExtResource("7_ixl55")
 text = "go to menu"
-
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
-title = "Leaving?"
-position = Vector2i(5, 81)
-size = Vector2i(244, 88)
-visible = true
-min_size = Vector2i(100, 70)
-theme = ExtResource("7_ixl55")
-ok_button_text = "Yes"
-dialog_text = "Are You Sure
-You Want To Quit?"
-cancel_button_text = "No"
 
 [node name="settings" type="Node2D" parent="pause_screen_setup"]
 
@@ -369,6 +387,17 @@ offset_right = -6.0
 offset_bottom = 23.0
 theme = ExtResource("7_ixl55")
 text = "BG MUSIC:"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="pause_screen_setup"]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="pause_screen_setup"]
+title = "Leaving..."
+position = Vector2i(25, 75)
+size = Vector2i(215, 109)
+ok_button_text = "Yes"
+dialog_text = "Are You Sure You Want to
+Leave?"
+cancel_button_text = "No"
 
 [node name="pause_menu_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_vp1wl")
@@ -395,18 +424,6 @@ offset_top = 11.0
 offset_right = 25.0
 offset_bottom = 26.0
 color = Color(1, 0.054902, 0, 1)
-
-[node name="fade_out_effect" type="ColorRect" parent="."]
-offset_left = -22.0
-offset_top = -10.0
-offset_right = 735.0
-offset_bottom = 710.0
-color = Color(0, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
-libraries = {
-"": SubResource("AnimationLibrary_phch0")
-}
 
 [node name="timer" type="Node2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -450,6 +467,5 @@ text = "Timer:     :"
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]
 [connection signal="pressed" from="pause_screen_setup/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="pause_screen_setup/go_to_menu_btn" to="." method="_on_go_to_menu_btn_pressed"]
-[connection signal="canceled" from="pause_screen_setup/ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="pause_screen_setup/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="timeout" from="timer/seconds_timer" to="." method="_on_seconds_timer_timeout"]

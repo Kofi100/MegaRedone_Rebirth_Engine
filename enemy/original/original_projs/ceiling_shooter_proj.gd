@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var angle_to_go
 
 func _physics_process(delta):
-	playerdamagevalue=2
+	playerdamagevalue=3
 	velocity.y=sin(angle_to_go)*SPEED*delta
 	velocity.x=cos(angle_to_go)*SPEED*delta
 	move_and_slide()

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc4qei06qq73e"]
+
+[ext_resource type="Script" path="res://levels/level_mechanics/conveyor_belt_area_2d.gd" id="1_kp18w"]
+
+[node name="conveyor_belt_area2d" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_kp18w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

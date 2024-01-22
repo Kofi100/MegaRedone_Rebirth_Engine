@@ -33,6 +33,7 @@ var stop=false;var timer=0
 var weapon_number:int=0;var max_weapon_number=2
 var screen_transition_finished=false
 var restart_scene=false
+var conveyor_push=3000;var on_conveyor=false
 func _ready():
 #	if restart_scene==true:
 #		get_tree().reload_current_scene()
@@ -52,6 +53,7 @@ var onrush=false;var disable_input=false
 var switch_state=0
 var door_transition=false
 func _physics_process(delta):
+	#conveyor_push=30000
 	if door_transition:
 		velocity.x=3000*delta
 		velocity.y=0
@@ -61,14 +63,15 @@ func _physics_process(delta):
 		$player_camera.position_smoothing_enabled=true
 		stop=true
 		screen_transition_finished=false
-		if velocity.x>0:
-			trans_right=true
-		elif velocity.x<0:
-			trans_left=true
 		if velocity.y>0:
 			trans_down=true
 		elif velocity.y<0:
 			trans_up=true
+		if velocity.x>0:
+			trans_right=true
+		elif velocity.x<0:
+			trans_left=true
+
 	elif GlobalScreenTransitionTimer.time_left<=0:
 		if  not screen_transition_finished:
 			$player_camera.position_smoothing_enabled=false
@@ -188,11 +191,16 @@ func _physics_process(delta):
 							else:
 								if move_an_inch_checker<10:
 									velocity.x=direction *1000 *delta
-								else:
-									velocity.x=direction*SPEED *delta
+								elif on_conveyor:
+									velocity.x=direction*(SPEED+conveyor_push) *delta
+								elif not on_conveyor:
+									velocity.x=direction*(SPEED) *delta
 						else:
 							move_an_inch_checker=0
-							velocity.x = move_toward(velocity.x, 0, SPEED)
+							if not on_conveyor:
+								velocity.x = move_toward(velocity.x, 0, SPEED)
+							elif on_conveyor:
+								velocity.x=conveyor_push*delta
 						play_animations()
 						dash_function(delta)
 						#if anim.animation!="idle":
@@ -237,7 +245,7 @@ func _physics_process(delta):
 				#these codes are for playing animations
 					var direction=Input.get_axis("move_up","move_down")
 					if direction and anim.animation!="shoot_on_ladder" and not disable_input:
-						velocity.y=direction*7000*delta
+						velocity.y=direction*3500*delta
 			#			if Input.is_action_pressed("move_up"):
 			#				velocity.y=-100
 			#			elif Input.is_action_pressed("move_down"):
@@ -251,6 +259,7 @@ func _physics_process(delta):
 				if GlobalScript.health<=0:
 					$restart_timer.start(3.5)
 					is_dead=true
+					#anim.play('dead')
 					var explosion_scene=preload('res://miscellenaous/effects/explosion_scene.tscn')
 					var explosion_scene_instance_or_node=explosion_scene.instantiate()
 					get_parent().add_child(explosion_scene_instance_or_node);explosion_scene_instance_or_node.global_position=global_position

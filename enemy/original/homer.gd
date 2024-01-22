@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	playerdamagevalue=3
+	playerdamagevalue=5
 	health=5
 
 func _physics_process(delta):

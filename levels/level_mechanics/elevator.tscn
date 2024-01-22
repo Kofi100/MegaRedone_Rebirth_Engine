@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccpgrxo2gxmm5"]
+[gd_scene load_steps=15 format=3 uid="uid://ccpgrxo2gxmm5"]
 
 [ext_resource type="Texture2D" uid="uid://bffb578fwaf33" path="res://assets/sprites/stages/mechanics/elevator_sketch.png" id="1_hh6nb"]
 [ext_resource type="Script" path="res://levels/level_mechanics/elevator.gd" id="1_yuy4f"]
 [ext_resource type="Texture2D" uid="uid://6wmkls2x3gcw" path="res://assets/sprites/miscelleaneous/point_light_source2.png" id="2_vamko"]
+[ext_resource type="Texture2D" uid="uid://bego4x8j1j20p" path="res://assets/sprites/stages/mechanics/lift_concept.png" id="3_wg8lw"]
 
 [sub_resource type="Curve2D" id="Curve2D_lc3t2"]
 _data = {
@@ -54,7 +55,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pk322"]
-size = Vector2(48, 8)
+size = Vector2(46, 12)
 
 [sub_resource type="Animation" id="Animation_bt7lc"]
 resource_name = "up_down_cont"
@@ -90,17 +91,24 @@ texture_filter = 1
 position = Vector2(-3, 1)
 texture = ExtResource("2_vamko")
 
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+position = Vector2(-1, 13)
+texture = ExtResource("3_wg8lw")
+hframes = 2
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatableBody2D"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_wjpt6")
 animation = &"open_close"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
-position = Vector2(-8, 28)
+position = Vector2(-1, 10)
 shape = SubResource("RectangleShape2D_pk322")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D"]
 position = Vector2(-32, -32)
 polygon = PackedVector2Array(0, 0, 48, 0, 48, 26, 36, 26, 36, 12, 11, 12, 11, 26, 0, 26)
+disabled = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotation = -1.5708
@@ -113,7 +121,7 @@ update_rotation = false
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "up_down_cont"
 libraries = {
 "": SubResource("AnimationLibrary_gf7rk")
 }
+autoplay = "up_down_cont"

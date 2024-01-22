@@ -10,7 +10,7 @@ var selection_index=1;#var tween=create_tween() #use tween to create a transiton
 var pause_input=false;var color
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	#$pause_screen_setup/ConfirmationDialog.hide()
 	color=$fade_out_rectangle.color
 	print(color)
 var gotten_bgm_value=false
@@ -154,15 +154,19 @@ func _on_quit_button_pressed():
 
 func _on_go_to_menu_btn_pressed():
 	$pause_screen_setup/ConfirmationDialog.show()
+	pass
+
 
 
 func _on_confirmation_dialog_confirmed():
-	get_tree().change_scene_to_file('res://levels/main_menu.tscn')
 	get_tree().paused=false
+	get_tree().change_scene_to_file('res://levels/main_menu.tscn')
+	
 
 
 func _on_confirmation_dialog_canceled():
-	$pause_screen_setup/ConfirmationDialog.hide()
+	#$pause_screen_setup/ConfirmationDialog.hide()
+	pass
 
 
 func _on_seconds_timer_timeout():

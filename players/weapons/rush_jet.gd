@@ -28,12 +28,12 @@ func _physics_process(delta):
 			move_and_slide()
 		"spawn_out":
 			animated_sprite_2d.play("spawn")
-			velocity.y=-90000*delta
+			velocity.y=-30000*delta
 			move_and_slide()
 		"ready":
 			$CollisionShape2D.disabled=false
 			if player_on_top and megaman:
-				megaman.position=Vector2(global_position.x,global_position.y-40)
+				megaman.position=Vector2(global_position.x,global_position.y-10)
 				#megaman.velocity.x=0
 				#global_position.x=GlobalScript.playerposx
 				#velocity.x=4000*delta

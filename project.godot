@@ -12,7 +12,7 @@ config_version=5
 
 config/name="MegaRedone_Rebirth"
 run/main_scene="res://levels/main_menu.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://assets/sprites/miscelleaneous/Mega_Man_RR_logo.png"
 config/icon="res://assets/sprites/miscelleaneous/Mega_Man_Redone_Rebirth_logo_icon.png"
 
@@ -31,7 +31,6 @@ GlobalScreenTransitionTimer="*res://GlobalScripts/global_screen_transition_timer
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/initial_position=Vector2i(0, -800)
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 

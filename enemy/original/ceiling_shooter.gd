@@ -7,7 +7,7 @@ func _ready():
 
 var distancex;var distancey;var shooting_activated=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	distancex=GlobalScript.playerposx-global_position.x
 	distancey=GlobalScript.playerposy-global_position.y
 	if abs(distancex)<=150:
@@ -22,10 +22,11 @@ func _process(delta):
 
 
 func _on_shoot_timer_timeout():
-	var projectile=preload('res://enemy/original/original_projs/ceiling_shooter_proj.tscn')
-	var projectile_ins=projectile.instantiate()
-	var angle=atan2(distancey,distancex)
-	projectile_ins.angle_to_go=angle
-	get_parent().add_child(projectile_ins)
-	projectile_ins.global_position=$shoot_position.global_position
-	$shoot_audio_effect.play()
+	if is_physics_processing()==true:
+		var projectile=preload('res://enemy/original/original_projs/ceiling_shooter_proj.tscn')
+		var projectile_ins=projectile.instantiate()
+		var angle=atan2(distancey,distancex)
+		projectile_ins.angle_to_go=angle
+		get_parent().add_child(projectile_ins)
+		projectile_ins.global_position=$shoot_position.global_position
+		$shoot_audio_effect.play()

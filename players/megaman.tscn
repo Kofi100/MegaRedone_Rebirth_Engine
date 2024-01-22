@@ -403,11 +403,10 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_in_air"
+animation = &"stun_air"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2.66667, 3.33333)
+position = Vector2(-0.33333, 3.33333)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
 

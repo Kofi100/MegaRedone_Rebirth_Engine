@@ -63,14 +63,14 @@ size = Vector2(27, 9)
 size = Vector2(20, 8.66667)
 
 [node name="rush_jet" type="CharacterBody2D" groups=["rush_jet"]]
-scale = Vector2(3, 3)
 collision_layer = 0
 script = ExtResource("1_qavoq")
+SPEED = 4500
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.666667, -5.33333)
 sprite_frames = SubResource("SpriteFrames_i84xr")
-animation = &"spawn"
+animation = &"wait"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.16667, 5.16667)
