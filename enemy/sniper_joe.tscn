@@ -45,6 +45,9 @@ animations = [{
 }, {
 "duration": 10.0,
 "texture": SubResource("AtlasTexture_y0tev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7gli")
 }],
 "loop": false,
 "name": &"shoot",
@@ -55,7 +58,7 @@ animations = [{
 size = Vector2(9.66667, 20.8333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4n0au"]
-size = Vector2(185, 57.6667)
+size = Vector2(185, 111.667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkpk7"]
 size = Vector2(10.3333, 22.6667)
@@ -86,7 +89,7 @@ collision_mask = 2
 [node name="left" type="Area2D" parent="detect_player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player"]
-position = Vector2(0.166669, -12.8333)
+position = Vector2(0.166669, -0.8333)
 shape = SubResource("RectangleShape2D_4n0au")
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]

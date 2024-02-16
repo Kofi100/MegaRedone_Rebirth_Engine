@@ -59,7 +59,7 @@ spikyoall;homer;
 ceiling_shooter"
 
 [node name="spawn_homer_timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="spawn_timer" type="Timer" parent="."]

@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var anim = $anim
 ##This value keeps the path of the dash node used for Megaman to deterimine his speed.
 @onready var dash = $dash
+@onready var animation_player = $AnimationPlayer
+@onready var animation_player_2 = $AnimationPlayer2
 
 ##This is the default speed which can be adjusted by dashing.
 @export var SPEED = 0
@@ -34,7 +36,11 @@ var weapon_number:int=0;var max_weapon_number=2
 var screen_transition_finished=false
 var restart_scene=false
 var conveyor_push=3000;var on_conveyor=false
+var player_ready=false
 func _ready():
+	player_ready=false
+	anim.play("idle")
+	anim.visible=false
 #	if restart_scene==true:
 #		get_tree().reload_current_scene()
 #		restart_scene=false
@@ -53,6 +59,7 @@ var onrush=false;var disable_input=false
 var switch_state=0
 var door_transition=false
 func _physics_process(delta):
+	if not player_ready:GlobalScreenTransitionTimer.stop()
 	#conveyor_push=30000
 	if door_transition:
 		velocity.x=3000*delta
@@ -85,17 +92,25 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("die_debug"):
 		GlobalScript.health=0
 	GlobalScript.playerposx=global_position.x
+	GlobalScript.playerposy=global_position.y
 	$charge_timer.text=str(MegamanAndItems.charge_timer)
 	$speed.text=str(SPEED)
-	GlobalScript.playerposy=global_position.y
-	SPEED=dashspeed if dash.is_dashing() else normalspeed
+	
+	if dash.is_dashing():
+		SPEED=dashspeed 
+	elif not on_conveyor :
+		SPEED=normalspeed
+	elif on_conveyor:
+		SPEED=normalspeed-conveyor_push
 	# Add the gravity.
 	if is_on_floor():
 	
 		if jump_play_effect_timer<5:
 			jump_play_effect_timer+=1
 			if jump_play_effect_timer==1:
+				
 				$all_sounds/land.play()
+				#animation_player_2.play('screen_shake') #for testing screen shake later
 	elif not is_on_floor():
 		jump_play_effect_timer=0
 	#var tween=create_tween()
@@ -165,7 +180,7 @@ func _physics_process(delta):
 		$weapon_display.frame=GlobalScript.weapon_number
 		#weapon_number=Input.get_axis("switch_weapon_left","switch_weapon_right")
 		
-		if stop==false:
+		if player_ready and stop==false:
 			if GlobalScript.playerhitcooldowntimer%5==1:
 				anim.visible=false
 			elif GlobalScript.playerhitcooldowntimer%5==3:
@@ -212,9 +227,9 @@ func _physics_process(delta):
 							create_weapons()
 						if $anim.animation=="shoot_idle":
 							if $anim.flip_h==false:
-								$anim.offset.x=-6
+								$anim.offset.x=0#-6
 							elif $anim.flip_h==true:
-								$anim.offset.x=6
+								$anim.offset.x=0#6
 						else:
 							$anim.offset.x=0
 					else:
@@ -593,23 +608,27 @@ func create_weapons():
 					get_parent().add_child(rush_jet_instance)
 					if anim.flip_h==true:
 						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)#+50
+						rush_jet_instance.direction='right'
 					elif anim.flip_h==false:
 						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)
-
+						rush_jet_instance.direction='left'
 func _on_anim_animation_finished():
-	if $anim.animation=="shoot_run":
-		$anim.play("run")
-	
-	if $anim.animation=="shoot_idle":
-		$anim.play("idle")
+	match anim.animation:
+		"shoot_run":
+			$anim.play("run")
 		
-	if $anim.animation=="shoot_in_air":
-		$anim.play("jump")
-	if anim.animation=="shoot_on_ladder":
-		print("done")
-		anim.play("climb")
-		anim.pause()
-
+		"shoot_idle":
+			$anim.play("idle")
+			
+		"shoot_in_air":
+			$anim.play("jump")
+		"shoot_on_ladder":
+			print("done")
+			anim.play("climb")
+			anim.pause()
+		'spawn':
+			player_ready=true
+	
 var was_leaving=false
 
 
@@ -666,16 +685,14 @@ func _on_restart_timer_timeout():
 	get_tree().reload_current_scene()
 
 
-func _on_zone_body_entered(_body):
-	pass
-func change_collisions_old():
-	if anim.animation==("jump"):
-		if anim.flip_h==true:
-			$CollisionShape2D.position=Vector2(10.333,-2.667)
-		elif anim.flip_h==false:
-			$CollisionShape2D.position=Vector2(-8.333,-2.667)
-	else:
-		$CollisionShape2D.position=Vector2(2.667,3.333)
+#func change_collisions_old():
+	#if anim.animation==("jump"):
+		#if anim.flip_h==true:
+			#$CollisionShape2D.position=Vector2(10.333,-2.667)
+		#elif anim.flip_h==false:
+			#$CollisionShape2D.position=Vector2(-8.333,-2.667)
+	#else:
+		#$CollisionShape2D.position=Vector2(2.667,3.333)
 
 
 func _on_display_timer_timeout():
@@ -696,3 +713,24 @@ func change_collisions():
 		$AnimationPlayer.play("dash")
 	else:
 		$AnimationPlayer.play("others")
+
+
+func _on_start_timer_timeout():
+	pass # Replace with function body.
+	const SPAWN_IN_EFFECT = preload("res://miscellenaous/effects/spawn_in_effect.tscn")
+	var spawn_in_effect_instance=SPAWN_IN_EFFECT.instantiate()
+	spawn_in_effect_instance.global_position.x=global_position.x
+	spawn_in_effect_instance.global_position.y=global_position.y-500
+	get_parent().add_child(spawn_in_effect_instance)
+
+
+func _on_animation_player_animation_finished(anim_name):
+	pass # Replace with function body.
+
+
+
+func _on_animation_player_2_animation_finished(anim_name):
+	pass # Replace with function body.
+	match anim_name:
+		'screen_shake':
+			print('Megaman:AnimationPlayer:Screen shake done')

@@ -2,13 +2,12 @@ extends Node2D
 @onready var player_cam=$megaman/player_camera
 @onready var camera_1 = $all_cameras/camera1
 @onready var camera_2 = $all_cameras/camera2
-@onready var camera_3 = $all_cameras/camera3
-@onready var camera_4 = $all_cameras/camera4
-@onready var camera_5 = $all_cameras/camera5
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	$bgm_stage1.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,29 +37,5 @@ func _on_area_2d_body_entered(body):
 #			body.trans_right=false
 
 
-func _on_area_2d_body_exited(body):
-	if body.is_in_group("player"):
-		#if body.trans_right==false:
-		if body.trans_right==true:
-			body.trans_right=false
-
-
-func _on_z_3_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_cam,camera_3)
-		$megaman/timer_switch_cameras.start()
-
-
 func _on_bgm_stage_1_finished():
 	$bgm_stage1.play(0)
-
-
-func _on_z_4_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_cam,camera_4)
-		$megaman/timer_switch_cameras.start()
-
-func _on_z_5_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_cam,camera_5)
-		$megaman/timer_switch_cameras.start()

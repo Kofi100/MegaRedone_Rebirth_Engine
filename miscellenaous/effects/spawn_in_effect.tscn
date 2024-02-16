@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6323ffsislyt"]
+
+[ext_resource type="Shader" path="res://players/megaman.gdshader" id="1_0c8dg"]
+[ext_resource type="Script" path="res://miscellenaous/effects/spawn_in_effect.gd" id="1_dpdxm"]
+[ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_fldfe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h10o"]
+shader = ExtResource("1_0c8dg")
+shader_parameter/outline_color_original = null
+shader_parameter/bodycolororiginal1 = Color(0, 0, 1, 1)
+shader_parameter/bodycolororiginal2 = Color(1, 0, 0, 1)
+shader_parameter/outlinecolor = null
+shader_parameter/bodycolori = Color(0, 0.796078, 0, 1)
+shader_parameter/bodycolorii = Color(0.431373, 0.266667, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg31f"]
+atlas = ExtResource("1_fldfe")
+region = Rect2(62, 60, 31, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ofpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg31f")
+}],
+"loop": true,
+"name": &"spanw_in",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcrp8"]
+size = Vector2(6, 29)
+
+[node name="spawn_in_effect" type="CharacterBody2D"]
+script = ExtResource("1_dpdxm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6h10o")
+sprite_frames = SubResource("SpriteFrames_8ofpj")
+animation = &"spanw_in"
+
+[node name="detect_player" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_lcrp8")
+
+[connection signal="area_entered" from="detect_player" to="." method="_on_detect_player_area_entered"]

@@ -37,7 +37,7 @@ func _ready():
 var spawn_homer=false
 var has_enemy_spawned=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if visibility:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i) and i<=4:
@@ -54,17 +54,7 @@ func _process(delta):
 			if i==5:
 				i=1
 	#to be used later
-#	if new_node==null and new_enemy!=null:
-###		if int(delta)%1==1:
-#			print(name,':[var]new node:empty/null')
-	#print(delta)
-#	for i in disappear_nodes:
-#		if disappear_nodes.has(i):
 
-	#print('enemy spawner:get node(Sprite2d):',get_node(disappear_nodes[1]))
-	#print(entered)
-	#print( 'is_connected',$VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered),',has_enemy_spawned:',has_enemy_spawned)
-	#set_physics_process(false)
 #	if GlobalScript.spawn_enemy:
 #		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==false:
 #			$VisibleOnScreenNotifier2D.connect('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)
@@ -75,12 +65,7 @@ func _process(delta):
 	#print('new'+enemy_to_spawn)
 	#testing if new variables can be made..kinda
 #	var new='new_'+enemy_to_spawn
-#	print(new)
-	##
-#	if not has_enemy_spawned:
-#		if enemy_to_spawn=='homer' and  $spawn_homer_timer.time_left>0:
-#			spawn_homer=false
-	#$index.text=str(spawn_index)
+
 	
 	$enemy.text=enemy_to_spawn
 	if entered==true and GlobalScreenTransitionTimer.time_left<=0:
@@ -93,8 +78,8 @@ func _process(delta):
 		if not has_enemy_spawned and new_enemy==null:
 			if enemy_dictionary.has(enemy_to_spawn):
 				has_enemy_spawned=true
-				var enemy=enemy_dictionary.get(enemy_to_spawn)
-				new_enemy=enemy.instantiate()
+				var enemy_scene=enemy_dictionary.get(enemy_to_spawn)
+				new_enemy=enemy_scene.instantiate()
 				if node_to_add_to_enemy!=null:
 					new_node=node_to_add_to_enemy.duplicate()
 				if node_to_add_to_enemy!=null and new_node!=null:
@@ -106,17 +91,23 @@ func _process(delta):
 				new_enemy.position=position
 				get_parent().add_child(new_enemy)
 				#entered=false
-				print(new_node)
-	elif entered==false:
+				print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
+	elif entered==false and new_enemy==null:
 		
 		#timer=0
 		has_enemy_spawned=false
 	if GlobalScreenTransitionTimer.time_left>0:
-		if new_enemy!=null:
-			new_enemy.set_physics_process(false)
+		for i in get_tree().current_scene.get_children():
+			if i is enemy:
+		#if new_enemy!=null:
+				i.set_physics_process(false)
+				i.velocity=Vector2.ZERO
 	elif GlobalScreenTransitionTimer.time_left<=0:
-		if new_enemy!=null:
-			new_enemy.set_physics_process(true)
+		for i in get_tree().current_scene.get_children():
+			if i is enemy:
+				i.set_physics_process(true)
+		#if new_enemy!=null:
+			#new_enemy.set_physics_process(true)
 	
 func check_for_dead_enemy(index):
 #	if index==spawn_index:
@@ -136,19 +127,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 #				get_parent().add_child(new_shotman_enemy)
 #				new_shotman_enemy.index=spawn_index
 #				new_shotman_enemy.global_position=global_position
-#			'peterchy':
-#				var new_peterchy_enemy=peterchy.instantiate()
-#				new_peterchy_enemy.position=position
-#				new_peterchy_enemy.index=spawn_index
-#				get_parent().add_child(new_peterchy_enemy)
-#			'mechakkero':
-#				var new_mechakkero_enemy=mechakkero.instantiate()
-#				new_mechakkero_enemy.position=position
-#				new_mechakkero_enemy.index=spawn_index
-#				get_parent().add_child(new_mechakkero_enemy)
-#			'walking_bomb':
-#				var new_waling_bomb=walking_bomb.instantiate()
-
 
 func _on_spawn_homer_timer_timeout():
 	print('enemy spawner: spawner homer timeout')

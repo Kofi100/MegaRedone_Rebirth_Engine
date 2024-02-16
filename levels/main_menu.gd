@@ -3,6 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$bgm.play()
 	ResourceLoader.load_threaded_request("res://levels/test stages/stage_1.tscn")
 	GlobalScript.restarted_level=false
 #	var tween=create_tween()
@@ -49,3 +50,19 @@ func _on_stage_2_pressed():
 
 
 
+
+
+func _on_stage_3_pressed():
+	pass # Replace with function body.
+	get_tree().change_scene_to_file('res://levels/test stages/stage_3.tscn')
+	
+
+
+func _on_stage_4_pressed():
+	pass # Replace with function body.
+	get_tree().change_scene_to_file('res://levels/test stages/stage_4.tscn')
+
+
+func _on_bgm_finished():
+	pass # Replace with function body.
+	$bgm.play()

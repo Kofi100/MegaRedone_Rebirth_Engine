@@ -79,7 +79,7 @@ SPEED = 15000.0
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4y8vj")
 animation = &"chargeshot_lv2_new"
-frame_progress = 0.467547
+frame_progress = 0.564677
 
 [node name="collision_monitor" type="Area2D" parent="." groups=["player_projectiles"]]
 collision_layer = 5

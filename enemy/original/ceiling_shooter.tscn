@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhuc4lcl5clpc"]
+[gd_scene load_steps=10 format=3 uid="uid://dhuc4lcl5clpc"]
 
 [ext_resource type="Texture2D" uid="uid://c2pqrpkiqjoos" path="res://assets/sprites/enemies/original/ceiling shooter.png" id="1_a08p8"]
 [ext_resource type="Script" path="res://enemy/original/ceiling_shooter.gd" id="1_dhti3"]
@@ -27,10 +27,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34k2t"]
-size = Vector2(19, 4)
+size = Vector2(8, 4)
 
-[node name="ceiling_shooter" type="RigidBody2D"]
-gravity_scale = -1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd4dy"]
+size = Vector2(19, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_huom2"]
+size = Vector2(281, 175)
+
+[node name="ceiling_shooter" type="CharacterBody2D"]
 script = ExtResource("1_dhti3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -39,10 +44,16 @@ sprite_frames = SubResource("SpriteFrames_o6evi")
 frame_progress = 0.261611
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_34k2t")
 
-[node name="player_detect" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_yd4dy")
 
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 0.7
@@ -53,4 +64,17 @@ stream = ExtResource("3_wtnc1")
 [node name="shoot_position" type="Marker2D" parent="."]
 position = Vector2(0, 6)
 
+[node name="detect_area2d" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area2d"]
+position = Vector2(0, 87.5)
+shape = SubResource("RectangleShape2D_huom2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.499999, -1)
+scale = Vector2(6.45, 2.2)
+
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="area_entered" from="detect_area2d" to="." method="_on_detect_area_2d_area_entered"]
+[connection signal="area_exited" from="detect_area2d" to="." method="_on_detect_area_2d_area_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

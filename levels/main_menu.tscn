@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx7s7c62f7ufp"]
+[gd_scene load_steps=8 format=3 uid="uid://cx7s7c62f7ufp"]
 
 [ext_resource type="Script" path="res://levels/main_menu.gd" id="1_vv0bd"]
 [ext_resource type="Texture2D" uid="uid://c1frdiusrrr5w" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image.png" id="2_cjt8t"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="2_ns6ek"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="4_eie37"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="5_yyqio"]
+[ext_resource type="AudioStream" uid="uid://3hdu3cvqvx5s" path="res://assets/music/[Spark the Electric Jester OST] 18 - Reynol Complex (Stage 13).mp3" id="7_ooesf"]
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_vv0bd")
@@ -22,37 +23,50 @@ texture = ExtResource("2_cjt8t")
 
 [node name="stage_buttons" type="Node2D" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="stage_buttons"]
-offset_left = 8.0
-offset_top = 88.0
-offset_right = 246.0
-offset_bottom = 212.0
+[node name="ScrollContainer" type="ScrollContainer" parent="stage_buttons"]
+offset_left = 9.0
+offset_top = 51.0
+offset_right = 254.0
+offset_bottom = 225.0
 
-[node name="test_stage" type="Button" parent="stage_buttons/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="stage_buttons/ScrollContainer"]
+layout_mode = 2
+
+[node name="test_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "test_stage"
 
-[node name="stage1" type="Button" parent="stage_buttons/VBoxContainer"]
+[node name="stage1" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "stage_1"
 
-[node name="shadow_man_stage" type="Button" parent="stage_buttons/VBoxContainer"]
+[node name="shadow_man_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "shadow_man
 _stage_test"
 
-[node name="test_boss_stage" type="Button" parent="stage_buttons/VBoxContainer"]
+[node name="test_boss_stage" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_eie37")
 text = "test_boss_stage"
 
-[node name="stage2" type="Button" parent="stage_buttons/VBoxContainer"]
+[node name="stage2" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_eie37")
 text = "stage_2"
+
+[node name="stage3" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_eie37")
+text = "STAGE_3"
+
+[node name="stage4" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_eie37")
+text = "stage_4"
 
 [node name="PauseScreenSetup3" type="Sprite2D" parent="."]
 visible = false
@@ -61,13 +75,21 @@ texture = ExtResource("2_esjeo")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_yyqio")
+volume_db = -10.0
 
-[connection signal="mouse_entered" from="stage_buttons/VBoxContainer/test_stage" to="." method="_on_test_stage_mouse_entered"]
-[connection signal="pressed" from="stage_buttons/VBoxContainer/test_stage" to="." method="_on_test_stage_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/VBoxContainer/stage1" to="." method="_on_stage_1_mouse_entered"]
-[connection signal="pressed" from="stage_buttons/VBoxContainer/stage1" to="." method="_on_stage_1_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_mouse_entered"]
-[connection signal="pressed" from="stage_buttons/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_pressed"]
-[connection signal="pressed" from="stage_buttons/VBoxContainer/test_boss_stage" to="." method="_on_test_boss_stage_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/VBoxContainer/stage2" to="." method="_on_stage_2_mouse_entered"]
-[connection signal="pressed" from="stage_buttons/VBoxContainer/stage2" to="." method="_on_stage_2_pressed"]
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ooesf")
+volume_db = -15.0
+
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage" to="." method="_on_test_stage_mouse_entered"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage" to="." method="_on_test_stage_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage1" to="." method="_on_stage_1_mouse_entered"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage1" to="." method="_on_stage_1_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_mouse_entered"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_pressed"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/test_boss_stage" to="." method="_on_test_boss_stage_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage2" to="." method="_on_stage_2_mouse_entered"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage2" to="." method="_on_stage_2_pressed"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage3" to="." method="_on_stage_3_pressed"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage4" to="." method="_on_stage_4_pressed"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

@@ -24,14 +24,14 @@ func _process(_delta):
 			#print('i.volume_db',i.volume_db,',volume_music_slider_value:',$pause_screen_setup/settings/volume/volume_music.value)
 	#print()
 	#round()
-	for i in get_tree().current_scene.get_children():
+	for i in get_tree().current_scene.get_children(true):
 		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
 			if i.is_in_group('bgm') and i.playing==true:
 				if get_tree().paused==true and not gotten_bgm_value:
 					original_background_volume_db=i.volume_db
 					i.volume_db=i.volume_db-5
 					gotten_bgm_value=true
-				elif get_tree().paused==false:
+				elif get_tree().paused==false and gotten_bgm_value==true:
 					i.volume_db=original_background_volume_db
 					gotten_bgm_value=false
 				if GlobalScript.health<=0:
@@ -172,3 +172,9 @@ func _on_confirmation_dialog_canceled():
 func _on_seconds_timer_timeout():
 	#GlobalScript.second_level+=1
 	pass
+
+
+func _on_restart_level_btn_pressed():
+	pass # Replace with function body.
+	get_tree().paused=false
+	get_tree().reload_current_scene()

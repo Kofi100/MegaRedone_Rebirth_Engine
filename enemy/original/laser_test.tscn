@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://die537ieus3fp"]
+
+[ext_resource type="Script" path="res://enemy/original/laser_test.gd" id="1_p11d4"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ewta6"]
+length = 261.0
+
+[node name="laser_test" type="Node2D"]
+script = ExtResource("1_p11d4")
+
+[node name="area2d" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area2d"]
+shape = SubResource("SeparationRayShape2D_ewta6")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 241)
+collision_mask = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-1, 0, -1, 240)
+width = 30.0

@@ -8,12 +8,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func _on_area_entered(area):
-	if area.is_in_group('player_constants_checker_area2d'):
+	if area.is_in_group('player_constants_checker_area2d') :#and area.get_parent().player_ready==true
 		player_camera=area.get_parent().get_node('player_camera')
 		if player_camera!=null:
 			StageFunctions.switch_camera(player_camera,zone_camera_2d)

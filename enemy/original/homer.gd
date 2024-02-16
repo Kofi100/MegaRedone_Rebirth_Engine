@@ -39,8 +39,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_shoot_timer_timeout():
 	pass # Replace with function body.
 	print('homer:shooting projs')
-	var signal_proj=preload('res://enemy/original/original_projs/signal_proj.tscn')
-	var signal_proj_ins=signal_proj.instantiate();var signal_proj_ins2=signal_proj.instantiate();
-	signal_proj_ins.state='down';signal_proj_ins2.state='down';	get_parent().add_child(signal_proj_ins);get_parent().add_child(signal_proj_ins2);
-	signal_proj_ins.global_position=$shoot_positions/down/Marker2D.global_position;
-	signal_proj_ins2.global_position=$shoot_positions/down/Marker2D2.global_position;
+	##shooting projectile codes:might use them later
+	#var signal_proj=preload('res://enemy/original/original_projs/signal_proj.tscn')
+	#var signal_proj_ins=signal_proj.instantiate();var signal_proj_ins2=signal_proj.instantiate();
+	#signal_proj_ins.state='down';signal_proj_ins2.state='down';	get_parent().add_child(signal_proj_ins);get_parent().add_child(signal_proj_ins2);
+	#signal_proj_ins.global_position=$shoot_positions/down/Marker2D.global_position;
+	#signal_proj_ins2.global_position=$shoot_positions/down/Marker2D2.global_position;

@@ -26,7 +26,7 @@ var collectable
 func spawn_collectables():
 	if health<=0:
 		get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
-		GlobalScript.spawn_collectable_no=randi_range(1,7)
+		GlobalScript.spawn_collectable_no=randi_range(1,9)
 		if collectables_list.has(GlobalScript.spawn_collectable_no):
 			collectable=collectables_list[GlobalScript.spawn_collectable_no]
 		
@@ -34,6 +34,9 @@ func spawn_collectables():
 			var new_collectable=collectable.instantiate()
 			new_collectable.position=position
 			get_parent().add_child(new_collectable)
+			if new_collectable.delete_spawnable_timer!=null:
+				print('delete timer triggered')
+				new_collectable.delete_spawnable_timer.start()
 		else:
 			print('its a null case of the collectanles')
 			print('spawn_collectable_no:',GlobalScript.spawn_collectable_no)

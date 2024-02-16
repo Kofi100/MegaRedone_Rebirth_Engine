@@ -1,21 +1,23 @@
 extends enemy
-
+@export_category("Movement(ultimate movement set)")
 @export var direction:String="left"
 const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var move:String
+@export_category("Movement(intial direction setter)")
+@export var move:String
 var abouttomove_down=0;var abouttomove_left=0
 
 func _ready():
-	playerdamagevalue=2
+	
 	health=5
-
+#var intial
 func _physics_process(delta):
 	#print("Octopus battery:aboutto_left":abouttomove_left)
 	$health.text=str(health)
+	playerdamagevalue=2
 	spawn_collectables()
 	match move:
 		"up":

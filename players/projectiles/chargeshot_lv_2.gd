@@ -18,16 +18,20 @@ func _physics_process(delta):
 		"active":
 			match direction:
 				"left":
-					rotation_degrees=180
+					#rotation_degrees=180
+					$anim.flip_h=true
 					velocity.x=-SPEED*delta
 				"right":
+					$anim.flip_h=false
 					velocity.x= SPEED*delta
 		"blocked":
 			match direction:
 				"left":
-					rotation_degrees=180
+					#rotation_degrees=180
+					$anim.flip_h=true
 					velocity=Vector2(SPEED,-SPEED)*delta
 				"right":
+					$anim.flip_h=false
 					velocity=Vector2(-SPEED,-SPEED)*delta
 		'stopped':
 			velocity.x=0
@@ -39,8 +43,8 @@ func _physics_process(delta):
 func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('works!')
-		if state=="active":
-			area.get_parent().health-=3
+		if state=="active" or state=='blocked':
+			area.get_parent().health-=5
 			state='stopped'
 			$hurt_enemy_effect.play()
 			#queue_free()

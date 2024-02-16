@@ -39,8 +39,8 @@ func _physics_process(delta):
 func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('lemons:works!')
-		if state=="active":
-			area.get_parent().health-=area.get_parent().enemyreceivedamagevalue
+		if state=="active" or state=='blocked':
+			area.get_parent().health-=1#area.get_parent().enemyreceivedamagevalue
 			state='stopped'
 
 			$hurt_enemy_effect.play()

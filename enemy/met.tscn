@@ -42,7 +42,7 @@ size = Vector2(12.3333, 7.66667)
 
 [node name="met" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_4t8t2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -54,6 +54,7 @@ position = Vector2(-0.333333, 6.16667)
 shape = SubResource("RectangleShape2D_cxkwf")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="Timer2" type="Timer" parent="."]
 editor_description = "TThis timer was for testing if I uunderstood timers.It upon timing out,if a player is on the RIGHT side of met,causes it to shoot"

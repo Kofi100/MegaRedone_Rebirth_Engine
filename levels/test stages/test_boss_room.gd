@@ -12,6 +12,7 @@ var stream_number=0
 func _ready():
 	background_boss_music.stream=boss_music_stream[stream_number]
 	#background_boss_music.play()
+	$bgmusib4bossfight.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
