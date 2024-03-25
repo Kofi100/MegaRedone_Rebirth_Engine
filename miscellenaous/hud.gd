@@ -17,6 +17,10 @@ var gotten_bgm_value=false
 var original_background_volume_db:int
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	$healthbar/text_health_display.text=str(health_bar.value)
+	$stage_name.text="STAGE:\n"+GlobalScript.stage_name
+	if $stage_name/stage_display_timer.time_left<=0:
+		$stage_name.visible=false
 #	for i in get_tree().current_scene.get_children():
 #		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
 #			if i.is_in_group('bgm'):
@@ -36,8 +40,8 @@ func _process(_delta):
 					gotten_bgm_value=false
 				if GlobalScript.health<=0:
 					i.stop()
-	minutes.text=str(GlobalScript.minute_level)
-	seconds.text=str(int(GlobalScript.second_level))
+	minutes.text=str(GlobalScript.minute_level).pad_zeros(2)
+	seconds.text=str(int(GlobalScript.second_level)).pad_zeros(2)
 	millsecs.text=str(int(GlobalScript.milliseconds))
 	#millsecs=int()
 	#$pause_screen_setup/ConfirmationDialog.global_position=Vector2(500,500)
@@ -139,7 +143,7 @@ func weapon_energy_update():
 	match GlobalScript.weapon_number:
 		1:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon1energy
 		2:  $weapon_energy.set_modulate(Color(255,4,28,255));$weapon_energy.value=MegamanAndItems.weapon2energy
-	
+		3:$weapon_energy.set_modulate(Color.MINT_CREAM);$weapon_energy.value=MegamanAndItems.weapon3energy
 	update_energy_pause_menu()
 
 func update_energy_pause_menu():

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmg0lio55q5aq"]
+
+[ext_resource type="Script" path="res://enemy/original/original_projs/enemy_2_projectiles.gd" id="1_2pq2d"]
+[ext_resource type="Texture2D" uid="uid://b3ij6ue6jpohn" path="res://assets/sprites/enemies/original/new_enemy_projectiles.png" id="2_jfjjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqgjv"]
+size = Vector2(4, 4)
+
+[node name="enemy2_projectiles" type="CharacterBody2D"]
+script = ExtResource("1_2pq2d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 4.0
+
+[node name="detect_player_Area2d" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player_Area2d"]
+shape = SubResource("RectangleShape2D_yqgjv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jfjjc")

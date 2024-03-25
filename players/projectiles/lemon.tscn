@@ -49,7 +49,9 @@ texture = ExtResource("3_nncff")
 
 [node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gu0qf")
+volume_db = -10.0
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]
 [connection signal="screen_exited" from="onscreen" to="." method="_on_onscreen_screen_exited"]

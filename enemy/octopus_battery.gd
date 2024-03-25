@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	#print("Octopus battery:aboutto_left":abouttomove_left)
 	$health.text=str(health)
-	playerdamagevalue=2
+	playerdamagevalue=3
 	spawn_collectables()
 	match move:
 		"up":

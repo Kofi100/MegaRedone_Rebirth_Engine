@@ -23,6 +23,15 @@ texture = ExtResource("2_cjt8t")
 
 [node name="stage_buttons" type="Node2D" parent="."]
 
+[node name="input_menu" type="Button" parent="stage_buttons"]
+offset_left = 175.0
+offset_top = 1.0
+offset_right = 333.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_eie37")
+text = "input_menu"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="stage_buttons"]
 offset_left = 9.0
 offset_top = 51.0
@@ -36,6 +45,12 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ns6ek")
 text = "test_stage"
+
+[node name="test_stage_free_fall" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_eie37")
+text = "test_stage_
+free_fall"
 
 [node name="stage1" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,6 +83,12 @@ layout_mode = 2
 theme = ExtResource("4_eie37")
 text = "stage_4"
 
+[node name="stage5" type="Button" parent="stage_buttons/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_eie37")
+text = "stage_5:
+junkman_stage"
+
 [node name="PauseScreenSetup3" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1137, 395)
@@ -81,15 +102,32 @@ volume_db = -10.0
 stream = ExtResource("7_ooesf")
 volume_db = -15.0
 
-[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage" to="." method="_on_test_stage_mouse_entered"]
+[node name="current_time" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 129.0
+offset_bottom = 24.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_eie37")
+text = "00:00:00"
+
+[connection signal="mouse_entered" from="stage_buttons/input_menu" to="." method="play_sound_when_mouse_over_button"]
+[connection signal="pressed" from="stage_buttons/input_menu" to="." method="_on_input_menu_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage" to="." method="_on_test_stage_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage1" to="." method="_on_stage_1_mouse_entered"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage_free_fall" to="." method="play_sound_when_mouse_over_button"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/test_stage_free_fall" to="." method="_on_test_stage_free_fall_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage1" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage1" to="." method="_on_stage_1_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_mouse_entered"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/shadow_man_stage" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/shadow_man_stage" to="." method="_on_shadow_man_stage_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/test_boss_stage" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/test_boss_stage" to="." method="_on_test_boss_stage_pressed"]
-[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage2" to="." method="_on_stage_2_mouse_entered"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage2" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage2" to="." method="_on_stage_2_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage3" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage3" to="." method="_on_stage_3_pressed"]
+[connection signal="mouse_entered" from="stage_buttons/ScrollContainer/VBoxContainer/stage4" to="." method="play_sound_when_mouse_over_button"]
 [connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage4" to="." method="_on_stage_4_pressed"]
+[connection signal="pressed" from="stage_buttons/ScrollContainer/VBoxContainer/stage5" to="." method="_on_stage_5_pressed"]
 [connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

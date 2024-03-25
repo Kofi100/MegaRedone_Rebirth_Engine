@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2k6ofydycgiy"]
+
+[ext_resource type="Script" path="res://levels/input_rebind_menu.gd" id="1_87vqm"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="2_1p3mi"]
+
+[node name="input_rebind_menu" type="Node2D"]
+script = ExtResource("1_87vqm")
+node_to_action = {
+0: NodePath("Control/ScrollContainer/VSplitContainer/up_btn"),
+1: NodePath("Control/ScrollContainer/VSplitContainer/down_btn"),
+2: NodePath("Control/ScrollContainer/VSplitContainer/left_btn"),
+3: null,
+4: null,
+5: null,
+6: null,
+7: null,
+8: null,
+9: null
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 1
+offset_left = 50.0
+offset_right = 202.0
+offset_bottom = 241.0
+
+[node name="VSplitContainer" type="HFlowContainer" parent="Control/ScrollContainer"]
+layout_mode = 2
+
+[node name="up_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+focus_next = NodePath("../down_btn")
+text = "up"
+
+[node name="down_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+text = "down"
+
+[node name="left_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+focus_next = NodePath("../right_btn")
+focus_previous = NodePath("../down_btn")
+text = "left"
+
+[node name="right_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+focus_next = NodePath("../jump_btn")
+focus_previous = NodePath("../left_btn")
+text = "right"
+
+[node name="jump_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+focus_next = NodePath("../dash_btn")
+focus_previous = NodePath("../right_btn")
+text = "jump"
+
+[node name="dash_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+text = "dash"
+
+[node name="shoot_btn" type="Button" parent="Control/ScrollContainer/VSplitContainer"]
+layout_mode = 2
+focus_previous = NodePath("../dash_btn")
+text = "shoot_btn"
+
+[node name="waiting_text_label" type="Label" parent="."]
+visible = false
+offset_left = 7.0
+offset_top = 109.0
+offset_right = 249.0
+offset_bottom = 132.0
+theme = ExtResource("2_1p3mi")
+text = "WAITING FOR INPUT:
+...."
+
+[node name="main_menu" type="Button" parent="."]
+offset_left = 167.0
+offset_top = 227.0
+offset_right = 343.0
+offset_bottom = 251.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("2_1p3mi")
+text = "<main_menu"
+
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/up_btn" to="." method="_on_up_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/up_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/down_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/down_btn" to="." method="_on_down_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/left_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/left_btn" to="." method="_on_left_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/right_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/right_btn" to="." method="_on_right_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/jump_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/jump_btn" to="." method="_on_jump_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/dash_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/dash_btn" to="." method="_on_slide_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/shoot_btn" to="." method="display_label_fxn"]
+[connection signal="pressed" from="Control/ScrollContainer/VSplitContainer/shoot_btn" to="." method="_on_shoot_btn_pressed"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]

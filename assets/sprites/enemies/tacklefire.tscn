@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2pa17rbtytg3"]
+
+[ext_resource type="Texture2D" uid="uid://gmxn8c67g8tw" path="res://assets/sprites/enemies/tacklefire.png" id="1_2q2bj"]
+[ext_resource type="Script" path="res://assets/sprites/enemies/tacklefire.gd" id="1_frdvx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipx1f"]
+atlas = ExtResource("1_2q2bj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xme6"]
+atlas = ExtResource("1_2q2bj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6f1dh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipx1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xme6")
+}],
+"loop": true,
+"name": &"tacklefire",
+"speed": 10.0
+}]
+
+[node name="tacklefire" type="CharacterBody2D"]
+script = ExtResource("1_frdvx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6f1dh")
+animation = &"tacklefire"
+frame_progress = 0.482081
+
+[node name="go_back_and_delete_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="go_back_and_delete_timer" to="." method="_on_go_back_and_delete_timer_timeout"]

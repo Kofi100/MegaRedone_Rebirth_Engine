@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://levels/level_mechanics/deathzones.gd" id="1_q45j8"]
 
 [node name="deathzones" type="Area2D"]
-modulate = Color(0.752941, 0, 0, 1)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_q45j8")

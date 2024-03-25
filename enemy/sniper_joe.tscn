@@ -32,7 +32,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 20.0,
 "texture": SubResource("AtlasTexture_6pk6n")
 }],
 "loop": true,
@@ -72,9 +72,7 @@ script = ExtResource("1_byx3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m8hlf")
-animation = &"shoot"
-frame = 1
-frame_progress = 1.0
+animation = &"jump"
 offset = Vector2(8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -131,8 +129,8 @@ position = Vector2(12.4901, 5.58229)
 stream = ExtResource("4_resla")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.500007, -6.50001)
-scale = Vector2(9.21667, 7.98333)
+position = Vector2(5.96046e-08, -1.19209e-07)
+scale = Vector2(2.15, 2.2)
 
 [node name="shoot_timer" type="Timer" parent="."]
 one_shot = true

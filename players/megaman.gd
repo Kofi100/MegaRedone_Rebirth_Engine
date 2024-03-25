@@ -9,15 +9,17 @@ extends CharacterBody2D
 ##This is the default speed which can be adjusted by dashing.
 @export var SPEED = 0
 ##This value deterimines how high a person can jump.
-@export var JUMP_VELOCITY = -340#orig: -333*3 almost=1000
+@export var JUMP_VELOCITY = -300#-340#-4950#orig: -333*3 almost=1000
 ##This value defines how much gravity is applied by the engine to the player.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var gravity=3000
-@export var dashspeed=10000#3000/3;
+@export var gravity=900#1000#3000
+@export var dashspeed=10080#10000#3000/3;
+@export var max_gravity=25200
 var dashduration=0.3
-@export var normalspeed=5800 #17500.0=5800/3
+@export var normalspeed=4950#5800 #17500.0=5800/3
 var climb=false
 var move_an_inch_checker=0
+@export var move_an_inch_speed=720#1000
 var charge_timer=0
 var jump_play_effect_timer=0
 var is_dead:bool=false
@@ -32,12 +34,20 @@ var chargeshot_lv1=preload("res://players/projectiles/chargeshot_lv_1.tscn");var
 var chargeshot_lv2=preload("res://players/projectiles/chargeshot_lv_2.tscn");var chargeshot_lv2_ins
 var rush_coil=preload("res://players/weapons/rush_coil.tscn");var rush_coil_instance
 var stop=false;var timer=0
-var weapon_number:int=0;var max_weapon_number=2
+var weapon_number:int=0;var max_weapon_number=3
 var screen_transition_finished=false
 var restart_scene=false
 var conveyor_push=3000;var on_conveyor=false
-var player_ready=false
+var player_ready:bool=false
+var in_teleporter=false
+var key_dictionary:Array
 func _ready():
+	#key_dictionary.resize(9)
+	#GlobalScript.playerposx=0
+	#GlobalScript.playerposy=0
+	GlobalScript.lemons_on_screen_no=0
+	GlobalScript.playerhasbeenhit=false
+	#GlobalScript.playerhitcooldowntimer=0
 	player_ready=false
 	anim.play("idle")
 	anim.visible=false
@@ -45,24 +55,59 @@ func _ready():
 #		get_tree().reload_current_scene()
 #		restart_scene=false
 	GlobalScreenTransitionTimer.stop()
-	if ! GlobalScript.restarted_level:
+	if GlobalScript.restarted_level==false:
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
-	else:
+		GlobalScript.save_savepoint_data()
+	elif GlobalScript.restarted_level==true:
 		GlobalScript.start_level_timer()
+		GlobalScript.load_savepoint_data()
+		global_position.x=GlobalScript.playerposx
+		global_position.y=GlobalScript.playerposy
 	MegamanAndItems.charge_timer=0
 	GlobalScript.weapon_number=0
+	MegamanAndItems.weapon1energy=30
+	MegamanAndItems.weapon2energy=30
+	MegamanAndItems.weapon3energy=30
 	GlobalScript.health=GlobalScript.max_health
 	$weapon_display.visible=false
 	$player_camera.position_smoothing_enabled=false
+	$hitbox/CollisionShape2D.disabled=true
 var onrush=false;var disable_input=false
 var switch_state=0
 var door_transition=false
+
+func debug_print_custom(name_of_node,var_name_to_be_displayed,variable_name):
+	print(name_of_node,':',str(var_name_to_be_displayed),': ',variable_name)
+
 func _physics_process(delta):
+	#if in_teleporter==true:
+		#GlobalSc
+		
+	##debug
+	#print(name,':GScript:lemon_no:',GlobalScript.lemons_on_screen_no)
+	#debug_print_custom(name,"GScript:lemon_no",GlobalScript.lemons_on_screen_no)
+	#debug_print_custom(name,"cooldown_timer:time_left",$buster_cooldown_timer.time_left)
+	#debug_print_custom(name,'stop,stun_effect,disable_input:',[stop,stun_effect,disable_input])
+	
+	$charge_timer.text=str(MegamanAndItems.charge_timer)
+	$speed.text=str(velocity*Vector2(pow(delta,1),pow(delta,1)))#*delta
+	#print(JUMP_VELOCITY)
+	#pow(delta,2)
+	#print(ProjectSettings.get_setting("application/run/max_fps",0))
+	##
+	#Limit gravity 
+	velocity.y=clampf(velocity.y,-25200*delta,25200*delta) #since velocity is actually a value *delta
+	
+	#if velocity.y>25200*delta:
+		#velocity.y=25200*delta
+	
 	if not player_ready:GlobalScreenTransitionTimer.stop()
+	if GlobalScript.lemons_on_screen_no>=3 and $buster_cooldown_timer.time_left<=0:
+		$buster_cooldown_timer.start()
 	#conveyor_push=30000
 	if door_transition:
-		velocity.x=3000*delta
+		velocity.x=4950*delta
 		velocity.y=0
 		move_and_slide()
 		stop=true
@@ -93,8 +138,7 @@ func _physics_process(delta):
 		GlobalScript.health=0
 	GlobalScript.playerposx=global_position.x
 	GlobalScript.playerposy=global_position.y
-	$charge_timer.text=str(MegamanAndItems.charge_timer)
-	$speed.text=str(SPEED)
+
 	
 	if dash.is_dashing():
 		SPEED=dashspeed 
@@ -158,11 +202,10 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if !is_dead:
-		if MegamanAndItems.charge_timer==1:
-			$all_sounds/charge.play()
-		if $all_sounds/charge.get_playback_position()>2.04:
-		#print("seek")
-			$all_sounds/charge.seek(1.90)
+
+		#if $all_sounds/charge.get_playback_position()>2.04:
+		##print("seek")
+			#$all_sounds/charge.seek(1.90)
 		if GlobalScript.playerhasbeenhit:
 			$hitbox/CollisionShape2D.disabled=true
 		elif not GlobalScript.playerhasbeenhit:
@@ -179,25 +222,38 @@ func _physics_process(delta):
 		
 		$weapon_display.frame=GlobalScript.weapon_number
 		#weapon_number=Input.get_axis("switch_weapon_left","switch_weapon_right")
-		
+		stun(delta)
+		#plays stun blink effect
+		if GlobalScript.playerhitcooldowntimer%5==1:
+			anim.visible=false
+		elif GlobalScript.playerhitcooldowntimer%5==3:
+			anim.visible=true
 		if player_ready and stop==false:
-			if GlobalScript.playerhitcooldowntimer%5==1:
-				anim.visible=false
-			elif GlobalScript.playerhitcooldowntimer%5==3:
-				anim.visible=true
+
 			# Handle Jump.
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
+				
 			if Input.is_action_just_released("jump") and velocity.y<0:
 				velocity.y=0
 			if onrush==false:
+				if GlobalScript.weapon_number==0:
+					if $buster_cooldown_timer.time_left<=0:
+						shoot_and_charge()
+						MegamanAndItems.charge_effect(anim)
+					#chargeeffect()
+				else:
+					MegamanAndItems.change_palette($anim)
+					create_weapons()
+					
 				if climb==false:
-					if not stun_effect:
+					#if not stun_effect:
 						if near_ladder:
 							if Input.is_action_pressed("move_up"):
 								climb=true
 						if not is_on_floor():
 							velocity.y += gravity * delta
+						
 						var direction = Input.get_axis("move_left", "move_right")
 						if direction and not disable_input:
 							move_an_inch_checker+=1
@@ -205,7 +261,7 @@ func _physics_process(delta):
 								velocity.x = direction * SPEED *delta
 							else:
 								if move_an_inch_checker<10:
-									velocity.x=direction *1000 *delta
+									velocity.x=direction *move_an_inch_speed*delta#1000 *delta
 								elif on_conveyor:
 									velocity.x=direction*(SPEED+conveyor_push) *delta
 								elif not on_conveyor:
@@ -219,30 +275,26 @@ func _physics_process(delta):
 						play_animations()
 						dash_function(delta)
 						#if anim.animation!="idle":
-						if GlobalScript.weapon_number==0:
-							shoot_and_charge()
-							chargeeffect()
-						else:
-							MegamanAndItems.change_palette($anim)
-							create_weapons()
+
 						if $anim.animation=="shoot_idle":
 							if $anim.flip_h==false:
-								$anim.offset.x=0#-6
+								$anim.offset.x=-3#-6
 							elif $anim.flip_h==true:
-								$anim.offset.x=0#6
-						else:
-							$anim.offset.x=0
-					else:
-						if stun_timer>1 and stun_timer<7:
-							#print(stun_timer)
-							stun(delta)
-							disable_input=true
-							
-						stun_timer+=1;#print(stun_timer,' ',GlobalScript.playerhitcooldowntimer)
-						if stun_timer==7:
-							stun_timer=0
-							stun_effect=false
-							disable_input=false
+								$anim.offset.x=3
+						else: $anim.offset.x=0
+					#else:
+						#if stun_timer>1 and stun_timer<7:
+							##print(stun_timer)
+							#stun(delta)
+							#disable_input=true
+							#
+						#stun_timer+=1;#print(stun_timer,' ',GlobalScript.playerhitcooldowntimer)
+						#if stun_timer==7:
+							#stun_timer=0
+							#stun_effect=false
+							#disable_input=false
+
+
 					#This code uses a modulus of 5 to produce a blinking effect
 					
 				elif climb==true:
@@ -254,8 +306,9 @@ func _physics_process(delta):
 						global_position.x=ladder_collider.global_position.x
 					#print("megaman:climb:true")
 					play_animation_ladder()
-					shoot_and_charge_ladder()
-					chargeeffect()
+					#shoot_and_charge_ladder()
+					MegamanAndItems.charge_effect(anim)
+					#chargeeffect()
 
 				#these codes are for playing animations
 					var direction=Input.get_axis("move_up","move_down")
@@ -282,8 +335,10 @@ func _physics_process(delta):
 			elif onrush==true:
 				velocity.x=0
 				MegamanAndItems.charge_timer=clampi(MegamanAndItems.charge_timer,0,5)
-				shoot_and_charge()
-				chargeeffect()
+				if $buster_cooldown_timer.time_left<=0:
+					shoot_and_charge()
+				#chargeeffect()
+				MegamanAndItems.charge_effect(anim)
 				if $anim.animation=="shoot_idle":
 					if $anim.flip_h==false:
 						$anim.offset.x=-6
@@ -315,18 +370,26 @@ func _physics_process(delta):
 		$CollisionShape2D.disabled=true
 
 var dead_effect_timer=0
-var stun_timer=0;var stun_speed=30000
+var stun_timer=0;@export var stun_speed=1200
 func stun(delta):
-	if velocity.y>0:
-		velocity.y=0
-	if is_on_floor():
-		anim.play("stun")
-	elif not is_on_floor():
-		anim.play("stun_air")
-	if anim.flip_h==false:
-		velocity=Vector2(stun_speed,0)*delta
-	elif anim.flip_h==true:
-		velocity=Vector2(-stun_speed,0)*delta
+	#if velocity.y>0:
+		#velocity.y=0
+	#if is_on_floor():
+		#anim.play("stun")
+	#elif not is_on_floor():
+		#anim.play("stun_air")
+	if anim.animation=='stun_air' and GlobalScript.health>0:
+		disable_input=true
+		stun_effect=true
+		stop=true
+		if anim.flip_h==false:
+			velocity=Vector2(stun_speed,0)*delta
+		elif anim.flip_h==true:
+			velocity=Vector2(-stun_speed,0)*delta
+		move_and_slide()
+	elif GlobalScript.health<=0:
+		stop=false
+	
 
 func play_animations():
 	if velocity.x<0:
@@ -335,24 +398,26 @@ func play_animations():
 		$anim.flip_h=true
 	if is_on_floor():
 		if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-			if move_an_inch_checker>=10:
-				if anim.animation!="shoot_run" :
-						anim.play("run")
-			elif move_an_inch_checker<10:
-				if velocity.x!=0:
-					$anim.play("move_by_inch")
-				elif velocity.x==0:
-					if $anim.animation!="shoot_idle":
-						$anim.play("idle")
+			if anim.animation!='stun_air':
+				if move_an_inch_checker>=10:
+					if anim.animation!="shoot_run" :
+							anim.play("run")
+				elif move_an_inch_checker<10:
+					if velocity.x!=0:
+						$anim.play("move_by_inch")
+					elif velocity.x==0:
+						if $anim.animation!="shoot_idle":
+							$anim.play("idle")
 						#MegamanAndItems.charge_timer=0
 		
-		elif Input.is_action_just_released("shoot"):
-			if move_an_inch_checker>=10:
-				if anim.animation!="shoot_run":
-					anim.play("shoot_run")
-			if move_an_inch_checker<10:
-				if anim.animation!='shoot_idle':
-					anim.play("shoot_idle")
+		elif Input.is_action_just_released("shoot")  and $buster_cooldown_timer.time_left<=0:
+			if anim.animation!='stun_air':
+				if move_an_inch_checker>=10:
+					if anim.animation!="shoot_run":
+						anim.play("shoot_run")
+				if move_an_inch_checker<10:
+					if anim.animation!='shoot_idle':
+						anim.play("shoot_idle")
 				#MegamanAndItems.charge_timer=0
 
 	
@@ -361,13 +426,15 @@ func play_animations():
 			if $anim.animation!="shoot_in_air" and anim.animation!="stun_air":
 				$anim.play("jump")
 				#print("jump!")
-		elif Input.is_action_just_released("shoot"):
-			if anim.animation!='shoot_in_air':
+		elif Input.is_action_just_released("shoot")  and $buster_cooldown_timer.time_left<=0:
+			if anim.animation!='shoot_in_air' and anim.animation!='stun_air':
 				$anim.play("shoot_in_air")
 			#print("shoot")
 	
-
+var projectile
 func shoot_and_charge():
+	if MegamanAndItems.charge_timer==15:
+		$all_sounds/charge.play()
 	if Input.is_action_pressed("shoot"):
 		
 		MegamanAndItems.charge_timer+=1
@@ -375,88 +442,108 @@ func shoot_and_charge():
 	elif Input.is_action_just_released("shoot"):
 		
 		$all_sounds/charge.stop()
-		if MegamanAndItems.charge_timer<30:
-			$all_sounds/shoot.play()
+		if MegamanAndItems.charge_timer<30:#30
+			projectile=lemon.instantiate();$all_sounds/shoot.play()
+		elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<75+30:
+			projectile=chargeshot_lv1.instantiate();$all_sounds/halfcharge.play()
+		elif MegamanAndItems.charge_timer>=75+30:
+			projectile=chargeshot_lv2.instantiate();$all_sounds/fullcharge.play()
+		MegamanAndItems.charge_timer=0
+
+		#if MegamanAndItems.charge_timer<30:
+		if projectile!=null:
+			get_parent().add_child(projectile)
 			if is_on_floor():
 				MegamanAndItems.charge_timer=0
 				if $anim.flip_h==false:
-					lemon_ins=lemon.instantiate()
-					get_parent().add_child(lemon_ins)
-					lemon_ins.direction="left"
-					lemon_ins.global_position=$all_proj_spawn_points/ground_left.global_position
+					#lemon_ins=lemon.instantiate()
+					#get_parent().add_child(projectile)
+					projectile.direction="left"
+					projectile.global_position=$all_proj_spawn_points/ground_left.global_position
 				elif $anim.flip_h==true:
-					lemon_ins=lemon.instantiate()
-					get_parent().add_child(lemon_ins)
-					lemon_ins.direction="right"
-					lemon_ins.global_position=$all_proj_spawn_points/ground_right.global_position
+					#projectile=lemon.instantiate()
+					#get_parent().add_child(projectile)
+					projectile.direction="right"
+					projectile.global_position=$all_proj_spawn_points/ground_right.global_position
 			elif not is_on_floor():
 				MegamanAndItems.charge_timer=0
 				if $anim.flip_h==false:
-					lemon_ins=lemon.instantiate()
-					get_parent().add_child(lemon_ins)
-					lemon_ins.direction="left"
-					lemon_ins.global_position=$all_proj_spawn_points/air_left.global_position
+					#lemon_ins=lemon.instantiate()
+					#get_parent().add_child(projectile)
+					projectile.direction="left"
+					projectile.global_position=$all_proj_spawn_points/air_left.global_position
 				elif $anim.flip_h==true:
-					lemon_ins=lemon.instantiate()
-					get_parent().add_child(lemon_ins)
-					lemon_ins.direction="right"
-					lemon_ins.global_position=$all_proj_spawn_points/air_right.global_position
-
-
-		elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<75:
-			$all_sounds/halfcharge.play()
-			if is_on_floor():
-				MegamanAndItems.charge_timer=0
+					#lemon_ins=lemon.instantiate()
+					#get_parent().add_child(projectile)
+					projectile.direction="right"
+					projectile.global_position=$all_proj_spawn_points/air_right.global_position
+			elif climb==true:
 				if $anim.flip_h==false:
-					chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-					get_parent().add_child(chargeshot_lv1_ins)
-					chargeshot_lv1_ins.direction="left"
-					chargeshot_lv1_ins.global_position=$all_proj_spawn_points/ground_left.global_position
+					#lemon_ins=lemon.instantiate()
+					#get_parent().add_child(projectile)
+					projectile.direction="left"
+					projectile.global_position=$all_proj_spawn_points/air_left.global_position
 				elif $anim.flip_h==true:
-					chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-					get_parent().add_child(chargeshot_lv1_ins)
-					chargeshot_lv1_ins.direction="right"
-					chargeshot_lv1_ins.global_position=$all_proj_spawn_points/ground_right.global_position
-			elif not is_on_floor():
-				MegamanAndItems.charge_timer=0
-				if $anim.flip_h==false:
-					chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-					get_parent().add_child(chargeshot_lv1_ins)
-					chargeshot_lv1_ins.direction="left"
-					chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_left.global_position
-				elif $anim.flip_h==true:
-					chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-					get_parent().add_child(chargeshot_lv1_ins)
-					chargeshot_lv1_ins.direction="right"
-					chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_right.global_position
-
-
-		elif MegamanAndItems.charge_timer>=75:
-			$all_sounds/fullcharge.play()
-			if is_on_floor():
-				MegamanAndItems.charge_timer=0
-				if $anim.flip_h==false:
-					chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-					get_parent().add_child(chargeshot_lv2_ins)
-					chargeshot_lv2_ins.direction="left"
-					chargeshot_lv2_ins.global_position=$all_proj_spawn_points/ground_left.global_position
-				elif $anim.flip_h==true:
-					chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-					get_parent().add_child(chargeshot_lv2_ins)
-					chargeshot_lv2_ins.direction="right"
-					chargeshot_lv2_ins.global_position=$all_proj_spawn_points/ground_right.global_position
-			elif not is_on_floor():
-				MegamanAndItems.charge_timer=0
-				if $anim.flip_h==false:
-					chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-					get_parent().add_child(chargeshot_lv2_ins)
-					chargeshot_lv2_ins.direction="left"
-					chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_left.global_position
-				elif $anim.flip_h==true:
-					chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-					get_parent().add_child(chargeshot_lv2_ins)
-					chargeshot_lv2_ins.direction="right"
-					chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_right.global_position
+					#lemon_ins=lemon.instantiate()
+					#get_parent().add_child(lemon_ins)
+					projectile.direction="right"
+					projectile.global_position=$all_proj_spawn_points/air_right.global_position
+#
+		#elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<75:
+			##$all_sounds/halfcharge.play()
+			#if is_on_floor():
+				#MegamanAndItems.charge_timer=0
+				#if $anim.flip_h==false:
+					#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+					#get_parent().add_child(chargeshot_lv1_ins)
+					#chargeshot_lv1_ins.direction="left"
+					#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/ground_left.global_position
+				#elif $anim.flip_h==true:
+					#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+					#get_parent().add_child(chargeshot_lv1_ins)
+					#chargeshot_lv1_ins.direction="right"
+					#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/ground_right.global_position
+			#elif not is_on_floor():
+				#MegamanAndItems.charge_timer=0
+				#if $anim.flip_h==false:
+					#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+					#get_parent().add_child(chargeshot_lv1_ins)
+					#chargeshot_lv1_ins.direction="left"
+					#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_left.global_position
+				#elif $anim.flip_h==true:
+					#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+					#get_parent().add_child(chargeshot_lv1_ins)
+					#chargeshot_lv1_ins.direction="right"
+					#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_right.global_position
+#
+#
+		#elif MegamanAndItems.charge_timer>=75:
+			#$all_sounds/fullcharge.play()
+			#if is_on_floor():
+				#MegamanAndItems.charge_timer=0
+				#if $anim.flip_h==false:
+					#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+					#get_parent().add_child(chargeshot_lv2_ins)
+					#chargeshot_lv2_ins.direction="left"
+					#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/ground_left.global_position
+				#elif $anim.flip_h==true:
+					#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+					#get_parent().add_child(chargeshot_lv2_ins)
+					#chargeshot_lv2_ins.direction="right"
+					#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/ground_right.global_position
+			#elif not is_on_floor():
+				#MegamanAndItems.charge_timer=0
+				#if $anim.flip_h==false:
+					#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+					#get_parent().add_child(chargeshot_lv2_ins)
+					#chargeshot_lv2_ins.direction="left"
+					#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_left.global_position
+				#elif $anim.flip_h==true:
+					#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+					#get_parent().add_child(chargeshot_lv2_ins)
+					#chargeshot_lv2_ins.direction="right"
+					#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_right.global_position
+			
 
 var switch_to=0
 func shoot_and_charge_ladder():
@@ -465,49 +552,49 @@ func shoot_and_charge_ladder():
 		if MegamanAndItems.charge_timer==1:
 			$all_sounds/charge.play()
 		MegamanAndItems.charge_timer+=1
-	if Input.is_action_just_released("shoot"):
-		pass
-		$all_sounds/charge.stop()
-		
-		if MegamanAndItems.charge_timer<30:
-			$all_sounds/shoot.play()
-			#print("chrge over")
-			if $anim.flip_h==false:
-				lemon_ins=lemon.instantiate()
-				get_parent().add_child(lemon_ins)
-				lemon_ins.direction="left"
-				lemon_ins.global_position=$all_proj_spawn_points/air_left.global_position
-			elif $anim.flip_h==true:
-				lemon_ins=lemon.instantiate()
-				get_parent().add_child(lemon_ins)
-				lemon_ins.direction="right"
-				lemon_ins.global_position=$all_proj_spawn_points/air_right.global_position
-			
-		elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<45:
-			$all_sounds/halfcharge.play()
-			if $anim.flip_h==false:
-				chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-				get_parent().add_child(chargeshot_lv1_ins)
-				chargeshot_lv1_ins.direction="left"
-				chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_left.global_position
-			elif $anim.flip_h==true:
-				chargeshot_lv1_ins=chargeshot_lv1.instantiate()
-				get_parent().add_child(chargeshot_lv1_ins)
-				chargeshot_lv1_ins.direction="right"
-				chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_right.global_position
-		elif MegamanAndItems.charge_timer>=45:
-			$all_sounds/fullcharge.play()
-			if $anim.flip_h==false:
-				chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-				get_parent().add_child(chargeshot_lv2_ins)
-				chargeshot_lv2_ins.direction="left"
-				chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_left.global_position
-			elif $anim.flip_h==true:
-				chargeshot_lv2_ins=chargeshot_lv2.instantiate()
-				get_parent().add_child(chargeshot_lv2_ins)
-				chargeshot_lv2_ins.direction="right"
-				chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_right.global_position
-		MegamanAndItems.charge_timer=0
+	#if Input.is_action_just_released("shoot"):
+		#pass
+		#$all_sounds/charge.stop()
+		#
+		#if MegamanAndItems.charge_timer<30:
+			#$all_sounds/shoot.play()
+			##print("chrge over")
+			#if $anim.flip_h==false:
+				#lemon_ins=lemon.instantiate()
+				#get_parent().add_child(lemon_ins)
+				#lemon_ins.direction="left"
+				#lemon_ins.global_position=$all_proj_spawn_points/air_left.global_position
+			#elif $anim.flip_h==true:
+				#lemon_ins=lemon.instantiate()
+				#get_parent().add_child(lemon_ins)
+				#lemon_ins.direction="right"
+				#lemon_ins.global_position=$all_proj_spawn_points/air_right.global_position
+			#
+		#elif MegamanAndItems.charge_timer>=30 and MegamanAndItems.charge_timer<45:
+			#$all_sounds/halfcharge.play()
+			#if $anim.flip_h==false:
+				#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+				#get_parent().add_child(chargeshot_lv1_ins)
+				#chargeshot_lv1_ins.direction="left"
+				#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_left.global_position
+			#elif $anim.flip_h==true:
+				#chargeshot_lv1_ins=chargeshot_lv1.instantiate()
+				#get_parent().add_child(chargeshot_lv1_ins)
+				#chargeshot_lv1_ins.direction="right"
+				#chargeshot_lv1_ins.global_position=$all_proj_spawn_points/air_right.global_position
+		#elif MegamanAndItems.charge_timer>=45:
+			#$all_sounds/fullcharge.play()
+			#if $anim.flip_h==false:
+				#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+				#get_parent().add_child(chargeshot_lv2_ins)
+				#chargeshot_lv2_ins.direction="left"
+				#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_left.global_position
+			#elif $anim.flip_h==true:
+				#chargeshot_lv2_ins=chargeshot_lv2.instantiate()
+				#get_parent().add_child(chargeshot_lv2_ins)
+				#chargeshot_lv2_ins.direction="right"
+				#chargeshot_lv2_ins.global_position=$all_proj_spawn_points/air_right.global_position
+		#MegamanAndItems.charge_timer=0
 		
 func play_animation_ladder():
 	if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
@@ -535,7 +622,7 @@ func play_animation_ladder():
 
 func dash_function(delta):
 	if is_on_floor():
-		if Input.is_action_just_pressed("dash"):
+		if Input.is_action_just_pressed("dash") and $dash/Timer.time_left<=0:
 			dash.start_dash(dashduration)
 			var dash_effect=preload('res://players/effects/dash_effect.tscn')
 			var dash_effect_instance=dash_effect.instantiate()
@@ -555,9 +642,9 @@ func dash_function(delta):
 		if Input.is_action_pressed("dash"):
 			if $dash/Timer.time_left>0:
 				anim.play("dash")
-			elif $dash/Timer.time_left<=0:
-				velocity.x=0
-				anim.play("idle")
+			#elif $dash/Timer.time_left<=0:
+				#velocity.x=0
+				#anim.play("idle")
 
 func chargeeffect():
 	if MegamanAndItems.charge_timer==0:
@@ -598,9 +685,9 @@ func create_weapons():
 					rush_coil_instance=rush_coil.instantiate()
 					get_parent().add_child(rush_coil_instance)
 					if anim.flip_h==true:
-						rush_coil_instance.global_position=Vector2(global_position.x+20,global_position.y-100)
+						rush_coil_instance.global_position=Vector2(global_position.x+20,global_position.y-50)
 					elif anim.flip_h==false:
-						rush_coil_instance.global_position=Vector2(global_position.x-20,global_position.y-100)
+						rush_coil_instance.global_position=Vector2(global_position.x-20,global_position.y-50)#100
 			2:
 				if MegamanAndItems.weapon2energy>0:
 					MegamanAndItems.weapon2energy-=3
@@ -612,6 +699,18 @@ func create_weapons():
 					elif anim.flip_h==false:
 						rush_jet_instance.global_position=Vector2(global_position.x,global_position.y-100)
 						rush_jet_instance.direction='left'
+			3:
+				if MegamanAndItems.weapon3energy>0:
+					MegamanAndItems.weapon3energy-=2
+					const MISSILE = preload("res://players/weapons/missile.tscn")
+					var missile_instance=MISSILE.instantiate()
+					get_parent().add_child(missile_instance)
+					missile_instance.global_position=global_position
+					match anim.flip_h:
+						true:
+							missile_instance.direction="right"
+						false:
+							missile_instance.direction="left"
 func _on_anim_animation_finished():
 	match anim.animation:
 		"shoot_run":
@@ -628,6 +727,15 @@ func _on_anim_animation_finished():
 			anim.pause()
 		'spawn':
 			player_ready=true
+			$hitbox/CollisionShape2D.disabled=false
+		'stun_air':
+			#print(name,':stun_air animation done')
+			disable_input=false
+			stun_effect=false
+			stop=false
+			if is_on_floor():anim.play("idle")
+			elif not is_on_floor():anim.play('jump')
+			#elif climb==tru
 	
 var was_leaving=false
 
@@ -649,7 +757,8 @@ func _on_hitbox_area_entered(area):
 			GlobalScript.previous_health=GlobalScript.health #previous health used to check increasign health,collects the health of the player
 			GlobalScript.health-=area.get_parent().playerdamagevalue#this transfers a value of damage from the enemy to the player  #2,before,the player's health actually gets reduced
 			$all_sounds/stun.play()
-			stun_effect=true
+			#stun_effect=true
+			anim.play("stun_air")
 			climb=false
 	if area.is_in_group("ladders"):
 		near_ladder=true
@@ -734,3 +843,16 @@ func _on_animation_player_2_animation_finished(anim_name):
 	match anim_name:
 		'screen_shake':
 			print('Megaman:AnimationPlayer:Screen shake done')
+
+
+func _on_dash_timer_timeout():
+	velocity.x=0
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	#GlobalScript.health=0
+	pass
+
+
+func _on_bgm_finished():
+	pass # Replace with function body.

@@ -8,6 +8,7 @@ var state="active"
 @onready var anim = $anim
 
 func _ready():
+	GlobalScript.lemons_on_screen_no+=1
 	match direction:
 		"left":
 			scale.x=-1
@@ -50,8 +51,9 @@ func _on_collision_monitor_area_entered(area):
 
 
 func _on_collision_monitor_body_entered(body):
-	if body.is_in_group("tilemaps"):
-		queue_free()
+	#if body is TileMap:#is_in_group("tilemaps"):
+		#queue_free()
+	pass
 
 
 func _on_onscreen_screen_exited():
@@ -61,3 +63,7 @@ func _on_onscreen_screen_exited():
 func _on_hurt_enemy_effect_finished():
 	pass # Replace with function body.
 	queue_free()
+
+
+func _on_tree_exiting():
+	GlobalScript.lemons_on_screen_no-=1

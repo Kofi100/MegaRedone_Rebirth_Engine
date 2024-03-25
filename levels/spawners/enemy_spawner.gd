@@ -23,7 +23,10 @@ var enemy_dictionary:Dictionary={
 	'pickelman_bull':preload('res://enemy/pickelman_bull.tscn'),
 	'yambou':preload('res://enemy/yambou.tscn'),
 	'spikyoall':preload('res://enemy/original/spikyoall.tscn'),
-	'ceiling_shooter':preload('res://enemy/original/ceiling_shooter.tscn')
+	'ceiling_shooter':preload('res://enemy/original/ceiling_shooter.tscn'),
+	'tacklefire': preload("res://assets/sprites/enemies/tacklefire.tscn"),
+	"upndown" :preload("res://enemy/upndown.tscn"),
+	"enemy_2" :preload("res://enemy/original/enemy_2.tscn")
 }
 var disappear_nodes={
 	1:'Sprite2D',
@@ -32,13 +35,14 @@ var disappear_nodes={
 	4:'enemy_spawn_list',
 }
 # Called when the node enters the scene tree for the first time.
+var spawn_timer:int=0
 func _ready():
 	pass
 var spawn_homer=false
 var has_enemy_spawned=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if visibility:
+	if visibility==true:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i) and i<=4:
 				var node=get_node(disappear_nodes[i])
@@ -80,40 +84,52 @@ func _process(_delta):
 				has_enemy_spawned=true
 				var enemy_scene=enemy_dictionary.get(enemy_to_spawn)
 				new_enemy=enemy_scene.instantiate()
-				if node_to_add_to_enemy!=null:
-					new_node=node_to_add_to_enemy.duplicate()
-				if node_to_add_to_enemy!=null and new_node!=null:
-					#new_node.parent
-					new_node.reparent(new_enemy)
+				#if node_to_add_to_enemy!=null:
+					#new_node=node_to_add_to_enemy.duplicate()
+				#if node_to_add_to_enemy!=null and new_node!=null:
+					##new_node.parent
+					#new_node.reparent(new_enemy)
 					#new_enemy.add_child(new_node)
 					
 				#new_enemy.index=spawn_index
 				new_enemy.position=position
 				get_parent().add_child(new_enemy)
 				#entered=false
-				print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
+				#print(name,'[enemy_spawner]:new_node_to_add:[new node]-> ',new_node)
+		if (enemy_to_spawn=='homer' or enemy_to_spawn=="upndown") and new_enemy==null and $spawn_homer_timer.time_left<=0:
+			$spawn_homer_timer.start()
+			#print(name,":started respawn timer for upndown and homer")
+	
 	elif entered==false and new_enemy==null:
 		
 		#timer=0
 		has_enemy_spawned=false
-	if GlobalScreenTransitionTimer.time_left>0:
-		for i in get_tree().current_scene.get_children():
-			if i is enemy:
+	if enemy_to_spawn=='tacklefire':
+		
+		spawn_timer+=1
+		if spawn_timer%30==1:
+			has_enemy_spawned=false
+	# previous code to stop enemies upon transitioning to new screen
+	#if GlobalScreenTransitionTimer.time_left>0:
+		##for i in get_tree().current_scene.get_children():
+			##if i is enemy:
+		##if new_enemy!=null:
 		#if new_enemy!=null:
-				i.set_physics_process(false)
-				i.velocity=Vector2.ZERO
-	elif GlobalScreenTransitionTimer.time_left<=0:
-		for i in get_tree().current_scene.get_children():
-			if i is enemy:
-				i.set_physics_process(true)
+				#new_enemy.set_physics_process(false)
+				#new_enemy.velocity=Vector2.ZERO
+	#elif GlobalScreenTransitionTimer.time_left<=0:
+		##for i in get_tree().current_scene.get_children():
+			##if i is enemy:
+			#if new_enemy!=null:
+				#new_enemy.set_physics_process(true)
 		#if new_enemy!=null:
 			#new_enemy.set_physics_process(true)
-	
-func check_for_dead_enemy(index):
-#	if index==spawn_index:
-#		has_enemy_spawned=false
-	if enemy_to_spawn=='homer':
-		$spawn_homer_timer.start()
+	#
+#func check_for_dead_enemy(index):
+##	if index==spawn_index:
+##		has_enemy_spawned=false
+	#if enemy_to_spawn=='homer':
+		#$spawn_homer_timer.start()
 
 var entered=false;var timer=1
 func _on_visible_on_screen_notifier_2d_screen_entered():
@@ -129,8 +145,8 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 #				new_shotman_enemy.global_position=global_position
 
 func _on_spawn_homer_timer_timeout():
-	print('enemy spawner: spawner homer timeout')
-	if has_enemy_spawned and enemy_to_spawn=='homer' and new_enemy==null and $VisibleOnScreenNotifier2D.is_on_screen()==true:
+	print('enemy spawner: spawner homer timeout') #and enemy_to_spawn=='homer'
+	if has_enemy_spawned  and new_enemy==null and $VisibleOnScreenNotifier2D.is_on_screen()==true:
 		has_enemy_spawned=false
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

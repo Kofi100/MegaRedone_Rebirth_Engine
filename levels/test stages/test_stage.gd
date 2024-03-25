@@ -13,6 +13,9 @@ func _process(_delta):
 	pass
 	
 	StageFunctions.switch_camera(player_camera,stage_camera)
+	#StageFunctions.loop_music($bgm,0,354.48)
+	StageFunctions.loop_music($bgm,0,273)
+	#print($bgm.get)
 
 func _on_enter_player_body_entered(body):
 	if body.is_in_group("player"):

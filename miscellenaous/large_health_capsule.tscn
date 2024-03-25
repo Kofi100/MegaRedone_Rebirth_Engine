@@ -33,6 +33,7 @@ radius = 8.02773
 
 [node name="large_health_capsule" type="RigidBody2D"]
 collision_layer = 0
+lock_rotation = true
 script = ExtResource("1_nawmn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

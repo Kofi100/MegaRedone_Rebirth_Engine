@@ -73,6 +73,7 @@ func _on_timer_timeout():
 		get_parent().add_child(b1_ins);get_parent().add_child(b2_ins);get_parent().add_child(b3_ins);
 		b1_ins.global_position=global_position;b2_ins.global_position=global_position;
 		b3_ins.global_position=global_position;
+		$shoot.play()
 
 func _on_timer_2_timeout():
 	if player_on_right:
@@ -84,6 +85,7 @@ func _on_timer_2_timeout():
 		get_parent().add_child(b1_ins);get_parent().add_child(b2_ins);get_parent().add_child(b3_ins);
 		b1_ins.global_position=global_position;b2_ins.global_position=global_position;
 		b3_ins.global_position=global_position;
+		$shoot.play()
 
 func _on_animated_sprite_2d_animation_finished():
 	match animated_sprite_2d.animation:

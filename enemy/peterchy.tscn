@@ -99,5 +99,13 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("3_ldx57")
 text = "index"
 
+[node name="check_left_has_ground" type="RayCast2D" parent="."]
+position = Vector2(-20, 0)
+target_position = Vector2(0, 17)
+
+[node name="check_right_has_ground" type="RayCast2D" parent="."]
+position = Vector2(20, 0)
+target_position = Vector2(0, 17)
+
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

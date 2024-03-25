@@ -177,11 +177,20 @@ offset_top = 7.0
 offset_right = 9.0
 offset_bottom = 64.0
 theme = ExtResource("7_ixl55")
-max_value = 20.0
+max_value = 27.0
 value = 20.0
 fill_mode = 3
 texture_under = ExtResource("5_eted2")
 texture_progress = ExtResource("6_io84m")
+
+[node name="text_health_display" type="Label" parent="healthbar"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 32.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "24"
 
 [node name="healthbar2" type="ProgressBar" parent="."]
 visible = false
@@ -261,20 +270,22 @@ theme_override_fonts/font = ExtResource("5_g1yve")
 theme_override_font_sizes/font_size = 68
 text = "X"
 
-[node name="ProgressBar" type="ProgressBar" parent="pause_screen_setup"]
-offset_left = 68.0
-offset_top = 636.0
-offset_right = 256.0
-offset_bottom = 663.0
-theme_override_fonts/font = ExtResource("5_g1yve")
-value = 25.0
-
-[node name="life_icon" type="Sprite2D" parent="pause_screen_setup/ProgressBar"]
-position = Vector2(-25, 5)
+[node name="life_icon" type="Sprite2D" parent="pause_screen_setup"]
+position = Vector2(43, 641)
 scale = Vector2(3, 3)
 texture = ExtResource("7_65oho")
 hframes = 13
 frame = 10
+
+[node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]
+offset_left = 76.5626
+offset_top = 633.194
+offset_right = 133.563
+offset_bottom = 641.194
+scale = Vector2(3, 3)
+max_value = 27.0
+value = 25.0
+texture_progress = ExtResource("12_386i2")
 
 [node name="weapons" type="Node2D" parent="pause_screen_setup"]
 
@@ -473,9 +484,9 @@ theme = ExtResource("7_ixl55")
 text = "xx"
 
 [node name="seconds" type="Label" parent="timer"]
-offset_left = 738.0
+offset_left = 746.667
 offset_top = 23.3333
-offset_right = 778.0
+offset_right = 786.667
 offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "xx"
@@ -498,7 +509,24 @@ offset_top = 23.3333
 offset_right = 736.0
 offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
-text = "Timer:     :"
+text = "Timer:      :"
+
+[node name="stage_name" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 91.0
+offset_right = 217.0
+offset_bottom = 145.0
+theme = ExtResource("7_ixl55")
+text = "STAGE:
+MEGAMAN
+STAGE"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="stage_display_timer" type="Timer" parent="stage_name"]
+wait_time = 2.0
+one_shot = true
+autostart = true
 
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]
 [connection signal="pressed" from="pause_screen_setup/quit_button" to="." method="_on_quit_button_pressed"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://gry1wgnl5o88"]
+[gd_scene load_steps=18 format=3 uid="uid://gry1wgnl5o88"]
 
 [ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_2.gd" id="1_bkydj"]
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_ski7p"]
 [ext_resource type="Texture2D" uid="uid://bgjjfqwcabpyy" path="res://assets/sprites/player/projectiles/chargeshot_idea-sheet v1.png" id="3_mf20s"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="4_hcxnq"]
+[ext_resource type="Texture2D" uid="uid://blbytiglxqnci" path="res://assets/sprites/player/weapons/megaman/new_chargeshot_v2.png" id="4_pq2n1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmvw6"]
 atlas = ExtResource("1_ski7p")
@@ -32,6 +33,18 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0mmn"]
 atlas = ExtResource("3_mf20s")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dth64"]
+atlas = ExtResource("4_pq2n1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4olig"]
+atlas = ExtResource("4_pq2n1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gutlg"]
+atlas = ExtResource("4_pq2n1")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4y8vj"]
 animations = [{
@@ -65,6 +78,23 @@ animations = [{
 "loop": true,
 "name": &"chargeshot_lv2_new",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dth64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4olig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gutlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4olig")
+}],
+"loop": true,
+"name": &"chargeshot_lv2_new2",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlhgy"]
@@ -72,14 +102,14 @@ size = Vector2(11.1667, 11.8333)
 
 [node name="chargeshot_lv2" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(2, 2)
 script = ExtResource("1_bkydj")
 SPEED = 15000.0
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4y8vj")
-animation = &"chargeshot_lv2_new"
-frame_progress = 0.564677
+animation = &"chargeshot_lv2_new2"
+frame_progress = 0.0444662
+offset = Vector2(-8, 0)
 
 [node name="collision_monitor" type="Area2D" parent="." groups=["player_projectiles"]]
 collision_layer = 5
@@ -95,6 +125,7 @@ scale = Vector2(0.608333, 0.633333)
 
 [node name="hurt_enemy_effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hcxnq")
+volume_db = -10.0
 
 [connection signal="area_entered" from="collision_monitor" to="." method="_on_collision_monitor_area_entered"]
 [connection signal="body_entered" from="collision_monitor" to="." method="_on_collision_monitor_body_entered"]

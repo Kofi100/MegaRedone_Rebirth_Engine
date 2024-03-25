@@ -3,7 +3,7 @@ extends enemy
 
 
 
-@export var speed = 50.0
+@export var speed = 16#50.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	playerdamagevalue=5
-	health=5
+	health=7
 
 func _physics_process(delta):
 	$AnimatedSprite2D.play("homer")
@@ -33,7 +33,7 @@ func _physics_process(delta):
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-	get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+	#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
 
 
 func _on_shoot_timer_timeout():

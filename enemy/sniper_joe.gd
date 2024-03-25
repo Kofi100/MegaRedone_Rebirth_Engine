@@ -9,12 +9,12 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 1200#ProjectSettings.get_setting("physics/2d/default_gravity")
 var timer1:int=0
 var proj_spawn_timer:int=0
 
 func _ready():
-	health=8
+	health=12
 	playerdamagevalue=3
 	state="defend"
 	animated_sprite_2d.flip_h=false
@@ -51,6 +51,7 @@ func _physics_process(delta):
 				$shield_hitbox/left.disabled=true
 				$shield_hitbox/right.disabled=false
 	var jump_cooldown=false
+	animated_sprite_2d.play(state)
 	match state:
 		"defend":
 			velocity.x=0
@@ -58,9 +59,9 @@ func _physics_process(delta):
 			animated_sprite_2d.play("defend")
 			shield_hitbox.set_collision_layer_value(1,true)
 			$detect_player/CollisionShape2D.disabled=false
-			if jump_cooldown==false:
-				if GlobalScript.playerposx-global_position.x>0:state='jump'
-				jump_cooldown=true
+			#if jump_cooldown==false:
+				#if GlobalScript.playerposx-global_position.x>0:state='jump'
+				#jump_cooldown=true
 		"shoot":
 			jump_cooldown=false
 			animated_sprite_2d.play("shoot")
@@ -87,12 +88,12 @@ func _physics_process(delta):
 			$detect_player/CollisionShape2D.disabled=true
 			if not has_jumped:
 				if is_on_floor():velocity.y=-20000*delta
-				
-				velocity.x=10000*delta
+				animated_sprite_2d.play("jump")
+				#velocity.x=10000*delta
 				has_jumped=true
 			proj_spawn_timer=0
-			animated_sprite_2d.play("jump")
-			if has_jumped and is_on_floor():
+			#animated_sprite_2d.play("jump")
+			if has_jumped and velocity.y>200 :#and is_on_floor()
 				state='defend'
 				has_jumped=false
 #	if detect_cooldown_boolean:
@@ -125,4 +126,7 @@ func _on_shoot_timer_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	match  animated_sprite_2d.animation:
 		'shoot':
-			state='defend'
+			if abs(GlobalScript.playerposx-global_position.x)<70:
+				state='jump'
+			elif abs(GlobalScript.playerposx-global_position.x)>=70:
+				state='defend'

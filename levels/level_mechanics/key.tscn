@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://2ctria5jyvy2"]
+
+[ext_resource type="Script" path="res://levels/level_mechanics/key.gd" id="1_nqcuc"]
+[ext_resource type="Texture2D" uid="uid://dhl8l1hhqt6gk" path="res://assets/sprites/miscelleaneous/mechanics/key.png" id="2_im3qc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j676h"]
+size = Vector2(10, 21)
+
+[node name="key" type="CharacterBody2D" groups=["key"]]
+script = ExtResource("1_nqcuc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -7.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = 10.0
+color = Color(0.894118, 0.537255, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 0.999999)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_im3qc")
+
+[node name="detect_door_Area" type="Area2D" parent="." groups=["key"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_door_Area"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_j676h")
+
+[connection signal="body_entered" from="detect_door_Area" to="." method="_on_detect_door_area_body_entered"]

@@ -22,7 +22,7 @@ func _physics_process(delta):
 			velocity.y=gravity*delta
 			if global_position.y>=GlobalScript.playerposy:
 				state='move_toward_player'
-				print('works')
+				#print('works')
 				if distance_x<0:
 					SPEED=-abs(SPEED)
 					animated_sprite_2d.flip_h=false

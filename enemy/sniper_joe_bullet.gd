@@ -1,7 +1,7 @@
 extends enemy
 
 @export_category('Variables')
-@export var SPEED = 14000.0
+@export var SPEED = 5000#14000.0
 const JUMP_VELOCITY = -400.0
 var direction="left"
 # Get the gravity from the project settings to be synced with RigidBody nodes.

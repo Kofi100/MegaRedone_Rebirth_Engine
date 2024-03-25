@@ -21,12 +21,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if GlobalScreenTransitionTimer.time_left>0:
+		set_physics_process(false)
+	elif GlobalScreenTransitionTimer.time_left<=0:
+		set_physics_process(true)
 var collectable
 func spawn_collectables():
 	if health<=0:
-		get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
-		GlobalScript.spawn_collectable_no=randi_range(1,9)
+		#get_tree().call_group('enemy_spawner','check_for_dead_enemy',index)
+		GlobalScript.spawn_collectable_no=randi_range(1,18)
 		if collectables_list.has(GlobalScript.spawn_collectable_no):
 			collectable=collectables_list[GlobalScript.spawn_collectable_no]
 		
@@ -35,7 +38,7 @@ func spawn_collectables():
 			new_collectable.position=position
 			get_parent().add_child(new_collectable)
 			if new_collectable.delete_spawnable_timer!=null:
-				print('delete timer triggered')
+				#print('delete timer triggered')
 				new_collectable.delete_spawnable_timer.start()
 		else:
 			print('its a null case of the collectanles')

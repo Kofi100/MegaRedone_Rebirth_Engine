@@ -84,7 +84,6 @@ size = Vector2(9, 25)
 z_index = 1
 collision_layer = 0
 script = ExtResource("1_bcwbf")
-speed = 16.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r3bnb")
@@ -100,8 +99,8 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_o3kds")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-6.74999, 8.75)
-scale = Vector2(13.775, 8.89167)
+position = Vector2(0, 3)
+scale = Vector2(8.9875, 7.04583)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.166667, 0.5)

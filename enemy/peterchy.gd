@@ -12,6 +12,11 @@ func _ready():
 	playerdamagevalue=3
 	health=8
 	state='move'
+	var distance_to_player=global_position-Vector2(GlobalScript.playerposx,GlobalScript.playerposy)
+	if distance_to_player.x<0:
+		velocity.x=-SPEED
+	elif distance_to_player.x>0:
+		velocity.x=SPEED
 
 func _physics_process(delta):
 	$Label.text=str(SPEED);$index.text=str(index)
@@ -24,13 +29,18 @@ func _physics_process(delta):
 		match state:
 			'move':
 				animated_sprite_2d.play("moving")
+				if distance<0:velocity.x=-SPEED*delta
+				elif distance>=0:velocity.x=SPEED*delta
 #				if animated_sprite_2d.frame!=0 and animated_sprite_2d.frame!=1 and animated_sprite_2d.frame!=5:
-				if distance<=0:
-					velocity.x=-SPEED*delta
-				elif distance>0:
-					velocity.x=SPEED*delta
+				
+				#if not $check_right_has_ground.is_colliding():#distance<=0:
+					#velocity.x=-SPEED*delta
+				#elif not $check_left_has_ground.is_colliding():
+					#velocity.x=SPEED*delta
 #				else:
 #					velocity.x=0
+			'move_away_left':
+				velocity
 	spawn_collectables()
 	move_and_slide()
 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4o667c308o0j"]
+
+[ext_resource type="Texture2D" uid="uid://cijo4rnlhjg6q" path="res://assets/sprites/enemies/original/spike_master.png" id="1_lrf6c"]
+[ext_resource type="Script" path="res://enemy/original/spike_master.gd" id="1_ycre6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wf6k"]
+size = Vector2(64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvquh"]
+atlas = ExtResource("1_lrf6c")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_36m1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvquh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrren"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo6lx"]
+size = Vector2(105, 84)
+
+[node name="spike_master" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_ycre6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2wf6k")
+debug_color = Color(0.992157, 0.0862745, 0, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_36m1c")
+
+[node name="spike_zones" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spike_zones"]
+shape = SubResource("RectangleShape2D_rrren")
+
+[node name="detect_player_zone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player_zone"]
+position = Vector2(52.5, 0)
+shape = SubResource("RectangleShape2D_wo6lx")
+disabled = true
+
+[connection signal="body_entered" from="spike_zones" to="." method="_on_spike_zones_body_entered"]
+[connection signal="body_entered" from="detect_player_zone" to="." method="_on_detect_player_zone_body_entered"]

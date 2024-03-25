@@ -6,10 +6,10 @@ var state="active"
 func _ready():
 	match direction:
 		"left":
-			pass
+			$anim.offset.x=-8
 		"right":
-			pass
-	$anim.play("chargeshot_lv2_new")
+			$anim.offset.x=8
+	$anim.play("chargeshot_lv2_new2")
 	
 
 

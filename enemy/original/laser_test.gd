@@ -14,8 +14,9 @@ func _process(delta):
 	line_2d.set_point_position(1,(ray_cast_2d.get_collision_point()-global_position))
 	if ray_cast_2d.get_collider().is_in_group('player'):
 		var player=ray_cast_2d.get_collider()
-		player.anim.play("stun_air")
+		
 		if GlobalScript.playerhasbeenhit==false:
 			GlobalScript.playerhasbeenhit=true
 			GlobalScript.health-=2
-		print(player)
+			player.anim.play("stun_air")
+		#print('Player node collided with:',player)

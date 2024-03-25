@@ -271,9 +271,9 @@ animations = [{
 "duration": 5.0,
 "texture": SubResource("AtlasTexture_s1csi")
 }],
-"loop": true,
+"loop": false,
 "name": &"stun_air",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk5kj"]
@@ -438,8 +438,6 @@ z_index = 1
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_acsaa")
-gravity = 1000
-normalspeed = 4500
 
 [node name="dash" parent="." instance=ExtResource("2_oa303")]
 
@@ -455,7 +453,7 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"move_by_inch"
+animation = &"shoot_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.33333, 3.33333)
@@ -468,10 +466,10 @@ position = Vector2(0.666667, 13.6667)
 [node name="all_proj_spawn_points" type="Node2D" parent="."]
 
 [node name="ground_left" type="Marker2D" parent="all_proj_spawn_points"]
-position = Vector2(-20.4302, 0.725945)
+position = Vector2(-18, 2)
 
 [node name="ground_right" type="Marker2D" parent="all_proj_spawn_points"]
-position = Vector2(22.4403, 0.535286)
+position = Vector2(18, 2)
 
 [node name="air_left" type="Marker2D" parent="all_proj_spawn_points"]
 position = Vector2(-15.6667, -6.33333)
@@ -480,7 +478,6 @@ position = Vector2(-15.6667, -6.33333)
 position = Vector2(17.7238, -6.42757)
 
 [node name="charge_timer" type="Label" parent="."]
-visible = false
 offset_left = -21.6667
 offset_top = -21.6667
 offset_right = 73.3333
@@ -499,7 +496,6 @@ theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "Charge Timer:"
 
 [node name="speed" type="Label" parent="."]
-visible = false
 offset_left = -2.66667
 offset_top = -31.3333
 offset_right = 77.3333
@@ -543,23 +539,31 @@ stream = ExtResource("6_qyqol")
 
 [node name="shoot" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("7_im07x")
+volume_db = -10.0
 
 [node name="charge" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("9_pqlrj")
+volume_db = -5.0
 
 [node name="dead" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("10_qghej")
 
 [node name="halfcharge" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("12_8ofs0")
+volume_db = -10.0
 
 [node name="fullcharge" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("13_ljqus")
+volume_db = -10.0
 
 [node name="energyup" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("14_m8qn1")
 
 [node name="restart_timer" type="Timer" parent="."]
+
+[node name="buster_cooldown_timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
 
 [node name="weapon_display" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.33333, -26)
@@ -602,6 +606,28 @@ libraries = {
 "": SubResource("AnimationLibrary_eyb8q")
 }
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="speed_y" type="Label" parent="."]
+visible = false
+offset_left = 1.0
+offset_top = -42.0
+offset_right = 109.0
+offset_bottom = -16.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("6_hjfwy")
+text = "speed_y"
+
+[node name="text" type="Label" parent="speed_y"]
+layout_mode = 0
+offset_left = -116.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("6_hjfwy")
+text = "SPEED Y:"
+
+[connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
 [connection signal="area_exited" from="change_climb_detector" to="." method="_on_change_climb_detector_area_exited"]
@@ -614,3 +640,6 @@ libraries = {
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="dash"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7acyh6elurni"]
+
+[ext_resource type="Script" path="res://levels/level_mechanics/savepoint.gd" id="1_0gdel"]
+
+[node name="savepoint" type="Node2D"]
+script = ExtResource("1_0gdel")
+
+[node name="detect_player_ShapeCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -256)
+collision_mask = 7
+
+[node name="line_rep" type="Line2D" parent="."]
+points = PackedVector2Array(0, 2, 0, -81)

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://3dm01r0fub5r"]
+
+[ext_resource type="Script" path="res://enemy/upndown.gd" id="1_jldte"]
+[ext_resource type="Texture2D" uid="uid://ddqjdqxdmvbho" path="res://assets/sprites/enemies/upndown.png" id="1_ul6y1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3j0e"]
+atlas = ExtResource("1_ul6y1")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n04cu"]
+atlas = ExtResource("1_ul6y1")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcydt"]
+atlas = ExtResource("1_ul6y1")
+region = Rect2(34, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ensc6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3j0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n04cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcydt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12ge4"]
+size = Vector2(17, 16)
+
+[node name="upndown" type="CharacterBody2D"]
+script = ExtResource("1_jldte")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ensc6")
+frame_progress = 0.707112
+
+[node name="left_right_timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_12ge4")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

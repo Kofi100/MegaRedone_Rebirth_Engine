@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="MegaRedone_Rebirth"
+config/name="MegaRedone: Rebirth (Engine Wip)"
+config/tags=PackedStringArray("engine", "megaman", "rebirth")
 run/main_scene="res://levels/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 boot_splash/image="res://assets/sprites/miscelleaneous/Mega_Man_RR_logo.png"
 config/icon="res://assets/sprites/miscelleaneous/Mega_Man_Redone_Rebirth_logo_icon.png"
 

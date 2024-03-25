@@ -39,8 +39,10 @@ func _physics_process(delta):
 
 
 func _on_collision_monitor_body_entered(body):
-	if body.is_in_group("tilemaps"):
-		queue_free()
+	#deleted charge shot if touuhing the level's tilemaps
+	#if body.is_in_group("tilemaps"):
+		#queue_free()
+	pass
 
 
 func _on_collision_monitor_area_entered(area):

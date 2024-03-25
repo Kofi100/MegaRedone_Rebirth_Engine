@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bg6k2xa573uis"
+path="res://.godot/imported/Cyber Peacock Stage - Mega Man X4 [0CC FamiTracker, VRC6].mp3-e3afe470002d2e73eaac73b8b0024ef4.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Cyber Peacock Stage - Mega Man X4 [0CC FamiTracker, VRC6].mp3"
+dest_files=["res://.godot/imported/Cyber Peacock Stage - Mega Man X4 [0CC FamiTracker, VRC6].mp3-e3afe470002d2e73eaac73b8b0024ef4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

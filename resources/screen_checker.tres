@@ -1,12 +1,31 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c35ww60gx13t2"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c35ww60gx13t2"]
 
 [ext_resource type="Texture2D" uid="uid://c3xedxw4lb0tw" path="res://assets/sprites/miscelleaneous/screen_checker_256x240.png" id="1_jjm4y"]
+[ext_resource type="Texture2D" uid="uid://ci7tvf0suijrw" path="res://assets/sprites/tilesets/test_stages/cyberspace_background.png" id="2_s7baj"]
+[ext_resource type="Texture2D" uid="uid://ym5ndb470vln" path="res://assets/sprites/tilesets/test_stages/cyberspace_background_proto_animated.png" id="3_7kt8p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dpp2n"]
 texture = ExtResource("1_jjm4y")
 texture_region_size = Vector2i(256, 240)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_30tob"]
+texture = ExtResource("2_s7baj")
+texture_region_size = Vector2i(256, 240)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_45gy5"]
+texture = ExtResource("3_7kt8p")
+texture_region_size = Vector2i(256, 240)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(256, 240)
 sources/0 = SubResource("TileSetAtlasSource_dpp2n")
+sources/1 = SubResource("TileSetAtlasSource_30tob")
+sources/2 = SubResource("TileSetAtlasSource_45gy5")
