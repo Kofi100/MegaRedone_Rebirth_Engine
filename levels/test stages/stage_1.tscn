@@ -1107,153 +1107,185 @@ position = Vector2(6905, -560)
 [node name="new_camera_system" type="Node2D" parent="."]
 visible = false
 
-[node name="new_camera_system" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(-966.784, -32.132)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system" index="0"]
-limit_left = -1024
-limit_top = 0
-limit_right = 1566
-limit_bottom = 240
+limit_left = -1029
+limit_top = -2
+limit_right = 1562
+limit_bottom = 235
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system"]
 position = Vector2(1233.78, 148.632)
 shape = SubResource("RectangleShape2D_wkmm4")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="new_camera_system/new_camera_system"]
 position = Vector2(1769.5, 21.132)
 shape = SubResource("RectangleShape2D_7x4kj")
 
-[node name="new_camera_system2" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system2" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(1570.7, -269.152)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system2" index="0"]
-limit_left = 1566
-limit_top = -240
-limit_right = 1822
+limit_left = 1564
+limit_top = -241
+limit_right = 1817
 limit_bottom = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system2"]
 position = Vector2(120.298, 148.652)
 shape = SubResource("RectangleShape2D_t4fhe")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system3" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system3" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(1822, -237)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system3" index="0"]
-limit_left = 1822
-limit_top = -240
-limit_right = 3072
-limit_bottom = 0
+limit_left = 1823
+limit_top = -228
+limit_right = 3071
+limit_bottom = -14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system3"]
 position = Vector2(625, 116)
 shape = SubResource("RectangleShape2D_t77fq")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system4" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system4" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(2831.01, -474.297)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system4" index="0"]
-limit_left = 2816
-limit_top = -480
-limit_right = 3072
-limit_bottom = -240
+limit_left = 2815
+limit_top = -470
+limit_right = 3071
+limit_bottom = -248
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system4"]
 position = Vector2(111.993, 115.297)
 shape = SubResource("RectangleShape2D_q400l")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system5" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system5" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(2820.4, -721.467)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system5" index="0"]
 limit_left = 2816
-limit_top = -720
-limit_right = 3072
+limit_top = -723
+limit_right = 3069
 limit_bottom = -480
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system5"]
 position = Vector2(123.099, 119.967)
 shape = SubResource("RectangleShape2D_or666")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system6" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system6" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(3075.79, -718.316)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system6" index="0"]
-limit_left = 3072
+limit_left = 3073
 limit_top = -720
 limit_right = 3840
-limit_bottom = -480
+limit_bottom = -478
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system6"]
 position = Vector2(380.714, 119.316)
 shape = SubResource("RectangleShape2D_7dghf")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system7" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system7" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(3841.73, -720.364)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system7" index="0"]
-limit_left = 3840
-limit_top = -720
-limit_right = 5120
-limit_bottom = -480
+limit_left = 3843
+limit_top = -721
+limit_right = 5121
+limit_bottom = -477
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system7"]
 position = Vector2(640.273, 121.364)
 shape = SubResource("RectangleShape2D_ojiwm")
-debug_color = Color(0.780392, 0.435294, 0, 0.419608)
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system8" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system8" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(5252, -599)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system8" index="0"]
-limit_left = 5120
+limit_left = 5128
 limit_top = -720
-limit_right = 6912
+limit_right = 7165
 limit_bottom = -480
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system8"]
 position = Vector2(894.5, -1)
 shape = SubResource("RectangleShape2D_dwuvq")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system9" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system9" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(7041, -598)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system9" index="0"]
-limit_left = 6912
-limit_top = -720
+limit_left = 6913
+limit_top = -719
 limit_right = 7168
-limit_bottom = -480
+limit_bottom = -481
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system9"]
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_52g31")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system10" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system10" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(7296, -603)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system10" index="0"]
-limit_left = 7168
+limit_left = 7169
 limit_top = -720
 limit_right = 7424
-limit_bottom = -480
+limit_bottom = -479
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system10"]
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_ajuvw")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system11" parent="new_camera_system" instance=ExtResource("18_k3ore")]
+[node name="new_camera_system11" parent="new_camera_system" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("18_k3ore")]
 position = Vector2(1693, 119)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="new_camera_system/new_camera_system11" index="0"]
 limit_left = 1566
-limit_top = 0
-limit_right = 1822
-limit_bottom = 240
+limit_top = -1
+limit_right = 1823
+limit_bottom = 239
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="new_camera_system/new_camera_system11"]
 position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_74pe4")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
 [node name="TileMap3" type="TileMap" parent="."]
 visible = false

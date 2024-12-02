@@ -4,14 +4,14 @@ extends RigidBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-
+var energy_added=2
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var blink_timer:float=0
 func _physics_process(delta):
 	pass
-	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2:
+	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2 and delete_spawnable_timer.time_left>0 :
 		blink_timer+=1*delta
 		if fmod(blink_timer,0.2)>0.1:
 			$Sprite2D.visible=true
@@ -22,9 +22,9 @@ func _on_hitbox_body_entered(body):
 	if body.is_in_group('player'):
 		match GlobalScript.weapon_number:
 			1:
-				MegamanAndItems.weapon1energy+=3
+				MegamanAndItems.weapon1energy+=energy_added
 			2:
-				MegamanAndItems.weapon2energy+=3
+				MegamanAndItems.weapon2energy+=energy_added
 		queue_free()
 
 

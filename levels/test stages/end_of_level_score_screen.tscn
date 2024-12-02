@@ -1,0 +1,155 @@
+[gd_scene load_steps=13 format=3 uid="uid://bepspbp12ocfg"]
+
+[ext_resource type="Script" path="res://levels/test stages/end_of_level_score_screen.gd" id="1_mvl4n"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_rwfp7"]
+[ext_resource type="Texture2D" uid="uid://bo3auodjmc80s" path="res://assets/sprites/miscelleaneous/megaman_run_custom.png" id="2_3moma"]
+[ext_resource type="AudioStream" uid="uid://cugobxk5jytgm" path="res://assets/music/Tee Lopes - The Purpose (Mission Complete).mp3" id="3_2qcfu"]
+[ext_resource type="AudioStream" uid="uid://bw75hhq1mq0su" path="res://assets/sounds/finish_level_effect2.wav" id="5_frvx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx3po"]
+atlas = ExtResource("2_3moma")
+region = Rect2(0, 0, 100, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv662"]
+atlas = ExtResource("2_3moma")
+region = Rect2(100, 0, 100, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2imq0"]
+atlas = ExtResource("2_3moma")
+region = Rect2(200, 0, 100, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44krm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv662")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2imq0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_d2tlg"]
+resource_name = "blink"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(272, 189), Vector2(-100, 189)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4frut"]
+_data = {
+"blink": SubResource("Animation_d2tlg")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrk1"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="end_of_level_score_screen" type="Node2D"]
+script = ExtResource("1_mvl4n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 249.0
+offset_bottom = 217.0
+color = Color(0, 0, 0.654902, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(130, 180)
+scale = Vector2(2.7, 2.7)
+sprite_frames = SubResource("SpriteFrames_44krm")
+autoplay = "default"
+frame_progress = 0.995816
+
+[node name="score_label" type="Label" parent="."]
+offset_left = 60.0
+offset_top = 106.0
+offset_right = 194.0
+offset_bottom = 129.0
+theme = ExtResource("1_rwfp7")
+text = "SCORE:xxx"
+
+[node name="Timer" type="Timer" parent="score_label"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="score_label"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 140.0
+offset_bottom = -6.0
+text = "LEVEL 
+COMPLETE!"
+horizontal_alignment = 1
+
+[node name="press_continue_label" type="Label" parent="."]
+offset_left = 175.0
+offset_top = 197.0
+offset_right = 319.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_rwfp7")
+text = "PRESS
+CONTINUE..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="press_continue_label"]
+libraries = {
+"": SubResource("AnimationLibrary_4frut")
+}
+
+[node name="level_ended_bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2qcfu")
+volume_db = -10.0
+autoplay = true
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 7.0
+offset_bottom = 228.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_abrk1")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 257.0
+offset_bottom = 228.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_abrk1")
+
+[node name="effect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_frvx4")
+volume_db = 16.688
+
+[connection signal="timeout" from="score_label/Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="level_ended_bgm" to="." method="_on_level_ended_bgm_finished"]

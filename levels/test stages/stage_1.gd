@@ -8,6 +8,8 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 	$bgm_stage1.play()
+	GlobalScript.set_stage_name("STAGE 1")
+	GlobalScript.reset_boss_before_starting_stage()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

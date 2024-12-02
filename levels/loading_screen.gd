@@ -16,8 +16,22 @@ func _on_loading_progress_finished():
 		0:
 			get_tree().change_scene_to_file("res://levels/test stages/test_stage.tscn")
 		1:
-			get_tree().change_scene_to_file("res://levels/test stages/stage_1.tscn")
+			get_tree().change_scene_to_file("res://levels/test stages/stage_test_free_fall.tscn")
 		2:
-			get_tree().change_scene_to_file('res://levels/test stages/shadow_man_stage_test.tscn')
+			get_tree().change_scene_to_file('res://levels/test stages/test_boss_room_2.tscn')
 		3:
-			get_tree().change_scene_to_file('res://levels/test stages/test_boss_room.tscn')
+			get_tree().change_scene_to_file('res://levels/test stages/test_stage_camera_display.tscn')
+		4:
+			get_tree().change_scene_to_file("res://levels/other_stages/tutorial_stage.tscn")
+		5:
+			get_tree().change_scene_to_file("res://levels/test stages/stage_1.tscn")
+		6:
+			get_tree().change_scene_to_file("res://levels/test stages/shadow_man_stage_test.tscn")
+		7:
+			get_tree().change_scene_to_file("res://levels/test stages/test_boss_room.tscn")
+		8:get_tree().change_scene_to_file("res://levels/test stages/stage_2.tscn")
+		9:get_tree().change_scene_to_file("res://levels/test stages/stage_3.tscn")
+		10:get_tree().change_scene_to_file("res://levels/test stages/stage_4.tscn")
+		11:get_tree().change_scene_to_file("res://levels/test stages/stage_5_junkman_test.tscn")
+		12:get_tree().change_scene_to_file("res://levels/test stages/bubbleman.tscn")
+		13:get_tree().change_scene_to_file("res://levels/test stages/boss_room_3.tscn")

@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="1_ysk8n"]
 
-[node name="new_camera_system" type="Area2D"]
+[node name="new_camera_system" type="Area2D" node_paths=PackedStringArray("zone_camera_2d")]
+editor_description = "A custom made Area2D node that handles camera movement and limits using a Camera2D node and a CollisionShape2D node"
 script = ExtResource("1_ysk8n")
+zone_camera_2d = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 editor_draw_limits = true
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

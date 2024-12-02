@@ -3,7 +3,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GlobalScript.set_stage_name("TEST STAGE 2 \n :FREE FALL")
+	GlobalScript.reset_boss_before_starting_stage()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

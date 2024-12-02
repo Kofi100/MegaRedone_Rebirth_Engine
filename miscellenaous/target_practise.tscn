@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpkbb02gj5i58"]
+
+[ext_resource type="Script" path="res://miscellenaous/target_practise.gd" id="1_aos3r"]
+[ext_resource type="Texture2D" uid="uid://bxg21n2j0kxbe" path="res://assets/sprites/miscelleaneous/target_practise.png" id="1_j5do3"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_62x8e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aixcu"]
+size = Vector2(32, 32)
+
+[node name="target_practise" type="StaticBody2D"]
+script = ExtResource("1_aos3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_j5do3")
+
+[node name="detect_player_shoot" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_player_shoot"]
+shape = SubResource("RectangleShape2D_aixcu")
+
+[node name="damage_of_shot" type="Label" parent="."]
+offset_left = -13.0
+offset_top = -35.0
+offset_right = 17.0
+offset_bottom = -12.0
+theme = ExtResource("3_62x8e")
+text = "xx"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="detect_player_shoot" to="." method="_on_detect_player_shoot_area_entered"]

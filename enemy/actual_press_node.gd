@@ -21,6 +21,7 @@ func _physics_process(delta):
 	##
 	playerdamagevalue=3
 	distancex=(GlobalScript.playerposx - global_position.x)
+	$chains_Line.set_point_position(1,($distance_RayCast.get_collision_point()-global_position+Vector2(0,16)))
 	if abs(distancex)<50: #and $fall_timer.time_left<=0:
 		#print(abs(distancex))
 		if trigger==false and not is_on_floor() and $fall_timer.time_left<=0:

@@ -5,6 +5,8 @@ extends Node2D
 func _ready():
 	#$bgm.play()
 	$bgm.play()
+	GlobalScript.set_stage_name("STAGE 2(???)")
+	GlobalScript.reset_boss_before_starting_stage()
 	pass
 
 

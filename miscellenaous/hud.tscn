@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://6tusihkhmm8e"]
+[gd_scene load_steps=33 format=3 uid="uid://6tusihkhmm8e"]
 
 [ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
@@ -60,6 +60,27 @@ shader_parameter/bodycolorii = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)
+
+[sub_resource type="Animation" id="Animation_f5x0v"]
+resource_name = "boss_level_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 27.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_460xm"]
+_data = {
+"boss_level_up": SubResource("Animation_f5x0v")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
 atlas = ExtResource("2_jftja")
@@ -172,9 +193,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="healthbar" type="TextureProgressBar" parent="."]
-offset_left = 1.0
+offset_left = 4.0
 offset_top = 7.0
-offset_right = 9.0
+offset_right = 12.0
 offset_bottom = 64.0
 theme = ExtResource("7_ixl55")
 max_value = 27.0
@@ -185,12 +206,19 @@ texture_progress = ExtResource("6_io84m")
 
 [node name="text_health_display" type="Label" parent="healthbar"]
 layout_mode = 0
-offset_top = 57.0
-offset_right = 32.0
-offset_bottom = 77.0
+offset_left = -3.0
+offset_top = 75.0
+offset_right = 29.0
+offset_bottom = 95.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "24"
+
+[node name="Sprite2D" type="Sprite2D" parent="healthbar"]
+position = Vector2(4, 65)
+texture = ExtResource("7_65oho")
+hframes = 13
+frame = 10
 
 [node name="healthbar2" type="ProgressBar" parent="."]
 visible = false
@@ -212,86 +240,116 @@ offset_right = 258.0
 offset_bottom = 245.0
 color = Color(0, 0, 0, 1)
 
+[node name="boss_healthbar" type="TextureProgressBar" parent="."]
+offset_left = 236.0
+offset_top = 8.0
+offset_right = 244.0
+offset_bottom = 65.0
+theme = ExtResource("7_ixl55")
+max_value = 27.0
+fill_mode = 3
+texture_under = ExtResource("5_eted2")
+texture_progress = ExtResource("6_io84m")
+
+[node name="text_health_display" type="Label" parent="boss_healthbar"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 32.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_ixl55")
+text = "00"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss_healthbar"]
+libraries = {
+"": SubResource("AnimationLibrary_460xm")
+}
+
+[node name="timer" type="Timer" parent="boss_healthbar"]
+wait_time = 3.0
+one_shot = true
+
 [node name="pause_screen_setup" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.365714, 0.344286)
 texture = ExtResource("2_jxh0c")
 centered = false
 
 [node name="e_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(299, 533)
-scale = Vector2(3, 3)
+position = Vector2(138, 178)
 sprite_frames = SubResource("SpriteFrames_g8a33")
 animation = &"selected"
 frame = 1
 frame_progress = 0.77691
 
 [node name="w_tank" type="AnimatedSprite2D" parent="pause_screen_setup"]
-position = Vector2(517, 533)
-scale = Vector2(3, 3)
+position = Vector2(200, 178)
 sprite_frames = SubResource("SpriteFrames_twexw")
 animation = &"selected"
 frame_progress = 0.557678
 
 [node name="e_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 406.0
-offset_top = 501.0
-offset_right = 485.0
-offset_bottom = 597.0
+offset_left = 170.0
+offset_top = 170.0
+offset_right = 249.0
+offset_bottom = 266.0
 theme = SubResource("Theme_q5jc1")
 theme_override_fonts/font = ExtResource("5_g1yve")
-theme_override_font_sizes/font_size = 68
 text = "9"
+metadata/_edit_use_anchors_ = true
 
 [node name="text" type="Label" parent="pause_screen_setup/e_tank_left"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.544304
+anchor_right = 0.544304
 offset_left = -59.0
 offset_right = 1.0
 offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("5_g1yve")
-theme_override_font_sizes/font_size = 68
 text = "X"
+metadata/_edit_use_anchors_ = true
 
 [node name="w_tank_left" type="Label" parent="pause_screen_setup"]
-offset_left = 626.0
-offset_top = 501.0
-offset_right = 705.0
-offset_bottom = 597.0
+offset_left = 232.0
+offset_top = 170.0
+offset_right = 311.0
+offset_bottom = 266.0
 theme_override_fonts/font = ExtResource("5_g1yve")
-theme_override_font_sizes/font_size = 68
 text = "x"
+metadata/_edit_use_anchors_ = true
 
 [node name="text" type="Label" parent="pause_screen_setup/w_tank_left"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.556962
+anchor_right = 0.556962
 offset_left = -58.0
 offset_right = 2.0
 offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("5_g1yve")
-theme_override_font_sizes/font_size = 68
 text = "X"
+metadata/_edit_use_anchors_ = true
 
 [node name="life_icon" type="Sprite2D" parent="pause_screen_setup"]
-position = Vector2(43, 641)
-scale = Vector2(3, 3)
+position = Vector2(15, 179.523)
 texture = ExtResource("7_65oho")
 hframes = 13
 frame = 10
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup"]
-offset_left = 76.5626
-offset_top = 633.194
-offset_right = 133.563
-offset_bottom = 641.194
-scale = Vector2(3, 3)
+offset_left = 24.0
+offset_top = 177.0
+offset_right = 81.0004
+offset_bottom = 185.0
 max_value = 27.0
 value = 25.0
 texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
 
 [node name="weapons" type="Node2D" parent="pause_screen_setup"]
 
 [node name="mm_buster" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(63, 184)
-scale = Vector2(3, 3)
+position = Vector2(17, 54)
 texture = ExtResource("6_vmhtx")
 hframes = 4
 
@@ -300,7 +358,7 @@ offset_left = -11.25
 offset_top = 8.5
 offset_right = 82.75
 offset_bottom = 31.5
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "Buster"
@@ -324,8 +382,7 @@ texture_progress = ExtResource("12_386i2")
 metadata/_edit_use_anchors_ = true
 
 [node name="rush_coil" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(63, 254)
-scale = Vector2(3, 3)
+position = Vector2(17, 85)
 texture = ExtResource("6_vmhtx")
 hframes = 4
 frame = 1
@@ -335,10 +392,11 @@ offset_left = -9.75
 offset_top = 8.5
 offset_right = 84.25
 offset_bottom = 31.5
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R.coil"
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_coil"]
 offset_left = 11.8125
@@ -349,10 +407,10 @@ theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
 texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
 
 [node name="rush_jet" type="Sprite2D" parent="pause_screen_setup/weapons"]
-position = Vector2(65, 326)
-scale = Vector2(3, 3)
+position = Vector2(17, 117)
 texture = ExtResource("6_vmhtx")
 hframes = 4
 frame = 2
@@ -362,10 +420,11 @@ offset_left = -8.0
 offset_top = 8.5
 offset_right = 86.0
 offset_bottom = 31.5
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 theme_override_fonts/font = ExtResource("5_g1yve")
 text = "R.jet"
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="TextureProgressBar" parent="pause_screen_setup/weapons/rush_jet"]
 offset_left = 11.1459
@@ -376,54 +435,60 @@ theme = ExtResource("7_ixl55")
 max_value = 27.0
 value = 27.0
 texture_progress = ExtResource("12_386i2")
+metadata/_edit_use_anchors_ = true
 
 [node name="quit_button" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
-offset_left = 583.0
-offset_top = 417.0
-offset_right = 647.0
-offset_bottom = 441.0
-scale = Vector2(1.5, 1.5)
+offset_left = 214.0
+offset_top = 137.0
+offset_right = 278.0
+offset_bottom = 161.0
+scale = Vector2(0.5, 0.5)
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 5
 theme = ExtResource("7_ixl55")
 button_mask = 7
 shortcut = SubResource("Shortcut_rlxve")
 text = "quit"
+metadata/_edit_use_anchors_ = true
 
 [node name="restart_level_btn" type="Button" parent="pause_screen_setup"]
-offset_left = 429.297
-offset_top = 351.452
-offset_right = 639.297
-offset_bottom = 375.452
-scale = Vector2(1.2, 1.2)
+offset_left = 146.0
+offset_top = 116.0
+offset_right = 356.0
+offset_bottom = 140.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "restart_level"
+metadata/_edit_use_anchors_ = true
 
 [node name="go_to_menu_btn" type="Button" parent="pause_screen_setup"]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
-offset_left = 463.0
-offset_top = 385.0
-offset_right = 609.0
-offset_bottom = 409.0
-scale = Vector2(1.5, 1.5)
+offset_left = 176.0
+offset_top = 128.0
+offset_right = 322.0
+offset_bottom = 152.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("7_ixl55")
 text = "go to menu"
+metadata/_edit_use_anchors_ = true
 
 [node name="settings" type="Node2D" parent="pause_screen_setup"]
 
 [node name="volume" type="Node2D" parent="pause_screen_setup/settings"]
 
 [node name="volume_music" type="HSlider" parent="pause_screen_setup/settings/volume"]
-offset_left = 443.0
-offset_top = 618.0
-offset_right = 653.0
-offset_bottom = 634.0
+offset_left = 146.0
+offset_top = 207.0
+offset_right = 356.0
+offset_bottom = 223.0
+scale = Vector2(0.5, 0.5)
 min_value = -60.0
 max_value = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="pause_screen_setup/settings/volume/volume_music"]
 layout_mode = 0
@@ -432,6 +497,7 @@ offset_right = -6.0
 offset_bottom = 23.0
 theme = ExtResource("7_ixl55")
 text = "BG MUSIC:"
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="pause_screen_setup"]
 
@@ -476,17 +542,17 @@ color = Color(1, 0.054902, 0, 1)
 scale = Vector2(0.3, 0.3)
 
 [node name="minutes" type="Label" parent="timer"]
-offset_left = 700.0
+offset_left = 676.667
 offset_top = 23.3333
-offset_right = 740.0
+offset_right = 716.667
 offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "xx"
 
 [node name="seconds" type="Label" parent="timer"]
-offset_left = 746.667
+offset_left = 723.333
 offset_top = 23.3333
-offset_right = 786.667
+offset_right = 763.333
 offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "xx"
@@ -504,9 +570,9 @@ theme = ExtResource("7_ixl55")
 text = "aaa"
 
 [node name="label" type="Label" parent="timer"]
-offset_left = 610.0
+offset_left = 586.667
 offset_top = 23.3333
-offset_right = 736.0
+offset_right = 718.667
 offset_bottom = 46.3333
 theme = ExtResource("7_ixl55")
 text = "Timer:      :"
@@ -528,6 +594,17 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="score" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 14.0
+offset_right = 316.0
+offset_bottom = 37.0
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("7_ixl55")
+text = "SCORE:000"
+
+[connection signal="animation_finished" from="boss_healthbar/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="boss_healthbar/timer" to="." method="_on_timer_timeout"]
 [connection signal="value_changed" from="pause_screen_setup/ProgressBar" to="." method="_on_progress_bar_value_changed"]
 [connection signal="pressed" from="pause_screen_setup/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="pause_screen_setup/restart_level_btn" to="." method="_on_restart_level_btn_pressed"]

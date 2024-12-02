@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjq0k5n50nfy3"]
+
+[ext_resource type="Script" path="res://enemy/boss/fireman_fire_storm_main.gd" id="1_ejbug"]
+[ext_resource type="Texture2D" uid="uid://crwifpdsimkqg" path="res://assets/sprites/enemies/bosses/fireman/projectiles/fire_Storm.png" id="1_yfn8n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw84d"]
+atlas = ExtResource("1_yfn8n")
+region = Rect2(0, 0, 17, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5avai"]
+atlas = ExtResource("1_yfn8n")
+region = Rect2(17, 0, 17, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p18ly"]
+atlas = ExtResource("1_yfn8n")
+region = Rect2(34, 0, 17, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ox02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw84d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5avai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p18ly")
+}],
+"loop": true,
+"name": &"main",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cln0e"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_jhtij"]
+resource_name = "expand"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgfe6"]
+_data = {
+"expand": SubResource("Animation_jhtij")
+}
+
+[node name="fireman_fire_storm_main" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_ejbug")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ox02")
+animation = &"main"
+autoplay = "main"
+frame_progress = 0.978104
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CapsuleShape2D_cln0e")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wgfe6")
+}
+autoplay = "expand"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

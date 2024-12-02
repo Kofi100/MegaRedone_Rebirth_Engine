@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://csi6248lvsbko"]
+
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_22mmi"]
+[ext_resource type="Script" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_ve3pt"]
+[ext_resource type="PackedScene" uid="uid://c2gjhdosb3pl1" path="res://enemy/boss/wily_capsule_7.tscn" id="3_g5whv"]
+[ext_resource type="AudioStream" uid="uid://b5b448p0iuy70" path="res://assets/music/Final Wily Battle - Mega Man 7 [OST].ogg" id="5_ov4h5"]
+[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="7_jue8g"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg854"]
+texture = ExtResource("1_22mmi")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_sgdsp"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_vg854")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt8sm"]
+size = Vector2(256, 225)
+
+[node name="boss_room_3" type="Node2D"]
+script = ExtResource("1_m1664")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_sgdsp")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 786447, 0, 0, 720911, 0, 0, 655375, 0, 0, 589839, 0, 0, 524303, 0, 0, 458767, 0, 0, 393231, 0, 0, 327695, 0, 0, 65551, 0, 0, 15, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 14, 0, 0, 13, 0, 0, 12, 0, 0, 11, 0, 0, 10, 0, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0)
+
+[node name="megaman" parent="." instance=ExtResource("2_ve3pt")]
+position = Vector2(41, 194)
+
+[node name="wily_capsule_7" parent="." instance=ExtResource("3_g5whv")]
+position = Vector2(128, 65)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ov4h5")
+
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+visible = false
+script = ExtResource("6_3k1q1")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]
+limit_left = 0
+limit_top = 0
+limit_right = 256
+limit_bottom = 225
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="New Camera System Addon"]
+position = Vector2(128, 112.5)
+shape = SubResource("RectangleShape2D_kt8sm")
+
+[node name="savepoint" parent="." instance=ExtResource("7_jue8g")]
+visible = false
+position = Vector2(40, 208)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

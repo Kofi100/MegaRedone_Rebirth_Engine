@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwxy7avp35hde"]
+
+[ext_resource type="Texture2D" uid="uid://613o1bxlx44x" path="res://assets/sprites/tilesets/test_stages/rain_stage_bg.png" id="1_r81ly"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_0yhin"]
+[ext_resource type="Texture2D" uid="uid://bsw1f54u5d53s" path="res://assets/sprites/tilesets/test_stages/rain_stage_bg2.png" id="2_jawrs"]
+[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="3_sdfms"]
+
+[sub_resource type="TileSet" id="TileSet_31mxd"]
+physics_layer_0/collision_layer = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m8362"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+direction = Vector3(1, 1, 0)
+spread = 0.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxwsr"]
+size = Vector2(256, 223)
+
+[node name="rain_Scene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(224, 166)
+texture = ExtResource("1_r81ly")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(224, 208)
+texture = ExtResource("2_jawrs")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_31mxd")
+format = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 32)
+polygon = PackedVector2Array(0, -31, 0, 161, 256, 160, 256, 145, 321, 145, 336, 224, 0, 226, -30, 183, -15, -34)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(114, 79)
+color = Color(0.564962, 0.564962, 0.564961, 1)
+
+[node name="megaman" parent="." instance=ExtResource("2_0yhin")]
+position = Vector2(42, 146)
+
+[node name="HUD" parent="megaman" index="1"]
+visible = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(31, -18)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_m8362")
+
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+script = ExtResource("3_sdfms")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
+timer_exists = true
+
+[node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]
+limit_left = 0
+limit_top = 1
+limit_right = 256
+limit_bottom = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="New Camera System Addon"]
+position = Vector2(128, 112.5)
+shape = SubResource("RectangleShape2D_wxwsr")
+
+[editable path="megaman"]
+[editable path="megaman/dash"]

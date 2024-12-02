@@ -41,12 +41,16 @@ var conveyor_push=3000;var on_conveyor=false
 var player_ready:bool=false
 var in_teleporter=false
 var key_dictionary:Array
+@onready var trigger_leave_timer = $trigger_leave_timer
+@onready var leave_timer = $leave_timer
+
 func _ready():
 	#key_dictionary.resize(9)
 	#GlobalScript.playerposx=0
 	#GlobalScript.playerposy=0
 	GlobalScript.lemons_on_screen_no=0
 	GlobalScript.playerhasbeenhit=false
+	GlobalScript.trigger_boss=false
 	#GlobalScript.playerhitcooldowntimer=0
 	player_ready=false
 	anim.play("idle")
@@ -56,6 +60,7 @@ func _ready():
 #		restart_scene=false
 	GlobalScreenTransitionTimer.stop()
 	if GlobalScript.restarted_level==false:
+		GlobalScript.score=0
 		GlobalScript.reset_level_timer()
 		GlobalScript.start_level_timer()
 		GlobalScript.save_savepoint_data()
@@ -80,22 +85,64 @@ var door_transition=false
 func debug_print_custom(name_of_node,var_name_to_be_displayed,variable_name):
 	print(name_of_node,':',str(var_name_to_be_displayed),': ',variable_name)
 
+func leaving(delta):
+	stop=true
+	for i in get_tree().current_scene.get_children(true):
+		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
+			i.stop()
+	if $leave_timer.time_left<=0:
+		velocity.y=0
+		if anim.animation!="spawn":
+			anim.play("spawn")
+		if anim.animation=="spawn" and anim.frame==2:
+			velocity.y=-10000*delta
+			
+			$CollisionShape2D.disabled=true
+			$hitbox/CollisionShape2D.disabled=true
+			$player_constants_checker_area2d/CollisionShape2D.disabled=true
+				
+	else:
+		velocity.y+=gravity*delta
+		if not is_on_floor():anim.play("jump")
+		else:
+			anim.play("idle")
+	move_and_slide()
+var leave_bool=false;var has_played_victory_sound:bool=false
 func _physics_process(delta):
+#region reverse Gravity
+	#code for reverse gravity
+	#gravity=-980
+	#self.scale.y=-1
+#endregion
 	#if in_teleporter==true:
 		#GlobalSc
-		
+	if leave_bool==true:
+		if has_played_victory_sound==false:
+			has_played_victory_sound=true
+			$all_sounds/level_cleared.play()
+			
+		velocity.x=0
+		$hitbox/CollisionShape2D.disabled=true
+		#leaving(delta)
+	if $reset_cam_entry.time_left>0:
+		$player_constants_checker_area2d/CollisionShape2D.disabled=true
+	elif $reset_cam_entry.time_left<=0:
+		$player_constants_checker_area2d/CollisionShape2D.disabled=false
+	#print($player_constants_checker_area2d/CollisionShape2D.disabled)
+#region Debug Zone
 	##debug
 	#print(name,':GScript:lemon_no:',GlobalScript.lemons_on_screen_no)
 	#debug_print_custom(name,"GScript:lemon_no",GlobalScript.lemons_on_screen_no)
 	#debug_print_custom(name,"cooldown_timer:time_left",$buster_cooldown_timer.time_left)
 	#debug_print_custom(name,'stop,stun_effect,disable_input:',[stop,stun_effect,disable_input])
-	
+	#print(gravity)
 	$charge_timer.text=str(MegamanAndItems.charge_timer)
 	$speed.text=str(velocity*Vector2(pow(delta,1),pow(delta,1)))#*delta
 	#print(JUMP_VELOCITY)
 	#pow(delta,2)
 	#print(ProjectSettings.get_setting("application/run/max_fps",0))
 	##
+#endregion
 	#Limit gravity 
 	velocity.y=clampf(velocity.y,-25200*delta,25200*delta) #since velocity is actually a value *delta
 	
@@ -236,6 +283,7 @@ func _physics_process(delta):
 				
 			if Input.is_action_just_released("jump") and velocity.y<0:
 				velocity.y=0
+				
 			if onrush==false:
 				if GlobalScript.weapon_number==0:
 					if $buster_cooldown_timer.time_left<=0:
@@ -281,7 +329,12 @@ func _physics_process(delta):
 								$anim.offset.x=-3#-6
 							elif $anim.flip_h==true:
 								$anim.offset.x=3
-						else: $anim.offset.x=0
+						elif $anim.animation=="dash":
+							$anim.offset.y=3
+							
+						else: 
+							$anim.offset.x=0
+							$anim.offset.y=0
 					#else:
 						#if stun_timer>1 and stun_timer<7:
 							##print(stun_timer)
@@ -307,7 +360,7 @@ func _physics_process(delta):
 					#print("megaman:climb:true")
 					play_animation_ladder()
 					#shoot_and_charge_ladder()
-					MegamanAndItems.charge_effect(anim)
+					#MegamanAndItems.charge_effect(anim)
 					#chargeeffect()
 
 				#these codes are for playing animations
@@ -348,7 +401,7 @@ func _physics_process(delta):
 					$anim.offset.x=0
 				#if is_on_floor():
 					if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
-						if anim.animation!="shoot_idle" :#or anim.animation!="stun"
+						if anim.animation!="shoot_idle" and anim.animation!="whistle_idle" :#or anim.animation!="stun"
 							$anim.play("idle")
 					elif Input.is_action_just_released("shoot"):
 						$anim.play("shoot_idle")
@@ -360,6 +413,11 @@ func _physics_process(delta):
 					onrush=false
 				#velocity.y+=gravity*delta
 				#move_and_slide()
+#region debug whistle code by reposition it, i guess would work on it soon
+			#if velocity.x==0 and $whistle_idle_trigger_timer.time_left<=0 and not Input.is_action_pressed("shoot") and not Input.is_action_pressed("jump")and MegamanAndItems.charge_timer<30:
+				#$whistle_idle_trigger_timer.start()
+				#print("megaman: whistle_timer cdn fulfilled")
+#endregion
 		elif stop==true:
 			velocity=Vector2.ZERO
 	elif is_dead:
@@ -406,7 +464,7 @@ func play_animations():
 					if velocity.x!=0:
 						$anim.play("move_by_inch")
 					elif velocity.x==0:
-						if $anim.animation!="shoot_idle":
+						if $anim.animation!="shoot_idle" and anim.animation!="whistle_idle":
 							$anim.play("idle")
 						#MegamanAndItems.charge_timer=0
 		
@@ -856,3 +914,19 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_bgm_finished():
 	pass # Replace with function body.
+
+
+func _on_trigger_leave_timer_timeout():
+	get_tree().change_scene_to_file("res://levels/test stages/end_of_level_score_screen.tscn")
+
+
+func _on_leave_timer_timeout():
+	if$HUD/fade_out_effect/AnimationPlayer.current_animation!='fade_out':
+			#$fade_out_effect.visible=true
+			$HUD/fade_out_effect/AnimationPlayer.play("fade_out")
+			$trigger_leave_timer.start()
+
+
+func _on_whistle_idle_trigger_timer_timeout():
+	anim.play("whistle_idle")
+	print(name,"->whistle_timer: with a wait _time of:",$whistle_idle_trigger_timer.get("wait_time"), "::(s) ::timed out")

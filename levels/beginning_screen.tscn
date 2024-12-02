@@ -1,0 +1,275 @@
+[gd_scene load_steps=16 format=3 uid="uid://dkcy8u031arjw"]
+
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_8eq4s"]
+[ext_resource type="Script" path="res://levels/beginning_screen.gd" id="1_e7u74"]
+[ext_resource type="Texture2D" uid="uid://b3rnah75ygp42" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image_2.png" id="1_t1qcs"]
+[ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="4_0oaif"]
+[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="4_4hts8"]
+[ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_hyfa6"]
+[ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="5_kg08f"]
+[ext_resource type="Texture2D" uid="uid://u3mv2w8vxt0a" path="res://assets/sprites/miscelleaneous/health_bg_texture_test.png" id="6_m5vdt"]
+
+[sub_resource type="Animation" id="Animation_01kes"]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id="Animation_25wnf"]
+resource_name = "start"
+length = 10.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("screen1/Label:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(104, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("screen1/Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("screen1/megaman:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(9, 9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pp1ya"]
+_data = {
+"RESET": SubResource("Animation_01kes"),
+"start": SubResource("Animation_25wnf")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5q4o"]
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijtur"]
+texture = ExtResource("6_m5vdt")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1of38"]
+bg_color = Color(0, 0.623529, 1, 0.627451)
+
+[sub_resource type="Theme" id="Theme_atidg"]
+default_font = ExtResource("5_hyfa6")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 8
+Label/fonts/font = ExtResource("5_hyfa6")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_l5q4o")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_ijtur")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 8
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_1of38")
+
+[node name="beginning_Screen" type="Node2D"]
+script = ExtResource("1_e7u74")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128, 110)
+scale = Vector2(8, 8)
+texture = ExtResource("1_t1qcs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pp1ya")
+}
+
+[node name="main_menu_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4hts8")
+
+[node name="hoverButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0oaif")
+
+[node name="pressOrConfirmButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kg08f")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "QUitting?"
+position = Vector2i(7, 69)
+size = Vector2i(244, 100)
+theme = ExtResource("1_8eq4s")
+ok_button_text = "yes"
+dialog_text = "ARE YOU SURE
+YOU WANT TO QUIT?"
+cancel_button_text = "no"
+
+[node name="about" type="Label" parent="."]
+offset_left = 212.0
+offset_top = 217.0
+offset_right = 330.0
+offset_bottom = 233.0
+rotation = -0.568176
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("1_8eq4s")
+text = "by:Kofi K"
+
+[node name="hashtag_engine" type="Label" parent="."]
+offset_left = 217.0
+offset_top = 195.0
+offset_right = 317.0
+offset_bottom = 218.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("1_8eq4s")
+text = "#engine"
+
+[node name="screen1" type="Node2D" parent="."]
+
+[node name="megaman" type="Label" parent="screen1"]
+offset_left = 54.0
+offset_top = 73.0
+offset_right = 166.0
+offset_bottom = 96.0
+scale = Vector2(1.3, 1.3)
+theme = ExtResource("1_8eq4s")
+text = "megaman"
+
+[node name="engine" type="Label" parent="screen1"]
+offset_left = 82.0
+offset_top = 101.0
+offset_right = 184.0
+offset_bottom = 136.0
+theme = ExtResource("1_8eq4s")
+text = "engine:
+redone"
+
+[node name="Label" type="Label" parent="screen1"]
+offset_left = 61.0
+offset_top = 171.0
+offset_right = 165.0
+offset_bottom = 187.0
+rotation = -0.361554
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("1_8eq4s")
+text = "rebirth"
+horizontal_alignment = 1
+
+[node name="screenOneQuitBtn" type="Button" parent="screen1"]
+offset_left = 135.0
+offset_top = 203.0
+offset_right = 293.0
+offset_bottom = 243.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_8eq4s")
+text = "quit"
+
+[node name="screenOneContinueBtn" type="Button" parent="screen1"]
+offset_left = 34.0
+offset_top = 203.0
+offset_right = 192.0
+offset_bottom = 243.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_8eq4s")
+text = "press to
+ continue"
+
+[node name="screen2" type="Node2D" parent="."]
+visible = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="screen2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 71.0
+offset_top = 72.0
+offset_right = 186.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="screen2/ScrollContainer"]
+layout_mode = 2
+
+[node name="screenTwoPlayBtn" type="Button" parent="screen2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_8eq4s")
+text = "PLAY"
+
+[node name="screenTwoCreditsBtn" type="Button" parent="screen2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_8eq4s")
+text = "credits"
+
+[node name="about" type="Button" parent="screen2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_8eq4s")
+text = "about"
+
+[node name="screenTwoExitBtn" type="Button" parent="screen2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_8eq4s")
+text = "EXIT"
+
+[node name="credits" type="Node2D" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="credits"]
+offset_right = 256.0
+offset_bottom = 223.0
+theme = SubResource("Theme_atidg")
+bbcode_enabled = true
+text = "[center]CREDITS[/center]
+-TITLE TRACK- ReMix:Mega Man 3 \"Blue Lightning\" BY : Disco Dan
+
+-STAGE SELECT track- SPARK THE ELECTRIC JESTER 1-REYNOL COMPLEX
+"
+
+[node name="screenCreditsOkBtn" type="Button" parent="credits"]
+offset_left = 109.0
+offset_top = 195.0
+offset_right = 147.0
+offset_bottom = 219.0
+theme = ExtResource("1_8eq4s")
+text = "OK"
+
+[node name="startAnimationPlayerTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="finished" from="main_menu_music" to="." method="_on_main_menu_music_finished"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="mouse_entered" from="screen1/screenOneQuitBtn" to="." method="_on_screen_one_quit_btn_mouse_entered"]
+[connection signal="pressed" from="screen1/screenOneQuitBtn" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="screen1/screenOneContinueBtn" to="." method="_on_screen_one_continue_btn_mouse_entered"]
+[connection signal="pressed" from="screen1/screenOneContinueBtn" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="screen2/ScrollContainer/VBoxContainer/screenTwoPlayBtn" to="." method="_on_screen_two_play_btn_mouse_entered"]
+[connection signal="pressed" from="screen2/ScrollContainer/VBoxContainer/screenTwoPlayBtn" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="screen2/ScrollContainer/VBoxContainer/screenTwoCreditsBtn" to="." method="_on_screen_two_credits_btn_mouse_entered"]
+[connection signal="pressed" from="screen2/ScrollContainer/VBoxContainer/screenTwoCreditsBtn" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="screen2/ScrollContainer/VBoxContainer/screenTwoExitBtn" to="." method="_on_screen_two_exit_btn_mouse_entered"]
+[connection signal="pressed" from="screen2/ScrollContainer/VBoxContainer/screenTwoExitBtn" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="credits/screenCreditsOkBtn" to="." method="_on_screen_credits_ok_btn_mouse_entered"]
+[connection signal="pressed" from="credits/screenCreditsOkBtn" to="." method="_on_ok_pressed"]
+[connection signal="timeout" from="startAnimationPlayerTimer" to="." method="_on_start_animation_player_timer_timeout"]

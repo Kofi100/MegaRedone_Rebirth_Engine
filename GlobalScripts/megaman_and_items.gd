@@ -12,6 +12,13 @@ var bodycolor2dictionary:Dictionary={
 	2: Vector4(216,40,0,255),
 	3:Vector4(255,0,0,255),
 }
+var colors:Dictionary={
+	"LIGHT_VIOLET":Vector4(135.0,0.0,142.0,255.0),
+	"BLACK":Vector4(0,0,0,255),
+	"WHITE":Vector4(255,255,255,255),
+	"LIGHTER_VIOLET":Vector4(251.0,179.0,255.0,255.0),
+	"LIGHT_BLUE":Vector4(136.0,232.0,255.0,255.0),
+}
 var weapon1energy=30
 var weapon2energy=30
 var weapon3energy=30
@@ -43,9 +50,9 @@ func charge_effect(animated_sprite:AnimatedSprite2D):
 			charge_confirm=true
 			print("Charge visuals initiated")
 		if charge_timer%10==1:
-			animated_sprite.material.set_shader_parameter("outlinecolor",(Vector4(0.0,0.0,0.0,255.0))/255)
+			animated_sprite.material.set_shader_parameter("outlinecolor",(colors.BLACK)/255)
 		elif charge_timer%10==5:
-			animated_sprite.material.set_shader_parameter("outlinecolor",(Vector4(135.0,0.0,142.0,255.0))/255)
+			animated_sprite.material.set_shader_parameter("outlinecolor",(colors.LIGHT_VIOLET)/255)
 	elif charge_timer>=75+30:
 		#animated_spriteated_sprite2d.material.set_shader_parameter("bodyoutlcharge",(Vector4(0.0,0.0,0.0,255.0))/255)
 		if charge_timer%10==1:

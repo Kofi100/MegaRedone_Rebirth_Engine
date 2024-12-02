@@ -2,21 +2,22 @@ extends Node2D
 @onready var player_camera=$megaman/player_camera
 #all stage cameras
 #@onready var camera=$all_cameras/camera
-@onready var camera2=$all_cameras/camera2
-@onready var camera_3 = $all_cameras/camera3;@onready var background_music = $bgm
-@onready var camera_4 = $all_cameras/camera4
-@onready var camera_5 = $all_cameras/camera5
-@onready var camera_6 = $all_cameras/camera6
-@onready var camera_7 = $all_cameras/camera7
-@onready var camera_8 = $all_cameras/camera8
-@onready var camera_9 = $all_cameras/camera9
+#@onready var camera2=$all_cameras/camera2
+#@onready var camera_3 = $all_cameras/camera3;
+@onready var background_music = $bgm
+#@onready var camera_4 = $all_cameras/camera4
+#@onready var camera_5 = $all_cameras/camera5
+#@onready var camera_6 = $all_cameras/camera6
+#@onready var camera_7 = $all_cameras/camera7
+#@onready var camera_8 = $all_cameras/camera8
+#@onready var camera_9 = $all_cameras/camera9
 
 var greyrep=Vector4(240,188,60,255)/255
 var whiterep=Vector4(252,252,252,255)/255
 var audio_streams={"shadow_man":preload("res://assets/music/Mega Man 3 (NES) Music - Shadow Man Stage.mp3")}
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	GlobalScript.set_stage_name("SHADOWMAN\n STAGE TEST")
 	StageFunctions.play_music_audioplayer(background_music,audio_streams.get("shadow_man"),0)
 	print(greyrep,'....',whiterep)
 	#$megaman.global_position=$Marker2D2.global_position
@@ -68,36 +69,36 @@ func _process(delta):
 #		timer_switch_cameras.start()
 
 
-func _on_zone_2_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera2)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-func _on_zone_3_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_3)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-func _on_zone_4_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_4)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-func _on_zone_5_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_5)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-
-func _on_zone_6_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_6)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
+#func _on_zone_2_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera2)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#func _on_zone_3_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_3)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#func _on_zone_4_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_4)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#func _on_zone_5_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_5)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#
+#func _on_zone_6_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_6)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
 
 func _on_timer_switch_cameras_timeout():
 	player_camera.position_smoothing_enabled=false
@@ -110,23 +111,23 @@ func _on_bgm_finished():
 		background_music.play()
 
 
-func _on_zone_7_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_7)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-
-func _on_zone_8_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_8)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
-
-
-func _on_zone_9_body_entered(body):
-	if body.is_in_group("player"):
-		StageFunctions.switch_camera(player_camera,camera_9)
-		timer_switch_cameras.start()
-		player_camera.position_smoothing_enabled=true
+#func _on_zone_7_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_7)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#
+#func _on_zone_8_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_8)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
+#
+#
+#func _on_zone_9_body_entered(body):
+	#if body.is_in_group("player"):
+		#StageFunctions.switch_camera(player_camera,camera_9)
+		#timer_switch_cameras.start()
+		#player_camera.position_smoothing_enabled=true
 

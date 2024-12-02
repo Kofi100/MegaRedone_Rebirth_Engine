@@ -23,6 +23,7 @@ var save_keybinds_path="res://keybinds.txt"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_keys_to_players()
+	$mega_spin.play("spinnnn")
 
 var display_label=false
 var selected_option:int=0
@@ -53,6 +54,21 @@ func _input(event):
 						display_label=false
 				#InputMap.era
 	
+	#if event== InputEventMouse.set_button_mask(1):
+	var left_mouse=InputEventMouseButton.new()
+	left_mouse.button_mask=1
+	#Button masks detect which button got pressed/released last
+	#eg. "1" is the Left Mouse Button
+	if event is InputEventMouseButton: #if Input Event is any Mouse button,
+		#print("Input Event:(MouseButton not Gesture)::",event.pressed)
+		if event.pressed==true :#and event.button_mask==left_mouse.button_mask:
+			#and I have pressed  the button
+		#if event ==InputEventMouseButton:
+			#if  event.is_action_released()
+			#print("yessssss,left button pressed")
+			#set display_label to false therefore deactivating the input change request.
+			display_label=false
+
 
 func save_keybinds(key):
 	if key is InputEventKey:
@@ -146,3 +162,7 @@ func _on_slide_btn_pressed():
 
 func _on_shoot_btn_pressed():
 	selected_option=6
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play()

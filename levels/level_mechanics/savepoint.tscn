@@ -1,6 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7acyh6elurni"]
+[gd_scene load_steps=8 format=3 uid="uid://b7acyh6elurni"]
 
 [ext_resource type="Script" path="res://levels/level_mechanics/savepoint.gd" id="1_0gdel"]
+[ext_resource type="Texture2D" uid="uid://rve227akbvrl" path="res://assets/sprites/miscelleaneous/savepoint_arrows_up.png" id="2_ktus5"]
+
+[sub_resource type="Gradient" id="Gradient_hhkl5"]
+colors = PackedColorArray(0.295203, 0.919101, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_vv8vo"]
+resource_name = "green"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("line_rep:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_hhkl5")]
+}
+
+[sub_resource type="Gradient" id="Gradient_u680h"]
+colors = PackedColorArray(0.909804, 0, 0.152941, 1, 0.328875, 0.0049677, 0.0462737, 1)
+
+[sub_resource type="Animation" id="Animation_43ahs"]
+resource_name = "red"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("line_rep:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_u680h")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84qrn"]
+_data = {
+"green": SubResource("Animation_vv8vo"),
+"red": SubResource("Animation_43ahs")
+}
 
 [node name="savepoint" type="Node2D"]
 script = ExtResource("1_0gdel")
@@ -10,4 +53,19 @@ target_position = Vector2(0, -256)
 collision_mask = 7
 
 [node name="line_rep" type="Line2D" parent="."]
-points = PackedVector2Array(0, 2, 0, -81)
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(5.3, 1)
+points = PackedVector2Array(0, 0, 0, -84)
+gradient = SubResource("Gradient_hhkl5")
+texture = ExtResource("2_ktus5")
+texture_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_84qrn")
+}
+
+[node name="SavepointArrowsUp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-26, -5)
+texture = ExtResource("2_ktus5")

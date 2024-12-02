@@ -5,6 +5,7 @@ var randomize_boss_picker:int=-1
 @export var node_to_go_to:Node2D
 @export var return_points={}
 @export var health_tween_create:bool=false
+var health=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -58,7 +59,7 @@ func _process(delta):
 			else:
 				health_capsule3=0
 			$health_of_all_bosses.value=health_capsule1+health_capsule2+health_capsule3
-	
+			health=health_capsule1+health_capsule2+health_capsule3
 	
 	elif not engine_start:
 		$bosses_display.visible=false
@@ -66,16 +67,16 @@ func _process(delta):
 		$screen_flicker.stop()
 	if get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
 		$explosion.set_emitting(true)
-		$explosion.reparent(get_tree().current_scene)
-		
-		queue_free()
+		#$explosion.reparent(get_tree().current_scene)
+		archive_engine_defeat_trigger=true
+		#queue_free()
 var health_capsule1;var health_capsule2;var health_capsule3
 func activate_capsule():
 	picked_node_capsule.animation_player.play("retract",-1,-1)
 	picked_node_capsule.active=true
 	pick_cooldown_up=true
 	$all_timers/active_timer.start()
-
+var archive_engine_defeat_trigger=false
 var return_node
 func _on_active_timer_timeout():
 	

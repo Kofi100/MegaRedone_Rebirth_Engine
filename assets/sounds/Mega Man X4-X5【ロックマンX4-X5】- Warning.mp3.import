@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmnv8fvx6dbi6"
+path="res://.godot/imported/Mega Man X4-X5【ロックマンX4-X5】- Warning.mp3-cd559a1c2dba8ecc89a1f5a6485cdd0f.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Mega Man X4-X5【ロックマンX4-X5】- Warning.mp3"
+dest_files=["res://.godot/imported/Mega Man X4-X5【ロックマンX4-X5】- Warning.mp3-cd559a1c2dba8ecc89a1f5a6485cdd0f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

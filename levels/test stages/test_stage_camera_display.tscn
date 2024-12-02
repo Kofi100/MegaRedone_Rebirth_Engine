@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv4e1364vpi0y"]
+
+[ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_3cva8"]
+[ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="2_c0438"]
+[ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_qekl3"]
+[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="4_tphrc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d8tik"]
+texture = ExtResource("1_3cva8")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_lncax"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_d8tik")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvpod"]
+size = Vector2(282, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58ggy"]
+size = Vector2(310.472, 222)
+
+[node name="test_stage_display" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_lncax")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 851995, 0, 0, 851999, 0, 0, 852000, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 65570, 0, 0, 131106, 0, 0, 196642, 0, 0, 262178, 0, 0, 327714, 0, 0, 393250, 0, 0, 458786, 0, 0, 524322, 0, 0, 589858, 0, 0, 655394, 0, 0, 720930, 0, 0, 786466, 0, 0, 852002, 0, 0, 852001, 0, 0, 851998, 0, 0, 851997, 0, 0, 851996, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 589825, 0, 0, 655361, 0, 0, 720897, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 65568, 0, 0, 65569, 0, 0, 131105, 0, 0, 196641, 0, 0, 262177, 0, 0, 327713, 0, 0, 393249, 0, 0, 458785, 0, 0, 524321, 0, 0, 589857, 0, 0, 655393, 0, 0, 720929, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 65559, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 65564, 0, 0, 65565, 0, 0, 65566, 0, 0, 65567, 0, 0)
+
+[node name="savepoint" parent="." instance=ExtResource("2_c0438")]
+position = Vector2(73, 193)
+
+[node name="megaman" parent="." instance=ExtResource("3_qekl3")]
+position = Vector2(73, 178)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Camera_System" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+script = ExtResource("4_tphrc")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/Camera_System"]
+limit_left = 0
+limit_top = 0
+limit_right = 282
+limit_bottom = 224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Camera_System"]
+position = Vector2(141, 112)
+shape = SubResource("RectangleShape2D_uvpod")
+
+[node name="Camera_System2" type="Area2D" parent="Node2D" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+position = Vector2(260.528, 14.5075)
+script = ExtResource("4_tphrc")
+zone_camera_2d = NodePath("Camera2D")
+collision_limits_camera = NodePath("CollisionShape2D")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/Camera_System2"]
+limit_left = 250
+limit_top = 1
+limit_right = 561
+limit_bottom = 223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Camera_System2"]
+position = Vector2(145.236, 97.4925)
+shape = SubResource("RectangleShape2D_58ggy")

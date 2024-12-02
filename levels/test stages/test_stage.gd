@@ -6,6 +6,7 @@ extends Node2D
 func _ready():
 	GlobalScript.spawn_enemy=true
 	#$bgm.volume_db=-15
+	GlobalScript.set_stage_name("TEST STAGE")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

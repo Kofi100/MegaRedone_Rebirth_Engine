@@ -15,7 +15,7 @@ var proj_spawn_timer:int=0
 
 func _ready():
 	health=12
-	playerdamagevalue=3
+	playerdamagevalue=7
 	state="defend"
 	animated_sprite_2d.flip_h=false
 	animated_sprite_2d.offset.x=8

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5b448p0iuy70"
+path="res://.godot/imported/Final Wily Battle - Mega Man 7 [OST].ogg-0d5a98cb83047a13cb3f96f685bccd8a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Final Wily Battle - Mega Man 7 [OST].ogg"
+dest_files=["res://.godot/imported/Final Wily Battle - Mega Man 7 [OST].ogg-0d5a98cb83047a13cb3f96f685bccd8a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

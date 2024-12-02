@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2gjhdosb3pl1"]
+
+[ext_resource type="Texture2D" uid="uid://bg78wlf3gvi3p" path="res://assets/sprites/enemies/bosses/wily_capsule_7/capsule.png" id="1_e40l4"]
+[ext_resource type="Script" path="res://enemy/boss/wily_capsule_7.gd" id="1_gl0u7"]
+[ext_resource type="Texture2D" uid="uid://bf6f76mkrh8hv" path="res://assets/sprites/enemies/bosses/wily_capsule_7/wily_sprites_recreated2.png" id="2_jaocd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj8v4"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjwrn"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lldqg"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j3nn"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jdu"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6282"]
+atlas = ExtResource("2_jaocd")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53on6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj8v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjwrn")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j3nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j3nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jdu")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_w6282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jdu")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_lldqg")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7jsh"]
+size = Vector2(33, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h21b4"]
+size = Vector2(33, 35)
+
+[node name="wily_capsule_7" type="CharacterBody2D"]
+script = ExtResource("1_gl0u7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e40l4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -6)
+sprite_frames = SubResource("SpriteFrames_53on6")
+animation = &"attacking"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="Node2D"]
+wait_time = 3.0
+one_shot = true
+
+[node name="disappear_time" type="Timer" parent="Node2D"]
+wait_time = 3.0
+one_shot = true
+
+[node name="countdownToShootDown" type="Timer" parent="Node2D"]
+wait_time = 3.0
+one_shot = true
+
+[node name="hitbox_to_be_shot" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_to_be_shot"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_a7jsh")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_h21b4")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Node2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/disappear_time" to="." method="_on_disappear_time_timeout"]
+[connection signal="timeout" from="Node2D/countdownToShootDown" to="." method="_on_countdown_to_shoot_down_timeout"]

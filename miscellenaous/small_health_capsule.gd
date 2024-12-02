@@ -10,7 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var blink_timer:float=0
 func _process(delta):
-	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2:
+	if delete_spawnable_timer.time_left<delete_spawnable_timer.wait_time/2 and delete_spawnable_timer.time_left>0 :
 		blink_timer+=1*delta
 		#print(name,': [small_hcapsule:timer:]',timer)
 		#print(name,': [small_hcapsule:fmod(timer,0.2):]',fmod(timer,0.2))
@@ -22,7 +22,7 @@ func _process(delta):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group('player'):
-		GlobalScript.health+=3
+		GlobalScript.health+=2
 		queue_free()
 
 

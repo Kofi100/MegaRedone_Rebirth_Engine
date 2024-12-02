@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://blempj6txufhc"]
+[gd_scene load_steps=32 format=3 uid="uid://blempj6txufhc"]
 
 [ext_resource type="Script" path="res://levels/test stages/test_boss_room.gd" id="1_uib38"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_v5jq7"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cyjdvobomffd5" path="res://assets/sprites/miscelleaneous/warning_boss_spritesheet.png" id="10_ywneq"]
 [ext_resource type="AudioStream" uid="uid://ctbsmv5q15mig" path="res://assets/music/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3" id="13_f4hip"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="14_yr53m"]
+[ext_resource type="AudioStream" uid="uid://dmnv8fvx6dbi6" path="res://assets/sounds/Mega Man X4-X5【ロックマンX4-X5】- Warning.mp3" id="15_1mu5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2dah"]
 texture = ExtResource("1_v5jq7")
@@ -1625,6 +1626,9 @@ size = Vector2(255, 237)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xmlw"]
 size = Vector2(255, 240)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4jjc"]
+size = Vector2(262, 240)
+
 [sub_resource type="Animation" id="Animation_xr0y6"]
 resource_name = "start_boss_engine"
 length = 13.0
@@ -1672,6 +1676,18 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(7.1, 10.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("warning_sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1826,25 +1842,29 @@ material = SubResource("ShaderMaterial_jumtd")
 material = SubResource("ShaderMaterial_kjedi")
 
 [node name="all_new_camera_systems" type="Node2D" parent="."]
-visible = false
 
-[node name="new_camera_system" parent="all_new_camera_systems" instance=ExtResource("9_spkpb")]
+[node name="new_camera_system" parent="all_new_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("9_spkpb")]
 position = Vector2(-262.664, 24.6428)
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="all_new_camera_systems/new_camera_system" index="0"]
-limit_left = -256
-limit_top = 0
-limit_right = 0
-limit_bottom = 240
+limit_left = -257
+limit_top = 1
+limit_right = -2
+limit_bottom = 238
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_new_camera_systems/new_camera_system"]
 position = Vector2(133.164, 94.8572)
 shape = SubResource("RectangleShape2D_u6tpw")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system2" parent="all_new_camera_systems" instance=ExtResource("9_spkpb")]
+[node name="new_camera_system2" parent="all_new_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("9_spkpb")]
+collision_limits_camera = NodePath("CollisionShape2D")
+timer_addon_exists = true
 
 [node name="Camera2D" parent="all_new_camera_systems/new_camera_system2" index="0"]
-limit_left = 0
+limit_left = 1
 limit_top = 0
 limit_right = 256
 limit_bottom = 240
@@ -1852,6 +1872,13 @@ limit_bottom = 240
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_new_camera_systems/new_camera_system2"]
 position = Vector2(128.5, 120)
 shape = SubResource("RectangleShape2D_1xmlw")
+debug_color = Color(0.4, 0.2, 0.6, 0.5)
+
+[node name="Area2D" type="Area2D" parent="all_new_camera_systems"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="all_new_camera_systems/Area2D"]
+position = Vector2(130, 120)
+shape = SubResource("RectangleShape2D_x4jjc")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1873,9 +1900,13 @@ volume_db = -15.0
 [node name="savepoint" parent="." instance=ExtResource("14_yr53m")]
 position = Vector2(-164, 224)
 
+[node name="warning_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_1mu5e")
+
 [connection signal="finished" from="background_boss_music" to="." method="_on_background_boss_music_finished"]
 [connection signal="body_entered" from="camera_detection_areas/area" to="." method="_on_area_body_entered"]
 [connection signal="area_entered" from="all_new_camera_systems/new_camera_system2" to="." method="_on_new_camera_system_2_area_entered"]
+[connection signal="area_entered" from="all_new_camera_systems/Area2D" to="." method="_on_area_2d_area_entered"]
 
 [editable path="weapon_archive_engine"]
 [editable path="all_doors/door"]

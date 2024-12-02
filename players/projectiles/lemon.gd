@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 @export var direction="left"
 var state="active"
 @onready var anim = $anim
-
+var damagevalue=1
 func _ready():
 	GlobalScript.lemons_on_screen_no+=1
 	match direction:
@@ -41,10 +41,10 @@ func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('lemons:works!')
 		if state=="active" or state=='blocked':
-			area.get_parent().health-=1#area.get_parent().enemyreceivedamagevalue
+			area.get_parent().health-=damagevalue#1#area.get_parent().enemyreceivedamagevalue
 			state='stopped'
-
 			$hurt_enemy_effect.play()
+			GlobalScript.score+=10
 			#queue_free()
 	if area.is_in_group("blockables"):
 		state="blocked"

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var SPEED = 50000.0
 @export var direction="left"
 var state="active"
+var damagevalue=3
 func _ready():
 	match direction:
 		"left":
@@ -49,7 +50,8 @@ func _on_collision_monitor_area_entered(area):
 	if area.is_in_group("enemy") and not area.is_in_group("blockables"):
 		#print('works!')
 		if state=="active" or state=='blocked':
-			area.get_parent().health-=3
+			area.get_parent().health-=damagevalue
+			GlobalScript.score+=30
 			state='stopped'
 			$hurt_enemy_effect.play()
 			#queue_free()

@@ -35,6 +35,7 @@ hue_variation_curve = SubResource("CurveTexture_gvs0e")
 script = ExtResource("1_4vceq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-63.1937, 4.83543)
 texture = ExtResource("1_e0vnt")
 

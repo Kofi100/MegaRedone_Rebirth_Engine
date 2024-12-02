@@ -12,10 +12,10 @@ config_version=5
 
 config/name="MegaRedone: Rebirth (Engine Wip)"
 config/tags=PackedStringArray("engine", "megaman", "rebirth")
-run/main_scene="res://levels/main_menu.tscn"
+run/main_scene="res://levels/beginning_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
-boot_splash/image="res://assets/sprites/miscelleaneous/Mega_Man_RR_logo.png"
+boot_splash/image="res://assets/sprites/miscelleaneous/new_engine_load_screen.png"
 config/icon="res://assets/sprites/miscelleaneous/Mega_Man_Redone_Rebirth_logo_icon.png"
 
 [aseprite]
@@ -28,17 +28,23 @@ StageFunctions="*res://GlobalScripts/StageFunctions.gd"
 GlobalScript="*res://GlobalScripts/GlobalScript.gd"
 MegamanAndItems="*res://GlobalScripts/megaman_and_items.tscn"
 GlobalScreenTransitionTimer="*res://GlobalScripts/global_screen_transition_timer.tscn"
+InterStageScene="*res://levels/inter_stage_scene.tscn"
 
 [display]
 
 window/size/viewport_width=256
-window/size/viewport_height=240
+window/size/viewport_height=224
+window/size/mode=2
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="MegaRedone- Rebirth (Engine Wip)"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/new_camera_system/plugin.cfg")
 
 [input]
 
@@ -74,8 +80,7 @@ shoot={
 }
 dash={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194325,"physical_keycode":4194325,"key_label":4194325,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194328,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194328,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 pause={

@@ -4,20 +4,23 @@ extends CanvasLayer
 @onready  var minutes = $timer/minutes
 @onready var seconds = $timer/seconds
 @onready var millsecs = $timer/millsecs
-
+var music_node
 var selection_index=1;#var tween=create_tween() #use tween to create a transiton effect for increasing the health of the player
 ##This boolean pauses all inputs to the HUD for some effects.
 var pause_input=false;var color
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalScript.trigger_boss=false
 	#$pause_screen_setup/ConfirmationDialog.hide()
 	color=$fade_out_rectangle.color
 	print(color)
 var gotten_bgm_value=false
 var original_background_volume_db:int
+var start_boss_timer:bool=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	$healthbar/text_health_display.text=str(health_bar.value)
+	$score.text=str("SCORE:",GlobalScript.score)
 	$stage_name.text="STAGE:\n"+GlobalScript.stage_name
 	if $stage_name/stage_display_timer.time_left<=0:
 		$stage_name.visible=false
@@ -31,6 +34,7 @@ func _process(_delta):
 	for i in get_tree().current_scene.get_children(true):
 		if i.is_class('AudioStreamPlayer') or i.is_class('AudioStreamPlayer2D'):
 			if i.is_in_group('bgm') and i.playing==true:
+				music_node=i
 				if get_tree().paused==true and not gotten_bgm_value:
 					original_background_volume_db=i.volume_db
 					i.volume_db=i.volume_db-5
@@ -51,6 +55,34 @@ func _process(_delta):
 	$pause_screen_setup/ProgressBar.max_value=GlobalScript.max_health
 	$pause_screen_setup/e_tank_left.text=str(GlobalScript.energy_tank_no)
 	weapon_energy_update()
+	
+	if GlobalScript.trigger_boss==true:
+		if start_boss_timer==false:
+			start_boss_timer=true
+			$boss_healthbar/timer.start()
+			if music_node!=null and (music_node is AudioStreamPlayer2D or music_node is AudioStreamPlayer):
+				pass
+				music_node.stop()
+				music_node.stream=preload("res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3")
+				music_node.play()
+		#if 
+		$boss_healthbar.visible=true
+		if $boss_healthbar/timer.time_left>0:
+			if GlobalScript.boss!=null and GlobalScript.player!=null:
+				GlobalScript.boss.set_physics_process(false)
+				GlobalScript.player.set_physics_process(false)
+			if $boss_healthbar/timer.time_left<1.5 and $boss_healthbar/timer.time_left<1.55:
+				$boss_healthbar/AnimationPlayer.play("boss_level_up")
+		if GlobalScript.boss.health<=0:
+			GlobalScript.boss.health=0
+			if music_node!=null:
+				music_node.stop()
+	else:
+		$boss_healthbar.visible=false
+	if update_boss_health==true:
+		$boss_healthbar.value=GlobalScript.boss.health
+		$boss_healthbar/text_health_display.text=str(GlobalScript.boss.health)
+	#print(GlobalScript.boss.health)
 	if GlobalScript.health<=0:
 		
 		if $fade_out_effect/AnimationPlayer.current_animation!='fade_out':
@@ -182,3 +214,16 @@ func _on_restart_level_btn_pressed():
 	pass # Replace with function body.
 	get_tree().paused=false
 	get_tree().reload_current_scene()
+
+
+func _on_timer_timeout():
+	print("yep,me timer out")
+	GlobalScript.boss.set_physics_process(true)
+	GlobalScript.player.set_physics_process(true)
+	
+	
+var update_boss_health:bool=false
+func _on_animation_player_animation_finished(anim_name):
+	match anim_name:
+		"boss_level_up":
+			update_boss_health=true

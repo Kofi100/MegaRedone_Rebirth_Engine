@@ -1,4 +1,6 @@
+@tool
 extends Node2D
+
 @export var node_to_add_to_enemy:Node2D;
 var new_node
 @export var enemy_to_spawn:String=''
@@ -9,7 +11,8 @@ var new_node
 #var walking_bomb=preload('res://enemy/walking_bomb.tscn')
 var new_enemy
 @export var visibility=true
-var enemy_dictionary:Dictionary={
+@export var visibility_enemy_display=false
+@export var enemy_dictionary:Dictionary={
 	'new_shotman':preload('res://enemy/new_shotman.tscn'),
 	'mechakkero':preload("res://enemy/mechakkero.tscn"),
 	'peterchy':preload('res://enemy/peterchy.tscn'),
@@ -40,8 +43,12 @@ func _ready():
 	pass
 var spawn_homer=false
 var has_enemy_spawned=false
+var display_node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+func _enter_tree():
+	request_ready()
 func _process(_delta):
+	display_node=get_node_or_null("enemy_display_sprite")
 	if visibility==true:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i) and i<=4:
@@ -109,6 +116,7 @@ func _process(_delta):
 		spawn_timer+=1
 		if spawn_timer%30==1:
 			has_enemy_spawned=false
+#region Previous code to stop enemies upon transitioning to new screen
 	# previous code to stop enemies upon transitioning to new screen
 	#if GlobalScreenTransitionTimer.time_left>0:
 		##for i in get_tree().current_scene.get_children():
@@ -130,6 +138,30 @@ func _process(_delta):
 ##		has_enemy_spawned=false
 	#if enemy_to_spawn=='homer':
 		#$spawn_homer_timer.start()
+#endregion
+	if display_node!=null:
+		display_node.visible=visibility_enemy_display
+		display_enemy("new_shotman",0)
+		display_enemy("mechakkero",1)
+		display_enemy("peterchy",2)
+		display_enemy("walking_bomb",3)
+		display_enemy("met",4)
+		display_enemy("sniper_joe",5)
+		display_enemy("octopus_battery",6)
+		display_enemy("homer",8)
+		display_enemy("paraysu",9)
+		display_enemy("pickelman_bull",10)
+		display_enemy("yambou",11)
+		display_enemy("spikyoall",12)
+		display_enemy("ceiling_shooter",13)
+		
+	
+
+
+func display_enemy(enemy_name:String,frame_display:int):
+	if enemy_to_spawn==enemy_name:
+		$enemy_display_sprite.frame=frame_display
+
 
 var entered=false;var timer=1
 func _on_visible_on_screen_notifier_2d_screen_entered():

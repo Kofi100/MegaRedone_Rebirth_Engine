@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccxmmdbcuhha6"]
+
+[ext_resource type="Script" path="res://enemy/boss/firestorm_signal.gd" id="1_0phl3"]
+[ext_resource type="Texture2D" uid="uid://iabv0rf33w1y" path="res://assets/sprites/enemies/bosses/fireman/projectiles/fire_Storm_small.png" id="2_f6wj3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2fdg"]
+atlas = ExtResource("2_f6wj3")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuid2"]
+atlas = ExtResource("2_f6wj3")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuspi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2fdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuid2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7sit"]
+size = Vector2(13, 14)
+
+[node name="firestorm_signal" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_0phl3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wuspi")
+autoplay = "default"
+frame_progress = 0.0605361
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_p7sit")

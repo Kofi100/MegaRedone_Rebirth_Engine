@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://80ou360lxon6"]
+
+[ext_resource type="Script" path="res://enemy/boss/fireman_fire_storm_small.gd" id="1_aos4a"]
+[ext_resource type="Texture2D" uid="uid://iabv0rf33w1y" path="res://assets/sprites/enemies/bosses/fireman/projectiles/fire_Storm_small.png" id="2_rdr3d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17x1q"]
+atlas = ExtResource("2_rdr3d")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyw3h"]
+atlas = ExtResource("2_rdr3d")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63d0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17x1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyw3h")
+}],
+"loop": true,
+"name": &"small",
+"speed": 12.0
+}]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_kit00"]
+length = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obcmj"]
+size = Vector2(12, 14)
+
+[node name="fire_storm_small" type="CharacterBody2D"]
+script = ExtResource("1_aos4a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_63d0c")
+animation = &"small"
+autoplay = "small"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SeparationRayShape2D_kit00")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_obcmj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

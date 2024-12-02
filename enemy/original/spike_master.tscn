@@ -1,10 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4o667c308o0j"]
+[gd_scene load_steps=11 format=3 uid="uid://b4o667c308o0j"]
 
 [ext_resource type="Texture2D" uid="uid://cijo4rnlhjg6q" path="res://assets/sprites/enemies/original/spike_master.png" id="1_lrf6c"]
 [ext_resource type="Script" path="res://enemy/original/spike_master.gd" id="1_ycre6"]
+[ext_resource type="Texture2D" uid="uid://bcnll8xrje66s" path="res://assets/sprites/enemies/original/spike_master-sheet.png" id="2_ajwmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wf6k"]
 size = Vector2(64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6fs3"]
+atlas = ExtResource("2_ajwmv")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayh2k"]
+atlas = ExtResource("2_ajwmv")
+region = Rect2(128, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvquh"]
 atlas = ExtResource("1_lrf6c")
@@ -14,10 +23,40 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_n6fs3")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ayh2k")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bvquh")
 }],
 "loop": true,
-"name": &"default",
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ayh2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6fs3")
+}],
+"loop": false,
+"name": &"deactivate",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6fs3")
+}],
+"loop": false,
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -37,6 +76,8 @@ debug_color = Color(0.992157, 0.0862745, 0, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_36m1c")
+animation = &"deactivate"
+autoplay = "idle"
 
 [node name="spike_zones" type="Area2D" parent="."]
 collision_layer = 2
@@ -54,5 +95,6 @@ position = Vector2(52.5, 0)
 shape = SubResource("RectangleShape2D_wo6lx")
 disabled = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="spike_zones" to="." method="_on_spike_zones_body_entered"]
 [connection signal="body_entered" from="detect_player_zone" to="." method="_on_detect_player_zone_body_entered"]

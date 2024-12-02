@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ctdf8l75pwgyp"]
+[gd_scene load_steps=61 format=3 uid="uid://ctdf8l75pwgyp"]
 
 [ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b8sebqeclwrq6" path="res://assets/sounds/mm5_chargeshot.wav" id="13_ljqus"]
 [ext_resource type="Texture2D" uid="uid://oncqiynfa2sl" path="res://assets/sprites/miscelleaneous/weapon_display.png" id="14_dxwv6"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="14_m8qn1"]
+[ext_resource type="AudioStream" uid="uid://cfktcngh0i3yi" path="res://assets/sounds/mm4_5_victorytheme.wav" id="15_hhrnh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bag23"]
 shader = ExtResource("4_rtyrl")
@@ -116,6 +117,14 @@ region = Rect2(31, 30, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1csi"]
 atlas = ExtResource("1_si1fv")
 region = Rect2(0, 30, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qvuo"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(62, 120, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jus36"]
+atlas = ExtResource("1_si1fv")
+region = Rect2(93, 120, 31, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pfkfs"]
 animations = [{
@@ -273,6 +282,17 @@ animations = [{
 }],
 "loop": false,
 "name": &"stun_air",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_6qvuo")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_jus36")
+}],
+"loop": true,
+"name": &"whistle_idle",
 "speed": 10.0
 }]
 
@@ -433,6 +453,9 @@ _data = {
 "screen_shake": SubResource("Animation_y4o1v")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5fq1"]
+size = Vector2(15, 23)
+
 [node name="megaman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -453,7 +476,8 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"shoot_idle"
+animation = &"dash"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.33333, 3.33333)
@@ -478,6 +502,7 @@ position = Vector2(-15.6667, -6.33333)
 position = Vector2(17.7238, -6.42757)
 
 [node name="charge_timer" type="Label" parent="."]
+visible = false
 offset_left = -21.6667
 offset_top = -21.6667
 offset_right = 73.3333
@@ -496,6 +521,7 @@ theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "Charge Timer:"
 
 [node name="speed" type="Label" parent="."]
+visible = false
 offset_left = -2.66667
 offset_top = -31.3333
 offset_right = 77.3333
@@ -558,6 +584,10 @@ volume_db = -10.0
 
 [node name="energyup" type="AudioStreamPlayer2D" parent="all_sounds"]
 stream = ExtResource("14_m8qn1")
+
+[node name="level_cleared" type="AudioStreamPlayer" parent="all_sounds"]
+stream = ExtResource("15_hhrnh")
+volume_db = -10.0
 
 [node name="restart_timer" type="Timer" parent="."]
 
@@ -627,6 +657,28 @@ offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("6_hjfwy")
 text = "SPEED Y:"
 
+[node name="leave_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="trigger_leave_timer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="reset_cam_entry" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="whistle_idle_trigger_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="detect_water_zones" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_water_zones"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_s5fq1")
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
@@ -641,5 +693,8 @@ text = "SPEED Y:"
 [connection signal="timeout" from="start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="leave_timer" to="." method="_on_leave_timer_timeout"]
+[connection signal="timeout" from="trigger_leave_timer" to="." method="_on_trigger_leave_timer_timeout"]
+[connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
 
 [editable path="dash"]

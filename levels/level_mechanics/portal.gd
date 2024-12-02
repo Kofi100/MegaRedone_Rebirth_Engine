@@ -1,8 +1,12 @@
+@tool
+@icon("res://assets/sprites/miscelleaneous/icons/nodes/portal_icon.png")
+class_name Portal
 extends Node2D
+
 var portal_id:int=0
 @onready var collision_shape_2d = $detect_player_area2d/CollisionShape2D
 
-@export var next_portal:Node2D
+@export var next_portal:Portal
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,7 +16,7 @@ var player
 func _process(delta):
 	if next_portal!=null:
 		if player!=null:
-			if $Timer.time_left==0:
+			if $Timer.time_left<=0:
 				$detect_player_area2d/CollisionShape2D.disabled=false
 				next_portal.collision_shape_2d.disabled=false
 			elif $Timer.time_left>0:

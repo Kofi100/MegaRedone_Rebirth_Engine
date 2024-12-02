@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnmoiwxhiv173"
+path="res://.godot/imported/Tee Lopes - Genos X-treme Theme.mp3-06c1cb5e2a19aca3223e0b5ebffc3ad8.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Tee Lopes - Genos X-treme Theme.mp3"
+dest_files=["res://.godot/imported/Tee Lopes - Genos X-treme Theme.mp3-06c1cb5e2a19aca3223e0b5ebffc3ad8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

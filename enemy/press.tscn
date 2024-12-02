@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://r0q5qrdcqeo6"]
+[gd_scene load_steps=8 format=3 uid="uid://r0q5qrdcqeo6"]
 
 [ext_resource type="Script" path="res://enemy/press_main.gd" id="1_0jgta"]
 [ext_resource type="Texture2D" uid="uid://c17ejmijahkof" path="res://assets/sprites/enemies/press_end_adjusted.png" id="1_8cf0m"]
 [ext_resource type="Texture2D" uid="uid://wr0tqyfk415t" path="res://assets/sprites/enemies/press_chain_original.png" id="2_u8rsn"]
 [ext_resource type="Script" path="res://enemy/actual_press_node.gd" id="2_wk2iv"]
+[ext_resource type="Texture2D" uid="uid://vyfq4up04m3o" path="res://assets/sprites/enemies/press_chain_original-rotated.png" id="4_3u21v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b87m2"]
 size = Vector2(32, 5)
@@ -21,11 +22,17 @@ script = ExtResource("2_wk2iv")
 [node name="press_end" type="Sprite2D" parent="actual_press"]
 texture = ExtResource("1_8cf0m")
 
-[node name="Line2D" type="Line2D" parent="actual_press"]
-visible = false
+[node name="distance_RayCast" type="RayCast2D" parent="actual_press"]
+position = Vector2(0, 7)
+target_position = Vector2(0, -250)
+
+[node name="chains_Line" type="Line2D" parent="actual_press"]
 texture_repeat = 2
-points = PackedVector2Array(0, -10, 26, -47)
-texture = ExtResource("2_u8rsn")
+position = Vector2(0, -17)
+scale = Vector2(0.934783, 1)
+points = PackedVector2Array(0, 7, 0, -94)
+width = 4.0
+texture = ExtResource("4_3u21v")
 texture_mode = 1
 
 [node name="PressChainOriginal" type="Polygon2D" parent="actual_press"]
@@ -36,29 +43,34 @@ polygon = PackedVector2Array(4, 6, -4, 6, -4, -6, 4, -6)
 uv = PackedVector2Array(8, 12, 0, 12, 0, 0, 8, 0)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
+[node name="press_chain2" type="Sprite2D" parent="actual_press"]
+visible = false
+position = Vector2(0, -24)
+texture = ExtResource("2_u8rsn")
+
+[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain2"]
+position = Vector2(0, -8)
+texture = ExtResource("2_u8rsn")
+
+[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain2/press_chain"]
+position = Vector2(0, -8)
+texture = ExtResource("2_u8rsn")
+
+[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain2/press_chain/press_chain"]
+position = Vector2(0, -8)
+texture = ExtResource("2_u8rsn")
+
+[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain2/press_chain/press_chain/press_chain"]
+position = Vector2(0, -8)
+texture = ExtResource("2_u8rsn")
+
 [node name="press_chain" type="Sprite2D" parent="actual_press"]
+visible = false
 position = Vector2(0, -16)
 texture = ExtResource("2_u8rsn")
 
-[node name="press_chain2" type="Sprite2D" parent="actual_press/press_chain"]
-position = Vector2(0, -8)
-texture = ExtResource("2_u8rsn")
-
-[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain/press_chain2"]
-position = Vector2(0, -8)
-texture = ExtResource("2_u8rsn")
-
-[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain/press_chain2/press_chain"]
-position = Vector2(0, -8)
-texture = ExtResource("2_u8rsn")
-
-[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain/press_chain2/press_chain/press_chain"]
-position = Vector2(0, -8)
-texture = ExtResource("2_u8rsn")
-
-[node name="press_chain" type="Sprite2D" parent="actual_press/press_chain/press_chain2/press_chain/press_chain/press_chain"]
-position = Vector2(0, -8)
-texture = ExtResource("2_u8rsn")
+[node name="Line2D" type="Line2D" parent="actual_press/press_chain"]
+visible = false
 
 [node name="hitbox" type="Area2D" parent="actual_press" groups=["enemy"]]
 collision_layer = 2

@@ -1,6 +1,7 @@
 extends Node2D
 var saved_player_position=false
 @onready var detect_player_shape_cast_2d = $detect_player_ShapeCast2D
+@onready var animation_player = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,9 +26,11 @@ func _process(delta):
 			#queue_free()
 			
 	match saved_player_position:
-		false:$line_rep.default_color=Color.RED#(ffffff)
+		false:#$line_rep.default_color=Color.RED#(ffffff)
+			animation_player.play("red")
 		true:
 			pass
-			$line_rep.default_color=Color.GREEN
+			#$line_rep.default_color=Color.GREEN
+			animation_player.play("green")
 
 

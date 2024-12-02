@@ -1,0 +1,175 @@
+[gd_scene load_steps=21 format=3 uid="uid://4w0eroyrq7m5"]
+
+[ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="1_g6nul"]
+[ext_resource type="Script" path="res://enemy/boss/fireman_boss.gd" id="1_st3eb"]
+[ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="2_b6wo1"]
+[ext_resource type="Texture2D" uid="uid://srqv3matgf7n" path="res://assets/sprites/enemies/bosses/fireman/jump/0.png" id="3_wj0s2"]
+[ext_resource type="Texture2D" uid="uid://dq70lusboyxap" path="res://assets/sprites/enemies/bosses/fireman/shoot/0.png" id="4_2rj0e"]
+[ext_resource type="Texture2D" uid="uid://cspo2y82fuvim" path="res://assets/sprites/enemies/bosses/fireman/pose/0.png" id="5_7f1jr"]
+[ext_resource type="Texture2D" uid="uid://d1x86blvxvkn6" path="res://assets/sprites/enemies/bosses/fireman/shoot/1.png" id="5_n33q1"]
+[ext_resource type="Texture2D" uid="uid://csbbhsys1ce7o" path="res://assets/sprites/enemies/bosses/fireman/pose/1.png" id="6_7hfor"]
+[ext_resource type="Texture2D" uid="uid://cjihubabnjdu1" path="res://assets/sprites/enemies/bosses/fireman/run/0.png" id="6_hk8h2"]
+[ext_resource type="Texture2D" uid="uid://bsahra5jikv8h" path="res://assets/sprites/enemies/bosses/fireman/run/1.png" id="7_el6ww"]
+[ext_resource type="Texture2D" uid="uid://4sbg3vjywxvr" path="res://assets/sprites/enemies/bosses/fireman/pose/2.png" id="7_ob6hq"]
+[ext_resource type="Texture2D" uid="uid://cr62qajan5p20" path="res://assets/sprites/enemies/bosses/fireman/run/2.png" id="8_pxe58"]
+[ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="11_x5cra"]
+[ext_resource type="AudioStream" uid="uid://c4o0dihky60n3" path="res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3" id="14_halsn"]
+[ext_resource type="AudioStream" uid="uid://cd2wus4a02so7" path="res://assets/sounds/fire_storm_1.wav" id="15_y25d8"]
+[ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="16_gqiey"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rl0np"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g6nul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b6wo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_g6nul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b6wo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_g6nul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b6wo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_g6nul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b6wo1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wj0s2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7f1jr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7hfor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ob6hq")
+}],
+"loop": false,
+"name": &"pose",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hk8h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_el6ww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pxe58")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2rj0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n33q1")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyc08"]
+size = Vector2(13, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm4sd"]
+size = Vector2(17, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na0jj"]
+size = Vector2(17, 20)
+
+[node name="fireman_boss" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_st3eb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rl0np")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_nyc08")
+
+[node name="all_timers" type="Node2D" parent="."]
+
+[node name="run_timer" type="Timer" parent="all_timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="idle_timer" type="Timer" parent="all_timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="jump_timer" type="Timer" parent="all_timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("11_x5cra")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 6
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 6.5)
+shape = SubResource("RectangleShape2D_hm4sd")
+
+[node name="cooldown_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="boss_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_halsn")
+volume_db = -10.0
+
+[node name="fire_storm_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_y25d8")
+
+[node name="land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_gqiey")
+
+[node name="hitbox2" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox2"]
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_na0jj")
+debug_color = Color(0.788235, 0.431373, 0, 0.419608)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="all_timers/run_timer" to="." method="_on_run_timer_timeout"]
+[connection signal="timeout" from="all_timers/idle_timer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="all_timers/jump_timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

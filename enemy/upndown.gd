@@ -35,6 +35,8 @@ func _physics_process(delta):
 				velocity.x=3000*delta
 
 	move_and_slide()
+	if $VisibleOnScreenNotifier2D.is_on_screen()==false:
+		queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
