@@ -408,6 +408,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_5jojv"]
 resource_name = "screen_shake"
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

@@ -60,11 +60,10 @@ position = Vector2(31, -18)
 amount = 500
 process_material = SubResource("ParticleProcessMaterial_m8362")
 
-[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="New Camera System Addon" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 script = ExtResource("3_sdfms")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="New Camera System Addon"]

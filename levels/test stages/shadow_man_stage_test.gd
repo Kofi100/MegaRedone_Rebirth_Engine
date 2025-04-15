@@ -130,4 +130,3 @@ func _on_bgm_finished():
 		#StageFunctions.switch_camera(player_camera,camera_9)
 		#timer_switch_cameras.start()
 		#player_camera.position_smoothing_enabled=true
-
