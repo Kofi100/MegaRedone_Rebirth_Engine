@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://613o1bxlx44x" path="res://assets/sprites/tilesets/test_stages/rain_stage_bg.png" id="1_r81ly"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_0yhin"]
 [ext_resource type="Texture2D" uid="uid://bsw1f54u5d53s" path="res://assets/sprites/tilesets/test_stages/rain_stage_bg2.png" id="2_jawrs"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="3_sdfms"]
+[ext_resource type="Script" uid="uid://clxlf5vg2e33b" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="3_sdfms"]
 
 [sub_resource type="TileSet" id="TileSet_31mxd"]
 physics_layer_0/collision_layer = 1

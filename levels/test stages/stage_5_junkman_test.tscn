@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bt3slka3yfu63" path="res://assets/sprites/tilesets/test_stages/lava_junkman.png" id="3_2atve"]
 [ext_resource type="Texture2D" uid="uid://6b58q7t85jrk" path="res://assets/sprites/tilesets/test_stages/backgrounds/background_junkman_practise.png" id="3_ancrr"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="4_84qek"]
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="5_2sq5r"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="7_047d1"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="5_2sq5r"]
+[ext_resource type="Script" uid="uid://clxlf5vg2e33b" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="7_047d1"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="8_h5pfx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jf5s"]

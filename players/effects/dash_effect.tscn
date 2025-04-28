@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://df87o721nwp2g"]
 
 [ext_resource type="Texture2D" uid="uid://bsu7yb447082q" path="res://assets/sprites/miscelleaneous/dash_effects.png" id="1_xokrj"]
-[ext_resource type="Script" path="res://players/effects/dash_effect.gd" id="2_i08rw"]
+[ext_resource type="Script" uid="uid://dmimookx0x88y" path="res://players/effects/dash_effect.gd" id="2_i08rw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5l6ou"]
 atlas = ExtResource("1_xokrj")

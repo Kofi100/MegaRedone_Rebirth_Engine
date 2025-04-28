@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b6sieew5xljj"
-path="res://.godot/imported/palette_pipeline_tilemap.aseprite-91f1bbc5bcf7cfde70928941684cf4c9.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/sprites/tilesets/test_stages/palette_pipeline_tilemap.aseprite"
-dest_files=["res://.godot/imported/palette_pipeline_tilemap.aseprite-91f1bbc5bcf7cfde70928941684cf4c9.res"]
 
 [params]
 

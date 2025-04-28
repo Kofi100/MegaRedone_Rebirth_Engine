@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://ckhhoqkfe264k"
-path="res://.godot/imported/big telly my concept.aseprite-1eebce2bafdcd0ea87eef8aa1369355e.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/aseprite_files/big telly my concept.aseprite"
-dest_files=["res://.godot/imported/big telly my concept.aseprite-1eebce2bafdcd0ea87eef8aa1369355e.res"]
 
 [params]
 

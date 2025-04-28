@@ -1,6 +1,6 @@
 [gd_scene load_steps=64 format=3 uid="uid://ij75b7p4v4ap"]
 
-[ext_resource type="Script" path="res://levels/test stages/stage_3.gd" id="1_8k4aa"]
+[ext_resource type="Script" uid="uid://cfpytus6cx7ug" path="res://levels/test stages/stage_3.gd" id="1_8k4aa"]
 [ext_resource type="TileSet" uid="uid://c35ww60gx13t2" path="res://resources/screen_checker.tres" id="2_fu5g3"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="3_s7kjg"]
 [ext_resource type="Texture2D" uid="uid://l31hdhr72jwr" path="res://assets/sprites/tilesets/test_stages/cyberspace_tilemap.png" id="3_usjk6"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="9_2r35a"]
 [ext_resource type="AudioStream" uid="uid://bg6k2xa573uis" path="res://assets/music/Cyber Peacock Stage - Mega Man X4 [0CC FamiTracker, VRC6].mp3" id="9_mix2s"]
 [ext_resource type="PackedScene" uid="uid://b4o667c308o0j" path="res://enemy/original/spike_master.tscn" id="9_xf1ce"]
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="10_ywbwb"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="10_ywbwb"]
 [ext_resource type="PackedScene" uid="uid://cqq0eny4dibnj" path="res://levels/level_mechanics/portal.tscn" id="11_l6lru"]
 [ext_resource type="PackedScene" uid="uid://2ctria5jyvy2" path="res://levels/level_mechanics/key.tscn" id="12_eeq8p"]
 [ext_resource type="PackedScene" uid="uid://b2t2agmjcu5y8" path="res://levels/level_mechanics/locked_door.tscn" id="13_uqqev"]

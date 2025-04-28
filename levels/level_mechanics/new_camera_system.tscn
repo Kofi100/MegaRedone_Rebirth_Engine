@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://v3cirfwgjkwo"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="1_ysk8n"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="1_ysk8n"]
 
 [node name="new_camera_system" type="Area2D" node_paths=PackedStringArray("zone_camera_2d")]
 editor_description = "A custom made Area2D node that handles camera movement and limits using a Camera2D node and a CollisionShape2D node"

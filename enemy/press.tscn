@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://r0q5qrdcqeo6"]
 
-[ext_resource type="Script" path="res://enemy/press_main.gd" id="1_0jgta"]
+[ext_resource type="Script" uid="uid://d23oboywk0gke" path="res://enemy/press_main.gd" id="1_0jgta"]
 [ext_resource type="Texture2D" uid="uid://c17ejmijahkof" path="res://assets/sprites/enemies/press_end_adjusted.png" id="1_8cf0m"]
 [ext_resource type="Texture2D" uid="uid://wr0tqyfk415t" path="res://assets/sprites/enemies/press_chain_original.png" id="2_u8rsn"]
-[ext_resource type="Script" path="res://enemy/actual_press_node.gd" id="2_wk2iv"]
+[ext_resource type="Script" uid="uid://cdbymrj4hcpmr" path="res://enemy/actual_press_node.gd" id="2_wk2iv"]
 [ext_resource type="Texture2D" uid="uid://vyfq4up04m3o" path="res://assets/sprites/enemies/press_chain_original-rotated.png" id="4_3u21v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b87m2"]

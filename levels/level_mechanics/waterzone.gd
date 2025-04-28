@@ -23,9 +23,10 @@ func _on_body_entered(body):
 		player_previous_gravity=body.gravity
 		body.gravity=500
 		if body.anim!=null:
-			body.anim.speed_scale=0.8
+			body.anim.speed_scale=0.5#8
+		body.isInWater=true
 		#animated_sprite_template.pl
-		print("dey playyy")
+		#print("dey playyy")
  
 
 
@@ -34,3 +35,4 @@ func _on_body_exited(body):
 		body.gravity=player_previous_gravity
 		if body.anim!=null:
 			body.anim.speed_scale=1.0
+		body.isInWater=false

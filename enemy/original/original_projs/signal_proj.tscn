@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbrm6iy3awxyy"]
 
-[ext_resource type="Script" path="res://enemy/original/original_projs/signal_proj.gd" id="1_65k2j"]
+[ext_resource type="Script" uid="uid://mhghve7kmxr6" path="res://enemy/original/original_projs/signal_proj.gd" id="1_65k2j"]
 [ext_resource type="Texture2D" uid="uid://cdhtmv4ux35jj" path="res://assets/sprites/enemies/original/orig_projectiles/homer_signal_projectile.png" id="1_mnbyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkbm0"]

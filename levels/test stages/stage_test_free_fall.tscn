@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b6vx7y6fndsm5"]
 
-[ext_resource type="Script" path="res://levels/test stages/stage_test_free_fall.gd" id="1_4ab05"]
+[ext_resource type="Script" uid="uid://ko2it5lia74r" path="res://levels/test stages/stage_test_free_fall.gd" id="1_4ab05"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="1_thwt4"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_wvyr0"]
 [ext_resource type="PackedScene" uid="uid://v3cirfwgjkwo" path="res://levels/level_mechanics/new_camera_system.tscn" id="3_bpc5k"]

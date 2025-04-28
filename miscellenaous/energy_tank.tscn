@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjqb26cj5laga"]
 
-[ext_resource type="Script" path="res://miscellenaous/energy_tank.gd" id="1_c4k0e"]
+[ext_resource type="Script" uid="uid://748i4hktkla" path="res://miscellenaous/energy_tank.gd" id="1_c4k0e"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="2_oow8c"]
 [ext_resource type="AudioStream" uid="uid://050kkt3li38u" path="res://assets/sounds/1up.wav" id="3_yk02i"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2pa17rbtytg3"]
 
 [ext_resource type="Texture2D" uid="uid://gmxn8c67g8tw" path="res://assets/sprites/enemies/tacklefire.png" id="1_2q2bj"]
-[ext_resource type="Script" path="res://assets/sprites/enemies/tacklefire.gd" id="1_frdvx"]
+[ext_resource type="Script" uid="uid://wafsudaw8ecr" path="res://assets/sprites/enemies/tacklefire.gd" id="1_frdvx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipx1f"]
 atlas = ExtResource("1_2q2bj")

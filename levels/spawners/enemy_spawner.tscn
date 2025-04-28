@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy5155ckq0051"]
 
-[ext_resource type="Script" path="res://levels/spawners/enemy_spawner.gd" id="1_ck4dl"]
+[ext_resource type="Script" uid="uid://c2imgr2mubxa5" path="res://levels/spawners/enemy_spawner.gd" id="1_ck4dl"]
 [ext_resource type="Texture2D" uid="uid://cumkqjvnmnl1h" path="res://assets/sprites/miscelleaneous/miscell_original_v1.png" id="1_v4gol"]
 [ext_resource type="Texture2D" uid="uid://v66b3nr1wrgy" path="res://assets/sprites/miscelleaneous/enemy_display_spritesheet_redone_rebirth_engine.png" id="3_g47hr"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_rcgh2"]

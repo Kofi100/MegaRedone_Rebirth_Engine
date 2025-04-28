@@ -1,9 +1,9 @@
 [gd_scene load_steps=67 format=3 uid="uid://cwsow3c7kbmrg"]
 
 [ext_resource type="Texture2D" uid="uid://cp3c8f7rg6l83" path="res://assets/sprites/tilesets/stage1_tileset.png" id="1_dj070"]
-[ext_resource type="Script" path="res://levels/test stages/stage_1.gd" id="1_wyl27"]
+[ext_resource type="Script" uid="uid://dgmess8s3aqyb" path="res://levels/test stages/stage_1.gd" id="1_wyl27"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_a2wa6"]
-[ext_resource type="Script" path="res://levels/test stages/bg1.gd" id="2_iy34y"]
+[ext_resource type="Script" uid="uid://xnjgj4xko100" path="res://levels/test stages/bg1.gd" id="2_iy34y"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="3_fq0y5"]
 [ext_resource type="Texture2D" uid="uid://sgob4ihiytcp" path="res://assets/sprites/backgrounds/clouds.png" id="3_le1hg"]
 [ext_resource type="PackedScene" uid="uid://bvsnh1g0ygwje" path="res://enemy/met.tscn" id="4_3bowp"]

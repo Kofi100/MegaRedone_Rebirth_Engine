@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ctdj2q3rpw4o1"]
 
 [ext_resource type="Texture2D" uid="uid://d2s0mxejo4hh7" path="res://assets/sprites/enemies/original/electric gabyoall.png" id="1_1fepo"]
-[ext_resource type="Script" path="res://enemy/original/electric_gabyoall.gd" id="1_8lrbb"]
+[ext_resource type="Script" uid="uid://bao1obygbyai2" path="res://enemy/original/electric_gabyoall.gd" id="1_8lrbb"]
 
 [sub_resource type="Animation" id="Animation_jwl5w"]
 resource_name = "electric_gabyoall"
@@ -34,7 +34,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sshah"]
 _data = {
-"electric_gabyoall": SubResource("Animation_jwl5w")
+&"electric_gabyoall": SubResource("Animation_jwl5w")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lbem"]

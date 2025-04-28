@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2uib5gb7iqph"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/ladder.gd" id="1_ndp0r"]
+[ext_resource type="Script" uid="uid://cqwlt2sml4wyk" path="res://levels/level_mechanics/ladder.gd" id="1_ndp0r"]
 
 [node name="ladder" type="Area2D" groups=["ladders"]]
 collision_layer = 2

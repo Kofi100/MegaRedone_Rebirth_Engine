@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpkbb02gj5i58"]
 
-[ext_resource type="Script" path="res://miscellenaous/target_practise.gd" id="1_aos3r"]
+[ext_resource type="Script" uid="uid://yvx7y0mbgybf" path="res://miscellenaous/target_practise.gd" id="1_aos3r"]
 [ext_resource type="Texture2D" uid="uid://bxg21n2j0kxbe" path="res://assets/sprites/miscelleaneous/target_practise.png" id="1_j5do3"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_62x8e"]
 

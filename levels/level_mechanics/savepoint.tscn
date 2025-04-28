@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7acyh6elurni"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/savepoint.gd" id="1_0gdel"]
+[ext_resource type="Script" uid="uid://3sqvrptxwh1w" path="res://levels/level_mechanics/savepoint.gd" id="1_0gdel"]
 [ext_resource type="Texture2D" uid="uid://rve227akbvrl" path="res://assets/sprites/miscelleaneous/savepoint_arrows_up.png" id="2_ktus5"]
 
 [sub_resource type="Gradient" id="Gradient_hhkl5"]
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_84qrn"]
 _data = {
-"green": SubResource("Animation_vv8vo"),
-"red": SubResource("Animation_43ahs")
+&"green": SubResource("Animation_vv8vo"),
+&"red": SubResource("Animation_43ahs")
 }
 
 [node name="savepoint" type="Node2D"]

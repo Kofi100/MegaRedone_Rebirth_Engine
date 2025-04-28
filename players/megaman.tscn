@@ -1,10 +1,10 @@
 [gd_scene load_steps=61 format=3 uid="uid://ctdf8l75pwgyp"]
 
-[ext_resource type="Script" path="res://players/megaman.gd" id="1_acsaa"]
+[ext_resource type="Script" uid="uid://c5wu8vtjrjdjo" path="res://players/megaman.gd" id="1_acsaa"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_si1fv"]
 [ext_resource type="PackedScene" uid="uid://ckktibuy8fwfs" path="res://players/dash.tscn" id="2_oa303"]
 [ext_resource type="PackedScene" uid="uid://6tusihkhmm8e" path="res://miscellenaous/hud.tscn" id="3_ov4w5"]
-[ext_resource type="Shader" path="res://players/megaman.gdshader" id="4_rtyrl"]
+[ext_resource type="Shader" uid="uid://dst3c04313g6g" path="res://players/megaman.gdshader" id="4_rtyrl"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="6_hjfwy"]
 [ext_resource type="AudioStream" uid="uid://crijrqyswqhij" path="res://assets/sounds/hurt.wav" id="6_n1lyq"]
 [ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="6_qyqol"]
@@ -297,7 +297,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk5kj"]
-size = Vector2(8.33333, 20.6667)
+size = Vector2(8.33333, 14.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tm2b"]
 size = Vector2(9.66667, 18.6667)
@@ -424,10 +424,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hedug"]
 _data = {
-"RESET": SubResource("Animation_jwedl"),
-"dash": SubResource("Animation_3e2f3"),
-"others": SubResource("Animation_y47pe"),
-"screen_shake": SubResource("Animation_5jojv")
+&"RESET": SubResource("Animation_jwedl"),
+&"dash": SubResource("Animation_3e2f3"),
+&"others": SubResource("Animation_y47pe"),
+&"screen_shake": SubResource("Animation_5jojv")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjlgr"]
@@ -451,7 +451,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyb8q"]
 _data = {
-"screen_shake": SubResource("Animation_y4o1v")
+&"screen_shake": SubResource("Animation_y4o1v")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5fq1"]
@@ -477,11 +477,11 @@ editor_draw_limits = true
 material = SubResource("ShaderMaterial_bag23")
 position = Vector2(-0.333333, -1)
 sprite_frames = SubResource("SpriteFrames_pfkfs")
-animation = &"dash"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.33333, 3.33333)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_mk5kj")
 debug_color = Color(0.639216, 0.678431, 0, 0.568627)
 
@@ -548,8 +548,8 @@ shape = SubResource("RectangleShape2D_8tm2b")
 debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 
 [node name="hitbox" type="Area2D" parent="." groups=["player_hitbox"]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-1.66667, 3.66667)
@@ -610,7 +610,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hedug")
+&"": SubResource("AnimationLibrary_hedug")
 }
 autoplay = "others"
 
@@ -634,7 +634,7 @@ autostart = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_eyb8q")
+&"": SubResource("AnimationLibrary_eyb8q")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -680,6 +680,9 @@ one_shot = true
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_s5fq1")
 
+[node name="produce_Bubble_Timer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="dash/Timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="change_climb_detector" to="." method="_on_change_climb_detector_area_entered"]
@@ -687,6 +690,7 @@ shape = SubResource("RectangleShape2D_s5fq1")
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
 [connection signal="timeout" from="weapon_display/display_timer" to="." method="_on_display_timer_timeout"]
 [connection signal="timeout" from="timer_switch_cameras" to="." method="_on_timer_switch_cameras_timeout"]
@@ -697,5 +701,6 @@ shape = SubResource("RectangleShape2D_s5fq1")
 [connection signal="timeout" from="leave_timer" to="." method="_on_leave_timer_timeout"]
 [connection signal="timeout" from="trigger_leave_timer" to="." method="_on_trigger_leave_timer_timeout"]
 [connection signal="timeout" from="whistle_idle_trigger_timer" to="." method="_on_whistle_idle_trigger_timer_timeout"]
+[connection signal="timeout" from="produce_Bubble_Timer" to="." method="_on_produce_bubble_timer_timeout"]
 
 [editable path="dash"]

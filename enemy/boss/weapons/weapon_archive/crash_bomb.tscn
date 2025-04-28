@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://ckdom28eyeva7"]
 
-[ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/crash_bomb.gd" id="1_7mixq"]
+[ext_resource type="Script" uid="uid://tt68vdlbgtwy" path="res://enemy/boss/weapons/weapon_archive/crash_bomb.gd" id="1_7mixq"]
 [ext_resource type="Texture2D" uid="uid://ddx5uukb71qbx" path="res://assets/sprites/weapons/mm1/first set_MM2(16x16).png" id="2_awpbd"]
 [ext_resource type="Texture2D" uid="uid://nc4em8ct6ceg" path="res://assets/sprites/weapons/mm1/crash_bomb_explosions(16x16).png" id="3_hewch"]
 [ext_resource type="AudioStream" uid="uid://c1wy5wxpe2bdv" path="res://assets/sounds/crash_bomber.wav" id="4_4y5te"]
@@ -66,6 +66,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 10.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 2.0
 anim_speed_max = 2.0

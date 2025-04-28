@@ -1,5 +1,5 @@
 extends Node
-var health =1
+var health:int =1
 var previous_health=0
 ##This boolean checks if the player has been hit by an enemy's attack or not.
 var playerhasbeenhit:bool=false
@@ -15,9 +15,9 @@ var spawn_collectable_no:int=0
 var spawn_enemy=true
 var level_timer_start=false
 var restarted_level=false
-var minute_level=0
-var second_level=0
-var milliseconds=0
+var minute_level:float=0
+var second_level:float=0
+var milliseconds:float=0
 var total_time_seconds=0 #would be used to record how long you spent on a level
 var restart_scene=false
 var lemons_on_screen_no:int=0
@@ -31,6 +31,7 @@ var savepos_x=0;var savepos_y=0;
 var stage_name:String
 var boss_health:float=0;var trigger_boss:bool=false
 var boss:Object;var player:Object
+var previous_Level_Entered:String
 @export var input_dictionary_keys={
 	"move_up":0,
 	"move_down":0,

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c31eutoxq1dta"]
 
-[ext_resource type="Script" path="res://players/weapons/missile.gd" id="1_7a1ta"]
+[ext_resource type="Script" uid="uid://chro7v6ed4rcp" path="res://players/weapons/missile.gd" id="1_7a1ta"]
 [ext_resource type="Texture2D" uid="uid://c5lsl8spf3d1h" path="res://assets/sprites/player/weapons/megaman/missile.png" id="2_1osi4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r1wdn"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://42884okjie0c"]
 
-[ext_resource type="Script" path="res://levels/test stages/stage_2.gd" id="1_hlg8j"]
+[ext_resource type="Script" uid="uid://blf81w4vj40dm" path="res://levels/test stages/stage_2.gd" id="1_hlg8j"]
 [ext_resource type="Texture2D" uid="uid://cp3c8f7rg6l83" path="res://assets/sprites/tilesets/stage1_tileset.png" id="1_projp"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="2_vnari"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_0mvx1"]

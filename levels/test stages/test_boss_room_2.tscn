@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckumraqxnpcit"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="1_okrg6"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="1_okrg6"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_spx2w"]
-[ext_resource type="Script" path="res://levels/test stages/test_boss_room_2.gd" id="1_vmhpl"]
+[ext_resource type="Script" uid="uid://cdemdqe1mxe50" path="res://levels/test stages/test_boss_room_2.gd" id="1_vmhpl"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_cvcx2"]
 [ext_resource type="PackedScene" uid="uid://4w0eroyrq7m5" path="res://enemy/boss/fireman_boss.tscn" id="3_hymnq"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="6_geuuw"]

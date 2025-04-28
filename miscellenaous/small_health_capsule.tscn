@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dejk0u2e8pqpm"]
 
-[ext_resource type="Script" path="res://miscellenaous/small_health_capsule.gd" id="1_f34yw"]
+[ext_resource type="Script" uid="uid://d1c7xfqj8bje4" path="res://miscellenaous/small_health_capsule.gd" id="1_f34yw"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_nroca"]
 
 [sub_resource type="Animation" id="Animation_bgrr7"]
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_os77c"]
 _data = {
-"active": SubResource("Animation_bgrr7")
+&"active": SubResource("Animation_bgrr7")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nakms"]

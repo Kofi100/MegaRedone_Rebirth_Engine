@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://f1pqedunt4ro"]
 
 [ext_resource type="PackedScene" uid="uid://bsrhpqbjecu3t" path="res://enemy/boss/weapon_archive_boss.tscn" id="1_vv8bd"]
-[ext_resource type="Script" path="res://enemy/boss/weapon_archive_engine.gd" id="1_xh0ut"]
-[ext_resource type="Shader" path="res://enemy/boss/sprite_display_flicker.gdshader" id="3_ccoxa"]
+[ext_resource type="Script" uid="uid://bgbfgtrqgssjo" path="res://enemy/boss/weapon_archive_engine.gd" id="1_xh0ut"]
+[ext_resource type="Shader" uid="uid://emtrl86njr1w" path="res://enemy/boss/sprite_display_flicker.gdshader" id="3_ccoxa"]
 [ext_resource type="Texture2D" uid="uid://qrbbh8d51r2m" path="res://assets/sprites/enemies/bosses/bosses_display_spritesheet_warchive.png" id="4_k2ha8"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="5_eh41v"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="6_jonrk"]
@@ -49,6 +49,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 50.0
 emission_ring_radius = 50.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 10.0
 anim_speed_max = 10.0

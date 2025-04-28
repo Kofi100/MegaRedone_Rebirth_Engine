@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvio6n4hx5rbd"]
 
 [ext_resource type="Texture2D" uid="uid://d2rv8j1k6d6y" path="res://assets/sprites/enemies/original/spikoall_mine.png" id="1_c117h"]
-[ext_resource type="Script" path="res://enemy/original/spikyoall.gd" id="1_ha4ij"]
+[ext_resource type="Script" uid="uid://dr2mjium41yp7" path="res://enemy/original/spikyoall.gd" id="1_ha4ij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbwxb"]
 atlas = ExtResource("1_c117h")

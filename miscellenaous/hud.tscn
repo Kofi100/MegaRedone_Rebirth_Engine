@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://6tusihkhmm8e"]
 
-[ext_resource type="Script" path="res://miscellenaous/hud.gd" id="1_32714"]
+[ext_resource type="Script" uid="uid://bqd05mwc00goh" path="res://miscellenaous/hud.gd" id="1_32714"]
 [ext_resource type="Texture2D" uid="uid://cd5487f1lkfly" path="res://assets/sprites/miscelleaneous/e_tank_spritesheet_kk.png" id="2_jftja"]
 [ext_resource type="Texture2D" uid="uid://ceiqj8bjouqre" path="res://assets/sprites/miscelleaneous/pause_screen_setup3.png" id="2_jxh0c"]
 [ext_resource type="Texture2D" uid="uid://ckiorwijfvv0x" path="res://assets/sprites/miscelleaneous/w_tank_spritesheet_kk.png" id="3_yjobx"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="7_65oho"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="7_ixl55"]
 [ext_resource type="AudioStream" uid="uid://cuhrcqnd47np0" path="res://assets/sounds/health_up.wav" id="8_80bcg"]
-[ext_resource type="Shader" path="res://players/megaman.gdshader" id="9_1ufh6"]
+[ext_resource type="Shader" uid="uid://dst3c04313g6g" path="res://players/megaman.gdshader" id="9_1ufh6"]
 [ext_resource type="Texture2D" uid="uid://d3yeluainukhd" path="res://assets/sprites/miscelleaneous/progress_bar_megaman_texture.png" id="12_386i2"]
 
 [sub_resource type="Animation" id="Animation_nxwht"]
@@ -46,17 +46,17 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_phch0"]
 _data = {
-"fade_out": SubResource("Animation_nxwht")
+&"fade_out": SubResource("Animation_nxwht")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_be7r0"]
 shader = ExtResource("9_1ufh6")
-shader_parameter/outline_color_original = null
-shader_parameter/bodycolororiginal1 = null
-shader_parameter/bodycolororiginal2 = null
-shader_parameter/outlinecolor = null
-shader_parameter/bodycolori = null
-shader_parameter/bodycolorii = null
+shader_parameter/outline_color_original = Color(0, 0, 0, 1)
+shader_parameter/bodycolororiginal1 = Color(0, 0, 0, 1)
+shader_parameter/bodycolororiginal2 = Color(0, 0, 0, 1)
+shader_parameter/outlinecolor = Color(0, 0, 0, 1)
+shader_parameter/bodycolori = Color(0, 0, 0, 1)
+shader_parameter/bodycolorii = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atsqi"]
 bg_color = Color(0.247059, 0.713726, 0, 1)
@@ -79,7 +79,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_460xm"]
 _data = {
-"boss_level_up": SubResource("Animation_f5x0v")
+&"boss_level_up": SubResource("Animation_f5x0v")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g37a2"]
@@ -174,7 +174,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fade_out_effect"]
 libraries = {
-"": SubResource("AnimationLibrary_phch0")
+&"": SubResource("AnimationLibrary_phch0")
 }
 
 [node name="weapon_energy" type="ProgressBar" parent="."]
@@ -262,7 +262,7 @@ text = "00"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="boss_healthbar"]
 libraries = {
-"": SubResource("AnimationLibrary_460xm")
+&"": SubResource("AnimationLibrary_460xm")
 }
 
 [node name="timer" type="Timer" parent="boss_healthbar"]

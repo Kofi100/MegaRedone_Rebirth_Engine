@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://7sfehmaj5wp3"]
 
-[ext_resource type="Script" path="res://enemy/original/homer.gd" id="1_bcwbf"]
+[ext_resource type="Script" uid="uid://dhgy57t6a65ob" path="res://enemy/original/homer.gd" id="1_bcwbf"]
 [ext_resource type="Texture2D" uid="uid://5m7sreduekxg" path="res://assets/sprites/enemies/original/homer.png" id="1_ljslv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk82x"]

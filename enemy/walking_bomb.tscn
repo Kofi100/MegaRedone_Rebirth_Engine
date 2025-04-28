@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bh0igfh3wr8uf"]
 
-[ext_resource type="Script" path="res://enemy/walking_bomb.gd" id="1_60goj"]
+[ext_resource type="Script" uid="uid://c4cg3cc3op6my" path="res://enemy/walking_bomb.gd" id="1_60goj"]
 [ext_resource type="Texture2D" uid="uid://brb834rh55occ" path="res://assets/sprites/enemies/walking bomb.png" id="1_auwyg"]
 [ext_resource type="Texture2D" uid="uid://c3pajt1rftd0w" path="res://assets/sprites/miscelleaneous/mm6_death_animations.png" id="3_oqdro"]
-[ext_resource type="Script" path="res://enemy/walking_bomb_explosion_container.gd" id="4_5jrmp"]
+[ext_resource type="Script" uid="uid://ci3xkoi5vika0" path="res://enemy/walking_bomb_explosion_container.gd" id="4_5jrmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yybr"]
 atlas = ExtResource("1_auwyg")
@@ -88,7 +88,6 @@ radius = 29.1986
 collision_layer = 0
 script = ExtResource("1_60goj")
 SPEED = 2700.0
-JUMP_VELOCITY = -170.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j0d1m")
@@ -116,11 +115,11 @@ scale = Vector2(11.3, 6.53333)
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_a72r4")
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_e27e5")
 texture = ExtResource("3_oqdro")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_e27e5")
 
 [node name="explosion_container" type="CharacterBody2D" parent="."]
 script = ExtResource("4_5jrmp")

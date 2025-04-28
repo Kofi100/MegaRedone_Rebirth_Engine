@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://csi6248lvsbko"]
 
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_22mmi"]
-[ext_resource type="Script" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
+[ext_resource type="Script" uid="uid://dfsfhxv75dlwe" path="res://levels/test stages/boss_room_3.gd" id="1_m1664"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_ve3pt"]
 [ext_resource type="PackedScene" uid="uid://c2gjhdosb3pl1" path="res://enemy/boss/wily_capsule_7.tscn" id="3_g5whv"]
 [ext_resource type="AudioStream" uid="uid://b5b448p0iuy70" path="res://assets/music/Final Wily Battle - Mega Man 7 [OST].ogg" id="5_ov4h5"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
+[ext_resource type="Script" uid="uid://clxlf5vg2e33b" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="6_3k1q1"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="7_jue8g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg854"]

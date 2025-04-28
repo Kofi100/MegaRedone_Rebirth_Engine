@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c12ytesumw43d"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/deathzones.gd" id="1_q45j8"]
+[ext_resource type="Script" uid="uid://cn0od5x6xf8gf" path="res://levels/level_mechanics/deathzones.gd" id="1_q45j8"]
 
 [node name="deathzones" type="Area2D"]
 collision_layer = 2

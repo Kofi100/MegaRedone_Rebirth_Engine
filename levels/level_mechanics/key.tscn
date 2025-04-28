@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://2ctria5jyvy2"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/key.gd" id="1_nqcuc"]
+[ext_resource type="Script" uid="uid://dgr725n7veo28" path="res://levels/level_mechanics/key.gd" id="1_nqcuc"]
 [ext_resource type="Texture2D" uid="uid://dhl8l1hhqt6gk" path="res://assets/sprites/miscelleaneous/mechanics/key.png" id="2_im3qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j676h"]

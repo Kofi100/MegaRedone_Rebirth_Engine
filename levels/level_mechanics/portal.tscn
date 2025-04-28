@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cqq0eny4dibnj"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/portal.gd" id="1_3v145"]
+[ext_resource type="Script" uid="uid://byl3pjj5ux5t8" path="res://levels/level_mechanics/portal.gd" id="1_3v145"]
 [ext_resource type="Texture2D" uid="uid://cas1fbl8it5f2" path="res://assets/sprites/miscelleaneous/mechanics/portal_megaman_9.png" id="2_7dx4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3w56"]

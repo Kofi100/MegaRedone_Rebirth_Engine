@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bepspbp12ocfg"]
 
-[ext_resource type="Script" path="res://levels/test stages/end_of_level_score_screen.gd" id="1_mvl4n"]
+[ext_resource type="Script" uid="uid://bgbl7ufrb8dhx" path="res://levels/test stages/end_of_level_score_screen.gd" id="1_mvl4n"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_rwfp7"]
 [ext_resource type="Texture2D" uid="uid://bo3auodjmc80s" path="res://assets/sprites/miscelleaneous/megaman_run_custom.png" id="2_3moma"]
 [ext_resource type="AudioStream" uid="uid://cugobxk5jytgm" path="res://assets/music/Tee Lopes - The Purpose (Mission Complete).mp3" id="3_2qcfu"]
@@ -66,7 +66,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4frut"]
 _data = {
-"blink": SubResource("Animation_d2tlg")
+&"blink": SubResource("Animation_d2tlg")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrk1"]

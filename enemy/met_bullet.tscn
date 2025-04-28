@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb41ichv1nq4b"]
 
-[ext_resource type="Script" path="res://enemy/met_bullet.gd" id="1_bo6py"]
+[ext_resource type="Script" uid="uid://c0y8d83it4v1" path="res://enemy/met_bullet.gd" id="1_bo6py"]
 [ext_resource type="Texture2D" uid="uid://dw4qy74kjpa3q" path="res://assets/sprites/enemies/met_bullet.png" id="1_boqop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb2rn"]

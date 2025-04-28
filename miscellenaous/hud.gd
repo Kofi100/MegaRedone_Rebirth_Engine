@@ -19,7 +19,7 @@ var original_background_volume_db:int
 var start_boss_timer:bool=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$healthbar/text_health_display.text=str(health_bar.value)
+	$healthbar/text_health_display.text=str(int(health_bar.value))
 	$score.text=str("SCORE:",GlobalScript.score)
 	$stage_name.text="STAGE:\n"+GlobalScript.stage_name
 	if $stage_name/stage_display_timer.time_left<=0:
@@ -158,11 +158,12 @@ func tween_finished():
 
 #var previous_value=0
 func _on_progress_bar_value_changed(value):#if the value of the bar changes
+	pass
 	#previous_value=value
 #	if value<GlobalScript.previous_health:
-	if GlobalScript.previous_health<value:# and it's value>prev.health,
-		if not $increase_health.playing:#if the sound is not playing
-			$increase_health.play(0)#play it
+	#if GlobalScript.previous_health<value:# and it's value>prev.health,
+		#if not $increase_health.playing:#if the sound is not playing
+			#$increase_health.play(0)#play it
 #		#if tween.is_running():
 #			$increase_health.play(0)
 
@@ -214,6 +215,9 @@ func _on_restart_level_btn_pressed():
 	pass # Replace with function body.
 	get_tree().paused=false
 	get_tree().reload_current_scene()
+	#Use this if you wanna use GlobalScript.previous_Level_Entered for restarting a stage.
+	#if GlobalScript.previous_Level_Entered!=null and GlobalScript.previous_Level_Entered!="":
+		#get_tree().change_scene_to_file(GlobalScript.previous_Level_Entered)
 
 
 func _on_timer_timeout():

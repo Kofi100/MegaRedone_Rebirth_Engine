@@ -59,3 +59,6 @@ func spawn_collectables():
 		var explsion_new=explosion.instantiate()
 		get_parent().add_child(explsion_new)
 		explsion_new.position=position
+
+#func calculate_Player_Distance():
+	#distance_x=GlobalScript.playerposx-global_position.x

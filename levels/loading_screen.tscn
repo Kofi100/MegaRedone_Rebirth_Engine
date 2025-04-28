@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://en86waenmyg6"]
 
-[ext_resource type="Script" path="res://levels/loading_screen.gd" id="1_kx0hq"]
+[ext_resource type="Script" uid="uid://ptvyyxdvr7w4" path="res://levels/loading_screen.gd" id="1_kx0hq"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="2_4gekt"]
 [ext_resource type="Texture2D" uid="uid://c1frdiusrrr5w" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image.png" id="2_6g4no"]
 

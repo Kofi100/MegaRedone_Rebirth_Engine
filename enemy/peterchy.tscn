@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://da5bprtjoqr63"]
 
 [ext_resource type="Texture2D" uid="uid://c5wpbx7lils5k" path="res://assets/sprites/enemies/peterchy.png" id="1_50ri1"]
-[ext_resource type="Script" path="res://enemy/peterchy.gd" id="1_tcfcs"]
+[ext_resource type="Script" uid="uid://qh86uahbtee1" path="res://enemy/peterchy.gd" id="1_tcfcs"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_ldx57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agvco"]
@@ -83,7 +83,8 @@ shape = SubResource("RectangleShape2D_wagah")
 position = Vector2(1.16667, -21.9167)
 scale = Vector2(10.05, 3.10833)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label_Speed" type="Label" parent="."]
+visible = false
 offset_left = -22.3333
 offset_top = -32.3333
 offset_right = 24.6667
@@ -91,6 +92,7 @@ offset_bottom = -6.33334
 text = "speed"
 
 [node name="index" type="Label" parent="."]
+visible = false
 offset_left = -19.3333
 offset_top = -35.3333
 offset_right = 52.6667

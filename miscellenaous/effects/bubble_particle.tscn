@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqgcekllhomio"]
+
+[ext_resource type="Script" uid="uid://c68g5dp5jefrb" path="res://miscellenaous/effects/bubble_particle.gd" id="1_6bj4h"]
+[ext_resource type="Texture2D" uid="uid://b6qailojlym7" path="res://assets/sprites/miscelleaneous/bubble.png" id="2_u40bo"]
+
+[node name="bubble_Particle" type="Node2D"]
+script = ExtResource("1_6bj4h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_u40bo")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dboyxxstj86mo"]
 
-[ext_resource type="Script" path="res://miscellenaous/effects/explosion_scene.gd" id="1_200c4"]
+[ext_resource type="Script" uid="uid://hn1tqfil5xws" path="res://miscellenaous/effects/explosion_scene.gd" id="1_200c4"]
 
 [node name="explosion_scene" type="Node2D"]
 script = ExtResource("1_200c4")

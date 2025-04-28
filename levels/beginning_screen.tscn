@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dkcy8u031arjw"]
 
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_8eq4s"]
-[ext_resource type="Script" path="res://levels/beginning_screen.gd" id="1_e7u74"]
+[ext_resource type="Script" uid="uid://bglt38s4oxusu" path="res://levels/beginning_screen.gd" id="1_e7u74"]
 [ext_resource type="Texture2D" uid="uid://b3rnah75ygp42" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image_2.png" id="1_t1qcs"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="4_0oaif"]
 [ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="4_4hts8"]
@@ -67,8 +67,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pp1ya"]
 _data = {
-"RESET": SubResource("Animation_01kes"),
-"start": SubResource("Animation_25wnf")
+&"RESET": SubResource("Animation_01kes"),
+&"start": SubResource("Animation_25wnf")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5q4o"]
@@ -101,7 +101,7 @@ texture = ExtResource("1_t1qcs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_pp1ya")
+&"": SubResource("AnimationLibrary_pp1ya")
 }
 
 [node name="main_menu_music" type="AudioStreamPlayer2D" parent="."]

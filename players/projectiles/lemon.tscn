@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7ertpcm3wt14"]
 
 [ext_resource type="Texture2D" uid="uid://bekajfg2v56fi" path="res://assets/sprites/player/projectiles/all bullets.png" id="1_2v0fm"]
-[ext_resource type="Script" path="res://players/projectiles/lemon.gd" id="1_s36o1"]
+[ext_resource type="Script" uid="uid://divyk54128f0" path="res://players/projectiles/lemon.gd" id="1_s36o1"]
 [ext_resource type="Texture2D" uid="uid://b0v6m28t07gmt" path="res://assets/sprites/player/projectiles/lemon_mm4.png" id="3_nncff"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="4_gu0qf"]
 

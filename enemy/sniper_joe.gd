@@ -23,6 +23,7 @@ func _ready():
 var change=0
 func _physics_process(delta):
 	spawn_collectables()
+	calculate_player_distance()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -33,6 +34,14 @@ func _physics_process(delta):
 #	if player_in_zone:
 		#print(player.global_position.x-global_position.x)
 		#print("player is in zone")
+	
+	var distance_y=global_position.y-GlobalScript.playerposy
+	if abs(distance_x)<30 and abs(distance_y)<30:
+		#print(distance_x,distance_y)
+		if is_on_floor():
+			animated_sprite_2d.play("jump")
+			state="jump"
+			
 	if state=='defend':
 		if GlobalScript.playerposx-global_position.x<0:
 	#			if change<5:
@@ -86,16 +95,18 @@ func _physics_process(delta):
 					#print("shoot proj. here")
 		"jump":
 			$detect_player/CollisionShape2D.disabled=true
+			animated_sprite_2d.play("jump")
 			if not has_jumped:
 				if is_on_floor():velocity.y=-20000*delta
-				animated_sprite_2d.play("jump")
+				#animated_sprite_2d.play("jump")
 				#velocity.x=10000*delta
 				has_jumped=true
 			proj_spawn_timer=0
 			#animated_sprite_2d.play("jump")
-			if has_jumped and velocity.y>200 :#and is_on_floor()
-				state='defend'
+			if has_jumped and velocity.y>200:#is_on_floor():#
 				has_jumped=false
+				state='defend'
+				
 #	if detect_cooldown_boolean:
 #		detect_cooldown_timer+=1*delta:
 #
@@ -126,7 +137,7 @@ func _on_shoot_timer_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	match  animated_sprite_2d.animation:
 		'shoot':
-			if abs(GlobalScript.playerposx-global_position.x)<70:
-				state='jump'
-			elif abs(GlobalScript.playerposx-global_position.x)>=70:
+			#if abs(GlobalScript.playerposx-global_position.x)<70:
+				#state='jump'
+			#elif abs(GlobalScript.playerposx-global_position.x)>=70:
 				state='defend'

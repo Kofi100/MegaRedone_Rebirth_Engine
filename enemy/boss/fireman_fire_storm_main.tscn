@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjq0k5n50nfy3"]
 
-[ext_resource type="Script" path="res://enemy/boss/fireman_fire_storm_main.gd" id="1_ejbug"]
+[ext_resource type="Script" uid="uid://cxr51nry5a6jn" path="res://enemy/boss/fireman_fire_storm_main.gd" id="1_ejbug"]
 [ext_resource type="Texture2D" uid="uid://crwifpdsimkqg" path="res://assets/sprites/enemies/bosses/fireman/projectiles/fire_Storm.png" id="1_yfn8n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw84d"]
@@ -54,7 +54,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wgfe6"]
 _data = {
-"expand": SubResource("Animation_jhtij")
+&"expand": SubResource("Animation_jhtij")
 }
 
 [node name="fireman_fire_storm_main" type="CharacterBody2D"]

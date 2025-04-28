@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4o667c308o0j"]
 
 [ext_resource type="Texture2D" uid="uid://cijo4rnlhjg6q" path="res://assets/sprites/enemies/original/spike_master.png" id="1_lrf6c"]
-[ext_resource type="Script" path="res://enemy/original/spike_master.gd" id="1_ycre6"]
+[ext_resource type="Script" uid="uid://bg3no8qthp6j3" path="res://enemy/original/spike_master.gd" id="1_ycre6"]
 [ext_resource type="Texture2D" uid="uid://bcnll8xrje66s" path="res://assets/sprites/enemies/original/spike_master-sheet.png" id="2_ajwmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wf6k"]

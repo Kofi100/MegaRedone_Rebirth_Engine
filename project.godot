@@ -13,7 +13,7 @@ config_version=5
 config/name="MegaRedone: Rebirth (Engine Wip)"
 config/tags=PackedStringArray("engine", "megaman", "rebirth")
 run/main_scene="res://levels/beginning_screen.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.3.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/image="res://assets/sprites/miscelleaneous/new_engine_load_screen.png"
 config/icon="res://assets/sprites/miscelleaneous/Mega_Man_Redone_Rebirth_logo_icon.png"
@@ -34,7 +34,6 @@ InterStageScene="*res://levels/inter_stage_scene.tscn"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
-window/size/mode=2
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 
@@ -45,6 +44,10 @@ project/assembly_name="MegaRedone- Rebirth (Engine Wip)"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/new_camera_system/plugin.cfg")
+
+[global_group]
+
+spikeTiles=""
 
 [input]
 

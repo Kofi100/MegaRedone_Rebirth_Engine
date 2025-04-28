@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://b2t2agmjcu5y8"]
 
 [ext_resource type="Texture2D" uid="uid://d0pu7hfmivucq" path="res://assets/sprites/miscelleaneous/door_spritesheet.png" id="1_e3qdh"]
-[ext_resource type="Script" path="res://levels/level_mechanics/locked_door.gd" id="1_yeuvc"]
+[ext_resource type="Script" uid="uid://c5gllnipmat4l" path="res://levels/level_mechanics/locked_door.gd" id="1_yeuvc"]
 [ext_resource type="Texture2D" uid="uid://cpqw45wysyn58" path="res://assets/sprites/miscelleaneous/mechanics/security_door_spritesheet.png" id="2_nhe4v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70pf0"]

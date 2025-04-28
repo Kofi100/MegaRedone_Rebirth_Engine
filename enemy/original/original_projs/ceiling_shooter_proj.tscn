@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c20ssivisvkgl"]
 
 [ext_resource type="Texture2D" uid="uid://4x2gf03hcylx" path="res://assets/sprites/enemies/original/orig_projectiles/ceiling shooter proj.png" id="1_8rpx2"]
-[ext_resource type="Script" path="res://enemy/original/original_projs/ceiling_shooter_proj.gd" id="1_o6ubp"]
+[ext_resource type="Script" uid="uid://1qcekmh4xmyh" path="res://enemy/original/original_projs/ceiling_shooter_proj.gd" id="1_o6ubp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4vsq"]
 size = Vector2(6, 6)

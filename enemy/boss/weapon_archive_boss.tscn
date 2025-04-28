@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bsrhpqbjecu3t"]
 
-[ext_resource type="Script" path="res://enemy/boss/weapon_archive_boss.gd" id="1_cvxgj"]
+[ext_resource type="Script" uid="uid://m4dmlpnlahtp" path="res://enemy/boss/weapon_archive_boss.gd" id="1_cvxgj"]
 [ext_resource type="Texture2D" uid="uid://cg6mfge4wm4en" path="res://enemy/boss/Sprite Sheet.png" id="2_bs4rj"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="3_6yff6"]
 [ext_resource type="Texture2D" uid="uid://cuwl3bmgi1ky6" path="res://assets/sprites/miscelleaneous/megaman_3_10_explosion_effect.png" id="4_w5t66"]
@@ -263,10 +263,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hs6r"]
 _data = {
-"idle": SubResource("Animation_elk0w"),
-"retract": SubResource("Animation_wk8dv"),
-"shoot": SubResource("Animation_my0xc"),
-"spin": SubResource("Animation_qnh7g")
+&"idle": SubResource("Animation_elk0w"),
+&"retract": SubResource("Animation_wk8dv"),
+&"shoot": SubResource("Animation_my0xc"),
+&"spin": SubResource("Animation_qnh7g")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_au5nw"]
@@ -310,8 +310,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5nefa"]
 _data = {
-"hurt_blink": SubResource("Animation_6m4m2"),
-"not_hurt": SubResource("Animation_wtvk8")
+&"hurt_blink": SubResource("Animation_6m4m2"),
+&"not_hurt": SubResource("Animation_wtvk8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1rp2j"]
@@ -360,7 +360,7 @@ metadata/_aseprite_wizard_config_ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_1hs6r")
+&"": SubResource("AnimationLibrary_1hs6r")
 }
 
 [node name="timers" type="Node2D" parent="."]
@@ -457,16 +457,16 @@ shape = SubResource("RectangleShape2D_knou7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hurt_animation"]
 libraries = {
-"": SubResource("AnimationLibrary_5nefa")
+&"": SubResource("AnimationLibrary_5nefa")
 }
 
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_1rp2j")
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_u1xl2")
 texture = ExtResource("4_w5t66")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_u1xl2")
 
 [node name="explosion_audio_effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_cal3n")

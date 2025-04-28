@@ -40,7 +40,7 @@ func _process(delta):
 	#		get_node(weapon_capsules[randomize_boss_picker]).global_position.x=new_positionx
 	#		var new_positiony=move_toward(get_node(weapon_capsules[randomize_boss_picker]).global_position.y,node_to_go_to.global_position.y,1000*delta)
 	#		get_node(weapon_capsules[randomize_boss_picker]).global_position.y=new_positiony
-		if picked_node_capsule==null and $all_timers/active_timer.time_left>0:
+		if picked_node_capsule.health<=0 and $all_timers/active_timer.time_left>0:
 			picked_capsule=false
 			$all_timers/active_timer.stop()
 		
@@ -65,7 +65,7 @@ func _process(delta):
 		$bosses_display.visible=false
 		$screen_flicker.visible=false
 		$screen_flicker.stop()
-	if get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
+	if health_capsule1<=0 and health_capsule2<=0 and health_capsule3<=0:#get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
 		$explosion.set_emitting(true)
 		#$explosion.reparent(get_tree().current_scene)
 		archive_engine_defeat_trigger=true

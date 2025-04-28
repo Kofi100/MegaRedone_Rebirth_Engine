@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dhuc4lcl5clpc"]
 
 [ext_resource type="Texture2D" uid="uid://c2pqrpkiqjoos" path="res://assets/sprites/enemies/original/ceiling shooter.png" id="1_a08p8"]
-[ext_resource type="Script" path="res://enemy/original/ceiling_shooter.gd" id="1_dhti3"]
+[ext_resource type="Script" uid="uid://b8iwd5866suyb" path="res://enemy/original/ceiling_shooter.gd" id="1_dhti3"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="3_wtnc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d82ua"]

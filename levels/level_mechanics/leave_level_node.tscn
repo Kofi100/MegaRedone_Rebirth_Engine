@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dldagdo181qeh"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/leave_level_node.gd" id="1_yks81"]
+[ext_resource type="Script" uid="uid://cdtkii1es1rdk" path="res://levels/level_mechanics/leave_level_node.gd" id="1_yks81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arnfj"]
 size = Vector2(28, 127)
@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2mohx"]
 _data = {
-"disco": SubResource("Animation_g5mlj")
+&"disco": SubResource("Animation_g5mlj")
 }
 
 [node name="leave_level_node" type="Node2D"]

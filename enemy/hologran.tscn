@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://c1me2bdf4ckac"]
 
-[ext_resource type="Script" path="res://enemy/hologran.gd" id="1_wvurm"]
-[ext_resource type="Script" path="res://enemy/hologran_bulb.gd" id="2_f3cic"]
+[ext_resource type="Script" uid="uid://2hhwvu0o8ehf" path="res://enemy/hologran.gd" id="1_wvurm"]
+[ext_resource type="Script" uid="uid://c2fk1f3q3owln" path="res://enemy/hologran_bulb.gd" id="2_f3cic"]
 [ext_resource type="Texture2D" uid="uid://dx60lyjtlwgsr" path="res://assets/sprites/enemies/hologran_hologram_stars_big.png" id="2_htfhn"]
 [ext_resource type="Texture2D" uid="uid://cu27we2mdatp6" path="res://assets/sprites/enemies/hologran.png" id="2_m10xw"]
 [ext_resource type="Texture2D" uid="uid://dgfrbg5u0vqxe" path="res://assets/sprites/enemies/hologran_hologram_stars_small.png" id="3_m5267"]
@@ -96,10 +96,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkmkl"]
 _data = {
-"about_to_leave": SubResource("Animation_hygn4"),
-"activate": SubResource("Animation_3pad2"),
-"active": SubResource("Animation_0erp1"),
-"hologramed": SubResource("Animation_asq2x")
+&"about_to_leave": SubResource("Animation_hygn4"),
+&"activate": SubResource("Animation_3pad2"),
+&"active": SubResource("Animation_0erp1"),
+&"hologramed": SubResource("Animation_asq2x")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qj2ij"]

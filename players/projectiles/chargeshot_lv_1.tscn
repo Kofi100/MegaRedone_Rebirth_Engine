@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c168kb8g4tb1j"]
 
-[ext_resource type="Script" path="res://players/projectiles/chargeshot_lv_1.gd" id="1_kmh8a"]
+[ext_resource type="Script" uid="uid://cg5f81aro1g3d" path="res://players/projectiles/chargeshot_lv_1.gd" id="1_kmh8a"]
 [ext_resource type="Texture2D" uid="uid://c14i2tnrsasq1" path="res://assets/sprites/player/projectiles/chargeshot_idea2.png" id="2_e4exx"]
 [ext_resource type="AudioStream" uid="uid://de6mcjiqb2m0n" path="res://assets/sounds/hurt_enemy.wav" id="3_t5chd"]
 

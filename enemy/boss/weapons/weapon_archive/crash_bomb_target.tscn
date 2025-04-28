@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0j2f3ixxgj14"]
 
-[ext_resource type="Script" path="res://enemy/boss/weapons/weapon_archive/crash_bomb_target.gd" id="1_lhysm"]
+[ext_resource type="Script" uid="uid://crvqauckrjr35" path="res://enemy/boss/weapons/weapon_archive/crash_bomb_target.gd" id="1_lhysm"]
 
 [node name="crash_bomb_target" type="Node2D"]
 script = ExtResource("1_lhysm")

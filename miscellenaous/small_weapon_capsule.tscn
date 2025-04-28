@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqa7drqgttu7p"]
 
-[ext_resource type="Script" path="res://miscellenaous/small_weapon_capsule.gd" id="1_frawo"]
+[ext_resource type="Script" uid="uid://3ciir2ar541q" path="res://miscellenaous/small_weapon_capsule.gd" id="1_frawo"]
 [ext_resource type="Texture2D" uid="uid://ch8sh8tc123xd" path="res://assets/sprites/miscelleaneous/items_miscellaneous_MM6(16x16).png" id="1_vsryd"]
 
 [sub_resource type="Animation" id="Animation_5xbk3"]
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_op4l5"]
 _data = {
-"active": SubResource("Animation_5xbk3")
+&"active": SubResource("Animation_5xbk3")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffucx"]

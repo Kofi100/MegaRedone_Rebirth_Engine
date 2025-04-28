@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c5ic628g6wkd0"]
 
 [ext_resource type="Texture2D" uid="uid://duvtgahp3oxfo" path="res://assets/sprites/enemies/pickelman bull.png" id="1_8vffw"]
-[ext_resource type="Script" path="res://enemy/pickelman_bull.gd" id="1_cq74m"]
+[ext_resource type="Script" uid="uid://cwjnqongovdju" path="res://enemy/pickelman_bull.gd" id="1_cq74m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pola7"]
 atlas = ExtResource("1_8vffw")

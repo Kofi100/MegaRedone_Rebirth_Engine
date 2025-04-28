@@ -1,15 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6323ffsislyt"]
 
-[ext_resource type="Shader" path="res://players/megaman.gdshader" id="1_0c8dg"]
-[ext_resource type="Script" path="res://miscellenaous/effects/spawn_in_effect.gd" id="1_dpdxm"]
+[ext_resource type="Shader" uid="uid://dst3c04313g6g" path="res://players/megaman.gdshader" id="1_0c8dg"]
+[ext_resource type="Script" uid="uid://w02bwvarqomj" path="res://miscellenaous/effects/spawn_in_effect.gd" id="1_dpdxm"]
 [ext_resource type="Texture2D" uid="uid://tq0jagb7fvj3" path="res://assets/sprites/player/megaman.png" id="1_fldfe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6h10o"]
 shader = ExtResource("1_0c8dg")
-shader_parameter/outline_color_original = null
+shader_parameter/outline_color_original = Color(0, 0, 0, 1)
 shader_parameter/bodycolororiginal1 = Color(0, 0, 1, 1)
 shader_parameter/bodycolororiginal2 = Color(1, 0, 0, 1)
-shader_parameter/outlinecolor = null
+shader_parameter/outlinecolor = Color(0, 0, 0, 1)
 shader_parameter/bodycolori = Color(0, 0.796078, 0, 1)
 shader_parameter/bodycolorii = Color(0.431373, 0.266667, 0, 1)
 

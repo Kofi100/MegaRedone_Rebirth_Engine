@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://clvr4xq16oln0"
-path="res://.godot/imported/pipeline_factory_background_wip3.aseprite-ed284c0220ce3e123fafd8cf6feb60fe.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/sprites/tilesets/aseprite_files/pipeline_factory_background_wip3.aseprite"
-dest_files=["res://.godot/imported/pipeline_factory_background_wip3.aseprite-ed284c0220ce3e123fafd8cf6feb60fe.res"]
 
 [params]
 

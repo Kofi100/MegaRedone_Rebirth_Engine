@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b0qi51p44gcrj"
-path="res://.godot/imported/Sprite-0003.aseprite-4047d1401591c8f2164c73f1f45306cf.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/sprites/tilesets/aseprite_files/Sprite-0003.aseprite"
-dest_files=["res://.godot/imported/Sprite-0003.aseprite-4047d1401591c8f2164c73f1f45306cf.res"]
 
 [params]
 

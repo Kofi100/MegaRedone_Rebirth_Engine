@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://cwilgxytwp2h4"
-path="res://.godot/imported/enemy_display_spritesheet_redone_rebirth_engine.aseprite-53240e15a72e2a86b36fe017b35b872b.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/sprites/miscelleaneous/enemy_display_spritesheet_redone_rebirth_engine.aseprite"
-dest_files=["res://.godot/imported/enemy_display_spritesheet_redone_rebirth_engine.aseprite-53240e15a72e2a86b36fe017b35b872b.res"]
 
 [params]
 

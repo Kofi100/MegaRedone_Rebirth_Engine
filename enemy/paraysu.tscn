@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dvht6a4f8lbge"]
 
 [ext_resource type="Texture2D" uid="uid://dxyxywk62ekyb" path="res://assets/sprites/enemies/paraysu.png" id="1_b07mk"]
-[ext_resource type="Script" path="res://enemy/paraysu.gd" id="1_k5u3e"]
+[ext_resource type="Script" uid="uid://csuoqkrdagebl" path="res://enemy/paraysu.gd" id="1_k5u3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tptb2"]
 size = Vector2(19.3333, 37.3333)
@@ -73,9 +73,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c8lff"]
 _data = {
-"fall": SubResource("Animation_tc2mc"),
-"parcheute _open": SubResource("Animation_sbgm6"),
-"slow_fall": SubResource("Animation_u4rls")
+&"fall": SubResource("Animation_tc2mc"),
+&"parcheute _open": SubResource("Animation_sbgm6"),
+&"slow_fall": SubResource("Animation_u4rls")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wasa"]

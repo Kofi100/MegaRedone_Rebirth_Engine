@@ -41,6 +41,7 @@ var conveyor_push=3000;var on_conveyor=false
 var player_ready:bool=false
 var in_teleporter=false
 var key_dictionary:Array
+var isInWater:bool=false
 @onready var trigger_leave_timer = $trigger_leave_timer
 @onready var leave_timer = $leave_timer
 
@@ -51,6 +52,8 @@ func _ready():
 	GlobalScript.lemons_on_screen_no=0
 	GlobalScript.playerhasbeenhit=false
 	GlobalScript.trigger_boss=false
+	GlobalScript.previous_Level_Entered=get_tree().current_scene.get_scene_file_path()
+
 	#GlobalScript.playerhitcooldowntimer=0
 	player_ready=false
 	anim.play("idle")
@@ -258,6 +261,7 @@ func _physics_process(delta):
 		elif not GlobalScript.playerhasbeenhit:
 			$hitbox/CollisionShape2D.disabled=false
 		change_collisions()
+		
 		if Input.is_action_just_pressed("switch_weapon_left"):
 			GlobalScript.weapon_number-=1
 			$weapon_display.visible=true
@@ -266,7 +270,10 @@ func _physics_process(delta):
 			$weapon_display.visible=true
 			GlobalScript.weapon_number+=1
 			$weapon_display/display_timer.start()
-		
+		if isInWater:
+			if $produce_Bubble_Timer.is_stopped():
+				$produce_Bubble_Timer.start()
+		else:$produce_Bubble_Timer.stop()
 		$weapon_display.frame=GlobalScript.weapon_number
 		#weapon_number=Input.get_axis("switch_weapon_left","switch_weapon_right")
 		stun(delta)
@@ -444,6 +451,7 @@ func stun(delta):
 			velocity=Vector2(stun_speed,0)*delta
 		elif anim.flip_h==true:
 			velocity=Vector2(-stun_speed,0)*delta
+		velocity.y=5000*delta
 		move_and_slide()
 	elif GlobalScript.health<=0:
 		stop=false
@@ -812,7 +820,7 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("enemy"):
 		if GlobalScript.playerhasbeenhit==false:
 			GlobalScript.playerhasbeenhit=true
-			GlobalScript.previous_health=GlobalScript.health #previous health used to check increasign health,collects the health of the player
+			#GlobalScript.previous_health=GlobalScript.health #previous health used to check increasign health,collects the health of the player
 			GlobalScript.health-=area.get_parent().playerdamagevalue#this transfers a value of damage from the enemy to the player  #2,before,the player's health actually gets reduced
 			$all_sounds/stun.play()
 			#stun_effect=true
@@ -930,3 +938,21 @@ func _on_leave_timer_timeout():
 func _on_whistle_idle_trigger_timer_timeout():
 	anim.play("whistle_idle")
 	print(name,"->whistle_timer: with a wait _time of:",$whistle_idle_trigger_timer.get("wait_time"), "::(s) ::timed out")
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("spikeTiles"):
+		if GlobalScript.playerhasbeenhit==false:
+			GlobalScript.playerhasbeenhit=true
+			GlobalScript.health-=8
+			$all_sounds/stun.play()
+			#stun_effect=true
+			anim.play("stun_air")
+			climb=false
+
+
+func _on_produce_bubble_timer_timeout() -> void:
+	var bubble=preload("res://miscellenaous/effects/bubble_particle.tscn").instantiate()
+	bubble.global_position=global_position
+	bubble.scale=Vector2(2,2)
+	get_parent().add_child(bubble)

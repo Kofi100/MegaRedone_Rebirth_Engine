@@ -1,6 +1,6 @@
 [gd_scene load_steps=73 format=3 uid="uid://cqi6bkstebj1g"]
 
-[ext_resource type="Script" path="res://levels/test stages/stage_4.gd" id="1_c7otw"]
+[ext_resource type="Script" uid="uid://nq7j2lxcf6b5" path="res://levels/test stages/stage_4.gd" id="1_c7otw"]
 [ext_resource type="Texture2D" uid="uid://dtyasmoomxvhh" path="res://assets/sprites/tilesets/test_stages/pipeline_tilemap.png" id="1_mhear"]
 [ext_resource type="Texture2D" uid="uid://c7nful8tqguht" path="res://assets/sprites/tilesets/test_stages/pipeline_factory_background.png" id="2_7c6gj"]
 [ext_resource type="AudioStream" uid="uid://b734qsbbc1dv5" path="res://assets/music/Mega Man Wily's Revenge⎪Wily Stage 1 Remix.mp3" id="3_ojwm3"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cuy283xpiwbka" path="res://assets/sprites/tilesets/test_stages/pipeline_factory_background3.5.png" id="10_31jsr"]
 [ext_resource type="PackedScene" uid="uid://c2uib5gb7iqph" path="res://levels/level_mechanics/ladder.tscn" id="11_y5hwf"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="15_rl4ql"]
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="15_xd2nn"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="15_xd2nn"]
 [ext_resource type="PackedScene" uid="uid://uwado8kayc05" path="res://miscellenaous/large_health_capsule.tscn" id="18_ukv8f"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="20_myl1r"]
 [ext_resource type="PackedScene" uid="uid://4w0eroyrq7m5" path="res://enemy/boss/fireman_boss.tscn" id="21_wewc2"]

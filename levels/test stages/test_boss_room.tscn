@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://blempj6txufhc"]
 
-[ext_resource type="Script" path="res://levels/test stages/test_boss_room.gd" id="1_uib38"]
+[ext_resource type="Script" uid="uid://bod47tqu2y81g" path="res://levels/test stages/test_boss_room.gd" id="1_uib38"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_v5jq7"]
 [ext_resource type="AudioStream" uid="uid://d1wb6brg7rays" path="res://assets/music/Mega Man 10 Dr. Wily Stage Boss (Xstyle remix).mp3" id="2_y3pwx"]
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="3_5et6o"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://f1pqedunt4ro" path="res://enemy/boss/weapon_archive_engine.tscn" id="7_u72nk"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="8_dhhgo"]
 [ext_resource type="PackedScene" uid="uid://v3cirfwgjkwo" path="res://levels/level_mechanics/new_camera_system.tscn" id="9_spkpb"]
-[ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="10_n20f6"]
+[ext_resource type="Shader" uid="uid://wb62orx7iu4i" path="res://levels/level_mechanics/door.gdshader" id="10_n20f6"]
 [ext_resource type="Texture2D" uid="uid://cyjdvobomffd5" path="res://assets/sprites/miscelleaneous/warning_boss_spritesheet.png" id="10_ywneq"]
 [ext_resource type="AudioStream" uid="uid://ctbsmv5q15mig" path="res://assets/music/Mega Man II (GB) Title Theme & Wily Stage 02 (Xstyle remix).mp3" id="13_f4hip"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="14_yr53m"]
@@ -657,7 +657,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tpnqn"]
 _data = {
-"start_boss_engine": SubResource("Animation_xr0y6")
+&"start_boss_engine": SubResource("Animation_xr0y6")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yd8a0"]

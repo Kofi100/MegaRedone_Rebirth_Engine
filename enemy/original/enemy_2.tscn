@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://yl62qjlbgf3s"]
 
 [ext_resource type="Texture2D" uid="uid://bgilnylnmr388" path="res://assets/sprites/enemies/original/new_enemy2.png" id="1_087im"]
-[ext_resource type="Script" path="res://enemy/original/enemy_2.gd" id="1_gavs4"]
+[ext_resource type="Script" uid="uid://b7c4eooudk2ke" path="res://enemy/original/enemy_2.gd" id="1_gavs4"]
 [ext_resource type="Texture2D" uid="uid://b3nswtv05xtrv" path="res://assets/sprites/enemies/original/new_enemy.png" id="2_o6b7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwc0o"]

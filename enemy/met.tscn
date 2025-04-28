@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bvsnh1g0ygwje"]
 
-[ext_resource type="Script" path="res://enemy/met.gd" id="1_4t8t2"]
+[ext_resource type="Script" uid="uid://bfivcemijm62s" path="res://enemy/met.gd" id="1_4t8t2"]
 [ext_resource type="Texture2D" uid="uid://gck1ia7x1pdu" path="res://assets/sprites/enemies/met.png" id="2_bi5yp"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_2ppc0"]
 [ext_resource type="AudioStream" uid="uid://bauxjx3ka6rgt" path="res://assets/sounds/met_shoot_classic.wav" id="4_vd1nf"]

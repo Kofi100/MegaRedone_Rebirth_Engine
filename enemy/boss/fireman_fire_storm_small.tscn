@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://80ou360lxon6"]
 
-[ext_resource type="Script" path="res://enemy/boss/fireman_fire_storm_small.gd" id="1_aos4a"]
+[ext_resource type="Script" uid="uid://bsj4clyj4cfaw" path="res://enemy/boss/fireman_fire_storm_small.gd" id="1_aos4a"]
 [ext_resource type="Texture2D" uid="uid://iabv0rf33w1y" path="res://assets/sprites/enemies/bosses/fireman/projectiles/fire_Storm_small.png" id="2_rdr3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17x1q"]

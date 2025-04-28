@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://qe848qfv3emu"]
 
-[ext_resource type="Script" path="res://players/weapons/rush_coil.gd" id="1_edrj1"]
+[ext_resource type="Script" uid="uid://cqo5qg1rbnanu" path="res://players/weapons/rush_coil.gd" id="1_edrj1"]
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_wo7ha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjwi7"]

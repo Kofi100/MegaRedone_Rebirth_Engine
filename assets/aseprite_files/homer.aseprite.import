@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://d2mq34xuhk0yb"
-path="res://.godot/imported/homer.aseprite-18fbd5830512646e629f768105ed3d59.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/aseprite_files/homer.aseprite"
-dest_files=["res://.godot/imported/homer.aseprite-18fbd5830512646e629f768105ed3d59.res"]
 
 [params]
 

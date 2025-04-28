@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://qokvs3cu8xwe"]
 
-[ext_resource type="Script" path="res://enemy/original/laser_2.gd" id="1_4vceq"]
+[ext_resource type="Script" uid="uid://c0obqa6ha4d5d" path="res://enemy/original/laser_2.gd" id="1_4vceq"]
 [ext_resource type="Texture2D" uid="uid://dt33d1ip3w7xs" path="res://assets/sprites/miscelleaneous/laser_particles.png" id="1_e0vnt"]
 
 [sub_resource type="Curve" id="Curve_ai4xb"]
@@ -11,7 +11,7 @@ point_count = 2
 curve = SubResource("Curve_ai4xb")
 
 [sub_resource type="Curve" id="Curve_6un64"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.995283, -1), 0.0, 0.0, 0, 0]
 point_count = 2
 

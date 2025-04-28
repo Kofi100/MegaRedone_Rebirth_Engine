@@ -1,6 +1,6 @@
 [gd_scene load_steps=81 format=3 uid="uid://vny42taaus4j"]
 
-[ext_resource type="Script" path="res://levels/test stages/shadow_man_stage_test.gd" id="1_756ly"]
+[ext_resource type="Script" uid="uid://c3rg5ymqu2l20" path="res://levels/test stages/shadow_man_stage_test.gd" id="1_756ly"]
 [ext_resource type="Texture2D" uid="uid://dftxjlpi1avqn" path="res://assets/sprites/tilesets/shadow_man_tileset.png" id="1_ftyib"]
 [ext_resource type="Texture2D" uid="uid://ce808phhyq5ox" path="res://assets/sprites/tilesets/waterfall2_shadow_man.png" id="3_5aso7"]
 [ext_resource type="Texture2D" uid="uid://dmhi8k83qrobn" path="res://assets/sprites/tilesets/waterfall_splash_alt1_sheett.png" id="3_t2sc5"]
@@ -34,8 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://cw0a0hfnl5rgx" path="res://assets/sprites/tilesets/waterfall_intank_middle_alt2_sheet.png" id="22_rm2ee"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="28_mgerc"]
 [ext_resource type="PackedScene" uid="uid://bg1ncj10ftjy5" path="res://levels/level_mechanics/door.tscn" id="33_mcorx"]
-[ext_resource type="Script" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="35_4a4nc"]
-[ext_resource type="Script" path="res://levels/level_mechanics/new_camera_system.gd" id="35_sk6yx"]
+[ext_resource type="Script" uid="uid://clxlf5vg2e33b" path="res://addons/new_camera_system/scenes/new_camera_system.gd" id="35_4a4nc"]
+[ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="35_sk6yx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7uol6"]
 texture = ExtResource("1_ftyib")

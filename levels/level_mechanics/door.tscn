@@ -1,16 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://bg1ncj10ftjy5"]
 
-[ext_resource type="Script" path="res://levels/level_mechanics/door.gd" id="1_5oyk0"]
+[ext_resource type="Script" uid="uid://b1xwk3vqo7011" path="res://levels/level_mechanics/door.gd" id="1_5oyk0"]
 [ext_resource type="Texture2D" uid="uid://d0pu7hfmivucq" path="res://assets/sprites/miscelleaneous/door_spritesheet.png" id="1_uf0xv"]
-[ext_resource type="Shader" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
+[ext_resource type="Shader" uid="uid://wb62orx7iu4i" path="res://levels/level_mechanics/door.gdshader" id="2_k24ax"]
 [ext_resource type="AudioStream" uid="uid://dmsvw482gbu6f" path="res://assets/sounds/door.wav" id="4_bnbxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvhf"]
 shader = ExtResource("2_k24ax")
 shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
 shader_parameter/new_color1 = Color(1, 0.537255, 0, 1)
-shader_parameter/original_color2 = null
-shader_parameter/new_color2 = null
+shader_parameter/original_color2 = Color(0, 0, 0, 1)
+shader_parameter/new_color2 = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17ty"]
 atlas = ExtResource("1_uf0xv")
@@ -55,8 +55,8 @@ animations = [{
 shader = ExtResource("2_k24ax")
 shader_parameter/original_color1 = Color(0.988235, 0.988235, 0.988235, 1)
 shader_parameter/new_color1 = Color(1, 0.537255, 0, 1)
-shader_parameter/original_color2 = null
-shader_parameter/new_color2 = null
+shader_parameter/original_color2 = Color(0, 0, 0, 1)
+shader_parameter/new_color2 = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt0ex"]
 size = Vector2(32, 64.6667)

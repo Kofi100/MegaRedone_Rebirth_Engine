@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://4w0eroyrq7m5"]
 
 [ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="1_g6nul"]
-[ext_resource type="Script" path="res://enemy/boss/fireman_boss.gd" id="1_st3eb"]
+[ext_resource type="Script" uid="uid://c1rv8rh0pp5sn" path="res://enemy/boss/fireman_boss.gd" id="1_st3eb"]
 [ext_resource type="Texture2D" uid="uid://b00heu0854tcn" path="res://assets/sprites/enemies/bosses/fireman/idle/1.png" id="2_b6wo1"]
 [ext_resource type="Texture2D" uid="uid://srqv3matgf7n" path="res://assets/sprites/enemies/bosses/fireman/jump/0.png" id="3_wj0s2"]
 [ext_resource type="Texture2D" uid="uid://dq70lusboyxap" path="res://assets/sprites/enemies/bosses/fireman/shoot/0.png" id="4_2rj0e"]

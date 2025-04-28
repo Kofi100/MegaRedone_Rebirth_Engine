@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dpx8ocybd4n57"]
 
 [ext_resource type="Texture2D" uid="uid://cravk65d6m07q" path="res://assets/sprites/player/weapons/megaman/rush_coil.png" id="1_0ibvr"]
-[ext_resource type="Script" path="res://players/weapons/rush_jet.gd" id="1_qavoq"]
+[ext_resource type="Script" uid="uid://0mt7yq64cspt" path="res://players/weapons/rush_jet.gd" id="1_qavoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pn0s2"]
 atlas = ExtResource("1_0ibvr")

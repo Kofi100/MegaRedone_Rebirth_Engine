@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk8wlxx8w3w40"]
 
 [ext_resource type="Texture2D" uid="uid://83uvsffcabfi" path="res://assets/sprites/enemies/yambou.png" id="1_314ff"]
-[ext_resource type="Script" path="res://enemy/yambou.gd" id="1_enew8"]
+[ext_resource type="Script" uid="uid://dyqmrflgglhqh" path="res://enemy/yambou.gd" id="1_enew8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii10i"]
 atlas = ExtResource("1_314ff")

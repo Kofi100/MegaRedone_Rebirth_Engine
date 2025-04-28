@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bmmicv624nr3f"
-path="res://.godot/imported/ceiling shooter concept.aseprite-e779e586fb20ab967f0edbf302da9eb9.res"
+valid=false
 
 [deps]
 
 source_file="res://assets/aseprite_files/ceiling shooter concept.aseprite"
-dest_files=["res://.godot/imported/ceiling shooter concept.aseprite-e779e586fb20ab967f0edbf302da9eb9.res"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dn3yiy0stfnly"]
 
-[ext_resource type="Script" path="res://enemy/new_shotman.gd" id="1_q50xe"]
+[ext_resource type="Script" uid="uid://bcxetc45fhjjc" path="res://enemy/new_shotman.gd" id="1_q50xe"]
 [ext_resource type="Texture2D" uid="uid://bd6cqcq3duuu0" path="res://assets/sprites/enemies/new-shotman.png" id="1_r77uo"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="3_n6xx4"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://da6pr3mulsw5e"]
 
-[ext_resource type="Script" path="res://enemy/boss/wily_capsule_7_projectiles.gd" id="1_v1b2u"]
+[ext_resource type="Script" uid="uid://ba6oi1y20kjbh" path="res://enemy/boss/wily_capsule_7_projectiles.gd" id="1_v1b2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8q2nn"]
 size = Vector2(16, 16)
