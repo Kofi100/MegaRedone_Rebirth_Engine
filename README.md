@@ -37,6 +37,6 @@ Please ask for permission from me first if you want to use this for your project
 
 ## Contacts
 
-Discord: @
+Discord: @kofik2700
 
 Bluesky: https://bsky.app/profile/kofi-star100.bsky.social
