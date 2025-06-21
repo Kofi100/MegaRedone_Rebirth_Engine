@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckumraqxnpcit"]
+[gd_scene load_steps=10 format=3 uid="uid://ckumraqxnpcit"]
 
 [ext_resource type="Script" uid="uid://cepgaqh5xpfae" path="res://levels/level_mechanics/new_camera_system.gd" id="1_okrg6"]
 [ext_resource type="Texture2D" uid="uid://c8gyc1jvunhhb" path="res://assets/sprites/tilesets/debug_tileset_basic2.png" id="1_spx2w"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ctdf8l75pwgyp" path="res://players/megaman.tscn" id="2_cvcx2"]
 [ext_resource type="PackedScene" uid="uid://4w0eroyrq7m5" path="res://enemy/boss/fireman_boss.tscn" id="3_hymnq"]
 [ext_resource type="PackedScene" uid="uid://b7acyh6elurni" path="res://levels/level_mechanics/savepoint.tscn" id="6_geuuw"]
-[ext_resource type="AudioStream" uid="uid://c4o0dihky60n3" path="res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3" id="7_3rba6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lhfi"]
 size = Vector2(256, 224)
@@ -32,11 +31,12 @@ sources/0 = SubResource("TileSetAtlasSource_m8qqy")
 [node name="test_boss_room_2" type="Node2D"]
 script = ExtResource("1_vmhpl")
 
-[node name="Camera_System" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
+[node name="Camera_System" type="Area2D" parent="." node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
 visible = false
 script = ExtResource("1_okrg6")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
+GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_System"]
@@ -75,7 +75,6 @@ one_shot = true
 
 [node name="boss_theme_test" type="AudioStreamPlayer" parent="." groups=["bgm"]]
 process_mode = 3
-stream = ExtResource("7_3rba6")
 volume_db = -10.0
 
 [connection signal="timeout" from="start_boss_timer" to="." method="_on_start_boss_timer_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvqb6jtelfaj7"
+path="res://.godot/imported/MM Dr.Wily Revenge- Wily Castle Stage.mp3-dac2b7864c8bda4baeee88b986ff05cd.mp3str"
+
+[deps]
+
+source_file="res://assets/music/MM Dr.Wily Revenge- Wily Castle Stage.mp3"
+dest_files=["res://.godot/imported/MM Dr.Wily Revenge- Wily Castle Stage.mp3-dac2b7864c8bda4baeee88b986ff05cd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

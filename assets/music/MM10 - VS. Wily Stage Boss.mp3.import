@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bixeve6pbk5q7"
+path="res://.godot/imported/MM10 - VS. Wily Stage Boss.mp3-aee20869691ba75daaa6a65f4121548f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/MM10 - VS. Wily Stage Boss.mp3"
+dest_files=["res://.godot/imported/MM10 - VS. Wily Stage Boss.mp3-aee20869691ba75daaa6a65f4121548f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

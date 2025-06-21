@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="1_8eq4s"]
 [ext_resource type="Script" uid="uid://bglt38s4oxusu" path="res://levels/beginning_screen.gd" id="1_e7u74"]
 [ext_resource type="Texture2D" uid="uid://b3rnah75ygp42" path="res://assets/sprites/miscelleaneous/menu_megaman_custom_image_2.png" id="1_t1qcs"]
+[ext_resource type="AudioStream" uid="uid://4im1lq6663el" path="res://assets/music/MM&Bass- Robot Museum.mp3" id="3_lneu1"]
 [ext_resource type="AudioStream" uid="uid://comqwjvrvx5ty" path="res://assets/sounds/change_weapon_robot_master.ogg" id="4_0oaif"]
-[ext_resource type="AudioStream" uid="uid://cfnmtu33ktvu4" path="res://assets/music/Mega_Man_3_Blue_Lightning_OC_ReMix.mp3" id="4_4hts8"]
 [ext_resource type="FontFile" uid="uid://b2b4sqcxdam75" path="res://assets/fonts/megaman_2.ttf" id="5_hyfa6"]
 [ext_resource type="AudioStream" uid="uid://cf46d7ylroa2c" path="res://assets/sounds/weapon_and_menu_select.ogg" id="5_kg08f"]
 [ext_resource type="Texture2D" uid="uid://u3mv2w8vxt0a" path="res://assets/sprites/miscelleaneous/health_bg_texture_test.png" id="6_m5vdt"]
@@ -105,7 +105,7 @@ libraries = {
 }
 
 [node name="main_menu_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_4hts8")
+stream = ExtResource("3_lneu1")
 
 [node name="hoverButtonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_0oaif")
@@ -202,9 +202,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 71.0
-offset_top = 72.0
-offset_right = 186.0
-offset_bottom = 186.0
+offset_top = 62.0
+offset_right = 190.0
+offset_bottom = 189.0
 grow_horizontal = 2
 grow_vertical = 2
 

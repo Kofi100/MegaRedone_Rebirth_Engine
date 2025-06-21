@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c3ff310oj7e5g"
+path="res://.godot/imported/MMX4-Cyber Peacock Stage.mp3-6b1ce9197835711b893b81e63747415b.mp3str"
+
+[deps]
+
+source_file="res://assets/music/MMX4-Cyber Peacock Stage.mp3"
+dest_files=["res://.godot/imported/MMX4-Cyber Peacock Stage.mp3-6b1ce9197835711b893b81e63747415b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

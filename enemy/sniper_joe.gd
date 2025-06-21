@@ -36,7 +36,7 @@ func _physics_process(delta):
 		#print("player is in zone")
 	
 	var distance_y=global_position.y-GlobalScript.playerposy
-	if abs(distance_x)<30 and abs(distance_y)<30:
+	if abs(distance_x)<10 and abs(distance_y)<50:
 		#print(distance_x,distance_y)
 		if is_on_floor():
 			animated_sprite_2d.play("jump")

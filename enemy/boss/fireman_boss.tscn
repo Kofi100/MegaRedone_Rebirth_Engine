@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://4w0eroyrq7m5"]
+[gd_scene load_steps=20 format=3 uid="uid://4w0eroyrq7m5"]
 
 [ext_resource type="Texture2D" uid="uid://gf76btbxgpe3" path="res://assets/sprites/enemies/bosses/fireman/idle/0.png" id="1_g6nul"]
 [ext_resource type="Script" uid="uid://c1rv8rh0pp5sn" path="res://enemy/boss/fireman_boss.gd" id="1_st3eb"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://4sbg3vjywxvr" path="res://assets/sprites/enemies/bosses/fireman/pose/2.png" id="7_ob6hq"]
 [ext_resource type="Texture2D" uid="uid://cr62qajan5p20" path="res://assets/sprites/enemies/bosses/fireman/run/2.png" id="8_pxe58"]
 [ext_resource type="Theme" uid="uid://deia2cj2p3mch" path="res://theme1.tres" id="11_x5cra"]
-[ext_resource type="AudioStream" uid="uid://c4o0dihky60n3" path="res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3" id="14_halsn"]
 [ext_resource type="AudioStream" uid="uid://cd2wus4a02so7" path="res://assets/sounds/fire_storm_1.wav" id="15_y25d8"]
 [ext_resource type="AudioStream" uid="uid://difgv56gvr2pr" path="res://assets/sounds/land.wav" id="16_gqiey"]
 
@@ -150,7 +149,6 @@ shape = SubResource("RectangleShape2D_hm4sd")
 one_shot = true
 
 [node name="boss_theme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_halsn")
 volume_db = -10.0
 
 [node name="fire_storm_1" type="AudioStreamPlayer2D" parent="."]

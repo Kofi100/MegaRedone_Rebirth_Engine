@@ -45,8 +45,11 @@ func _on_ok_pressed():
 
 
 func _on_credits_pressed():
-	$credits.visible=true
-	$screen2.visible=false
+	var creditsScene:PackedScene=preload("res://levels/credits_screen.tscn")
+	#$credits.visible=true
+	#$screen2.visible=false
+	get_tree().change_scene_to_packed(creditsScene)
+	
 	$pressOrConfirmButtonSound.play()
 
 

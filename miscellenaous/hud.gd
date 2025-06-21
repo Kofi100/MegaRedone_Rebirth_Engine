@@ -13,7 +13,8 @@ func _ready():
 	GlobalScript.trigger_boss=false
 	#$pause_screen_setup/ConfirmationDialog.hide()
 	color=$fade_out_rectangle.color
-	#print(color)
+	
+
 var gotten_bgm_value=false
 var original_background_volume_db:int
 var start_boss_timer:bool=false
@@ -63,7 +64,7 @@ func _process(_delta):
 			if music_node!=null and (music_node is AudioStreamPlayer2D or music_node is AudioStreamPlayer):
 				pass
 				music_node.stop()
-				music_node.stream=preload("res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3")
+				#music_node.stream=preload("res://assets/music/Mega Man 3 — Boss Battle (Cover).mp3")
 				music_node.play()
 		#if 
 		$boss_healthbar.visible=true

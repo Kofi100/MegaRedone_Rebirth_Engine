@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bw8qbuok6i6r7"
+path="res://.godot/imported/MM7-Dr. Wily Stage 1.mp3-c2fbd3e393ed76b262235b9996756566.mp3str"
+
+[deps]
+
+source_file="res://assets/music/MM7-Dr. Wily Stage 1.mp3"
+dest_files=["res://.godot/imported/MM7-Dr. Wily Stage 1.mp3-c2fbd3e393ed76b262235b9996756566.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
