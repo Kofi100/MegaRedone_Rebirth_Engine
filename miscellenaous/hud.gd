@@ -13,7 +13,7 @@ func _ready():
 	GlobalScript.trigger_boss=false
 	#$pause_screen_setup/ConfirmationDialog.hide()
 	color=$fade_out_rectangle.color
-	print(color)
+	#print(color)
 var gotten_bgm_value=false
 var original_background_volume_db:int
 var start_boss_timer:bool=false
@@ -44,7 +44,7 @@ func _process(_delta):
 					gotten_bgm_value=false
 				if GlobalScript.health<=0:
 					i.stop()
-	minutes.text=str(GlobalScript.minute_level).pad_zeros(2)
+	minutes.text=str(int(GlobalScript.minute_level)).pad_zeros(2)
 	seconds.text=str(int(GlobalScript.second_level)).pad_zeros(2)
 	millsecs.text=str(int(GlobalScript.milliseconds))
 	#millsecs=int()
