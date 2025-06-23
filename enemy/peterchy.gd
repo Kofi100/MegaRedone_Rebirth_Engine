@@ -10,7 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	playerdamagevalue=3
-	health=8
+	health=3
 	state='move'
 	var distance_to_player=global_position-Vector2(GlobalScript.playerposx,GlobalScript.playerposy)
 	if distance_to_player.x<0:

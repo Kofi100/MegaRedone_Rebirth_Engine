@@ -65,11 +65,12 @@ func _process(delta):
 		$bosses_display.visible=false
 		$screen_flicker.visible=false
 		$screen_flicker.stop()
-	if health_capsule1<=0 and health_capsule2<=0 and health_capsule3<=0:#get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
-		$explosion.set_emitting(true)
-		#$explosion.reparent(get_tree().current_scene)
-		archive_engine_defeat_trigger=true
-		#queue_free()
+	if health_capsule1 and health_capsule2 and health_capsule3:
+		if health_capsule1<=0 and health_capsule2<=0 and health_capsule3<=0:#get_node(weapon_capsules[0])==null and get_node(weapon_capsules[1])==null and get_node(weapon_capsules[2])==null:
+			$explosion.set_emitting(true)
+			#$explosion.reparent(get_tree().current_scene)
+			archive_engine_defeat_trigger=true
+			#queue_free()
 var health_capsule1;var health_capsule2;var health_capsule3
 func activate_capsule():
 	picked_node_capsule.animation_player.play("retract",-1,-1)

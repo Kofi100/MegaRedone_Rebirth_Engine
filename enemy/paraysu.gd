@@ -2,7 +2,7 @@ extends enemy
 
 @onready var animation_player = $AnimationPlayer
 
-var SPEED = 4000.0
+var SPEED = 1000.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	state='fall_normal'
 	playerdamagevalue=5
-	health=5
+	health=1
 
 func _physics_process(delta):
 	#print(SPEED)
@@ -22,7 +22,7 @@ func _physics_process(delta):
 	match state:
 		'fall_normal':
 			animation_player.play("fall")
-			gravity=  500
+			gravity=  150
 		'para_open':
 			if animation_player.current_animation!='parcheute _open':
 				animation_player.play("parcheute _open")

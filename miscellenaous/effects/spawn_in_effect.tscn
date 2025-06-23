@@ -13,15 +13,15 @@ shader_parameter/outlinecolor = Color(0, 0, 0, 1)
 shader_parameter/bodycolori = Color(0, 0.796078, 0, 1)
 shader_parameter/bodycolorii = Color(0.431373, 0.266667, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dg31f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xipqv"]
 atlas = ExtResource("1_fldfe")
-region = Rect2(62, 60, 31, 30)
+region = Rect2(74, 60, 37, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ofpj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dg31f")
+"texture": SubResource("AtlasTexture_xipqv")
 }],
 "loop": true,
 "name": &"spanw_in",

@@ -3,7 +3,12 @@ extends Node2D
 
 @export var node_to_add_to_enemy:Node2D;
 var new_node
-@export var enemy_to_spawn:String=''
+@export_enum("new_shotman","mechakkero","peterchy","walking_bomb",
+"met","sniper_joe","octopus_battery","hologran","homer","paraysu",
+"pickelman_bull","yambou","spikyoall","ceiling_shooter","tacklefire",
+"upndown","enemy_2","buster","count_bomb","grenade_man","burner_joe",
+"screw_bomber","ice_telly","bombomb","ice_joe","returningmachine_joe",
+) var enemy_to_spawn: String = ""
 #@export var spawn_index:int
 #var new_shotman=preload("")
 #var peterchy=preload("res://enemy/peterchy.tscn")
@@ -49,22 +54,28 @@ func _enter_tree():
 	request_ready()
 func _process(_delta):
 	display_node=get_node_or_null("enemy_display_sprite")
-	if visibility==true:
-		for i in disappear_nodes:
-			if disappear_nodes.has(i) and i<=4:
-				var node=get_node(disappear_nodes[i])
-				node.visible=true;#print(i)
-			
-#			if i==5:
-#				i=1
-	elif not visibility:
+	if Engine.is_editor_hint():
+		if visibility==true:
+			for i in disappear_nodes:
+				if disappear_nodes.has(i) and i<=4:
+					var node=get_node(disappear_nodes[i])
+					node.visible=true;#print(i)
+				
+	#			if i==5:
+	#				i=1
+		elif not visibility:
+			for i in disappear_nodes:
+				if disappear_nodes.has(i):
+					var node=get_node(disappear_nodes[i])
+					node.visible=false;#print(i)
+				if i==5:
+					i=1
+		#to be used later
+	else:
 		for i in disappear_nodes:
 			if disappear_nodes.has(i):
 				var node=get_node(disappear_nodes[i])
 				node.visible=false;#print(i)
-			if i==5:
-				i=1
-	#to be used later
 
 #	if GlobalScript.spawn_enemy:
 #		if $VisibleOnScreenNotifier2D.is_connected('screen_entered',_on_visible_on_screen_notifier_2d_screen_entered)==false:

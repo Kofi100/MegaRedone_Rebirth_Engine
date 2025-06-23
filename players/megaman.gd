@@ -329,14 +329,7 @@ func _physics_process(delta):
 								velocity.x=conveyor_push*delta
 						play_animations()
 						dash_function(delta)
-						#if anim.animation!="idle":
-
-						if $anim.animation=="shoot_idle":
-							if $anim.flip_h==false:
-								$anim.offset.x=-3#-6
-							elif $anim.flip_h==true:
-								$anim.offset.x=3
-						elif $anim.animation=="dash":
+						if $anim.animation=="dash":
 							$anim.offset.y=3
 							
 						else: 
@@ -399,18 +392,19 @@ func _physics_process(delta):
 					shoot_and_charge()
 				#chargeeffect()
 				MegamanAndItems.charge_effect(anim)
-				if $anim.animation=="shoot_idle":
-					if $anim.flip_h==false:
-						$anim.offset.x=-6
-					elif $anim.flip_h==true:
-						$anim.offset.x=6
-				else:
-					$anim.offset.x=0
+				#if $anim.animation=="shoot_idle":
+					#if $anim.flip_h==false:
+						#$anim.offset.x=-6
+					#elif $anim.flip_h==true:
+						#$anim.offset.x=6
+				#else:
+					#$anim.offset.x=0
 				#if is_on_floor():
-					if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
+				if (not Input.is_action_pressed("shoot") or Input.is_action_pressed("shoot")) and not Input.is_action_just_released("shoot"):
 						if anim.animation!="shoot_idle" and anim.animation!="whistle_idle" :#or anim.animation!="stun"
 							$anim.play("idle")
-					elif Input.is_action_just_released("shoot"):
+				elif Input.is_action_just_released("shoot"):
+					
 						$anim.play("shoot_idle")
 				if Input.is_action_pressed("move_left"):
 					anim.flip_h=false
@@ -470,7 +464,8 @@ func play_animations():
 							anim.play("run")
 				elif move_an_inch_checker<10:
 					if velocity.x!=0:
-						$anim.play("move_by_inch")
+						if anim.animation!="shoot_idle":
+							$anim.play("move_by_inch")
 					elif velocity.x==0:
 						if $anim.animation!="shoot_idle" and anim.animation!="whistle_idle":
 							$anim.play("idle")

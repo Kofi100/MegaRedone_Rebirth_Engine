@@ -12,7 +12,7 @@ func _ready():
 	state='on_ground'
 	animated_sprite_2d.play("jump")
 	playerdamagevalue=3
-	health=7
+	health=2
 
 func _physics_process(delta):
 	$state.text=state

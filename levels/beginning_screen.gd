@@ -33,8 +33,11 @@ func _on_main_menu_music_finished():
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://levels/main_menu.tscn")
 	$pressOrConfirmButtonSound.play()
+	await $pressOrConfirmButtonSound.finished
+	get_tree().change_scene_to_file("res://levels/main_menu.tscn")
+	if $screen2/ScrollContainer/VBoxContainer/screenTwoPlayBtn.is_inside_tree():
+		pass
 
 
 func _on_ok_pressed():
@@ -44,13 +47,15 @@ func _on_ok_pressed():
 	$pressOrConfirmButtonSound.play()
 
 
-func _on_credits_pressed():
+func _on_credits_pressed(): 
+	$pressOrConfirmButtonSound.play()
+	await $pressOrConfirmButtonSound.finished
 	var creditsScene:PackedScene=preload("res://levels/credits_screen.tscn")
 	#$credits.visible=true
 	#$screen2.visible=false
 	get_tree().change_scene_to_packed(creditsScene)
 	
-	$pressOrConfirmButtonSound.play()
+	
 
 
 func _on_exit_pressed():

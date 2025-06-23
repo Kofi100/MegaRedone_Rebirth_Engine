@@ -13,7 +13,7 @@ func _ready():
 
 var player
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if next_portal!=null:
 		if player!=null:
 			if $Timer.time_left<=0:

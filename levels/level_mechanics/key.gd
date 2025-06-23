@@ -7,7 +7,7 @@ func _ready():
 
 var follow_player=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if follow_player==true and GlobalScreenTransitionTimer.time_left==0:
 		#var new_posx=move_toward(global_position.x,GlobalScript.playerposx+10,speed_randomized*delta)
 		#var new_posy=move_toward(global_position.y,GlobalScript.playerposy,speed_randomized*delta)#50

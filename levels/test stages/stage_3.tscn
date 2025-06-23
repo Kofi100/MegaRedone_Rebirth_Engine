@@ -287,9 +287,8 @@ shape = SubResource("RectangleShape2D_umme1")
 
 [node name="all_camera_systems" type="Node2D" parent="."]
 
-[node name="new_camera_system" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system" index="0"]
@@ -303,10 +302,9 @@ position = Vector2(121, 120)
 shape = SubResource("RectangleShape2D_22hde")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system2" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system2" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(2059, 730)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system2" index="0"]
@@ -324,10 +322,9 @@ debug_color = Color(0.4, 0.2, 0.6, 0.5)
 position = Vector2(2084, 720)
 gizmo_extents = 97.3
 
-[node name="new_camera_system3" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system3" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(285.439, 4.5123)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system3" index="0"]
@@ -341,10 +338,9 @@ position = Vector2(99.0614, 114.988)
 shape = SubResource("RectangleShape2D_i00cd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system4" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system4" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(850.675, 105.811)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system4" index="0"]
@@ -358,10 +354,9 @@ position = Vector2(174.325, 15.1892)
 shape = SubResource("RectangleShape2D_2xvor")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system5" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system5" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(566.699, 48.2655)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system5" index="0"]
@@ -375,10 +370,9 @@ position = Vector2(72.8011, 71.2345)
 shape = SubResource("RectangleShape2D_k2a67")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system6" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system6" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(1313.45, 61.735)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system6" index="0"]
@@ -392,10 +386,9 @@ position = Vector2(94.5474, 57.765)
 shape = SubResource("RectangleShape2D_cwfuu")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system7" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system7" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(1666, 121)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system7" index="0"]
@@ -409,10 +402,9 @@ position = Vector2(126, 0.5)
 shape = SubResource("RectangleShape2D_haew4")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system8" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system8" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(2183, 119)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system8" index="0"]
@@ -426,10 +418,9 @@ position = Vector2(249.5, 1)
 shape = SubResource("RectangleShape2D_riesd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system10" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system10" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(3205, 118)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system10" index="0"]
@@ -443,10 +434,9 @@ position = Vector2(124, 2.5)
 shape = SubResource("RectangleShape2D_m7kde")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system12" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system12" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(3712, 120)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system12" index="0"]
@@ -459,10 +449,9 @@ limit_bottom = 240
 shape = SubResource("RectangleShape2D_cbpkd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system9" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system9" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(2945, 119)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system9" index="0"]
@@ -476,10 +465,9 @@ position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_37usn")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system11" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system11" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(3892, 131)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" parent="all_camera_systems/new_camera_system11" index="0"]
@@ -493,10 +481,9 @@ position = Vector2(75.5, -10.5)
 shape = SubResource("RectangleShape2D_18y35")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system13" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system13" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(2433, 833)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system13"]
@@ -504,10 +491,9 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_h4i7y")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system14" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system14" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(2433, 1055)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system14"]
@@ -515,10 +501,9 @@ position = Vector2(-0.5, 17)
 shape = SubResource("RectangleShape2D_m07c5")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system15" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system15" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(3967, 352)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system15"]
@@ -526,10 +511,9 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ffgor")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system16" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system16" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4264, 356)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system16"]
@@ -537,10 +521,9 @@ position = Vector2(88, 4.5)
 shape = SubResource("RectangleShape2D_q8dyd")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system17" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system17" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4490.51, -344.346)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system17"]
@@ -548,10 +531,9 @@ position = Vector2(117.491, -15.654)
 shape = SubResource("RectangleShape2D_gl7cv")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system18" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system18" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4737, -127)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system18"]
@@ -559,10 +541,9 @@ position = Vector2(127.5, 8)
 shape = SubResource("RectangleShape2D_17o25")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system19" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system19" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4737, 354)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system19"]
@@ -570,10 +551,9 @@ position = Vector2(-0.5, 7)
 shape = SubResource("RectangleShape2D_6olw0")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system20" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system20" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4735, 595)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system20"]
@@ -581,10 +561,9 @@ position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_x12rj")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="new_camera_system21" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera", "GlobalTimerChecker") instance=ExtResource("5_0ulhr")]
+[node name="new_camera_system21" parent="all_camera_systems" node_paths=PackedStringArray("collision_limits_camera") instance=ExtResource("5_0ulhr")]
 position = Vector2(4991, 596)
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/new_camera_system21"]
@@ -592,12 +571,11 @@ position = Vector2(2, 4)
 shape = SubResource("RectangleShape2D_m6hpq")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(5136.23, 556.079)
 script = ExtResource("10_ywbwb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="all_camera_systems/Camera_System"]
@@ -611,12 +589,11 @@ limit_top = 484
 limit_right = 6144
 limit_bottom = 720
 
-[node name="Camera_System2" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System2" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(6167.21, 558.919)
 script = ExtResource("10_ywbwb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="all_camera_systems/Camera_System2"]
@@ -630,12 +607,11 @@ position = Vector2(232.793, 43.0814)
 shape = SubResource("RectangleShape2D_cridr")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System3" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System3" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(6698.64, 574.241)
 script = ExtResource("10_ywbwb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="all_camera_systems/Camera_System3"]
@@ -649,12 +625,11 @@ position = Vector2(213.859, 27.7588)
 shape = SubResource("RectangleShape2D_cuqk2")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System4" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System4" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(7243.33, 577.109)
 script = ExtResource("10_ywbwb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="all_camera_systems/Camera_System4"]
@@ -668,12 +643,11 @@ position = Vector2(52.6729, 24.3905)
 shape = SubResource("RectangleShape2D_hjb46")
 debug_color = Color(0.4, 0.2, 0.6, 0.5)
 
-[node name="Camera_System5" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera", "GlobalTimerChecker")]
+[node name="Camera_System5" type="Area2D" parent="all_camera_systems" node_paths=PackedStringArray("zone_camera_2d", "collision_limits_camera")]
 position = Vector2(7529.12, 612.263)
 script = ExtResource("10_ywbwb")
 zone_camera_2d = NodePath("Camera2D")
 collision_limits_camera = NodePath("CollisionShape2D")
-GlobalTimerChecker = NodePath("")
 timer_addon_exists = true
 
 [node name="Camera2D" type="Camera2D" parent="all_camera_systems/Camera_System5"]

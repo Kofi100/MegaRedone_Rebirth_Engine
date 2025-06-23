@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var initial_direction:String
 var active:bool=false
-func _process(delta):
+func _process(_delta):
 	if GlobalScreenTransitionTimer.is_stopped()==false:
 		set_physics_process(false)
 	elif GlobalScreenTransitionTimer.is_stopped()==true:
