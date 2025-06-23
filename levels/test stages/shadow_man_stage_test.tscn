@@ -572,7 +572,7 @@ layer_1/tile_data = PackedInt32Array(196610, 10, 0, 262146, 10, 0, 327682, 10, 0
 position = Vector2(127, 114)
 
 [node name="megaman" parent="." instance=ExtResource("4_wqbhy")]
-position = Vector2(127, 102)
+position = Vector2(128, 102)
 
 [node name="all_cameras" type="Node2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -732,40 +732,40 @@ position = Vector2(757.754, 1478.71)
 enemy_to_spawn = "peterchy"
 
 [node name="enemy_spawner17" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(2141, 1685)
+position = Vector2(6556, 5061)
 enemy_to_spawn = "mechakkero"
 
 [node name="enemy_spawner18" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(2290, 1654)
+position = Vector2(6914, 4959)
 enemy_to_spawn = "mechakkero"
 
 [node name="enemy_spawner19" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(2791, 1547)
+position = Vector2(8610, 4634)
 enemy_to_spawn = "paraysu"
 visibility = true
 
 [node name="enemy_spawner20" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(2874, 1547)
+position = Vector2(8732, 4635)
 enemy_to_spawn = "paraysu"
 visibility = true
 
 [node name="enemy_spawner21" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(2952, 1547)
+position = Vector2(9098, 4629)
 enemy_to_spawn = "paraysu"
 visibility = true
 
 [node name="enemy_spawner22" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(3032, 1547)
+position = Vector2(9338.8, 4630.48)
 enemy_to_spawn = "paraysu"
 visibility = true
 
 [node name="enemy_spawner23" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(3113, 1547)
+position = Vector2(9579, 4633)
 enemy_to_spawn = "paraysu"
 visibility = true
 
 [node name="enemy_spawner24" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(3193, 1548)
+position = Vector2(10062.4, 4631.74)
 enemy_to_spawn = "paraysu"
 visibility = true
 
@@ -774,15 +774,15 @@ position = Vector2(394, 982)
 enemy_to_spawn = "pickelman_bull"
 
 [node name="enemy_spawner26" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(5590, 2754)
+position = Vector2(10371, 5062)
 enemy_to_spawn = "mechakkero"
 
 [node name="enemy_spawner27" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(3535, 1548)
+position = Vector2(10813, 4631)
 enemy_to_spawn = "yambou"
 
 [node name="enemy_spawner28" parent="all_enemies" instance=ExtResource("12_s4ajj")]
-position = Vector2(6494.5, 2322.99)
+position = Vector2(11275.5, 4630.99)
 enemy_to_spawn = "yambou"
 
 [node name="bg" type="CanvasLayer" parent="."]
@@ -829,10 +829,10 @@ color = Color(0, 1, 1, 1)
 [node name="all_doors" type="Node2D" parent="."]
 
 [node name="door" parent="all_doors" instance=ExtResource("33_mcorx")]
-position = Vector2(7102, 2493)
+position = Vector2(11883, 4801)
 
 [node name="door2" parent="all_doors" instance=ExtResource("33_mcorx")]
-position = Vector2(7915, 2493)
+position = Vector2(12696, 4801)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
 position = Vector2(384, 284)
@@ -1013,14 +1013,6 @@ limit_left = 4247
 limit_top = 1537
 limit_right = 4480
 limit_bottom = 1777
-
-[node name="allDoors" type="Node2D" parent="."]
-
-[node name="door" parent="allDoors" instance=ExtResource("33_mcorx")]
-position = Vector2(3961, 1600)
-
-[node name="door2" parent="allDoors" instance=ExtResource("33_mcorx")]
-position = Vector2(4232, 1600)
 
 [connection signal="body_entered" from="zones/zone6" to="." method="_on_zone_6_body_entered"]
 [connection signal="body_entered" from="zones/zone7" to="." method="_on_zone_7_body_entered"]

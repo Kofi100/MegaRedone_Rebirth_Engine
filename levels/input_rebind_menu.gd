@@ -29,7 +29,7 @@ var display_label=false
 var selected_option:int=0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$waiting_Input_Group.visible=display_label
+	$waiting_text_label.visible=display_label
 	#display_label_fxn()
 	for i in node_to_action:
 		if node_to_action[i]!=null: #and node_to_action[i]

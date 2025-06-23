@@ -6,6 +6,6 @@ func _ready():
 	pass
 	
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	#actual_press extends class_name enemy
 	pass

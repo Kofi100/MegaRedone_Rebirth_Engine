@@ -9,7 +9,7 @@ func _ready():
 var state
 var delete_a_key=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	#for i in get_tree().current_scene.get_children():
 		#if i is CharacterBody2D and i.is_in_group("key"):
 			#if i.id==door_id:

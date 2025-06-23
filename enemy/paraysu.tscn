@@ -85,6 +85,7 @@ size = Vector2(32, 6)
 size = Vector2(14.3333, 16)
 
 [node name="paraysu" type="CharacterBody2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_k5u3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -93,7 +94,7 @@ hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_c8lff")
+"": SubResource("AnimationLibrary_c8lff")
 }
 
 [node name="fall_to_open_timer" type="Timer" parent="."]

@@ -6,15 +6,10 @@
 [node name="credits_screen" type="Node2D"]
 script = ExtResource("1_ag762")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 256.0
-offset_bottom = 226.0
-color = Color(0, 0, 0, 1)
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_top = 224.0
 offset_right = 256.0
-offset_bottom = 636.0
+offset_bottom = 524.0
 theme = ExtResource("1_itus8")
 bbcode_enabled = true
 text = "CREDITS
@@ -36,30 +31,12 @@ MUSIC
 -------------
 
 Capcom
-LakeFerperd
-GalaxyTrail Studios
-Berserk Boy Games
+DomzTunes
 tbc..."
 fit_content = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="RichTextLabel"]
-position = Vector2(129.5, 207.5)
-scale = Vector2(12.85, 20.55)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_right = 255.0
-offset_bottom = 25.0
-color = Color(0, 0, 0, 1)
-
-[node name="pressInstructions" type="RichTextLabel" parent="."]
-offset_left = 35.0
-offset_right = 391.0
-offset_bottom = 44.0
-scale = Vector2(0.5, 0.5)
-theme = ExtResource("1_itus8")
-bbcode_enabled = true
-text = "PRESS ESC or SELECT BUTTON TO QUIT"
-fit_content = true
+position = Vector2(129.5, 176)
+scale = Vector2(12.85, 17.4)
 
 [connection signal="screen_exited" from="RichTextLabel/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
